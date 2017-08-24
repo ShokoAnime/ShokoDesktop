@@ -1645,7 +1645,7 @@
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.Core.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.resources.dll" />
-    <Content Include="Images\LoadingError.png" />
+    <Resource Include="Images\LoadingError.png" />
     <Resource Include="Images\chapter.png" />
     <Resource Include="Images\32_plex.png" />
     <Resource Include="Resources\Entypo-license.txt" />

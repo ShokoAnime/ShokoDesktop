@@ -2,9 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:propsLocal="clr-namespace:Shoko.Desktop.Properties"
                     xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
+                    xmlns:WPFHelpers="clr-namespace:Shoko.Desktop.WPFHelpers"
                     xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls">
 
-
+    <!-- Do not remove this! For some reason, these resource dictionaries don't inherit App.xaml -->
+    <WPFHelpers:UriToImageConverter x:Key="LocalUriToImageConverter" />
 
     <!-- MainList_GroupFilterTemplate -->
     <DataTemplate x:Key="MainList_GroupFilterTemplate">
@@ -48,10 +50,7 @@
             </Grid.RowDefinitions>
 
             <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" Margin="0,0,10,0" Height="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DisplayHeight_GroupList}" 
-                   MaxWidth="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DisplayHeight_GroupList}" HorizontalAlignment="Left">
-                <Image.Source>
-                    <BitmapImage UriSource="{Binding Path=PosterPath}" DecodePixelHeight="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DisplayHeight_GroupList}"/>
-                </Image.Source>
+                   MaxWidth="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DisplayHeight_GroupList}" HorizontalAlignment="Left" Source="{Binding Path=PosterPath, Converter={StaticResource LocalUriToImageConverter}}">
             </Image>
 
             <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0">
@@ -159,10 +158,7 @@
             </Grid.RowDefinitions>
 
             <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="6" Margin="0,0,10,0" Height="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DisplayHeight_GroupList}" 
-                   MaxWidth="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DisplayHeight_GroupList}" HorizontalAlignment="Left" >
-                <Image.Source>
-                    <BitmapImage UriSource="{Binding Path=PosterPath}" DecodePixelHeight="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DisplayHeight_GroupList}"/>
-                </Image.Source>
+                   MaxWidth="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DisplayHeight_GroupList}" HorizontalAlignment="Left" Source="{Binding Path=PosterPath, Converter={StaticResource LocalUriToImageConverter}}">
             </Image>
 
             <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=SeriesName}" FontWeight="Bold" FontSize="16" />

@@ -153,21 +153,21 @@
                     </Style>
                 </DataGrid.CellStyle>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Anime}" Binding="{Binding AnimeName}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Rankings_AniDB}" Binding="{Binding Rating}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Anime}" Binding="{Binding Path=AnimeName}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Rankings_AniDB}" Binding="{Binding Path=Rating}" IsReadOnly="True" />
                     <DataGridTemplateColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Rankings_User}" IsReadOnly="False">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
 
                                     <usercontrols:VisualRating Rating="{Binding Path=UserRating}" VerticalAlignment="Center" ImageSize="16" Margin="0,0,5,0"/>
-                                    <TextBlock Text="{Binding UserRating}" />
+                                    <TextBlock Text="{Binding Path=UserRating}" />
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Rankings_Year}" Binding="{Binding Year}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Rankings_Year}" Binding="{Binding Path=Year}" IsReadOnly="True" />
                 </DataGrid.Columns>
             </DataGrid>
 
@@ -185,7 +185,7 @@
                 <TextBlock Margin="5" Text="{Binding Path=AnimeDetailed.AniDB_Anime.MainTitle}" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" FontWeight="Heavy" />
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <Image  Height="250" HorizontalAlignment="Left" VerticalAlignment="Top"
-                        Source="{Binding Path=AnimeDetailed.AniDB_Anime.PosterPath}">
+                        Source="{Binding Path=AnimeDetailed.AniDB_Anime.PosterPath, Converter={StaticResource LocalUriToImageConverter}}">
                     </Image>
 
                     <StackPanel Orientation="Vertical" Margin="5,0,0,0">

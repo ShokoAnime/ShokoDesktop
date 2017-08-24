@@ -87,7 +87,7 @@
                     <!-- recommended anime image  -->
                     <Border BorderThickness="1,0,0,1" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1" Background="FloralWhite">
                         <Image  Height="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=Dash_RecDownload_Height}"  Margin="5,3,10,5"
-                               HorizontalAlignment="Left" Source="{Binding Path=Recommended_PosterPath}" ToolTipService.ShowDuration="60000">
+                               HorizontalAlignment="Left" Source="{Binding Path=Recommended_PosterPath, Converter={StaticResource LocalUriToImageConverter}}" ToolTipService.ShowDuration="60000">
                             <Image.Effect>
                                 <DropShadowEffect Opacity="0.5"/>
                             </Image.Effect>
@@ -103,11 +103,11 @@
                                             <RowDefinition />
                                         </Grid.RowDefinitions>
 
-                                        <Image Grid.Column="0" Grid.Row="0" Height="400" Source="{Binding Recommended_PosterPath}" 
+                                        <Image Grid.Column="0" Grid.Row="0" Height="400" Source="{Binding Path=Recommended_PosterPath, Converter={StaticResource LocalUriToImageConverter}}" 
                                                 Margin="10,5,0,5" VerticalAlignment="Top" HorizontalAlignment="Left">
                                         </Image>
 
-                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Recommended_Description}" Foreground="Black"  HorizontalAlignment="Left" Margin="10,5,0,5" 
+                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=Recommended_Description}" Foreground="Black"  HorizontalAlignment="Left" Margin="10,5,0,5" 
                                                    VerticalAlignment="Top"  TextWrapping="Wrap">
                                         </TextBlock>
                                     </Grid>
@@ -120,7 +120,7 @@
 
                     <!-- recommended anime description  -->
                     <Border BorderThickness="0,0,0,1" BorderBrush="DarkGray" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Background="FloralWhite">
-                        <TextBlock  MaxWidth="200"  Text="{Binding Recommended_Description}" Foreground="Black"  HorizontalAlignment="Left" Margin="0,0,5,5" 
+                        <TextBlock  MaxWidth="200"  Text="{Binding Path=Recommended_Description}" Foreground="Black"  HorizontalAlignment="Left" Margin="0,0,5,5" 
                                    Height="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=Dash_RecDownload_Height}"
                                                        VerticalAlignment="Top"  TextWrapping="Wrap">
                         </TextBlock>
@@ -150,7 +150,7 @@
                     <!-- based on anime image  -->
                     <Border BorderThickness="0,0,1,1" BorderBrush="DarkGray" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="1" Background="FloralWhite">
                         <Image  Height="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=Dash_RecDownload_Height}"  Margin="5,3,10,5"
-                               HorizontalAlignment="Left" Source="{Binding Path=BasedOn_PosterPath}" ToolTipService.ShowDuration="60000">
+                               HorizontalAlignment="Left" Source="{Binding Path=BasedOn_PosterPath, Converter={StaticResource LocalUriToImageConverter}}" ToolTipService.ShowDuration="60000">
                             <Image.Effect>
                                 <DropShadowEffect Opacity="0.5"/>
                             </Image.Effect>
@@ -165,7 +165,7 @@
                                             <RowDefinition />
                                         </Grid.RowDefinitions>
 
-                                        <Image Grid.Column="0" Grid.Row="0" Height="400" Source="{Binding BasedOn_PosterPath}" 
+                                        <Image Grid.Column="0" Grid.Row="0" Height="400" Source="{Binding Path=BasedOn_PosterPath, Converter={StaticResource LocalUriToImageConverter}}" 
                                                 Margin="10,5,0,5" VerticalAlignment="Top" HorizontalAlignment="Left">
                                         </Image>
                                     </Grid>

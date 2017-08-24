@@ -100,7 +100,7 @@
                             Background="FloralWhite">
                         <Image  Height="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=Dash_MiniCalendar_Height}" Margin="5,3,5,0"
                                MaxWidth="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=Dash_MiniCalendar_Height}" HorizontalAlignment="Left" 
-                               Source="{Binding Path=PosterPath}" ToolTipService.ShowDuration="60000">
+                               Source="{Binding Path=PosterPath, Converter={StaticResource LocalUriToImageConverter}}" ToolTipService.ShowDuration="60000">
                             <Image.ToolTip>
                                 <Border Background="FloralWhite" BorderThickness="1" BorderBrush="DarkGray">
                                     <Grid>
@@ -112,11 +112,11 @@
                                             <RowDefinition />
                                         </Grid.RowDefinitions>
 
-                                        <Image Grid.Column="0" Grid.Row="0" Height="400" Source="{Binding PosterPath}" 
+                                        <Image Grid.Column="0" Grid.Row="0" Height="400" Source="{Binding Path=PosterPath, Converter={StaticResource LocalUriToImageConverter}}" 
                                                 Margin="10,5,0,5" VerticalAlignment="Top" HorizontalAlignment="Left">
                                         </Image>
 
-                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding AniDBAnime.AniDBAnime.Description}" HorizontalAlignment="Left" Margin="10,5,0,5" 
+                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=AniDBAnime.AniDBAnime.Description}" HorizontalAlignment="Left" Margin="10,5,0,5" 
                                                    VerticalAlignment="Top"  TextWrapping="Wrap">
                                         </TextBlock>
                                     </Grid>

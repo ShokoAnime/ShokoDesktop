@@ -103,11 +103,11 @@
                         </Grid.ColumnDefinitions>
 
                         <Image Margin="0" Stretch="Uniform" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" 
-                               RenderOptions.BitmapScalingMode="HighQuality" wpfHelpers:ImageAsyncHelper.SourceUri="{Binding Picture}">
+                               RenderOptions.BitmapScalingMode="HighQuality" Source="{Binding Path=Picture, Converter={StaticResource LocalUriToImageConverter}}">
                         </Image>
 
                         <Border HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" VerticalAlignment="Top" BorderThickness="2,0,0,2" BorderBrush="Black" Background="{StaticResource GreenGradientBrush}">
-                            <TextBlock Margin="5" FontSize="16" Text="{Binding UnwatchedEpisodes}" FontWeight="ExtraBold"  />
+                            <TextBlock Margin="5" FontSize="16" Text="{Binding Path=UnwatchedEpisodes}" FontWeight="ExtraBold"  />
                         </Border>
 
                         <Border VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
@@ -115,8 +115,8 @@
                                 <SolidColorBrush Color="Black" Opacity="0.6"/>
                             </Border.Background>
                             <StackPanel Margin="6,2,6,3">
-                                <TextBlock FontSize="12" Text="{Binding AnimeName}" />
-                                <TextBlock FontSize="12" Text="{Binding EpisodeDetails}" TextWrapping="Wrap" />
+                                <TextBlock FontSize="12" Text="{Binding Path=AnimeName}" />
+                                <TextBlock FontSize="12" Text="{Binding Path=EpisodeDetails}" TextWrapping="Wrap" />
                             </StackPanel>
                         </Border>
 
@@ -141,10 +141,8 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Margin="0" Stretch="Uniform" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" RenderOptions.BitmapScalingMode="HighQuality">
-                            <Image.Source>
-                                <BitmapImage UriSource="{Binding Path=Picture}" />
-                            </Image.Source>
+                        <Image Margin="0" Stretch="Uniform" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" 
+                               RenderOptions.BitmapScalingMode="HighQuality" Source="{Binding Path=Picture, Converter={StaticResource LocalUriToImageConverter}}">
                         </Image>
 
                         <Border VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
@@ -152,8 +150,8 @@
                                 <SolidColorBrush Color="Black" Opacity="0.6"/>
                             </Border.Background>
                             <StackPanel Margin="6,2,6,3">
-                                <TextBlock FontSize="12" Text="{Binding AnimeName}" />
-                                <TextBlock FontSize="12" Text="{Binding Details}" />
+                                <TextBlock FontSize="12" Text="{Binding Path=AnimeName}" />
+                                <TextBlock FontSize="12" Text="{Binding Path=Details}" />
                             </StackPanel>
                         </Border>
 
@@ -179,7 +177,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Image Margin="0" Stretch="Uniform" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" 
-                               RenderOptions.BitmapScalingMode="HighQuality" wpfHelpers:ImageAsyncHelper.SourceUri="{Binding Picture}">
+                               RenderOptions.BitmapScalingMode="HighQuality" wpfHelpers:ImageAsyncHelper.SourceUri="{Binding Path=Picture, Converter={StaticResource LocalUriToImageConverter}}">
                         </Image>
 
                         <Border VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
@@ -187,8 +185,8 @@
                                 <SolidColorBrush Color="Black" Opacity="0.6"/>
                             </Border.Background>
                             <StackPanel Margin="6,2,6,3">
-                                <TextBlock FontSize="12" Text="{Binding AnimeName}" FontWeight="Bold" />
-                                <TextBlock FontSize="12" Text="{Binding EpisodeDetails}" />
+                                <TextBlock FontSize="12" Text="{Binding Path=AnimeName}" FontWeight="Bold" />
+                                <TextBlock FontSize="12" Text="{Binding Path=EpisodeDetails}" />
                             </StackPanel>
                         </Border>
 

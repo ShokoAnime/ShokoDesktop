@@ -7,7 +7,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel Orientation="Horizontal" Margin="5">
         <Border BorderThickness="1" BorderBrush="DarkGray" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Image Width="400" Source="{Binding Path=EpisodeImageLoading}"
+            <Image Width="400" Source="{Binding Path=EpisodeImageLoading, Converter={StaticResource LocalUriToImageConverter}}"
                    VerticalAlignment="Top" HorizontalAlignment="Left" RenderOptions.BitmapScalingMode="HighQuality">
             </Image>
         </Border>

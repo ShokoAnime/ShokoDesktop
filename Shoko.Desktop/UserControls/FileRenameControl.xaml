@@ -264,12 +264,12 @@
                     <DataGridTemplateColumn Header="" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding StatusImage}" Width="16" Height="16" />
+                                <Image Source="{Binding Path=StatusImage, Converter={StaticResource LocalUriToImageConverter}}" Width="16" Height="16" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Rename_OldName}" Binding="{Binding VideoLocal.FileName}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Rename_NewName}" Binding="{Binding NewFileName}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Rename_OldName}" Binding="{Binding Path=VideoLocal.FileName}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Rename_NewName}" Binding="{Binding Path=NewFileName}" IsReadOnly="True" />
 
                 </DataGrid.Columns>
             </DataGrid>

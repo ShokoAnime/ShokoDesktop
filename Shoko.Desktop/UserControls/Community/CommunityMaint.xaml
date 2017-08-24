@@ -163,13 +163,13 @@
                 </DataGrid.CellStyle>
                 <DataGrid.Columns>
 
-                    <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_SeriesName}" Binding="{Binding SeriesName}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_Status}" Binding="{Binding Status}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_SeriesName}" Binding="{Binding Path=SeriesName}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_Status}" Binding="{Binding Path=Status}" IsReadOnly="True" />
 
                     <DataGridTemplateColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_ValidTraktLink}" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding IsTraktLinkValidImage}" Width="16" Height="16" />
+                                <Image Source="{Binding Path=IsTraktLinkValidImage, Converter={StaticResource LocalUriToImageConverter}}" Width="16" Height="16" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -177,7 +177,7 @@
                     <DataGridTemplateColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_HasTraktLink}" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding HasTraktLinkImage}" Width="16" Height="16" />
+                                <Image Source="{Binding Path=HasTraktLinkImage, Converter={StaticResource LocalUriToImageConverter}}" Width="16" Height="16" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -185,7 +185,7 @@
                     <DataGridTemplateColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_CommunityLink}" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding HasTraktCommLinkImage}" Width="16" Height="16" />
+                                <Image Source="{Binding Path=HasTraktCommLinkImage, Converter={StaticResource LocalUriToImageConverter}}" Width="16" Height="16" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -193,7 +193,7 @@
                     <DataGridTemplateColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_Match}" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding UserTraktLinkMatchImage}" Width="16" Height="16" />
+                                <Image Source="{Binding Path=UserTraktLinkMatchImage, Converter={StaticResource LocalUriToImageConverter}}" Width="16" Height="16" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

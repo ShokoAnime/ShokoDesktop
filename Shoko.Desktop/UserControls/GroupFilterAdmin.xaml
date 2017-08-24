@@ -168,7 +168,7 @@
                 <!-- Filter name when not editing -->
                 <StackPanel Orientation="Vertical" Name="panelGroupFilterReadOnly" VerticalAlignment="Center" Margin="10,10,0,10" 
                     Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
-                    <TextBlock Margin="0,0,0,5" Text="{Binding GroupFilterName}" FontSize="18" FontWeight="Bold" Name="labelGroupFilterName" />
+                    <TextBlock Margin="0,0,0,5" Text="{Binding Path=GroupFilterName}" FontSize="18" FontWeight="Bold" Name="labelGroupFilterName" />
 
                     <StackPanel Orientation="Horizontal" Margin="0,0,5,5">
                         <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilter_BaseCondition}" VerticalAlignment="Center" Margin="0,0,5,0"
@@ -187,9 +187,9 @@
                 <StackPanel Orientation="Vertical" Name="panelGroupFilterEditing" Margin="10,10,0,0"
                     Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-                    <TextBlock Margin="0,0,0,5" Text="{Binding GroupFilterName}" FontSize="18" FontWeight="Bold"
+                    <TextBlock Margin="0,0,0,5" Text="{Binding Path=GroupFilterName}" FontSize="18" FontWeight="Bold"
                       Visibility="{Binding Path=IsLocked, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                    <TextBox Margin="0,0,10,5" Text="{Binding GroupFilterName}" FontSize="16" Padding="5" MinWidth="200" FontWeight="Bold" Name="txtFilterName"
+                    <TextBox Margin="0,0,10,5" Text="{Binding Path=GroupFilterName}" FontSize="16" Padding="5" MinWidth="200" FontWeight="Bold" Name="txtFilterName"
                      Visibility="{Binding Path=IsLocked, Converter={StaticResource InverseBooleanToVisibilityConverter}}"/>
 
                     <StackPanel Orientation="Horizontal" Margin="0,0,5,5">
@@ -216,13 +216,13 @@
 
                     <ListBox Margin="10,0,0,0" Name="lbFilterConditions" BorderThickness="0" Background="AntiqueWhite" Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource InverseBooleanToVisibilityConverter}}"
                                         HorizontalAlignment="Left" VerticalAlignment="Top" ItemTemplate="{DynamicResource FilterConditionTemplate}" ItemContainerStyle="{DynamicResource ListBoxItemStyleFolders}"
-                                        MaxWidth="500" ItemsSource="{Binding Obs_FilterConditions}">
+                                        MaxWidth="500" ItemsSource="{Binding Path=Obs_FilterConditions}">
 
 
                     </ListBox>
                     <ListBox Margin="10,0,0,0" Name="lbFilterConditions_Editing" BorderThickness="0" Background="AntiqueWhite" Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}"
                                         HorizontalAlignment="Left" VerticalAlignment="Top" ItemTemplate="{DynamicResource FilterConditionTemplate_Editing}" ItemContainerStyle="{DynamicResource ListBoxItemStyleFolders}"
-                                        MaxWidth="500" ItemsSource="{Binding Obs_FilterConditions}">
+                                        MaxWidth="500" ItemsSource="{Binding Path=Obs_FilterConditions}">
 
 
                     </ListBox>
@@ -249,11 +249,11 @@
 
                     <ListBox Margin="10,0,0,0" Name="lbSorting" BorderThickness="0" Background="AntiqueWhite" Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource InverseBooleanToVisibilityConverter}}"
                                         HorizontalAlignment="Left" VerticalAlignment="Top" ItemTemplate="{DynamicResource SortingCriteriaTemplate}" ItemContainerStyle="{DynamicResource ListBoxItemStyleFolders}"
-                                        ItemsSource="{Binding SortCriteriaList}">
+                                        ItemsSource="{Binding Path=SortCriteriaList}">
                     </ListBox>
                     <ListBox Margin="10,0,0,0" Name="lbSorting_Editing" BorderThickness="0" Background="AntiqueWhite" Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}"
                                         HorizontalAlignment="Left" VerticalAlignment="Top" ItemTemplate="{DynamicResource SortingCriteriaTemplate_Editing}" ItemContainerStyle="{DynamicResource ListBoxItemStyleFolders}"
-                                        ItemsSource="{Binding SortCriteriaList}">
+                                        ItemsSource="{Binding Path=SortCriteriaList}">
                     </ListBox>
 
                     <Border Margin="11,0,1,0" Style="{DynamicResource ToolbarBorderControlStyle}" Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">

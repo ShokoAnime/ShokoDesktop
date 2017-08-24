@@ -460,30 +460,30 @@
         </StackPanel>
 
         <!-- episode image overview in summary -->
-        <Image Grid.Column="1" Grid.Row="2" Width="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=DisplayWidth_EpisodeImage}" Source="{Binding EpisodeImageLoading}" 
+        <Image Grid.Column="1" Grid.Row="2" Width="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=DisplayWidth_EpisodeImage}" Source="{Binding Path=EpisodeImageLoading, Converter={StaticResource LocalUriToImageConverter}}" 
                     Visibility="{Binding Path=ShowEpisodeImageInSummary, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeDetail}}, Converter={StaticResource BooleanToVisibilityConverter}}"
                     Margin="0,5,0,15" VerticalAlignment="Top">
             <Image.ToolTip>
-                <Image Stretch="Fill" HorizontalAlignment="Center" Width="400" Source="{Binding EpisodeImageLoading}">
+                <Image Stretch="Fill" HorizontalAlignment="Center" Width="400" Source="{Binding Path=EpisodeImageLoading, Converter={StaticResource LocalUriToImageConverter}}">
                 </Image>
             </Image.ToolTip>
         </Image>
 
-        <TextBlock Grid.Column="2" Grid.Row="2" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Stretch" Margin="10,0,0,15" VerticalAlignment="Top"  TextWrapping="Wrap"
+        <TextBlock Grid.Column="2" Grid.Row="2" Text="{Binding Path=EpisodeOverviewLoading}" HorizontalAlignment="Stretch" Margin="10,0,0,15" VerticalAlignment="Top"  TextWrapping="Wrap"
                        Visibility="{Binding Path=ShowEpisodeOverviewInSummary, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeDetail}}, Converter={StaticResource BooleanToVisibilityConverter}}">
         </TextBlock>
 
         <!-- episode image overview in Expanded -->
-        <Image Grid.Column="1" Grid.Row="2" Width="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=DisplayWidth_EpisodeImage}" Source="{Binding EpisodeImageLoading}" 
+        <Image Grid.Column="1" Grid.Row="2" Width="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=DisplayWidth_EpisodeImage}" Source="{Binding Path=EpisodeImageLoading, Converter={StaticResource LocalUriToImageConverter}}" 
                     Visibility="{Binding Path=ShowEpisodeImageInExpanded, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeDetail}}, Converter={StaticResource BooleanToVisibilityConverter}}"
                     Margin="0,5,0,5" VerticalAlignment="Top">
             <Image.ToolTip>
-                <Image Stretch="Fill" HorizontalAlignment="Center" Width="400" Source="{Binding EpisodeImageLoading}">
+                <Image Stretch="Fill" HorizontalAlignment="Center" Width="400" Source="{Binding Path=EpisodeImageLoading, Converter={StaticResource LocalUriToImageConverter}}">
                 </Image>
             </Image.ToolTip>
         </Image>
 
-        <TextBlock Grid.Column="2" Grid.Row="2" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Stretch" Margin="10,0,0,0" VerticalAlignment="Top"  TextWrapping="Wrap"
+        <TextBlock Grid.Column="2" Grid.Row="2" Text="{Binding Path=EpisodeOverviewLoading}" HorizontalAlignment="Stretch" Margin="10,0,0,0" VerticalAlignment="Top"  TextWrapping="Wrap"
                        Visibility="{Binding Path=ShowEpisodeOverviewInExpanded, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeDetail}}, Converter={StaticResource BooleanToVisibilityConverter}}">
         </TextBlock>
 

@@ -123,8 +123,8 @@
                             <Image Source="/Images/16_blankstar.png" Margin="0,0,3,0" Height="20" Width="20" Canvas.Left="0" Canvas.Top="0"/>
                         </Canvas>
                     </Button>
-                    <TextBlock Margin="6,3,0,0" Text="{Binding GroupName}" FontSize="18" FontWeight="Bold" Name="labelGroupName" />
-                    <TextBlock Margin="10,3,0,0" Text="{Binding GroupType}" FontSize="18" Foreground="LightGray" />
+                    <TextBlock Margin="6,3,0,0" Text="{Binding Path=GroupName}" FontSize="18" FontWeight="Bold" Name="labelGroupName" />
+                    <TextBlock Margin="10,3,0,0" Text="{Binding Path=GroupType}" FontSize="18" Foreground="LightGray" />
                     <TextBlock Margin="10,3,0,0" VerticalAlignment="Center" Text="{Binding Path=AnimeGroupID}" FontSize="10" />
                 </StackPanel>
 
@@ -145,8 +145,8 @@
                         </Canvas>
                     </Button>
 
-                    <TextBox Margin="6,0,0,0" Text="{Binding GroupName}" FontSize="16" Padding="5" MinWidth="200" FontWeight="Bold" Name="txtGroupName" />
-                    <TextBlock Margin="10,0,0,0" Text="{Binding GroupType}" FontSize="18" Padding="5" Foreground="LightGray" />
+                    <TextBox Margin="6,0,0,0" Text="{Binding Path=GroupName}" FontSize="16" Padding="5" MinWidth="200" FontWeight="Bold" Name="txtGroupName" />
+                    <TextBlock Margin="10,0,0,0" Text="{Binding Path=GroupType}" FontSize="18" Padding="5" Foreground="LightGray" />
                 </StackPanel>
 
                 <Grid Margin="10,0,0,10">
@@ -178,16 +178,16 @@
                             <DropShadowEffect Opacity="0.5"/>
                         </Rectangle.Effect>
                         <Rectangle.Fill>
-                            <ImageBrush ImageSource="{Binding Path=FanartPathThenPosterPath}"/>
+                            <ImageBrush ImageSource="{Binding Path=FanartPathThenPosterPath, Converter={StaticResource LocalUriToImageConverter}}"/>
                         </Rectangle.Fill>
                     </Rectangle>
 
                     <Image Height="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=SeriesGroup_Image_Height}" 
-                           Source="{Binding Path=FanartPathThenPosterPath}" x:Name="myImage"
+                           Source="{Binding Path=FanartPathThenPosterPath, Converter={StaticResource LocalUriToImageConverter}}" x:Name="myImage"
                                    Margin="4,0,10,0" Grid.Row="0" Grid.Column="0" Grid.RowSpan="6" HorizontalAlignment="Center" VerticalAlignment="Top"
                                    Visibility="{Binding Path=UsePosterOnSeries, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Image.ToolTip>
-                            <Image Stretch="Fill" HorizontalAlignment="Center" Height="400" Source="{Binding FanartPathThenPosterPath}">
+                            <Image Stretch="Fill" HorizontalAlignment="Center" Height="400" Source="{Binding Path=FanartPathThenPosterPath, Converter={StaticResource LocalUriToImageConverter}}">
                             </Image>
                         </Image.ToolTip>
                         <Image.Effect>

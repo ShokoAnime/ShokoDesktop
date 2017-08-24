@@ -60,7 +60,7 @@
 
         </StackPanel>
 
-        <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Shout.Text}" HorizontalAlignment="Stretch" Margin="10,5,0,5" VerticalAlignment="Top"  TextWrapping="Wrap">
+        <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=Shout.Text}" HorizontalAlignment="Stretch" Margin="10,5,0,5" VerticalAlignment="Top"  TextWrapping="Wrap">
         </TextBlock>
 
         

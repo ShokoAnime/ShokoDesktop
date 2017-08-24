@@ -30,7 +30,7 @@
                             Command="{DynamicResource ScanFolderCommand}" CommandParameter="{Binding}" 
                             ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ScanFolder}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                <Image Width="24" Height="24" Stretch="Fill" Source="{Binding Path=Icon}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"/>
+                                <Image Width="24" Height="24" Stretch="Fill" Source="{Binding Path=Icon, Converter={StaticResource LocalUriToImageConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"/>
 
                             </StackPanel>
                         </Button>

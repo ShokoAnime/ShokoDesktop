@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
-             xmlns:wpfHelpers="clr-namespace:Shoko.Desktop.WPFHelpers"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
@@ -18,7 +17,6 @@
             </ResourceDictionary.MergedDictionaries>
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-            <wpfHelpers:UriToImageConverter x:Key="LocalUriToImageConverter"/>
 
         </ResourceDictionary>
 
@@ -63,7 +61,7 @@
                    Source="{Binding Path=PosterPath, Converter={StaticResource LocalUriToImageConverter}}">
 
                 <Image.ToolTip>
-                    <Image Stretch="Fill" HorizontalAlignment="Center" Height="400" Source="{Binding PosterPath}">
+                    <Image Stretch="Fill" HorizontalAlignment="Center" Height="400" Source="{Binding Path=PosterPath, Converter={StaticResource LocalUriToImageConverter}}">
                     </Image>
                 </Image.ToolTip>
             </Image>

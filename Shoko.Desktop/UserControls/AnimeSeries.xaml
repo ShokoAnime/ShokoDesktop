@@ -34,9 +34,9 @@
                     <StackPanel Orientation="Vertical" Margin="0,0,10,0">
                         <TextBlock Margin="0,0,0,5" Text="{Binding Path=PosterSource}" VerticalAlignment="Center"/>
                         <Border BorderBrush="Black" BorderThickness="2">
-                            <Image Height="190" Margin="0" Source="{Binding Path=FullImagePath}">
+                            <Image Height="190" Margin="0" Source="{Binding Path=FullImagePath, Converter={StaticResource LocalUriToImageConverter}}">
                                 <Image.ToolTip>
-                                    <Image Stretch="Fill" HorizontalAlignment="Center" Height="400" Source="{Binding FullImagePath}"/>
+                                    <Image Stretch="Fill" HorizontalAlignment="Center" Height="400" Source="{Binding Path=FullImagePath, Converter={StaticResource LocalUriToImageConverter}}"/>
                                 </Image.ToolTip>
                             </Image>
                         </Border>
@@ -97,9 +97,9 @@
                     <StackPanel Orientation="Vertical" Margin="0,0,10,0">
                         <TextBlock Margin="0,0,0,5" Text="{Binding Path=FanartSource}" VerticalAlignment="Center"/>
                         <Border BorderBrush="Black" BorderThickness="2">
-                            <Image Height="100" Margin="0" Source="{Binding Path=FullThumbnailPath}">
+                            <Image Height="100" Margin="0" Source="{Binding Path=FullThumbnailPath, Converter={StaticResource LocalUriToImageConverter}}">
                                 <Image.ToolTip>
-                                    <Image Stretch="Fill" HorizontalAlignment="Center" Height="400" Source="{Binding FullImagePath}"/>
+                                    <Image Stretch="Fill" HorizontalAlignment="Center" Height="400" Source="{Binding Path=FullImagePath, Converter={StaticResource LocalUriToImageConverter}}"/>
                                 </Image.ToolTip>
                             </Image>
                         </Border>
@@ -159,9 +159,9 @@
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
                         <Border BorderBrush="Black" BorderThickness="2">
-                            <Image Height="40" Margin="0" Source="{Binding Path=FullImagePath}">
+                            <Image Height="40" Margin="0" Source="{Binding Path=FullImagePath, Converter={StaticResource LocalUriToImageConverter}}">
                                 <Image.ToolTip>
-                                    <Image Stretch="Fill" HorizontalAlignment="Center" Height="100" Source="{Binding FullImagePath}"/>
+                                    <Image Stretch="Fill" HorizontalAlignment="Center" Height="100" Source="{Binding Path=FullImagePath, Converter={StaticResource LocalUriToImageConverter}}"/>
                                 </Image.ToolTip>
                             </Image>
                         </Border>
@@ -240,7 +240,7 @@
                         </Style>
                     </Button.Style>
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,0" Background="Transparent" Focusable="False">
-                        <Image Height="16" Width="16" Source="{Binding Path=FlagImage}" Margin="0,0,5,0">
+                        <Image Height="16" Width="16" Source="{Binding Path=FlagImage, Converter={StaticResource LocalUriToImageConverter}}" Margin="0,0,5,0">
                             <Image.ToolTip>
                                 <TextBlock Text="{Binding Path=LanguageDescription}"></TextBlock>
                             </Image.ToolTip>
@@ -528,16 +528,16 @@
                                     <DropShadowEffect Opacity="0.5"/>
                                 </Rectangle.Effect>
                                 <Rectangle.Fill>
-                                    <ImageBrush ImageSource="{Binding Path=AniDBAnime.AniDBAnime.FanartPathThenPosterPath}"></ImageBrush>
+                                    <ImageBrush ImageSource="{Binding Path=AniDBAnime.AniDBAnime.FanartPathThenPosterPath, Converter={StaticResource LocalUriToImageConverter}}"></ImageBrush>
                                 </Rectangle.Fill>
                             </Rectangle>
 
                             <Image Height="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=SeriesGroup_Image_Height}" 
-                                    Source="{Binding Path=AniDBAnime.AniDBAnime.FanartPathThenPosterPath}" x:Name="myImage"
+                                    Source="{Binding Path=AniDBAnime.AniDBAnime.FanartPathThenPosterPath, Converter={StaticResource LocalUriToImageConverter}}" x:Name="myImage"
                                     Margin="10,10,10,10" Grid.Row="0" Grid.Column="0" Grid.RowSpan="8" HorizontalAlignment="Center" VerticalAlignment="Top"
                                     Visibility="{Binding Path=AniDBAnime.AniDBAnime.UsePosterOnSeries, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <Image.ToolTip>
-                                    <Image Stretch="Fill" HorizontalAlignment="Center" Height="400" Source="{Binding AniDBAnime.AniDBAnime.DefaultPosterPath}" />
+                                    <Image Stretch="Fill" HorizontalAlignment="Center" Height="400" Source="{Binding Path=AniDBAnime.AniDBAnime.DefaultPosterPath, Converter={StaticResource LocalUriToImageConverter}}" />
                                 </Image.ToolTip>
                                 <Image.Effect>
                                     <DropShadowEffect Opacity="0.5"/>
@@ -733,12 +733,12 @@
                             </Border>
 
                             <!-- Description -->
-                            <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding DescriptionTruncated}" HorizontalAlignment="Stretch" Margin="10,5,5,5" 
+                            <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Path=DescriptionTruncated}" HorizontalAlignment="Stretch" Margin="10,5,5,5" 
                                 VerticalAlignment="Top" TextWrapping="Wrap" Style="{DynamicResource ClickableTextBlockStyle}" Tag="txtDescription"
                                 Visibility="{Binding Path=TruncatedDescription, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeries}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                             </TextBlock>
 
-                            <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Description}" HorizontalAlignment="Stretch" Margin="10,5,5,5" 
+                            <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Path=Description}" HorizontalAlignment="Stretch" Margin="10,5,5,5" 
                                 VerticalAlignment="Top" TextWrapping="Wrap" Style="{DynamicResource ClickableTextBlockStyle}" Tag="txtDescription"
                                 Visibility="{Binding Path=FullDescription, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeries}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                             </TextBlock>

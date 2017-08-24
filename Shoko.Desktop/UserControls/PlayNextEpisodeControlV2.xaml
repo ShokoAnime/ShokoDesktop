@@ -64,7 +64,7 @@
                 <!-- Episode Image  -->
                 <Border BorderThickness="1" BorderBrush="DarkGray" Margin="5">
 
-                    <Image Source="{Binding EpisodeImageLoading}" ToolTipService.ShowDuration="60000" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <Image Source="{Binding Path=EpisodeImageLoading, Converter={StaticResource LocalUriToImageConverter}}" ToolTipService.ShowDuration="60000" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left">
                         <Image.ToolTip>
                             <customToolTips:CustomToolTip HasRoundCorners="False">
                                 <customToolTips:EpisodeDetailsToolTip/>

@@ -16,7 +16,7 @@
                             
         <!-- Episode Image -->
         <Border BorderThickness="1" BorderBrush="DarkGray" Loaded="ImageBorder_Loaded">
-            <Image Source="{Binding Path=EpisodeImageLoading}"
+            <Image Source="{Binding Path=EpisodeImageLoading, Converter={StaticResource LocalUriToImageConverter}}"
                    Visibility="{Binding Path=ShowEpisodeImageInDashboard, Converter={StaticResource BooleanToVisibilityConverter}}"
                    VerticalAlignment="Top" HorizontalAlignment="Left" Stretch="Uniform"
                    RenderOptions.BitmapScalingMode="LowQuality">

@@ -10,25 +10,17 @@ namespace Shoko.Desktop.WPFHelpers
         {
             if (value is string)
             {
-                value = new Uri((string)value);
+                value = new Uri((string)value, UriKind.RelativeOrAbsolute);
             }
 
-            if (!(value is Uri)) return null;
-
-            BitmapImage bi = new BitmapImage();
+            BitmapImage bi;
             try
             {
-                bi.BeginInit();
-                bi.DecodePixelWidth = 200;
-                bi.UriSource = (Uri)value;
-                bi.EndInit();
+                bi = new BitmapImage((Uri)value);
             }
             catch (Exception e)
             {
-                bi.BeginInit();
-                bi.DecodePixelWidth = 200;
-                bi.UriSource = new Uri("/Images/LoadingError.png");
-                bi.EndInit();
+                bi = new BitmapImage(new Uri("/Images/LoadingError.png", UriKind.Relative));
             }
             return bi;
         }

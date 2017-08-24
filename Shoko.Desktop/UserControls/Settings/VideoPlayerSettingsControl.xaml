@@ -276,8 +276,8 @@
                 <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center"
         			Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_ZoomPlayer}"
         			Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
-                <TextBlock Grid.Column="3" Visibility="{Binding IsZoomPlayerInstalled, Source={x:Static local:VM_UserSettings.Instance}}" Text="{Resx Key=VideoPlayer_Installed, ResxName=Shoko.Commons.Properties.Resources}" Foreground="Green" Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
-                <TextBlock Grid.Column="3" Visibility="{Binding IsZoomPlayerNotInstalled, Source={x:Static local:VM_UserSettings.Instance}}" Text="{Resx Key=VideoPlayer_NotInstalled, ResxName=Shoko.Commons.Properties.Resources}" Foreground="Red" Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="3" Visibility="{Binding Path=IsZoomPlayerInstalled, Source={x:Static local:VM_UserSettings.Instance}}" Text="{Resx Key=VideoPlayer_Installed, ResxName=Shoko.Commons.Properties.Resources}" Foreground="Green" Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="3" Visibility="{Binding Path=IsZoomPlayerNotInstalled, Source={x:Static local:VM_UserSettings.Instance}}" Text="{Resx Key=VideoPlayer_NotInstalled, ResxName=Shoko.Commons.Properties.Resources}" Foreground="Red" Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
                 <Image Height="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" Grid.Row="1"
                        VerticalAlignment="Top" />
                 <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center"

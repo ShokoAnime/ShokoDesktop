@@ -148,12 +148,12 @@
                                 </Style>
                             </DataGrid.CellStyle>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="CrossRef_AniDB_TvDBId" Binding="{Binding CrossRef_AniDB_TvDBV2ID}" IsReadOnly="True" Visibility="Hidden" />
+                                <DataGridTextColumn Header="CrossRef_AniDB_TvDBId" Binding="{Binding Path=CrossRef_AniDB_TvDBV2ID}" IsReadOnly="True" Visibility="Hidden" />
 
                                 <DataGridTemplateColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_AniDBID}" IsReadOnly="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <usercontrols:HyperLinkStandard DisplayText="{Binding AnimeID}" VerticalAlignment="Center" URL="{Binding Path=AniDBURL}" Margin="5,0,0,0"/>
+                                            <usercontrols:HyperLinkStandard DisplayText="{Binding Path=AnimeID}" VerticalAlignment="Center" URL="{Binding Path=AniDBURL}" Margin="5,0,0,0"/>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -161,7 +161,7 @@
                                 <DataGridTemplateColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_StartEp}" IsReadOnly="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock VerticalAlignment="Center" Text="{Binding AniDBStartEpisodeTypeString}" Margin="0,0,0,0" />
+                                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=AniDBStartEpisodeTypeString}" Margin="0,0,0,0" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -169,7 +169,7 @@
                                 <DataGridTemplateColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_StartEpNumber}" IsReadOnly="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock VerticalAlignment="Center" Text="{Binding AniDBStartEpisodeNumber}" Margin="0,0,0,0" />
+                                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=AniDBStartEpisodeNumber}" Margin="0,0,0,0" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -177,7 +177,7 @@
                                 <DataGridTemplateColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_TvDBID}" IsReadOnly="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <usercontrols:HyperLinkStandard DisplayText="{Binding TvDBID}" VerticalAlignment="Center" URL="{Binding Path=SeriesURL}" Margin="5,0,0,0"/>
+                                            <usercontrols:HyperLinkStandard DisplayText="{Binding Path=TvDBID}" VerticalAlignment="Center" URL="{Binding Path=SeriesURL}" Margin="5,0,0,0"/>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -185,7 +185,7 @@
                                 <DataGridTemplateColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_TvDBTitle}" IsReadOnly="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock VerticalAlignment="Center" Text="{Binding TvDBTitle}" Margin="0,0,0,0" />
+                                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=TvDBTitle}" Margin="0,0,0,0" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -193,7 +193,7 @@
                                 <DataGridTemplateColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_SeasonNumber}" IsReadOnly="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock VerticalAlignment="Center" Text="{Binding TvDBSeasonNumberString}" Margin="0,0,0,0" />
+                                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=TvDBSeasonNumberString}" Margin="0,0,0,0" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -201,7 +201,7 @@
                                 <DataGridTemplateColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_StartEpNumber}" IsReadOnly="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock VerticalAlignment="Center" Text="{Binding TvDBStartEpisodeNumber}" Margin="0,0,0,0" />
+                                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=TvDBStartEpisodeNumber}" Margin="0,0,0,0" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -209,7 +209,7 @@
                                 <DataGridTemplateColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_Username}" IsReadOnly="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock VerticalAlignment="Center" Text="{Binding Username}" Margin="0,0,0,0" />
+                                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=Username}" Margin="0,0,0,0" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -217,7 +217,7 @@
                                 <DataGridTemplateColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_AdminApproved}" IsReadOnly="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Image Source="{Binding IsAdminApprovedImage}" Width="16" Height="16" />
+                                            <Image Source="{Binding Path=IsAdminApprovedImage, Converter={StaticResource LocalUriToImageConverter}}" Width="16" Height="16" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -297,12 +297,12 @@
                                 </Style>
                             </DataGrid.CellStyle>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="CrossRef_AniDB_TraktId" Binding="{Binding CrossRef_AniDB_TraktV2ID}" IsReadOnly="True" Visibility="Hidden" />
+                                <DataGridTextColumn Header="CrossRef_AniDB_TraktId" Binding="{Binding Path=CrossRef_AniDB_TraktV2ID}" IsReadOnly="True" Visibility="Hidden" />
 
                                 <DataGridTemplateColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_AniDBID}" IsReadOnly="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <usercontrols:HyperLinkStandard DisplayText="{Binding AnimeID}" VerticalAlignment="Center" URL="{Binding Path=AniDBURL}" Margin="5,0,0,0"/>
+                                            <usercontrols:HyperLinkStandard DisplayText="{Binding Path=AnimeID}" VerticalAlignment="Center" URL="{Binding Path=AniDBURL}" Margin="5,0,0,0"/>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -310,7 +310,7 @@
                                 <DataGridTemplateColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_StartEp}" IsReadOnly="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock VerticalAlignment="Center" Text="{Binding AniDBStartEpisodeTypeString}" Margin="0,0,0,0" />
+                                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=AniDBStartEpisodeTypeString}" Margin="0,0,0,0" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -318,7 +318,7 @@
                                 <DataGridTemplateColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_StartEpNumber}" IsReadOnly="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock VerticalAlignment="Center" Text="{Binding AniDBStartEpisodeNumber}" Margin="0,0,0,0" />
+                                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=AniDBStartEpisodeNumber}" Margin="0,0,0,0" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -326,7 +326,7 @@
                                 <DataGridTemplateColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_TraktID}" IsReadOnly="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <usercontrols:HyperLinkStandard DisplayText="{Binding TraktID}" VerticalAlignment="Center" URL="{Binding Path=ShowURL}" Margin="5,0,0,0"/>
+                                            <usercontrols:HyperLinkStandard DisplayText="{Binding Path=TraktID}" VerticalAlignment="Center" URL="{Binding Path=ShowURL}" Margin="5,0,0,0"/>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -334,7 +334,7 @@
                                 <DataGridTemplateColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_TraktTitle}" IsReadOnly="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock VerticalAlignment="Center" Text="{Binding TraktTitle}" Margin="0,0,0,0" />
+                                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=TraktTitle}" Margin="0,0,0,0" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -342,7 +342,7 @@
                                 <DataGridTemplateColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_SeasonNumber}" IsReadOnly="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock VerticalAlignment="Center" Text="{Binding TraktSeasonNumberString}" Margin="0,0,0,0" />
+                                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=TraktSeasonNumberString}" Margin="0,0,0,0" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -350,7 +350,7 @@
                                 <DataGridTemplateColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_StartEpNumber}" IsReadOnly="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock VerticalAlignment="Center" Text="{Binding TraktStartEpisodeNumber}" Margin="0,0,0,0" />
+                                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=TraktStartEpisodeNumber}" Margin="0,0,0,0" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -358,7 +358,7 @@
                                 <DataGridTemplateColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_Username}" IsReadOnly="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock VerticalAlignment="Center" Text="{Binding Username}" Margin="0,0,0,0" />
+                                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=Username}" Margin="0,0,0,0" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -366,7 +366,7 @@
                                 <DataGridTemplateColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_AdminApproved}" IsReadOnly="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Image Source="{Binding IsAdminApprovedImage}" Width="16" Height="16" />
+                                            <Image Source="{Binding Path=IsAdminApprovedImage, Converter={StaticResource LocalUriToImageConverter}}" Width="16" Height="16" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>

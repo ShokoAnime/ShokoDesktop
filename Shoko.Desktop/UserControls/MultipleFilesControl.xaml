@@ -125,7 +125,7 @@
 
                             <!-- Enable Delete on Import -->
                             <Border Style="{DynamicResource RoundBorderStyle}" HorizontalAlignment="Center" Grid.Row="2" Margin="2,2,2,2" Width="Auto" Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <CheckBox x:Name="chkEnableDeleteOnImport" IsChecked="{Binding EnableDeleteOnImport, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}">
+                                <CheckBox x:Name="chkEnableDeleteOnImport" IsChecked="{Binding Path=EnableDeleteOnImport, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}">
                                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_EnableDeleteOnImport}" ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_EnableDeleteOnImport_Tooltip}" Margin="0,0,5,0"/>
                                 </CheckBox>
                             </Border>
@@ -249,7 +249,7 @@
                                                                     <Style TargetType="Button">
                                                                         <Setter Property="IsEnabled" Value="True" />
                                                                         <Style.Triggers>
-                                                                            <DataTrigger Binding="{Binding SelectedIndex, ElementName=cmbPreferred_Subgroups_Available}" Value="-1">
+                                                                            <DataTrigger Binding="{Binding Path=SelectedIndex, ElementName=cmbPreferred_Subgroups_Available}" Value="-1">
                                                                                 <Setter Property="IsEnabled" Value="False" />
                                                                             </DataTrigger>
                                                                         </Style.Triggers>
@@ -293,7 +293,7 @@
                                                     </ListBox>
                                                     <!-- Prefer 8bit -->
                                                     <Border Style="{DynamicResource RoundBorderStyle}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="12" Margin="2,2,2,2" Width="Auto" Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                        <CheckBox x:Name="chkPrefer8bit" IsChecked="{Binding Prefer8Bit, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}">
+                                                        <CheckBox x:Name="chkPrefer8bit" IsChecked="{Binding Path=Prefer8Bit, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}">
                                                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Preferences_Prefer8bit}" ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_EnableDeleteOnImport_Tooltip}" Margin="0,0,5,0"/>
                                                         </CheckBox>
                                                     </Border>
@@ -322,7 +322,7 @@
                                             <TextBlock Grid.Row="0" Grid.Column="1" TextWrapping="WrapWithOverflow" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Requirements_Info}" Margin="10,10,10,10"/>
                                             <!-- Allow Deletion of Importing Files -->
                                             <Border Style="{DynamicResource RoundBorderStyle}" HorizontalAlignment="Left" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Margin="6,0,10,10" Width="Auto" Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                <CheckBox x:Name="chkAllowDeletionOfImportingFiles" IsChecked="{Binding AllowDeletionOfImportingFiles, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}">
+                                                <CheckBox x:Name="chkAllowDeletionOfImportingFiles" IsChecked="{Binding Path=AllowDeletionOfImportingFiles, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}">
                                                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Requirements_DeleteImportedFiles}" ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Requirements_DeleteImportedFiles_Tooltip}" Margin="0,0,5,0"/>
                                                 </CheckBox>
                                             </Border>
@@ -333,7 +333,7 @@
                                                         <ColumnDefinition Width="Auto" />
                                                         <ColumnDefinition />
                                                     </Grid.ColumnDefinitions>
-                                                    <xctk:IntegerUpDown Name="numMaxFilesToKeep" Value="{Binding MaxNumberOfFiles, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
+                                                    <xctk:IntegerUpDown Name="numMaxFilesToKeep" Value="{Binding Path=MaxNumberOfFiles, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
                                                     <TextBlock VerticalAlignment="Center" Grid.Column="1" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Requirements_NumberOfFilesToKeep}" Margin="5,0,5,0"/>
                                                 </Grid>
                                             </Border>
@@ -396,7 +396,7 @@
                                                                     <Style TargetType="Button">
                                                                         <Setter Property="IsEnabled" Value="True" />
                                                                         <Style.Triggers>
-                                                                            <DataTrigger Binding="{Binding SelectedIndex, ElementName=cmbTypes_Available}" Value="-1">
+                                                                            <DataTrigger Binding="{Binding Path=SelectedIndex, ElementName=cmbTypes_Available}" Value="-1">
                                                                                 <Setter Property="IsEnabled" Value="False" />
                                                                             </DataTrigger>
                                                                         </Style.Triggers>
@@ -412,7 +412,7 @@
                                                     <!-- Sources -->
                                                     <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Column="0"
                                                                Grid.Row="2" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Sources}" FontSize="14" FontWeight="Bold"/>
-                                                    <ComboBox Name="cmbRequired_Sources_Operator" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,-5" Width="80" SelectedIndex="0" SelectedItem="{Binding RequiredSourcesOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
+                                                    <ComboBox Name="cmbRequired_Sources_Operator" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,-5" Width="80" SelectedIndex="0" SelectedItem="{Binding Path=RequiredSourcesOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
                                                     <StackPanel Grid.Column="0" Grid.Row="3" VerticalAlignment="Center">
                                                         <Button Name="btnRequired_Sources_Up" IsEnabled="{Binding ElementName=lbRequired_Sources, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnRequired_Sources_Up_Click">
                                                             <Image Height="16" Width="16" Source="/Images/16_up.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
@@ -428,7 +428,7 @@
                                                     <!-- Resolutions -->
                                                     <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Column="0"
                                                                Grid.Row="4" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Resolutions}" FontSize="14" FontWeight="Bold"/>
-                                                    <ComboBox Name="cmbRequired_Resolutions_Operator" Grid.Column="1" Grid.Row="4" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,-5" Width="80" SelectedItem="{Binding RequiredResolutionsOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
+                                                    <ComboBox Name="cmbRequired_Resolutions_Operator" Grid.Column="1" Grid.Row="4" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,-5" Width="80" SelectedItem="{Binding Path=RequiredResolutionsOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
                                                     <StackPanel Grid.Column="0" Grid.Row="5" VerticalAlignment="Center">
                                                         <Button Name="btnRequired_Resolutions_Up" IsEnabled="{Binding ElementName=lbRequired_Resolutions, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnRequired_Resolutions_Up_Click">
                                                             <Image Height="16" Width="16" Source="/Images/16_Up.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
@@ -444,7 +444,7 @@
                                                     <!-- Sub Groups -->
                                                     <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Column="0"
                                                                Grid.Row="6" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_SubGroups}" FontSize="14" FontWeight="Bold"/>
-                                                    <ComboBox Name="cmbRequired_SubGroups_Operator" Grid.Column="1" Grid.Row="6" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,-5" Width="80" SelectedItem="{Binding RequiredSubGroupsOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
+                                                    <ComboBox Name="cmbRequired_SubGroups_Operator" Grid.Column="1" Grid.Row="6" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,-5" Width="80" SelectedItem="{Binding Path=RequiredSubGroupsOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
                                                     <StackPanel Grid.Column="0" Grid.Row="7" VerticalAlignment="Center">
                                                         
                                                         <Button Name="btnRequired_SubGroups_Up" IsEnabled="{Binding ElementName=lbRequired_SubGroups, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnRequired_SubGroups_Up_Click">
@@ -479,7 +479,7 @@
                                                                     <Style TargetType="Button">
                                                                         <Setter Property="IsEnabled" Value="True" />
                                                                         <Style.Triggers>
-                                                                            <DataTrigger Binding="{Binding SelectedIndex, ElementName=cmbRequired_Subgroups_Available}" Value="-1">
+                                                                            <DataTrigger Binding="{Binding Path=SelectedIndex, ElementName=cmbRequired_Subgroups_Available}" Value="-1">
                                                                                 <Setter Property="IsEnabled" Value="False" />
                                                                             </DataTrigger>
                                                                         </Style.Triggers>
@@ -508,11 +508,11 @@
                                                                     <ColumnDefinition Width="Auto" />
                                                                     <ColumnDefinition Width="Auto" />
                                                                 </Grid.ColumnDefinitions>
-                                                                <xctk:IntegerUpDown Name="numMinAudioStreamCount" Margin="2,0,0,0" Width="55" Value="{Binding RequiredAudioStreamCount, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
+                                                                <xctk:IntegerUpDown Name="numMinAudioStreamCount" Margin="2,0,0,0" Width="55" Value="{Binding Path=RequiredAudioStreamCount, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
                                                                 <TextBlock VerticalAlignment="Center" Grid.Column="1" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Requirements_MinimumAudioStreamCount}" Margin="5,0,5,0"/>
                                                             </Grid>
                                                         </Border>
-                                                        <ComboBox Name="cmbAudioStreamCount_Operator" Grid.Column="1" Grid.Row="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" Margin="5,0,5,5" Width="80" SelectedItem="{Binding RequiredAudioStreamCountOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
+                                                        <ComboBox Name="cmbAudioStreamCount_Operator" Grid.Column="1" Grid.Row="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" Margin="5,0,5,5" Width="80" SelectedItem="{Binding Path=RequiredAudioStreamCountOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
                                                         <!-- Min Sub Streams -->
                                                         <Border Style="{DynamicResource RoundBorderStyle}" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0" Margin="5,0,5,10" Width="Auto" Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                                             <Grid>
@@ -520,17 +520,17 @@
                                                                     <ColumnDefinition Width="Auto" />
                                                                     <ColumnDefinition Width="Auto" />
                                                                 </Grid.ColumnDefinitions>
-                                                                <xctk:IntegerUpDown Name="numMinSubStreamCount" Margin="2,0,0,0" Width="55" Value="{Binding RequiredSubStreamCount, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
+                                                                <xctk:IntegerUpDown Name="numMinSubStreamCount" Margin="2,0,0,0" Width="55" Value="{Binding Path=RequiredSubStreamCount, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
                                                                 <TextBlock VerticalAlignment="Center" Grid.Column="1" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Requirements_MinimumSubStreamCount}" Margin="5,0,5,0"/>
                                                             </Grid>
                                                         </Border>
-                                                        <ComboBox Name="cmbSubStreamCount_Operator" Grid.Column="1" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" Margin="5,0,5,10" Width="80" SelectedItem="{Binding RequiredSubStreamCountOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
+                                                        <ComboBox Name="cmbSubStreamCount_Operator" Grid.Column="1" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" Margin="5,0,5,10" Width="80" SelectedItem="{Binding Path=RequiredSubStreamCountOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
                                                     </Grid>
                                                     
                                                     <!-- Audio Codecs -->
                                                     <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Column="0"
                                                                Grid.Row="9" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_AudioCodecs}" FontSize="14" FontWeight="Bold"/>
-                                                    <ComboBox Name="cmbRequired_AudioCodecs_Operator" Grid.Column="1" Grid.Row="9" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,-5" Width="80" SelectedItem="{Binding RequiredAudioCodecsOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
+                                                    <ComboBox Name="cmbRequired_AudioCodecs_Operator" Grid.Column="1" Grid.Row="9" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,-5" Width="80" SelectedItem="{Binding Path=RequiredAudioCodecsOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
                                                     <StackPanel Grid.Column="0" Grid.Row="10" VerticalAlignment="Center">
                                                         <Button Name="btnRequired_AudioCodecs_Up" IsEnabled="{Binding ElementName=lbRequired_AudioCodecs, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnRequired_AudioCodecs_Up_Click">
                                                             <Image Height="16" Width="16" Source="/Images/16_Up.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
@@ -546,7 +546,7 @@
                                                     <!-- Video Codecs -->
                                                     <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Column="0"
                                                                Grid.Row="11" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_VideoCodecs}" FontSize="14" FontWeight="Bold"/>
-                                                    <ComboBox Name="cmbRequired_VideoCodecs_Operator" Grid.Column="1" Grid.Row="11" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,-5" Width="80" SelectedItem="{Binding RequiredVideoCodecsOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
+                                                    <ComboBox Name="cmbRequired_VideoCodecs_Operator" Grid.Column="1" Grid.Row="11" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,-5" Width="80" SelectedItem="{Binding Path=RequiredVideoCodecsOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
                                                     <StackPanel Grid.Column="0" Grid.Row="12" VerticalAlignment="Center">
                                                         <Button Name="btnRequired_VideoCodecs_Up" IsEnabled="{Binding ElementName=lbRequired_VideoCodecs, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnRequired_VideoCodecs_Up_Click">
                                                             <Image Height="16" Width="16" Source="/Images/16_Up.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
@@ -560,7 +560,7 @@
                                                     </ListBox>
                                                     <!-- Require 10bit-->
                                                     <Border Style="{DynamicResource RoundBorderStyle}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="13" Margin="2,2,2,2" Width="Auto" Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                        <CheckBox x:Name="chkRequire10bit" IsChecked="{Binding Require10Bit, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}">
+                                                        <CheckBox x:Name="chkRequire10bit" IsChecked="{Binding Path=Require10Bit, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}">
                                                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Requirements_Require10bit}" ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_EnableDeleteOnImport_Tooltip}" Margin="0,0,5,0"/>
                                                         </CheckBox>
                                                     </Border>

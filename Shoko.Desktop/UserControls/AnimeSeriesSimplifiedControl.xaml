@@ -116,7 +116,7 @@
                             <!-- Episode Image  -->
                             <Border BorderThickness="1" BorderBrush="DarkGray" Margin="5">
 
-                                <Image Source="{Binding EpisodeImageLoading}" ToolTipService.ShowDuration="60000"
+                                <Image Source="{Binding Path=EpisodeImageLoading, Converter={StaticResource LocalUriToImageConverter}}" ToolTipService.ShowDuration="60000"
                                Width="200" VerticalAlignment="Top" HorizontalAlignment="Left">
                                     
                                 </Image>
@@ -216,7 +216,7 @@
                             <!-- Episode Image  -->
                             <Border BorderThickness="1" BorderBrush="DarkGray" Margin="5">
 
-                                <Image Source="{Binding EpisodeImageLoading}" ToolTipService.ShowDuration="60000" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                <Image Source="{Binding Path=EpisodeImageLoading, Converter={StaticResource LocalUriToImageConverter}}" ToolTipService.ShowDuration="60000" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left">
                                    
                                 </Image>
 
@@ -315,7 +315,7 @@
                         <!-- Episode Image  -->
                         <Border BorderThickness="1" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="1" Margin="5">
 
-                            <Image Source="{Binding EpisodeImageLoading}" ToolTipService.ShowDuration="60000"
+                            <Image Source="{Binding Path=EpisodeImageLoading, Converter={StaticResource LocalUriToImageConverter}}" ToolTipService.ShowDuration="60000"
                                Width="200" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 
                             </Image>
@@ -380,7 +380,7 @@
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
 
-                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Left" Margin="10,5,0,5"  Foreground="Black" 
+                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=EpisodeOverviewLoading}" HorizontalAlignment="Left" Margin="10,5,0,5"  Foreground="Black" 
                                                    VerticalAlignment="Top"  TextWrapping="Wrap">
                                 </TextBlock>
                             </Grid>
@@ -402,7 +402,7 @@
                         <!-- Episode Image  -->
                         <Border BorderThickness="1" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="0" Margin="5">
 
-                            <Image Source="{Binding EpisodeImageLoading}" ToolTipService.ShowDuration="60000"
+                            <Image Source="{Binding Path=EpisodeImageLoading, Converter={StaticResource LocalUriToImageConverter}}" ToolTipService.ShowDuration="60000"
                                Width="200" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 
                             </Image>
@@ -458,10 +458,10 @@
                     <Border.Style>
                         <Style TargetType="{x:Type Border}">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding HasSeries}" Value="True">
+                                <DataTrigger Binding="{Binding Path=HasSeries}" Value="True">
                                     <Setter Property="Background" Value="White"/>
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding HasSeries}" Value="False">
+                                <DataTrigger Binding="{Binding Path=HasSeries}" Value="False">
                                     <Setter Property="Background" Value="White"/>
                                 </DataTrigger>
                             </Style.Triggers>
@@ -486,7 +486,7 @@
                         <!-- Image  -->
                         <Border BorderThickness="1" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="0" Margin="5">
 
-                            <Image Source="{Binding Picture}" ToolTipService.ShowDuration="60000"
+                            <Image Source="{Binding Path=Picture, Converter={StaticResource LocalUriToImageConverter}}" ToolTipService.ShowDuration="60000"
                                Height="150" VerticalAlignment="Top" HorizontalAlignment="Left">
 
                             </Image>
@@ -665,7 +665,7 @@
                         <StackPanel Grid.Column="0" Grid.Row="1" Margin="0" Orientation="Horizontal" >
                             <!-- Char Image  -->
                             <Border BorderThickness="1" BorderBrush="DarkGray" Margin="5">
-                                <Image Source="{Binding ImagePath}" Height="140" VerticalAlignment="Top" HorizontalAlignment="Left" ToolTipService.ShowDuration="60000">
+                                <Image Source="{Binding Path=ImagePath, Converter={StaticResource LocalUriToImageConverter}}" Height="140" VerticalAlignment="Top" HorizontalAlignment="Left" ToolTipService.ShowDuration="60000">
                                 </Image>
                             </Border>
                         </StackPanel>
@@ -707,7 +707,7 @@
                         <StackPanel Grid.Column="0" Grid.Row="1" Margin="0" Orientation="Horizontal" >
                             <!-- Char Image  -->
                             <Border BorderThickness="1" BorderBrush="DarkGray" Margin="5">
-                                <Image Source="{Binding ImagePath}" Height="140" VerticalAlignment="Top" HorizontalAlignment="Left" ToolTipService.ShowDuration="60000">
+                                <Image Source="{Binding Path=ImagePath, Converter={StaticResource LocalUriToImageConverter}}" Height="140" VerticalAlignment="Top" HorizontalAlignment="Left" ToolTipService.ShowDuration="60000">
                                 </Image>
                             </Border>
 
@@ -717,7 +717,7 @@
 
                             <!-- Seiyuu Image  -->
                             <Border BorderThickness="1" BorderBrush="DarkGray" Margin="5">
-                                <Image Source="{Binding Seiyuu.ImagePath}" Height="140" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                <Image Source="{Binding Path=Seiyuu.ImagePath, Converter={StaticResource LocalUriToImageConverter}}" Height="140" VerticalAlignment="Top" HorizontalAlignment="Left"/>
                             </Border>
                         </StackPanel>
 
@@ -847,7 +847,7 @@
                             <DropShadowEffect Opacity="0.5"/>
                         </Rectangle.Effect>
                         <Rectangle.Fill>
-                            <ImageBrush ImageSource="{Binding Path=AniDBAnime.AniDBAnime.FanartPathThenPosterPath}" RenderOptions.BitmapScalingMode="HighQuality">
+                            <ImageBrush ImageSource="{Binding Path=AniDBAnime.AniDBAnime.FanartPathThenPosterPath, Converter={StaticResource LocalUriToImageConverter}}" RenderOptions.BitmapScalingMode="HighQuality">
 
                             </ImageBrush>
                         </Rectangle.Fill>
@@ -861,7 +861,7 @@
                             <DropShadowEffect Opacity="0.5"/>
                         </Rectangle.Effect>
                         <Rectangle.Fill>
-                            <ImageBrush ImageSource="{Binding Path=AniDBAnime.AniDBAnime.FanartPathThenPosterPath}" RenderOptions.BitmapScalingMode="HighQuality">
+                            <ImageBrush ImageSource="{Binding Path=AniDBAnime.AniDBAnime.FanartPathThenPosterPath, Converter={StaticResource LocalUriToImageConverter}}" RenderOptions.BitmapScalingMode="HighQuality">
 
                             </ImageBrush>
                         </Rectangle.Fill>
@@ -883,7 +883,7 @@
                             VerticalAlignment="Top" TextWrapping="Wrap" Foreground="Black" FontSize="16" >
                     </TextBlock>
 
-                    <TextBlock Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Description}" HorizontalAlignment="Stretch" Margin="10,5,5,5" 
+                    <TextBlock Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Path=Description}" HorizontalAlignment="Stretch" Margin="10,5,5,5" 
                             VerticalAlignment="Top" TextWrapping="Wrap" Foreground="Black" FontSize="16" >
                     </TextBlock>
 

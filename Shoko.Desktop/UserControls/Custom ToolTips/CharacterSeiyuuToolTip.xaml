@@ -33,7 +33,7 @@
             <StackPanel Grid.Column="0" Grid.Row="1" Margin="0" Grid.ColumnSpan="2" Orientation="Horizontal" >
                 <!-- Char Image  -->
                 <Border BorderThickness="1" BorderBrush="DarkGray" Margin="5">
-                    <Image Source="{Binding ImagePath}" Height="300" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <Image Source="{Binding Path=ImagePath, Converter={StaticResource LocalUriToImageConverter}}" Height="300" VerticalAlignment="Top" HorizontalAlignment="Left">
                     </Image>
                 </Border>
 
@@ -45,7 +45,7 @@
 
                 <!-- Seiyuu Image  -->
                 <Border BorderThickness="1" BorderBrush="DarkGray" Margin="5">
-                    <Image Source="{Binding Seiyuu.ImagePath}" Height="300" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                    <Image Source="{Binding Path=Seiyuu.ImagePath, Converter={StaticResource LocalUriToImageConverter}}" Height="300" VerticalAlignment="Top" HorizontalAlignment="Left"/>
                 </Border>
             </StackPanel>
 

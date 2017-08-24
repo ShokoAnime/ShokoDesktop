@@ -91,7 +91,7 @@
             </Border>
             <Border Margin="10,0,0,0" Padding="7" Background="FloralWhite" BorderBrush="DarkGray" BorderThickness="1" Height="368">
                 <StackPanel Orientation="Vertical" 
-            		Visibility="{Binding IsUserSelected, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:UserAdminControl}}}">
+            		Visibility="{Binding Path=IsUserSelected, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:UserAdminControl}}}">
 
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -111,7 +111,7 @@
                         </Grid.RowDefinitions>
 
                         <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" FontWeight="Bold" Margin="0,10,15,0" Text="{Resx Key=User_Username, ResxName=Shoko.Commons.Properties.Resources}"/>
-                        <TextBox Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center" MinWidth="200" Margin="0,10,0,0" Text="{Binding SortName}" x:Name="txtUsername"/>
+                        <TextBox Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center" MinWidth="200" Margin="0,10,0,0" Text="{Binding Path=SortName}" x:Name="txtUsername"/>
                         <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" FontWeight="Bold" Margin="0,5,15,0" Text="{Resx Key=User_IsAdmin, ResxName=Shoko.Commons.Properties.Resources}"/>
                         <CheckBox Grid.Row="1" Grid.Column="1" x:Name="chkIsAdmin" VerticalAlignment="Center" />
 
@@ -129,13 +129,13 @@
                         <CheckBox Grid.Row="4" Grid.Column="1" x:Name="chkEditSettings" VerticalAlignment="Center" />
 
                         <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" FontWeight="Bold" Margin="0,6,15,1" Text="{Resx Key=User_Hide_Tags, ResxName=Shoko.Commons.Properties.Resources}"/>
-                        <TextBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="300" Margin="0,5,0,0" Text="{Binding SortName}" x:Name="txtTags"/>
+                        <TextBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="300" Margin="0,5,0,0" Text="{Binding Path=SortName}" x:Name="txtTags"/>
 
 
                         <ListBox x:Name="lbTags" Grid.Row="6" Grid.Column="1" BorderThickness="1" BorderBrush="LightGray" Background="White" Margin="0,0,5,5" Height="130" 
             				HorizontalAlignment="Left" VerticalAlignment="Top" Width="300"
             				ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-            				ItemsSource="{Binding AllTags, Source={x:Static local:VM_ShokoServer.Instance}}"
+            				ItemsSource="{Binding Path=AllTags, Source={x:Static local:VM_ShokoServer.Instance}}"
                              />
                         <TextBlock Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" FontWeight="Bold" Margin="0,5,15,0" Text="{Resx Key=User_PlexUsers, ResxName=Shoko.Commons.Properties.Resources}"
             				ToolTip="{usercontrols:Info Body={Resx Key=Tooltip_User_PlexUsers, ResxName=Shoko.Commons.Properties.Resources}, Title={Resx Key=User_PlexUsers, ResxName=Shoko.Commons.Properties.Resources}}"/>

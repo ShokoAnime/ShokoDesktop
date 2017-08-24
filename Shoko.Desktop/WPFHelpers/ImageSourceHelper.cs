@@ -4,6 +4,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using DevExpress.Xpf.Core.MvvmSample.Helpers;
+using Shoko.Commons.Utils;
+using Shoko.Models.Enums;
 
 namespace Shoko.Desktop.WPFHelpers
 {
@@ -22,7 +24,11 @@ namespace Shoko.Desktop.WPFHelpers
                 }
                 catch
                 {
-                    bi = null;
+                    bi = new BitmapImage();
+                    bi.BeginInit();
+                    bi.DecodePixelWidth = 200;
+                    bi.UriSource = new Uri("/Images/LoadingError.png");
+                    bi.EndInit();
                 }
             });
             return bi;
@@ -43,7 +49,11 @@ namespace Shoko.Desktop.WPFHelpers
                 }
                 catch
                 {
-                    bi = null;
+                    bi = new BitmapImage();
+                    bi.BeginInit();
+                    bi.DecodePixelWidth = 200;
+                    bi.UriSource = new Uri("/Images/LoadingError.png");
+                    bi.EndInit();
                 }
 
             });
@@ -51,7 +61,14 @@ namespace Shoko.Desktop.WPFHelpers
         }
         public static ImageSource GetImageSource(byte[] data, Dispatcher dispatcher)
         {
-            return data == null ? null : GetImageSource(new MemoryStream(data), dispatcher);
+            if (data != null && Misc.GetImageFormat(data) != ImageFormatEnum.unknown)
+                return GetImageSource(new MemoryStream(data), dispatcher);
+            var bi = new BitmapImage();
+            bi.BeginInit();
+            bi.DecodePixelWidth = 200;
+            bi.UriSource = new Uri("/Images/LoadingError.png");
+            bi.EndInit();
+            return bi;
         }
         public static ImageSource CreateEmptyImageSource()
         {

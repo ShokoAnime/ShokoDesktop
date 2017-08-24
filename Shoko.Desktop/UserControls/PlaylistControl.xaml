@@ -253,7 +253,7 @@
                             Visibility="{Binding Path=IsReadOnly, Converter={StaticResource BooleanToVisibilityConverter}}">
                     
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Margin="5,0,10,0" Text="{Binding PlaylistName}" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" />
+                            <TextBlock Margin="5,0,10,0" Text="{Binding Path=PlaylistName}" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" />
 
                         <CheckBox Name="chkPlayWatchedLocked" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Playlist_PlayWatched}" VerticalAlignment="Center" Margin="10,0,0,0" IsEnabled="False"
                                       IsChecked="{Binding Path=PlayWatchedBool, Mode=OneWay}"/>
@@ -272,7 +272,7 @@
                             Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                         <StackPanel Orientation="Horizontal">
-                            <TextBox Margin="5,0,10,0" Text="{Binding PlaylistName}" FontSize="16"  MinWidth="200" FontWeight="Bold" Name="txtPlaylistName" VerticalAlignment="Center"/>
+                            <TextBox Margin="5,0,10,0" Text="{Binding Path=PlaylistName}" FontSize="16"  MinWidth="200" FontWeight="Bold" Name="txtPlaylistName" VerticalAlignment="Center"/>
 
                         <CheckBox Name="chkPlayWatchedEdit" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Playlist_PlayWatched}" VerticalAlignment="Center" Margin="10,0,0,0"
                                       IsChecked="{Binding Path=PlayWatchedBool, Mode=OneWay}"/>
@@ -298,18 +298,18 @@
                             <DropShadowEffect Opacity="0.5"/>
                         </Rectangle.Effect>
                         <Rectangle.Fill>
-                            <ImageBrush ImageSource="{Binding Path=AniDBAnime.AniDBAnime.FanartPathThenPosterPathForPlaylistHeader}">
+                            <ImageBrush ImageSource="{Binding Path=AniDBAnime.AniDBAnime.FanartPathThenPosterPathForPlaylistHeader, Converter={StaticResource LocalUriToImageConverter}}">
 
                             </ImageBrush>
                         </Rectangle.Fill>
                     </Rectangle>
 
                     <Image Height="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=PlaylistHeader_Image_Height}" 
-                                   Source="{Binding Path=AniDBAnime.AniDBAnime.FanartPathThenPosterPathForPlaylistHeader}" x:Name="myImage"
+                                   Source="{Binding Path=AniDBAnime.AniDBAnime.FanartPathThenPosterPathForPlaylistHeader, Converter={StaticResource LocalUriToImageConverter}}" x:Name="myImage"
                                    Margin="10,10,10,10" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Top"
                                    Visibility="{Binding Path=AniDBAnime.AniDBAnime.UsePosterOnPlaylistHeader, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Image.ToolTip>
-                            <Image Stretch="Fill" HorizontalAlignment="Center" Height="400" Source="{Binding AniDBAnime.AniDBAnime.FanartPathThenPosterPathForPlaylistHeader}">
+                            <Image Stretch="Fill" HorizontalAlignment="Center" Height="400" Source="{Binding Path=AniDBAnime.AniDBAnime.FanartPathThenPosterPathForPlaylistHeader, Converter={StaticResource LocalUriToImageConverter}}">
                             </Image>
                         </Image.ToolTip>
                         <Image.Effect>
@@ -353,7 +353,7 @@
 
                 <ListBox Name="lbPlaylistItems" BorderThickness="0" HorizontalAlignment="Stretch"  Margin="0" 
                      VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
-                     ItemsSource="{Binding PlaylistObjects}"  ItemTemplateSelector="{StaticResource PlaylistTemplateSelector}"
+                     ItemsSource="{Binding Path=PlaylistObjects}"  ItemTemplateSelector="{StaticResource PlaylistTemplateSelector}"
                      Background="Transparent" ItemContainerStyle="{DynamicResource ListBoxItemStyle}"  VerticalAlignment="Stretch"
                      dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True" dd:DragDrop.DropHandler="{Binding}">
                     <ListBox.Template>

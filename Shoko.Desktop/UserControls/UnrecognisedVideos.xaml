@@ -358,12 +358,12 @@
                         </Style>
                     </DataGrid.CellStyle>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Utilities_Folder}" Binding="{Binding FileDirectory}" IsReadOnly="True" Width="100" />
-                        <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Utilities_FileName}" Binding="{Binding FileName}" IsReadOnly="True" Width="300" />
-                        <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Utilities_Size}" Binding="{Binding FormattedFileSize}" IsReadOnly="True" />
-                        <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Hash}" Binding="{Binding Hash}" IsReadOnly="True" />
-                        <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Unrecognized_CRC}" Binding="{Binding CRC32}" IsReadOnly="True" />
-                        <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Unrecognized_Date}" Binding="{Binding DateTimeUpdated}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Utilities_Folder}" Binding="{Binding Path=FileDirectory}" IsReadOnly="True" Width="100" />
+                        <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Utilities_FileName}" Binding="{Binding Path=FileName}" IsReadOnly="True" Width="300" />
+                        <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Utilities_Size}" Binding="{Binding Path=FormattedFileSize}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Hash}" Binding="{Binding Path=Hash}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Unrecognized_CRC}" Binding="{Binding Path=CRC32}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Unrecognized_Date}" Binding="{Binding Path=DateTimeUpdated}" IsReadOnly="True" />
 
                     </DataGrid.Columns>
                 </DataGrid>
