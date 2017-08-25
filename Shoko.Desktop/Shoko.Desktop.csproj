@@ -1500,7 +1500,9 @@
     <Resource Include="Images\16_switch.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\EpisodeThumb_NotFound.png" />
+    <Content Include="Images\EpisodeThumb_NotFound.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Samples\Episode.jpg" />
@@ -1645,7 +1647,9 @@
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.Core.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.resources.dll" />
-    <Resource Include="Images\LoadingError.png" />
+    <Content Include="Images\LoadingError.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Images\chapter.png" />
     <Resource Include="Images\32_plex.png" />
     <Resource Include="Resources\Entypo-license.txt" />

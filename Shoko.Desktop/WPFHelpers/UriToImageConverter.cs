@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
+using NLog;
 
 namespace Shoko.Desktop.WPFHelpers
 {
     public class UriToImageConverter : IValueConverter
     {
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value is string)
@@ -20,7 +23,16 @@ namespace Shoko.Desktop.WPFHelpers
             }
             catch (Exception e)
             {
-                bi = new BitmapImage(new Uri("/Images/LoadingError.png", UriKind.Relative));
+                try
+                {
+                    bi = new BitmapImage(new Uri("/Images/LoadingError.png", UriKind.Relative));
+                    logger.Error($"Unable to load {value} - It is not a valid image.");
+                }
+                catch
+                {
+                    bi = new BitmapImage(new Uri("/Images/blankposter.png"));
+                    logger.Error("Unable to load LoadingError.png - It is not a valid image. Loading the fallback...fallback image");
+                }
             }
             return bi;
         }
