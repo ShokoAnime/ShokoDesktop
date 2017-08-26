@@ -27,16 +27,6 @@ namespace Shoko.Desktop.DataTemplateSelectors
                     if (pli.ItemType == PlaylistItemType.AnimeSeries) return element.FindResource("Playlist_AnimeSeriesTemplate") as DataTemplate;
                     if (pli.ItemType == PlaylistItemType.Episode) return element.FindResource("Playlist_AnimeEpisodeTemplate") as DataTemplate;
                 }
-
-                /*if (item.GetType() == typeof(VM_AnimeSeries_User))
-				{
-					return element.FindResource("Playlist_AnimeSeriesTemplate") as DataTemplate;
-				}
-				
-				if (item.GetType() == typeof(VM_AnimeEpisode_User))
-				{
-					return element.FindResource("Playlist_AnimeEpisodeTemplate") as DataTemplate;
-				}*/
             }
 
             return null;

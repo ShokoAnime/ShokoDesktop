@@ -25,9 +25,6 @@
 
             <!-- Playlist_AnimeSeriesTemplate-->
             <DataTemplate x:Key="Playlist_AnimeSeriesTemplate">
-                <DataTemplate.Resources>
-                    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-                </DataTemplate.Resources>
                 <Grid Margin="3" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -80,9 +77,6 @@
 
             <!-- Playlist_AnimeEpisodeTemplate-->
             <DataTemplate x:Key="Playlist_AnimeEpisodeTemplate">
-                <DataTemplate.Resources>
-                    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-                </DataTemplate.Resources>
                 <Grid Margin="3" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -130,7 +124,7 @@
                                     </Image.ToolTip>
                                 </Image>
                                 <Image Height="16" Width="16" Source="/Images/32_eye2.png" Margin="2,0,2,0"
-                           Visibility="{Binding Path=Episode.Unwatched, Converter={StaticResource BooleanToVisibilityConverter}}">
+                           Visibility="{Binding Path=Episode.Watched, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
                                     <Image.ToolTip>
                                         <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Unwatched}"/>
                                     </Image.ToolTip>

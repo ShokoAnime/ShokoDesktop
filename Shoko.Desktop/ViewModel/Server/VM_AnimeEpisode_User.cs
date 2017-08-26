@@ -42,7 +42,7 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string DisplayTypeLabel
         {
-            get { return displayTypeLabel; }
+            get => displayTypeLabel;
             set { this.SetField(()=>displayTypeLabel,value); }
         }
 
@@ -50,7 +50,7 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public int EpisodeOrder
         {
-            get { return episodeOrder; }
+            get => episodeOrder;
             set
             {
                 this.SetField(()=>episodeOrder,value);
@@ -78,7 +78,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
         private new int WatchedCount
         {
-            get { return base.WatchedCount; }
+            get => base.WatchedCount;
             set
             {
                 this.SetField(()=>base.WatchedCount,(r)=> base.WatchedCount = r, value, ()=>Watched, ()=>IsWatched);
@@ -115,11 +115,11 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
         [ScriptIgnore, JsonIgnore, XmlIgnore]
-        public int IsWatched => WatchedCount>0 ? 1 : 0;
+        public int IsWatched => WatchedCount > 0 ? 1 : 0;
 
         public new string AniDB_EnglishName
         {
-            get { return base.AniDB_EnglishName; }
+            get => base.AniDB_EnglishName;
             set
             {
                 base.AniDB_EnglishName = value;
@@ -129,7 +129,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
         public new DateTime? AniDB_AirDate
         {
-            get { return base.AniDB_AirDate; }
+            get => base.AniDB_AirDate;
             set
             {
                 base.AniDB_AirDate = value;
@@ -139,8 +139,8 @@ namespace Shoko.Desktop.ViewModel.Server
 
         public new DateTime? WatchedDate
         {
-            get { return base.WatchedDate; }
-            set 
+            get => base.WatchedDate;
+            set
             {
                 this.SetField(()=>base.WatchedDate,(r)=> base.WatchedDate = r, value);
                 SetLastWatchedDescription();
@@ -151,7 +151,7 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string EpisodeName
         {
-            get { return episodeName; }
+            get => episodeName;
             set
             {
                 this.SetField(()=>episodeName,value);
@@ -163,7 +163,7 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string EpisodeNumberAndName
         {
-            get { return episodeNumberAndName; }
+            get => episodeNumberAndName;
             set { this.SetField(()=>episodeNumberAndName,value); }
         }
 
@@ -171,7 +171,7 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string EpisodeNumberAndNameTruncated
         {
-            get { return episodeNumberAndNameTruncated; }
+            get => episodeNumberAndNameTruncated;
             set { this.SetField(()=>episodeNumberAndNameTruncated,value); }
         }
 
@@ -179,7 +179,7 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string EpisodeNumberAndNameWithType
         {
-            get { return episodeNumberAndNameWithType; }
+            get => episodeNumberAndNameWithType;
             set { this.SetField(()=>episodeNumberAndNameWithType,value); }
         }
 
@@ -187,7 +187,7 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string EpisodeNumberWithType
         {
-            get { return episodeNumberWithType; }
+            get => episodeNumberWithType;
             set { this.SetField(()=>episodeNumberWithType,value); }
         }
 
@@ -195,7 +195,7 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string EpisodeNumberAndNameWithTypeTruncated
         {
-            get { return episodeNumberAndNameWithTypeTruncated; }
+            get => episodeNumberAndNameWithTypeTruncated;
             set { this.SetField(()=>episodeNumberAndNameWithTypeTruncated,value); }
         }
 
@@ -203,7 +203,7 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string EpisodeTypeAndNumber
         {
-            get { return episodeTypeAndNumber; }
+            get => episodeTypeAndNumber;
             set { this.SetField(()=>episodeTypeAndNumber,value); }
         }
 
@@ -211,7 +211,7 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string EpisodeTypeAndNumberAbsolute
         {
-            get { return episodeTypeAndNumberAbsolute; }
+            get => episodeTypeAndNumberAbsolute;
             set { this.SetField(()=>episodeTypeAndNumberAbsolute,value); }
         }
 
@@ -222,7 +222,7 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool TvDBLinkExists
         {
-            get { return tvDBLinkExists; }
+            get => tvDBLinkExists;
             set { this.SetField(()=>tvDBLinkExists,value); }
         }
 
@@ -230,7 +230,7 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool TvDBLinkMissing
         {
-            get { return tvDBLinkMissing; }
+            get => tvDBLinkMissing;
             set { this.SetField(()=>tvDBLinkMissing,value); }
         }
 
@@ -239,7 +239,7 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool TraktLinkExists
         {
-            get { return traktLinkExists; }
+            get => traktLinkExists;
             set { this.SetField(()=>traktLinkExists,value); }
         }
 
@@ -247,7 +247,7 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool TraktLinkMissing
         {
-            get { return traktLinkMissing; }
+            get => traktLinkMissing;
             set { this.SetField(()=>traktLinkMissing,value); }
         }
 
@@ -255,13 +255,13 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string TraktEpisodeURL
         {
-            get { return traktEpisodeURL; }
+            get => traktEpisodeURL;
             set { this.SetField(()=>traktEpisodeURL,value); }
         }
 
         public new int LocalFileCount
         {
-            get { return base.LocalFileCount; }
+            get => base.LocalFileCount;
             set { this.SetField(()=>base.LocalFileCount,(r)=> base.LocalFileCount = r, value, ()=>LocalFileCount, ()=>OneFileOnly, ()=>NoFiles, ()=>HasFiles, ()=>FileDetails, ()=>MultipleFiles); }
         }
 
@@ -275,7 +275,7 @@ namespace Shoko.Desktop.ViewModel.Server
         public bool MultipleFiles => LocalFileCount > 1;
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
-        public bool HasFiles => base.LocalFileCount >0;
+        public bool HasFiles => base.LocalFileCount > 0;
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string FileDetails
@@ -320,7 +320,7 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string EpisodeOverviewTruncated
         {
-            get { return episodeOverviewTruncated; }
+            get => episodeOverviewTruncated;
             set
             {
                 this.SetField(()=>episodeOverviewTruncated,value);
@@ -347,7 +347,7 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string AirDateAsString
         {
-            get { return airDateAsString; }
+            get => airDateAsString;
             set
             {
                 this.SetField(()=>airDateAsString,value);
@@ -361,7 +361,7 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool ShowEpisodeImageInSummary
         {
-            get { return showEpisodeImageInSummary; }
+            get => showEpisodeImageInSummary;
             set
             {
                 this.SetField(()=>showEpisodeImageInSummary,value);
@@ -372,7 +372,7 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool ShowEpisodeOverviewInSummary
         {
-            get { return showEpisodeOverviewInSummary; }
+            get => showEpisodeOverviewInSummary;
             set
             {
                 this.SetField(()=>showEpisodeOverviewInSummary,value);
@@ -384,7 +384,7 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool ShowEpisodeImageInExpanded
         {
-            get { return showEpisodeImageInExpanded; }
+            get => showEpisodeImageInExpanded;
             set
             {
                 this.SetField(()=>showEpisodeImageInExpanded,value);
@@ -395,7 +395,7 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool ShowEpisodeOverviewInExpanded
         {
-            get { return showEpisodeOverviewInExpanded; }
+            get => showEpisodeOverviewInExpanded;
             set
             {
                 this.SetField(()=>showEpisodeOverviewInExpanded,value);
@@ -406,7 +406,7 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool ShowEpisodeImageInDashboard
         {
-            get { return showEpisodeImageInDashboard; }
+            get => showEpisodeImageInDashboard;
             set
             {
                 this.SetField(()=>showEpisodeImageInDashboard,value);
@@ -417,7 +417,7 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string LastWatchedDescription
         {
-            get { return lastWatchedDescription; }
+            get => lastWatchedDescription;
             set
             {
                 this.SetField(()=>lastWatchedDescription,value);
