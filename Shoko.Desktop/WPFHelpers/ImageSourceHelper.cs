@@ -9,7 +9,6 @@ using Shoko.Models.Enums;
 
 namespace Shoko.Desktop.WPFHelpers
 {
-
     public static class ImageSourceHelper
     {
         public static ImageSource GetImageSource(Uri uri, Dispatcher dispatcher)
@@ -24,15 +23,12 @@ namespace Shoko.Desktop.WPFHelpers
                 }
                 catch
                 {
-                    bi = new BitmapImage();
-                    bi.BeginInit();
-                    bi.DecodePixelWidth = 200;
-                    bi.UriSource = new Uri("/Images/LoadingError.png");
-                    bi.EndInit();
+                    bi = new BitmapImage(new Uri("/Images/LoadingError.png", UriKind.Relative));
                 }
             });
             return bi;
         }
+
         public static ImageSource GetImageSource(Stream stream, Dispatcher dispatcher)
         {
             if (stream == null) return null;
@@ -49,37 +45,18 @@ namespace Shoko.Desktop.WPFHelpers
                 }
                 catch
                 {
-                    bi = new BitmapImage();
-                    bi.BeginInit();
-                    bi.DecodePixelWidth = 200;
-                    bi.UriSource = new Uri("/Images/LoadingError.png");
-                    bi.EndInit();
+                    bi = new BitmapImage(new Uri("/Images/LoadingError.png", UriKind.Relative));
                 }
 
             });
             return bi;
         }
+
         public static ImageSource GetImageSource(byte[] data, Dispatcher dispatcher)
         {
             if (data != null && Misc.GetImageFormat(data) != ImageFormatEnum.unknown)
                 return GetImageSource(new MemoryStream(data), dispatcher);
-            var bi = new BitmapImage();
-            bi.BeginInit();
-            bi.DecodePixelWidth = 200;
-            bi.UriSource = new Uri("/Images/LoadingError.png");
-            bi.EndInit();
-            return bi;
-        }
-        public static ImageSource CreateEmptyImageSource()
-        {
-            BitmapImage bi = new BitmapImage();
-            MemoryStream ms = new MemoryStream();
-            System.Drawing.Bitmap source = new System.Drawing.Bitmap(1, 1);
-            source.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-            ms.Seek(0, SeekOrigin.Begin);
-            bi.BeginInit();
-            bi.StreamSource = ms;
-            bi.EndInit();
+            var bi = new BitmapImage(new Uri("/Images/LoadingError.png", UriKind.Relative));
             return bi;
         }
     }

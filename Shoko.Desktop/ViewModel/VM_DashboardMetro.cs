@@ -54,31 +54,22 @@ namespace Shoko.Desktop.ViewModel
         private Boolean isReadOnly = true;
         public Boolean IsReadOnly
         {
-            get { return isReadOnly; }
-            set
-            {
-                this.SetField(()=>isReadOnly,value);
-            }
+            get => isReadOnly;
+            set => this.SetField(()=>isReadOnly,value);
         }
 
         private Boolean isBeingEdited;
         public Boolean IsBeingEdited
         {
-            get { return isBeingEdited; }
-            set
-            {
-                this.SetField(()=>isBeingEdited,value);
-            }
+            get => isBeingEdited;
+            set => this.SetField(()=>isBeingEdited,value);
         }
 
         private Boolean isLoadingData = true;
         public Boolean IsLoadingData
         {
-            get { return isLoadingData; }
-            set
-            {
-                this.SetField(()=>isLoadingData,value);
-            }
+            get => isLoadingData;
+            set => this.SetField(()=>isLoadingData,value);
         }
 
         private VM_DashboardMetro()
@@ -149,16 +140,12 @@ namespace Shoko.Desktop.ViewModel
                 TimeSpan ts = DateTime.Now - start;
 
                 logger.Trace("Dashboard Time: RefreshGroupsSeriesData: {0}", ts.TotalMilliseconds);
-
-
-                IsLoadingData = false;
-
             }
             catch (Exception ex)
             {
                 Utils.ShowErrorMessage(ex);
             }
-
+            IsLoadingData = false;
         }
 
         public void RefreshContinueWatching()
@@ -209,14 +196,12 @@ namespace Shoko.Desktop.ViewModel
 
                     ViewContinueWatching.Refresh();
                 });
-
-                OnFinishedProcess(new FinishedProcessEventArgs(DashboardMetroProcessType.ContinueWatching));
             }
             catch (Exception ex)
             {
                 Utils.ShowErrorMessage(ex);
             }
-
+            OnFinishedProcess(new FinishedProcessEventArgs(DashboardMetroProcessType.ContinueWatching));
         }
 
         public void RefreshRandomSeries()
@@ -276,14 +261,12 @@ namespace Shoko.Desktop.ViewModel
 
                     ViewRandomSeries.Refresh();
                 });
-
-                OnFinishedProcess(new FinishedProcessEventArgs(DashboardMetroProcessType.RandomSeries));
             }
             catch (Exception ex)
             {
                 logger.Error(ex, ex.ToString());
             }
-
+            OnFinishedProcess(new FinishedProcessEventArgs(DashboardMetroProcessType.RandomSeries));
         }
 
         public void RefreshNewEpisodes()
@@ -324,13 +307,12 @@ namespace Shoko.Desktop.ViewModel
                         });
                     }
                 }
-
-                OnFinishedProcess(new FinishedProcessEventArgs(DashboardMetroProcessType.NewEpisodes));
             }
             catch (Exception ex)
             {
                 logger.Error(ex, ex.ToString());
             }
+            OnFinishedProcess(new FinishedProcessEventArgs(DashboardMetroProcessType.NewEpisodes));
         }
     }
 

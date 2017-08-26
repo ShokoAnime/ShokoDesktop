@@ -30,7 +30,8 @@ namespace Shoko.Desktop.ViewModel.Server
             get
             {
                 //strip out the base URL
-                int pos = URL.IndexOf('/', 0);
+                int pos = URL?.IndexOf('/', 0) ?? -1;
+                if (pos == -1) return null;
                 string fname = URL.Substring(pos + 1, URL.Length - pos - 1);
                 fname = fname.Replace("/", @"\");
                 string filename = Path.Combine(Utils.GetMovieDBImagePath(), fname);
@@ -44,7 +45,7 @@ namespace Shoko.Desktop.ViewModel.Server
         {
             get
             {
-                if (!File.Exists(FullImagePathPlain))
+                if (!string.IsNullOrEmpty(FullImagePathPlain) && !File.Exists(FullImagePathPlain))
                 {
                     ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.MovieDB_FanArt, this, false);
                     MainWindow.imageHelper.DownloadImage(req);
@@ -58,24 +59,22 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool IsImageEnabled
         {
-            get { return base.Enabled == 1; }
-            set { base.Enabled = value ? 1 : 0; }
+            get => base.Enabled == 1;
+            set => base.Enabled = value ? 1 : 0;
         }
 
 
         public new int Enabled
         {
-            get { return base.Enabled; }
-            set { this.SetField(()=>base.Enabled,(r)=> base.Enabled = r, value, () => Enabled, () => IsImageEnabled); }
+            get => base.Enabled;
+            set => this.SetField(()=>base.Enabled,(r)=> base.Enabled = r, value, () => Enabled, () => IsImageEnabled);
         }
         private bool isImageDefault;
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool IsImageDefault
         {
-            get { return isImageDefault; }
-            set { this.SetField(()=>isImageDefault,value); }
+            get => isImageDefault;
+            set => this.SetField(()=>isImageDefault,value);
         }
-
-
     }
 }

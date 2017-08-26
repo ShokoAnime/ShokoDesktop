@@ -32,7 +32,7 @@ namespace Shoko.Desktop.UserControls
     public partial class AnimeSeriesSimplifiedControl : UserControl
     {
 
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         public ObservableCollection<VM_AnimeEpisode_User> UnwatchedEpisodes { get; set; }
         public ICollectionView ViewUnwatchedEpisodes { get; set; }
@@ -45,20 +45,20 @@ namespace Shoko.Desktop.UserControls
         public ICollectionView ViewCharacters { get; set; }
 
 
-        BackgroundWorker episodesWorker = new BackgroundWorker();
-        BackgroundWorker recsWorker = new BackgroundWorker();
-        BackgroundWorker commentsWorker = new BackgroundWorker();
-        BackgroundWorker postCommenttWorker = new BackgroundWorker();
-        BackgroundWorker refreshCommentsRecsWorker = new BackgroundWorker();
-        BackgroundWorker charWorker = new BackgroundWorker();
+        private readonly BackgroundWorker episodesWorker = new BackgroundWorker();
+        private readonly BackgroundWorker recsWorker = new BackgroundWorker();
+        private readonly BackgroundWorker commentsWorker = new BackgroundWorker();
+        private readonly BackgroundWorker postCommenttWorker = new BackgroundWorker();
+        private readonly BackgroundWorker refreshCommentsRecsWorker = new BackgroundWorker();
+        private readonly BackgroundWorker charWorker = new BackgroundWorker();
 
         public static readonly DependencyProperty UnwatchedEpisodeCountProperty = DependencyProperty.Register("UnwatchedEpisodeCount",
             typeof(int), typeof(AnimeSeriesSimplifiedControl), new UIPropertyMetadata(0, null));
 
         public int UnwatchedEpisodeCount
         {
-            get { return (int)GetValue(UnwatchedEpisodeCountProperty); }
-            set { SetValue(UnwatchedEpisodeCountProperty, value); }
+            get => (int) GetValue(UnwatchedEpisodeCountProperty);
+            set => SetValue(UnwatchedEpisodeCountProperty, value);
         }
 
         public static readonly DependencyProperty PosterWidthProperty = DependencyProperty.Register("PosterWidth",
@@ -66,8 +66,8 @@ namespace Shoko.Desktop.UserControls
 
         public double PosterWidth
         {
-            get { return (double)GetValue(PosterWidthProperty); }
-            set { SetValue(PosterWidthProperty, value); }
+            get => (double) GetValue(PosterWidthProperty);
+            set => SetValue(PosterWidthProperty, value);
         }
 
         public static readonly DependencyProperty IsLoadingCommentsProperty = DependencyProperty.Register("IsLoadingComments",
@@ -75,7 +75,7 @@ namespace Shoko.Desktop.UserControls
 
         public bool IsLoadingComments
         {
-            get { return (bool)GetValue(IsLoadingCommentsProperty); }
+            get => (bool) GetValue(IsLoadingCommentsProperty);
             set
             {
                 SetValue(IsLoadingCommentsProperty, value);
@@ -88,8 +88,8 @@ namespace Shoko.Desktop.UserControls
 
         public bool IsNotLoadingComments
         {
-            get { return (bool)GetValue(IsNotLoadingCommentsProperty); }
-            set { SetValue(IsNotLoadingCommentsProperty, value); }
+            get => (bool) GetValue(IsNotLoadingCommentsProperty);
+            set => SetValue(IsNotLoadingCommentsProperty, value);
         }
 
         public AnimeSeriesSimplifiedControl()
@@ -107,48 +107,48 @@ namespace Shoko.Desktop.UserControls
             Recommendations = new ObservableCollectionEx<RecommendationTile>();
             Comments = new ObservableCollection<object>();
 
-            DataContextChanged += new DependencyPropertyChangedEventHandler(AnimeSeriesSimplifiedControl_DataContextChanged);
+            DataContextChanged += AnimeSeriesSimplifiedControl_DataContextChanged;
 
-            btnBack.Click += new RoutedEventHandler(btnBack_Click);
-            btnPlayNextEp.Click += new RoutedEventHandler(btnPlayNextEp_Click);
-            btnPlayAllEps.Click += new RoutedEventHandler(btnPlayAllEps_Click);
+            btnBack.Click += btnBack_Click;
+            btnPlayNextEp.Click += btnPlayNextEp_Click;
+            btnPlayAllEps.Click += btnPlayAllEps_Click;
             btnRefresh.Click += BtnRefresh_Click;
             btnSwitchView.Click += BtnSwitchView_Click;
 
-            episodesWorker.DoWork += new DoWorkEventHandler(episodesWorker_DoWork);
-            episodesWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(episodesWorker_RunWorkerCompleted);
+            episodesWorker.DoWork += episodesWorker_DoWork;
+            episodesWorker.RunWorkerCompleted += episodesWorker_RunWorkerCompleted;
 
-            charWorker.DoWork += new DoWorkEventHandler(charWorker_DoWork);
-            charWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(charWorker_RunWorkerCompleted);
+            charWorker.DoWork += charWorker_DoWork;
+            charWorker.RunWorkerCompleted += charWorker_RunWorkerCompleted;
 
-            recsWorker.DoWork += new DoWorkEventHandler(recsWorker_DoWork);
-            recsWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(recsWorker_RunWorkerCompleted);
+            recsWorker.DoWork += recsWorker_DoWork;
+            recsWorker.RunWorkerCompleted += recsWorker_RunWorkerCompleted;
 
-            commentsWorker.DoWork += new DoWorkEventHandler(commentsWorker_DoWork);
-            commentsWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(commentsWorker_RunWorkerCompleted);
+            commentsWorker.DoWork += commentsWorker_DoWork;
+            commentsWorker.RunWorkerCompleted += commentsWorker_RunWorkerCompleted;
 
-            refreshCommentsRecsWorker.DoWork += new DoWorkEventHandler(refreshCommentsRecsWorker_DoWork);
-            refreshCommentsRecsWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(refreshCommentsRecsWorker_RunWorkerCompleted);
+            refreshCommentsRecsWorker.DoWork += refreshCommentsRecsWorker_DoWork;
+            refreshCommentsRecsWorker.RunWorkerCompleted += refreshCommentsRecsWorker_RunWorkerCompleted;
 
             MainWindow.videoHandler.VideoWatchedEvent += videoHandler_VideoWatchedEvent;
             Unloaded += (sender, e) => MainWindow.videoHandler.VideoWatchedEvent -= videoHandler_VideoWatchedEvent;
 
-            txtCommentNew.GotFocus += new RoutedEventHandler(txtCommentNew_GotFocus);
-            txtCommentNew.LostFocus += new RoutedEventHandler(txtCommentNew_LostFocus);
-            btnSubmitComment.Click += new RoutedEventHandler(btnSubmitComment_Click);
+            txtCommentNew.GotFocus += txtCommentNew_GotFocus;
+            txtCommentNew.LostFocus += txtCommentNew_LostFocus;
+            btnSubmitComment.Click += btnSubmitComment_Click;
 
-            btnRefreshComments.Click += new RoutedEventHandler(btnRefreshComments_Click);
+            btnRefreshComments.Click += btnRefreshComments_Click;
 
-            postCommenttWorker.DoWork += new DoWorkEventHandler(postCommentWorker_DoWork);
-            postCommenttWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(postCommentWorker_RunWorkerCompleted);
+            postCommenttWorker.DoWork += postCommentWorker_DoWork;
+            postCommenttWorker.RunWorkerCompleted += postCommentWorker_RunWorkerCompleted;
 
-            cRating.OnRatingValueChangedEvent += new RatingControl.RatingValueChangedHandler(cRating_OnRatingValueChangedEvent);
+            cRating.OnRatingValueChangedEvent += cRating_OnRatingValueChangedEvent;
 
-            grdMain.PreviewMouseWheel += new MouseWheelEventHandler(grdMain_PreviewMouseWheel);
-            lbEpisodes.PreviewMouseWheel += new MouseWheelEventHandler(lbEpisodes_PreviewMouseWheel);
-            lbComments.PreviewMouseWheel += new MouseWheelEventHandler(lbComments_PreviewMouseWheel);
-            lbChars.PreviewMouseWheel += new MouseWheelEventHandler(lbComments_PreviewMouseWheel);
-            lbRecommendations.PreviewMouseWheel += new MouseWheelEventHandler(lbComments_PreviewMouseWheel);
+            grdMain.PreviewMouseWheel += grdMain_PreviewMouseWheel;
+            lbEpisodes.PreviewMouseWheel += lbEpisodes_PreviewMouseWheel;
+            lbComments.PreviewMouseWheel += lbComments_PreviewMouseWheel;
+            lbChars.PreviewMouseWheel += lbComments_PreviewMouseWheel;
+            lbRecommendations.PreviewMouseWheel += lbComments_PreviewMouseWheel;
             PreviewMouseWheel += AnimeSeriesSimplifiedControl_PreviewMouseWheel;
         }
 
@@ -157,7 +157,7 @@ namespace Shoko.Desktop.UserControls
             try
             {
                 foreach (ScrollViewer sv in Utils.GetScrollViewers(this))
-                    sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta / 3);
+                    sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta / 3D);
             }
             catch { }
         }
@@ -206,12 +206,6 @@ namespace Shoko.Desktop.UserControls
                     sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta / 3D);
             }
             catch { }
-
-            /*try
-			{
-				ScrollerCWatching.ScrollToVerticalOffset(ScrollerCWatching.VerticalOffset - e.Delta / 3);
-			}
-			catch { }*/
         }
 
         void lbEpisodes_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
@@ -222,12 +216,6 @@ namespace Shoko.Desktop.UserControls
                     sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta / 3D);
             }
             catch { }
-
-            /*try
-			{
-				ScrollerCWatching.ScrollToVerticalOffset(ScrollerCWatching.VerticalOffset - e.Delta / 3);
-			}
-			catch { }*/
         }
 
         void grdMain_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
@@ -238,12 +226,6 @@ namespace Shoko.Desktop.UserControls
                     sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta / 3D);
             }
             catch { }
-
-            /*try
-			{
-				ScrollerCWatching.ScrollToVerticalOffset(ScrollerCWatching.VerticalOffset - e.Delta / 3);
-			}
-			catch { }*/
         }
 
         void cRating_OnRatingValueChangedEvent(RatingValueEventArgs ev)
@@ -429,9 +411,6 @@ namespace Shoko.Desktop.UserControls
             {
                 logger.Error(ex, ex.ToString());
             }
-            finally
-            {
-            }
         }
 
         void txtCommentNew_LostFocus(object sender, RoutedEventArgs e)
@@ -446,7 +425,7 @@ namespace Shoko.Desktop.UserControls
         void txtCommentNew_GotFocus(object sender, RoutedEventArgs e)
         {
             if (txtCommentNew.Text.Equals(Shoko.Commons.Properties.Resources.Anime_YourSay, StringComparison.InvariantCultureIgnoreCase))
-                txtCommentNew.Text = "";
+                txtCommentNew.Text = string.Empty;
 
             txtCommentNew.Foreground = Brushes.Black;
             txtCommentNew.Height = 150;
@@ -491,10 +470,14 @@ namespace Shoko.Desktop.UserControls
 
                 if (ep.IsWatched == 1)
                 {
-                    if (UnwatchedEpisodes.Count == 1)
-                        ep = UnwatchedEpisodes[1];
-                    else
-                        return;
+                    foreach (var episode in UnwatchedEpisodes)
+                    {
+                        if (episode.IsWatched == 0)
+                        {
+                            ep = episode;
+                            break;
+                        }
+                    }
                 }
 
                 if (ep.FilesForEpisode.Count == 1)
@@ -548,7 +531,7 @@ namespace Shoko.Desktop.UserControls
                         PlayVideosForEpisodeForm frm = new PlayVideosForEpisodeForm();
                         frm.Owner = mainwdw;
                         frm.Init(ep);
-                        bool? result = frm.ShowDialog();
+                        frm.ShowDialog();
                     }
                 }
 
@@ -654,13 +637,13 @@ namespace Shoko.Desktop.UserControls
                     {
                         Recommendations.Add(new RecommendationTile()
                         {
-                            Details = "",
+                            Details = string.Empty,
                             AnimeName = sim.DisplayName,
                             Picture = sim.PosterPath,
                             AnimeSeries = sim.AnimeSeries,
-                            TileSize = "Large",
+                            TileSize = string.Intern("Large"),
                             Height = 100,
-                            Source = "AniDB",
+                            Source = string.Intern("AniDB"),
                             AnimeID = sim.AnimeID,
                             URL = sim.AniDB_SiteURL,
                             SimilarAnimeID = sim.SimilarAnimeID,
@@ -738,7 +721,8 @@ namespace Shoko.Desktop.UserControls
 
                 // first add all the main characters
                 foreach (VM_AniDB_Character chr in
-                    chars.Where(x => x.CharType.Equals(Models.Constants.CharacterType.MAIN, StringComparison.InvariantCultureIgnoreCase)))
+                    chars.Where(x => x?.CharType != null && x.CharType.Equals(Models.Constants.CharacterType.MAIN,
+                                         StringComparison.InvariantCultureIgnoreCase)))
                 {
                     chrsToAdd.Add(chr);
                 }
@@ -746,7 +730,8 @@ namespace Shoko.Desktop.UserControls
                 // now add all the character types
                 int i = 0;
                 foreach (VM_AniDB_Character chr in
-                    chars.Where(x => !x.CharType.Equals(Models.Constants.CharacterType.MAIN, StringComparison.InvariantCultureIgnoreCase)))
+                    chars.Where(x => x?.CharType != null && !x.CharType.Equals(Models.Constants.CharacterType.MAIN,
+                                         StringComparison.InvariantCultureIgnoreCase)))
                 {
                     chrsToAdd.Add(chr);
                     i++;
@@ -759,31 +744,6 @@ namespace Shoko.Desktop.UserControls
                     foreach (VM_AniDB_Character chr in chrsToAdd)
                         Characters.Add(chr);
                 });
-
-                /*
-                // first add all the main characters
-                foreach (JMMServerBinary.Contract_AniDB_Character chr in chars)
-                {
-                    if (chr.CharType.Equals(Constants.CharacterType.MAIN, StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
-                        {
-                            Characters.Add(new VM_AniDB_Character(chr));
-                        });
-                    }
-                }
-
-                // now add all the character types
-                foreach (JMMServerBinary.Contract_AniDB_Character chr in chars)
-                {
-                    if (!chr.CharType.Equals(Constants.CharacterType.MAIN, StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
-                        {
-                            Characters.Add(new VM_AniDB_Character(chr));
-                        });
-                    }
-                }*/
             }
             catch (Exception ex)
             {
@@ -825,7 +785,7 @@ namespace Shoko.Desktop.UserControls
 
             try
             {
-                PosterWidth = 180;
+                PosterWidth = 180D;
                 if (ser.AniDBAnime.AniDBAnime.UsePosterOnSeries)
                 {
                     string imgName = ser.AniDBAnime.AniDBAnime.FanartPathThenPosterPath;
@@ -834,7 +794,7 @@ namespace Shoko.Desktop.UserControls
                         BitmapDecoder decoder = BitmapDecoder.Create(new Uri(imgName), BitmapCreateOptions.None, BitmapCacheOption.None);
                         BitmapFrame frame = decoder.Frames[0];
 
-                        PosterWidth = (double)250 * ((double)frame.PixelWidth / (double)frame.PixelHeight);
+                        PosterWidth = frame.PixelWidth / (double) frame.PixelHeight * 250D;
                     }
                 }
             }
@@ -843,7 +803,7 @@ namespace Shoko.Desktop.UserControls
                 logger.Error(ex, ex.ToString());
             }
 
-            //RefreshData();
+            RefreshData();
         }
 
         private void RefreshUnwatchedEpisodes()
@@ -867,7 +827,7 @@ namespace Shoko.Desktop.UserControls
                 ViewCommentForm frm = new ViewCommentForm();
                 frm.Owner = parentWindow;
                 frm.Init(obj);
-                bool? result = frm.ShowDialog();
+                frm.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -990,12 +950,10 @@ namespace Shoko.Desktop.UserControls
                 }
 
                 RefreshData();
-                if (newStatus == true && ser != null)
+                if (newStatus && ser != null)
                 {
                     Utils.PromptToRateSeries(ser, parentWindow);
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -1009,8 +967,6 @@ namespace Shoko.Desktop.UserControls
 
         private void CommandBinding_VoteUp(object sender, ExecutedRoutedEventArgs e)
         {
-            Window parentWindow = Window.GetWindow(this);
-
             object obj = e.Parameter;
             if (obj == null) return;
 
@@ -1031,8 +987,6 @@ namespace Shoko.Desktop.UserControls
 
         private void CommandBinding_VoteDown(object sender, ExecutedRoutedEventArgs e)
         {
-            Window parentWindow = Window.GetWindow(this);
-
             object obj = e.Parameter;
             if (obj == null) return;
 
@@ -1053,8 +1007,6 @@ namespace Shoko.Desktop.UserControls
 
         private void CommandBinding_RecDetails(object sender, ExecutedRoutedEventArgs e)
         {
-            Window parentWindow = Window.GetWindow(this);
-
             object obj = e.Parameter;
             if (obj == null) return;
 
@@ -1083,6 +1035,4 @@ namespace Shoko.Desktop.UserControls
             }
         }
     }
-
-
 }

@@ -426,7 +426,7 @@ namespace Shoko.Desktop.ImageDownload
                     string fileName = GetFileName(req, false);
                     string entityID = GetEntityID(req);
                     bool downloadImage = true;
-                    bool fileExists = File.Exists(fileName);
+                    bool fileExists = string.IsNullOrEmpty(fileName) || File.Exists(fileName);
 
                     if (fileExists)
                     {

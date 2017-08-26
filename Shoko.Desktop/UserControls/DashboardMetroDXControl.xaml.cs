@@ -24,10 +24,10 @@ namespace Shoko.Desktop.UserControls
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        BackgroundWorker refreshDataWorker = new BackgroundWorker();
-        BackgroundWorker refreshContinueWatchingWorker = new BackgroundWorker();
-        BackgroundWorker refreshRandomSeriesWorker = new BackgroundWorker();
-        BackgroundWorker refreshNewEpisodesWorker = new BackgroundWorker();
+        private readonly BackgroundWorker refreshDataWorker = new BackgroundWorker();
+        private readonly BackgroundWorker refreshContinueWatchingWorker = new BackgroundWorker();
+        private readonly BackgroundWorker refreshRandomSeriesWorker = new BackgroundWorker();
+        private readonly BackgroundWorker refreshNewEpisodesWorker = new BackgroundWorker();
 
         public ObservableCollection<MetroDashSection> Sections { get; set; }
         public ICollectionView ViewSections { get; set; }
@@ -37,8 +37,8 @@ namespace Shoko.Desktop.UserControls
 
         public bool IsLoadingContinueWatching
         {
-            get { return (bool)GetValue(IsLoadingContinueWatchingProperty); }
-            set { SetValue(IsLoadingContinueWatchingProperty, value); }
+            get => (bool) GetValue(IsLoadingContinueWatchingProperty);
+            set => SetValue(IsLoadingContinueWatchingProperty, value);
         }
 
         public static readonly DependencyProperty IsLoadingRandomSeriesProperty = DependencyProperty.Register("IsLoadingRandomSeries",
@@ -46,20 +46,20 @@ namespace Shoko.Desktop.UserControls
 
         public bool IsLoadingRandomSeries
         {
-            get { return (bool)GetValue(IsLoadingRandomSeriesProperty); }
-            set { SetValue(IsLoadingRandomSeriesProperty, value); }
+            get => (bool) GetValue(IsLoadingRandomSeriesProperty);
+            set => SetValue(IsLoadingRandomSeriesProperty, value);
         }
 
         public static readonly DependencyProperty IsLoadingNewEpisodesProperty = DependencyProperty.Register("IsLoadingNewEpisodes",
             typeof(bool), typeof(DashboardMetroDXControl), new UIPropertyMetadata(false, null));
 
         public static readonly DependencyProperty Dash_ContinueWatching_ColumnProperty = DependencyProperty.Register("Dash_ContinueWatching_Column",
-            typeof(int), typeof(DashboardMetroDXControl), new UIPropertyMetadata((int)2, null));
+            typeof(int), typeof(DashboardMetroDXControl), new UIPropertyMetadata(2, null));
 
         public int Dash_ContinueWatching_Column
         {
-            get { return (int)GetValue(Dash_ContinueWatching_ColumnProperty); }
-            set { SetValue(Dash_ContinueWatching_ColumnProperty, value); }
+            get => (int) GetValue(Dash_ContinueWatching_ColumnProperty);
+            set => SetValue(Dash_ContinueWatching_ColumnProperty, value);
         }
 
         public static readonly DependencyProperty Dash_ContinueWatching_VisibilityProperty = DependencyProperty.Register("Dash_ContinueWatching_Visibility",
@@ -67,8 +67,8 @@ namespace Shoko.Desktop.UserControls
 
         public Visibility Dash_ContinueWatching_Visibility
         {
-            get { return (Visibility)GetValue(Dash_ContinueWatching_VisibilityProperty); }
-            set { SetValue(Dash_ContinueWatching_VisibilityProperty, value); }
+            get => (Visibility) GetValue(Dash_ContinueWatching_VisibilityProperty);
+            set => SetValue(Dash_ContinueWatching_VisibilityProperty, value);
         }
 
 
@@ -79,8 +79,8 @@ namespace Shoko.Desktop.UserControls
 
         public int Dash_RandomSeries_Column
         {
-            get { return (int)GetValue(Dash_RandomSeries_ColumnProperty); }
-            set { SetValue(Dash_RandomSeries_ColumnProperty, value); }
+            get => (int) GetValue(Dash_RandomSeries_ColumnProperty);
+            set => SetValue(Dash_RandomSeries_ColumnProperty, value);
         }
 
         public static readonly DependencyProperty Dash_RandomSeries_VisibilityProperty = DependencyProperty.Register("Dash_RandomSeries_Visibility",
@@ -88,8 +88,8 @@ namespace Shoko.Desktop.UserControls
 
         public Visibility Dash_RandomSeries_Visibility
         {
-            get { return (Visibility)GetValue(Dash_RandomSeries_VisibilityProperty); }
-            set { SetValue(Dash_RandomSeries_VisibilityProperty, value); }
+            get => (Visibility) GetValue(Dash_RandomSeries_VisibilityProperty);
+            set => SetValue(Dash_RandomSeries_VisibilityProperty, value);
         }
 
 
@@ -99,8 +99,8 @@ namespace Shoko.Desktop.UserControls
 
         public int Dash_NewEpisodes_Column
         {
-            get { return (int)GetValue(Dash_NewEpisodes_ColumnProperty); }
-            set { SetValue(Dash_NewEpisodes_ColumnProperty, value); }
+            get => (int) GetValue(Dash_NewEpisodes_ColumnProperty);
+            set => SetValue(Dash_NewEpisodes_ColumnProperty, value);
         }
 
         public static readonly DependencyProperty Dash_NewEpisodes_VisibilityProperty = DependencyProperty.Register("Dash_NewEpisodes_Visibility",
@@ -108,15 +108,15 @@ namespace Shoko.Desktop.UserControls
 
         public Visibility Dash_NewEpisodes_Visibility
         {
-            get { return (Visibility)GetValue(Dash_NewEpisodes_VisibilityProperty); }
-            set { SetValue(Dash_NewEpisodes_VisibilityProperty, value); }
+            get => (Visibility) GetValue(Dash_NewEpisodes_VisibilityProperty);
+            set => SetValue(Dash_NewEpisodes_VisibilityProperty, value);
         }
 
 
         public bool IsLoadingNewEpisodes
         {
-            get { return (bool)GetValue(IsLoadingNewEpisodesProperty); }
-            set { SetValue(IsLoadingNewEpisodesProperty, value); }
+            get => (bool) GetValue(IsLoadingNewEpisodesProperty);
+            set => SetValue(IsLoadingNewEpisodesProperty, value);
         }
 
         public DashboardMetroDXControl()
@@ -125,29 +125,29 @@ namespace Shoko.Desktop.UserControls
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
-            refreshDataWorker.DoWork += new DoWorkEventHandler(refreshDataWorker_DoWork);
-            refreshDataWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(refreshDataWorker_RunWorkerCompleted);
+            refreshDataWorker.DoWork += refreshDataWorker_DoWork;
+            refreshDataWorker.RunWorkerCompleted += refreshDataWorker_RunWorkerCompleted;
 
-            refreshContinueWatchingWorker.DoWork += new DoWorkEventHandler(refreshContinueWatchingWorker_DoWork);
-            refreshContinueWatchingWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(refreshContinueWatchingWorker_RunWorkerCompleted);
+            refreshContinueWatchingWorker.DoWork += refreshContinueWatchingWorker_DoWork;
+            refreshContinueWatchingWorker.RunWorkerCompleted += refreshContinueWatchingWorker_RunWorkerCompleted;
 
-            refreshRandomSeriesWorker.DoWork += new DoWorkEventHandler(refreshRandomSeriesWorker_DoWork);
-            refreshRandomSeriesWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(refreshRandomSeriesWorker_RunWorkerCompleted);
+            refreshRandomSeriesWorker.DoWork += refreshRandomSeriesWorker_DoWork;
+            refreshRandomSeriesWorker.RunWorkerCompleted += refreshRandomSeriesWorker_RunWorkerCompleted;
 
-            refreshNewEpisodesWorker.DoWork += new DoWorkEventHandler(refreshNewEpisodesWorker_DoWork);
-            refreshNewEpisodesWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(refreshNewEpisodesWorker_RunWorkerCompleted);
+            refreshNewEpisodesWorker.DoWork += refreshNewEpisodesWorker_DoWork;
+            refreshNewEpisodesWorker.RunWorkerCompleted += refreshNewEpisodesWorker_RunWorkerCompleted;
 
-            Loaded += new RoutedEventHandler(DashboardMetroDXControl_Loaded);
-            btnToggleDash.Click += new RoutedEventHandler(btnToggleDash_Click);
+            Loaded += DashboardMetroDXControl_Loaded;
+            btnToggleDash.Click += btnToggleDash_Click;
 
-            btnContinueWatchingIncrease.Click += new RoutedEventHandler(btnContinueWatchingIncrease_Click);
-            btnContinueWatchingReduce.Click += new RoutedEventHandler(btnContinueWatchingReduce_Click);
+            btnContinueWatchingIncrease.Click += btnContinueWatchingIncrease_Click;
+            btnContinueWatchingReduce.Click += btnContinueWatchingReduce_Click;
 
-            btnRefresh.Click += new RoutedEventHandler(btnRefresh_Click);
-            btnRefreshRandomSeries.Click += new RoutedEventHandler(btnRefreshRandomSeries_Click);
-            btnRefreshNewEpisodes.Click += new RoutedEventHandler(btnRefreshNewEpisodes_Click);
+            btnRefresh.Click += btnRefresh_Click;
+            btnRefreshRandomSeries.Click += btnRefreshRandomSeries_Click;
+            btnRefreshNewEpisodes.Click += btnRefreshNewEpisodes_Click;
 
-            btnOptions.Click += new RoutedEventHandler(btnOptions_Click);
+            btnOptions.Click += btnOptions_Click;
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
@@ -160,17 +160,18 @@ namespace Shoko.Desktop.UserControls
             else
                 cboImageType.SelectedIndex = 1;
 
-            cboImageType.SelectionChanged += new SelectionChangedEventHandler(cboImageType_SelectionChanged);
+            cboImageType.SelectionChanged += cboImageType_SelectionChanged;
 
-            VM_DashboardMetro.Instance.OnFinishedProcessEvent += new VM_DashboardMetro.FinishedProcessHandler(Instance_OnFinishedProcessEvent);
+            VM_DashboardMetro.Instance.OnFinishedProcessEvent += Instance_OnFinishedProcessEvent;
+            Unloaded += (sender, e) => VM_DashboardMetro.Instance.OnFinishedProcessEvent -= Instance_OnFinishedProcessEvent;
 
             Sections = new ObservableCollection<MetroDashSection>();
             ViewSections = CollectionViewSource.GetDefaultView(Sections);
 
             SetSectionOrder();
 
-            LayoutRoot.PreviewMouseWheel += new MouseWheelEventHandler(LayoutRoot_PreviewMouseWheel);
-            ScrollerDashMetroDX.PreviewMouseWheel += new MouseWheelEventHandler(ScrollerDashMetroDX_PreviewMouseWheel);
+            LayoutRoot.PreviewMouseWheel += LayoutRoot_PreviewMouseWheel;
+            ScrollerDashMetroDX.PreviewMouseWheel += ScrollerDashMetroDX_PreviewMouseWheel;
         }
 
         void ScrollerDashMetroDX_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
@@ -228,10 +229,7 @@ namespace Shoko.Desktop.UserControls
 
         private void CommandBinding_MoveUpSection(object sender, ExecutedRoutedEventArgs e)
         {
-            object obj = e.Parameter;
-            if (obj == null) return;
-
-            MetroDashSection sect = obj as MetroDashSection;
+            MetroDashSection sect = e.Parameter as MetroDashSection;
             if (sect == null) return;
 
             VM_UserSettings.Instance.MoveUpDashboardMetroSection(sect.SectionType);
@@ -240,10 +238,7 @@ namespace Shoko.Desktop.UserControls
 
         private void CommandBinding_MoveDownSection(object sender, ExecutedRoutedEventArgs e)
         {
-            object obj = e.Parameter;
-            if (obj == null) return;
-
-            MetroDashSection sect = obj as MetroDashSection;
+            MetroDashSection sect = e.Parameter as MetroDashSection;
             if (sect == null) return;
 
             VM_UserSettings.Instance.MoveDownDashboardMetroSection(sect.SectionType);
@@ -252,10 +247,7 @@ namespace Shoko.Desktop.UserControls
 
         private void CommandBinding_EnableSectionCommand(object sender, ExecutedRoutedEventArgs e)
         {
-            object obj = e.Parameter;
-            if (obj == null) return;
-
-            MetroDashSection sect = obj as MetroDashSection;
+            MetroDashSection sect = e.Parameter as MetroDashSection;
             if (sect == null) return;
 
             VM_UserSettings.Instance.EnableDisableDashboardMetroSection(sect.SectionType, true);
@@ -264,10 +256,7 @@ namespace Shoko.Desktop.UserControls
 
         private void CommandBinding_DisableSectionCommand(object sender, ExecutedRoutedEventArgs e)
         {
-            object obj = e.Parameter;
-            if (obj == null) return;
-
-            MetroDashSection sect = obj as MetroDashSection;
+            MetroDashSection sect = e.Parameter as MetroDashSection;
             if (sect == null) return;
 
             VM_UserSettings.Instance.EnableDisableDashboardMetroSection(sect.SectionType, false);
@@ -278,27 +267,15 @@ namespace Shoko.Desktop.UserControls
         {
         }
 
-
-
-
-
-
-
-
         void cboImageType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cboImageType.SelectedIndex == 0)
-                AppSettings.DashMetroImageType = DashboardMetroImageType.Fanart;
-            else
-                AppSettings.DashMetroImageType = DashboardMetroImageType.Posters;
+            AppSettings.DashMetroImageType = cboImageType.SelectedIndex == 0
+                ? DashboardMetroImageType.Fanart
+                : DashboardMetroImageType.Posters;
 
             VM_UserSettings.Instance.DashMetro_Image_Height = VM_UserSettings.Instance.DashMetro_Image_Height;
             RefreshAllData();
         }
-
-
-
-
 
         void btnOptions_Click(object sender, RoutedEventArgs e)
         {
@@ -368,7 +345,7 @@ namespace Shoko.Desktop.UserControls
 
 
             //if (refreshAll)
-            //	refreshRandomSeriesWorker.RunWorkerAsync(true);
+            //    refreshRandomSeriesWorker.RunWorkerAsync(true);
         }
 
         void refreshDataWorker_DoWork(object sender, DoWorkEventArgs e)

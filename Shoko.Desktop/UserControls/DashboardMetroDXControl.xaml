@@ -8,7 +8,6 @@
              xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
              xmlns:MahControls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-             xmlns:wpfHelpers="clr-namespace:Shoko.Desktop.WPFHelpers"
              xmlns:metro="clr-namespace:Shoko.Desktop.ViewModel.Metro"
              mc:Ignorable="d"
             d:DesignHeight="800" d:DesignWidth="1000">
@@ -28,8 +27,6 @@
 
             <ImageBrush x:Key="noise" ImageSource="/Images/Backgrounds/subtlenet2.png" TileMode="Tile" Viewport="0,0 128,128" ViewportUnits="Absolute" />
 
-            <wpfHelpers:StringFormatConverter x:Key="StringFormatConverter" />
-            <wpfHelpers:ImageSourceConverter x:Key="ImageSourceConverter" />
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
             <RoutedUICommand x:Key="MoveUpSectionCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MoveUpSectionCommand}" />
@@ -88,7 +85,7 @@
             <!-- ContinueWatchingTile -->
             <DataTemplate DataType="{x:Type metro:ContinueWatchingTile}">
 
-                <Border BorderBrush="DarkGray" BorderThickness="1">
+                <Border BorderBrush="DarkGray" BorderThickness="1" Background="LightGray">
                     <Grid Background="Transparent">
 
                         <Grid.RowDefinitions>
@@ -127,7 +124,7 @@
             <!-- RandomSeriesTile -->
             <DataTemplate DataType="{x:Type metro:RandomSeriesTile}">
 
-                <Border BorderBrush="DarkGray" BorderThickness="1">
+                <Border BorderBrush="DarkGray" BorderThickness="1" Background="LightGray">
                     <Grid Background="Transparent">
 
                         <Grid.RowDefinitions>
@@ -162,7 +159,7 @@
             <!-- NewEpisodeTile -->
             <DataTemplate DataType="{x:Type metro:NewEpisodeTile}">
 
-                <Border BorderBrush="DarkGray" BorderThickness="1">
+                <Border BorderBrush="DarkGray" BorderThickness="1" Background="LightGray">
                     <Grid Background="Transparent">
 
                         <Grid.RowDefinitions>
@@ -177,7 +174,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Image Margin="0" Stretch="Uniform" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" 
-                               RenderOptions.BitmapScalingMode="HighQuality" wpfHelpers:ImageAsyncHelper.SourceUri="{Binding Path=Picture, Converter={StaticResource LocalUriToImageConverter}}">
+                               RenderOptions.BitmapScalingMode="HighQuality" Source="{Binding Path=Picture, Converter={StaticResource LocalUriToImageConverter}}">
                         </Image>
 
                         <Border VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">

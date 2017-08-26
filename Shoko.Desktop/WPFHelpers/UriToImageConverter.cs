@@ -11,17 +11,20 @@ namespace Shoko.Desktop.WPFHelpers
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if (value is string)
-            {
-                value = new Uri((string)value, UriKind.RelativeOrAbsolute);
-            }
+            value = !string.IsNullOrEmpty(value as string) ? new Uri((string) value, UriKind.RelativeOrAbsolute) : null;
 
             BitmapImage bi;
             try
             {
+                if (value == null)
+                {
+                    bi = new BitmapImage(new Uri("/Images/LoadingError.png", UriKind.Relative));
+                    logger.Error($"Unable to load image - A null or empty path was used");
+                    return bi;
+                }
                 bi = new BitmapImage((Uri)value);
             }
-            catch (Exception e)
+            catch
             {
                 try
                 {
