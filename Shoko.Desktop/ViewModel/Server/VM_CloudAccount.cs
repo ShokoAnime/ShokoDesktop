@@ -1,10 +1,14 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Web.Script.Serialization;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
+using Shoko.Commons.Utils;
 using Shoko.Models.Client;
+using Shoko.Models.Enums;
+
 // ReSharper disable InconsistentNaming
 
 namespace Shoko.Desktop.ViewModel.Server
@@ -21,8 +25,10 @@ namespace Shoko.Desktop.ViewModel.Server
             {
                 return _bitmap ?? (_bitmap = Application.Current.Dispatcher.Invoke(() =>
                 {
-                    if (Icon == null)
-                        return null;
+                    if (Icon == null || Misc.GetImageFormat(Icon) == ImageFormatEnum.unknown)
+                    {
+                        return new BitmapImage(new Uri("/Images/LoadingError.png"));
+                    }
 
                     MemoryStream ms = new MemoryStream(Icon);
                     ms.Seek(0, SeekOrigin.Begin);
