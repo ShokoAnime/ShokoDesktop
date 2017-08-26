@@ -11,6 +11,9 @@ namespace Shoko.Desktop.WPFHelpers
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
+            if (value is BitmapImage)
+                return value;
+
             value = !string.IsNullOrEmpty(value as string) ? new Uri((string) value, UriKind.RelativeOrAbsolute) : null;
 
             BitmapImage bi;
