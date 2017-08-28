@@ -141,9 +141,9 @@ namespace Shoko.Desktop.Forms
                 importFldr.CloudID = cl.CloudID;
                 importFldr.ImportFolderName = "NA";
                 importFldr.ImportFolderLocation = txtImportFolderLocation.Text.Trim();
-                importFldr.IsDropDestination = chkDropDestination.IsChecked.Value ? 1 : 0;
-                importFldr.IsDropSource = chkDropSource.IsChecked.Value ? 1 : 0;
-                importFldr.IsWatched = chkIsWatched.IsChecked.Value ? 1 : 0;
+                importFldr.IsDropDestination = chkDropDestination.IsChecked ?? false ? 1 : 0;
+                importFldr.IsDropSource = chkDropSource.IsChecked ?? false ? 1 : 0;
+                importFldr.IsWatched = chkIsWatched.IsChecked ?? false ? 1 : 0;
                 importFldr.Save();
 
                 VM_ShokoServer.Instance.RefreshImportFolders();
