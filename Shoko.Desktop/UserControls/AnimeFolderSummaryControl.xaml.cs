@@ -142,18 +142,28 @@ namespace Shoko.Desktop.UserControls
                     fileSize += (double)vid.FileSize;
                     foreach (CL_VideoLocal_Place vplace in vid.Places)
                     {
-                        if (!folders.ContainsKey(vplace.GetFileDirectory()))
+                        var videoLocation = vplace.GetLocalFileSystemFullPath();
+                        if (string.IsNullOrWhiteSpace(videoLocation))
+                        {
+                            var filename = vplace.GetFullPath();
+                            videoLocation = filename.Substring(0, filename.Length - (Pri.LongPath.Path.GetFileName(filename).Length + 1));
+
+                        }
+                        else
+                        {
+                            videoLocation = Pri.LongPath.Path.GetDirectoryName(videoLocation);
+                        }
+                        if (!folders.ContainsKey(videoLocation))
                         {
                             AnimeFolderSummary fs = new AnimeFolderSummary();
-                            fs.FolderName = vplace.GetFileDirectory();
+                            fs.FolderName = videoLocation;
                             fs.FileCount = 0;
                             fs.TotalFileSize = 0;
-                            folders[vplace.GetFileDirectory()] = fs;
+                            folders[videoLocation] = fs;
                         }
 
-                        folders[vplace.GetFileDirectory()].FileCount = folders[vplace.GetFileDirectory()].FileCount + 1;
-                        folders[vplace.GetFileDirectory()].TotalFileSize = folders[vplace.GetFileDirectory()].TotalFileSize +
-                                                                   vid.FileSize;
+                        folders[videoLocation].FileCount = folders[videoLocation].FileCount + 1;
+                        folders[videoLocation].TotalFileSize = folders[videoLocation].TotalFileSize + vid.FileSize;
                     }
                 }
 
