@@ -235,9 +235,13 @@ namespace Shoko.Desktop.Forms
             Cursor = Cursors.Wait;
             try
             {
-                CrossRef_AniDB_TraktResult.ReplaceRange(VM_ShokoServer.Instance.ShokoServices.GetTraktCrossRefWebCache(AnimeID, false).Cast<VM_CrossRef_AniDB_TraktV2>());
-                if (CrossRef_AniDB_TraktResult.Count>0)
-                    HasWebCacheRec = true;
+                var webCacheRec = VM_ShokoServer.Instance.ShokoServices.GetTraktCrossRefWebCache(AnimeID, false);
+                if (webCacheRec != null)
+                {
+                    CrossRef_AniDB_TraktResult.ReplaceRange(webCacheRec.Cast<VM_CrossRef_AniDB_TraktV2>());
+                    if (CrossRef_AniDB_TraktResult.Count > 0)
+                        HasWebCacheRec = true;
+                }
 
                 // now search Trakt
                 TraktSeriesSearchResults.ReplaceRange(VM_ShokoServer.Instance.ShokoServices.SearchTrakt(txtSearch.Text.Replace("`", "'").Trim()));
