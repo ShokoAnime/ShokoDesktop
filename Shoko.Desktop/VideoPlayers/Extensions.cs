@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using NLog;
 using Shoko.Commons.Extensions;
+using Shoko.Desktop.ViewModel;
 using Shoko.Desktop.ViewModel.Server;
 using Shoko.Models.PlexAndKodi;
 
@@ -84,6 +85,8 @@ namespace Shoko.Desktop.VideoPlayers
 
             Part p = m.Parts[0];
             string fullname = p.Key.Replace("\\", "/").Replace("//", "/").Replace(":", string.Empty);
+            string uri = $"http://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}" +
+                $"{new Uri(p.Key).GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped)}";
             string fname = Path.GetFileNameWithoutExtension(fullname);
             if (p.Streams != null)
             {
@@ -120,7 +123,7 @@ namespace Shoko.Desktop.VideoPlayers
                     }
                 }
             }
-            return new Tuple<string, List<string>>(p.Key, subs);
+            return new Tuple<string, List<string>>(uri, subs);
         }
 
 

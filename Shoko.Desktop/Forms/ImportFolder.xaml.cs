@@ -24,20 +24,32 @@ namespace Shoko.Desktop.Forms
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
             chkDropSource.Checked += ChkDropSource_Checked;
             chkDropDestination.Checked += ChkDropDestination_Checked;
-            chkIsWatched.Checked += ChkIsWatched_Checked;
-            btnCancel.Click += new RoutedEventHandler(btnCancel_Click);
-            btnSave.Click += new RoutedEventHandler(btnSave_Click);
+            btnCancel.Click += btnCancel_Click;
+            btnSave.Click += btnSave_Click;
             btnChooseFolder.Click += BtnChooseFolder_Click;
             btnProvChooseFolder.Click += BtnProvChooseFolder_Click;
             comboProvider.SelectionChanged += ComboProvider_SelectionChanged;
         }
+
+        private bool EventLock;
 
         private void ComboProvider_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (comboProvider.SelectedItem != null)
             {
                 VM_CloudAccount account = (VM_CloudAccount)comboProvider.SelectedItem;
-                GridLocalMapping.Visibility = (account.CloudID) == 0 ? Visibility.Visible : Visibility.Collapsed;
+                switch (account.CloudID)
+                {
+                    case 0:
+                        GridLocalMapping.Visibility = Visibility.Visible;
+                        chkIsWatched.IsEnabled = true;
+                        break;
+                    default:
+                        GridLocalMapping.Visibility = Visibility.Collapsed;
+                        chkIsWatched.IsChecked = false;
+                        chkIsWatched.IsEnabled = false;
+                        break;
+                }
             }
         }
 
@@ -68,48 +80,25 @@ namespace Shoko.Desktop.Forms
             }
         }
 
-        private void ChkIsWatched_Checked(object sender, RoutedEventArgs e)
-        {
-            if (!checkchange && importFldr.CloudID.HasValue && chkDropDestination.IsChecked.HasValue &&
-                chkDropDestination.IsChecked.Value)
-            {
-                checkchange = true;
-                chkIsWatched.IsChecked = false;
-                checkchange = false;
-            }
-        }
-
         private void ChkDropDestination_Checked(object sender, RoutedEventArgs e)
         {
-            if (!checkchange && chkDropDestination.IsChecked.HasValue && chkDropDestination.IsChecked.Value)
+            if (EventLock || !chkDropDestination.IsChecked.HasValue || !chkDropDestination.IsChecked.Value) return;
+            if (chkDropSource.IsChecked.HasValue && chkDropSource.IsChecked.Value)
             {
-                if (chkDropSource.IsChecked.HasValue && chkDropSource.IsChecked.Value)
-                {
-                    checkchange = true;
-                    chkDropSource.IsChecked = false;
-                    checkchange = false;
-                }
-                if (importFldr.CloudID.HasValue && chkIsWatched.IsChecked.HasValue && chkIsWatched.IsChecked.Value)
-                {
-                    checkchange = true;
-                    chkIsWatched.IsChecked = false;
-                    checkchange = false;
-                }
+                EventLock = true;
+                chkDropSource.IsChecked = false;
+                EventLock = false;
             }
         }
-
-        private bool checkchange = false;
 
         private void ChkDropSource_Checked(object sender, RoutedEventArgs e)
         {
-            if (!checkchange && chkDropSource.IsChecked.HasValue && chkDropSource.IsChecked.Value)
+            if (EventLock || !chkDropSource.IsChecked.HasValue || !chkDropSource.IsChecked.Value) return;
+            if (chkDropDestination.IsChecked.HasValue && chkDropDestination.IsChecked.Value)
             {
-                if (chkDropDestination.IsChecked.HasValue && chkDropDestination.IsChecked.Value)
-                {
-                    checkchange = true;
-                    chkDropDestination.IsChecked = false;
-                    checkchange = false;
-                }
+                EventLock = true;
+                chkDropDestination.IsChecked = false;
+                EventLock = false;
             }
         }
 
@@ -141,10 +130,10 @@ namespace Shoko.Desktop.Forms
                 importFldr.CloudID = cl.CloudID;
                 importFldr.ImportFolderName = "NA";
                 importFldr.ImportFolderLocation = txtImportFolderLocation.Text.Trim();
-                importFldr.IsDropDestination = chkDropDestination.IsChecked.Value ? 1 : 0;
-                importFldr.IsDropSource = chkDropSource.IsChecked.Value ? 1 : 0;
-                importFldr.IsWatched = chkIsWatched.IsChecked.Value ? 1 : 0;
-                importFldr.Save();
+                importFldr.IsDropDestination = chkDropDestination.IsChecked ?? false ? 1 : 0;
+                importFldr.IsDropSource = chkDropSource.IsChecked ?? false ? 1 : 0;
+                importFldr.IsWatched = chkIsWatched.IsChecked ?? false ? 1 : 0;
+                if (!importFldr.Save()) return;
 
                 VM_ShokoServer.Instance.RefreshImportFolders();
             }
