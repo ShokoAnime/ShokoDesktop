@@ -133,7 +133,7 @@ namespace Shoko.Desktop.Forms
                 importFldr.IsDropDestination = chkDropDestination.IsChecked ?? false ? 1 : 0;
                 importFldr.IsDropSource = chkDropSource.IsChecked ?? false ? 1 : 0;
                 importFldr.IsWatched = chkIsWatched.IsChecked ?? false ? 1 : 0;
-                importFldr.Save();
+                if (!importFldr.Save()) return;
 
                 VM_ShokoServer.Instance.RefreshImportFolders();
             }
