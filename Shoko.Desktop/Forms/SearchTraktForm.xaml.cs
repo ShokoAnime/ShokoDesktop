@@ -236,7 +236,7 @@ namespace Shoko.Desktop.Forms
             try
             {
                 var webCacheRec = VM_ShokoServer.Instance.ShokoServices.GetTraktCrossRefWebCache(AnimeID, false);
-                if (webCacheRec != null)
+                if (webCacheRec != null && webCacheRec.Count > 0)
                 {
                     CrossRef_AniDB_TraktResult.ReplaceRange(webCacheRec.Cast<VM_CrossRef_AniDB_TraktV2>());
                     if (CrossRef_AniDB_TraktResult.Count > 0)

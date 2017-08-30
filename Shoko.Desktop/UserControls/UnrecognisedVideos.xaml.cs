@@ -332,14 +332,15 @@ namespace Shoko.Desktop.UserControls
             {
                 NewSeries frm = new NewSeries();
                 frm.Owner = GetTopParent();
-                frm.Init(0, "");
+                frm.Init(0, string.Empty);
                 bool? result = frm.ShowDialog();
-                if (result.HasValue && result.Value == true)
+                if (result.HasValue && result.Value)
                 {
                     RefreshSeries();
 
                     VM_AnimeSeries_User ser = frm.AnimeSeries;
-                    txtSeriesSearch.Text = ser.AniDBAnime.AniDBAnime.FormattedTitle;
+                    txtSeriesSearch.Text =
+                        ser?.AniDBAnime?.AniDBAnime?.FormattedTitle ?? ser?.SeriesName ?? string.Empty;
                 }
             }
             catch (Exception ex)
