@@ -134,9 +134,6 @@ namespace Shoko.Desktop.Forms
                     VM_AnimeSearch searchResult = obj as VM_AnimeSearch;
 
                     SetSelectedAnime(searchResult);
-
-                    txtGroupName.Text = searchResult.MainTitle;
-                    txtGroupSortName.Text = searchResult.MainTitle;
                 }
             }
             catch (Exception ex)
@@ -255,17 +252,6 @@ namespace Shoko.Desktop.Forms
                     }
                 }
 
-                if (IsNewGroup)
-                {
-                    if (txtGroupName.Text.Trim().Length == 0)
-                    {
-                        MessageBox.Show(Commons.Properties.Resources.MSG_ERR_GroupNameRequired,
-                            Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-                        txtGroupName.Focus();
-                        return;
-                    }
-                }
-
                 if (SelectedAnime != null)
                     animeID = SelectedAnime.AnimeID;
 
@@ -324,7 +310,6 @@ namespace Shoko.Desktop.Forms
         void rbGroupNew_Checked(object sender, RoutedEventArgs e)
         {
             EvaluateRadioButtons();
-            txtGroupName.Focus();
         }
 
         void rbGroupExisting_Checked(object sender, RoutedEventArgs e)
@@ -403,9 +388,6 @@ namespace Shoko.Desktop.Forms
 
                 ViewGroups.Filter = GroupSearchFilter;
 
-                txtGroupName.Text = defaultGroupName;
-                txtGroupSortName.Text = defaultGroupName;
-
             }
             catch (Exception ex)
             {
@@ -443,9 +425,6 @@ namespace Shoko.Desktop.Forms
                 }
 
                 ViewGroups.Filter = GroupSearchFilter;
-
-                txtGroupName.Text = defaultGroupName;
-                txtGroupSortName.Text = defaultGroupName;
 
             }
             catch (Exception ex)
