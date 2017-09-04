@@ -201,19 +201,7 @@
                             Visibility="{Binding Path=IsNewGroup, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:NewSeries}}, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                     <Grid Margin="5,5,5,5">
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-
-                        <TextBlock Grid.Row="0" Grid.Column="0" FontWeight="Bold" Margin="5,0,5,0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupName}"/>
-                        <TextBox Grid.Row="0" Grid.Column="1"  MinWidth="300" Margin="5,0,0,5" Text="" Name="txtGroupName"/>
-                        <TextBlock Grid.Row="1" Grid.Column="0" FontWeight="Bold" Margin="5,0,5,0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SortName}"/>
-                        <TextBox Grid.Row="1" Grid.Column="1"  MinWidth="300" Margin="5,0,0,5" Text="" Name="txtGroupSortName"/>
+                        <TextBlock VerticalAlignment="Top" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=NewSeries_NameInfo}" Margin="0,0,0,0"/>
                     </Grid>
                 </StackPanel>
             </DockPanel>

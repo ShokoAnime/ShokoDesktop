@@ -134,9 +134,6 @@ namespace Shoko.Desktop.Forms
                     VM_AnimeSearch searchResult = obj as VM_AnimeSearch;
 
                     SetSelectedAnime(searchResult);
-
-                    txtGroupName.Text = searchResult.MainTitle;
-                    txtGroupSortName.Text = searchResult.MainTitle;
                 }
             }
             catch (Exception ex)
@@ -162,7 +159,8 @@ namespace Shoko.Desktop.Forms
                 btnAnimeSearch.IsEnabled = false;
                 btnConfirm.IsEnabled = false;
                 btnCancel.IsEnabled = false;
-                SearchResults.ReplaceRange(VM_ShokoServer.Instance.ShokoServices.OnlineAnimeTitleSearch(txtAnimeSearch.Text.Replace("'", "`").Trim()).Cast<VM_AnimeSearch>());
+                SearchResults.ReplaceRange(VM_ShokoServer.Instance.ShokoServices
+                    .OnlineAnimeTitleSearch(txtAnimeSearch.Text.Replace("'", "`").Trim()).Cast<VM_AnimeSearch>());
                 ViewSearchResults.Refresh();
             }
             catch (Exception ex)
@@ -195,17 +193,17 @@ namespace Shoko.Desktop.Forms
             lnkAniDB.DisplayText = searchResult.AnimeID_Friendly;
             lnkAniDB.URL = searchResult.AniDB_SiteURL;
 
-			try
-			{
-				//make sure list is unique
-				SortedDictionary<string, string> sortedTitles = new SortedDictionary<string, string>();
-				foreach (string tit in searchResult.Titles)
-				{
-					if (!string.IsNullOrEmpty(tit))
-					{
-						sortedTitles[tit] = tit;
-					}
-				}
+            try
+            {
+                //make sure list is unique
+                SortedDictionary<string, string> sortedTitles = new SortedDictionary<string, string>();
+                foreach (string tit in searchResult.Titles)
+                {
+                    if (!string.IsNullOrEmpty(tit))
+                    {
+                        sortedTitles[tit] = tit;
+                    }
+                }
 
                 foreach (string tit in sortedTitles.Values)
                 {
@@ -232,7 +230,8 @@ namespace Shoko.Desktop.Forms
 
                 if (IsAnimeNotSelected)
                 {
-                    MessageBox.Show(Shoko.Commons.Properties.Resources.NewSeries_SelectAnime, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Commons.Properties.Resources.NewSeries_SelectAnime,
+                        Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtAnimeSearch.Focus();
                     return;
                 }
@@ -241,7 +240,8 @@ namespace Shoko.Desktop.Forms
                 {
                     if (lbGroups.SelectedItem == null)
                     {
-                        MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_GroupSelectionRequired, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(Commons.Properties.Resources.MSG_ERR_GroupSelectionRequired,
+                            Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         lbGroups.Focus();
                         return;
                     }
@@ -252,57 +252,31 @@ namespace Shoko.Desktop.Forms
                     }
                 }
 
-                if (IsNewGroup)
-                {
-                    if (txtGroupName.Text.Trim().Length == 0)
-                    {
-                        MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_GroupNameRequired, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-                        txtGroupName.Focus();
-                        return;
-                    }
-                }
-
                 if (SelectedAnime != null)
                     animeID = SelectedAnime.AnimeID;
 
                 Cursor = Cursors.Wait;
 
-                if (IsNewGroup)
-                {
-                    VM_AnimeGroup_User grp = new VM_AnimeGroup_User();
-                    grp.GroupName = txtGroupName.Text.Trim();
-                    grp.SortName = txtGroupName.Text.Trim();
-                    grp.AnimeGroupParentID = null;
-                    grp.Description = "";
-                    grp.IsFave = 0;
-                    grp.IsManuallyNamed = 0;
-                    grp.OverrideDescription = 0;
 
-
-                    if (grp.Validate())
-                    {
-                        grp.IsReadOnly = true;
-                        grp.IsBeingEdited = false;
-                        if (grp.Save())
-                        {
-                            VM_MainListHelper.Instance.ViewGroups.Refresh();
-                            groupID = grp.AnimeGroupID;
-                        }
-
-                    }
-                }
-
-
-                CL_Response<CL_AnimeSeries_User> response = VM_ShokoServer.Instance.ShokoServices.CreateSeriesFromAnime(animeID, groupID,
-                    VM_ShokoServer.Instance.CurrentUser.JMMUserID);
+                CL_Response<CL_AnimeSeries_User> response = VM_ShokoServer.Instance.ShokoServices.CreateSeriesFromAnime(
+                    animeID, groupID, VM_ShokoServer.Instance.CurrentUser.JMMUserID);
                 if (response.ErrorMessage.Length > 0)
                 {
                     Cursor = Cursors.Arrow;
-                    MessageBox.Show(response.ErrorMessage, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(response.ErrorMessage, Commons.Properties.Resources.Error,
+                        MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 AnimeSeries = (VM_AnimeSeries_User)response.Result;
-                VM_MainListHelper.Instance.AllSeriesDictionary[response.Result.AnimeSeriesID] = (VM_AnimeSeries_User) response.Result;
+                VM_MainListHelper.Instance.AllSeriesDictionary[response.Result.AnimeSeriesID] =
+                    (VM_AnimeSeries_User) response.Result;
+                if (!VM_MainListHelper.Instance.AllGroupsDictionary.ContainsKey(response.Result.AnimeGroupID))
+                {
+                    var group = VM_ShokoServer.Instance.ShokoServices.GetGroup(response.Result.AnimeGroupID,
+                        VM_ShokoServer.Instance.CurrentUser.JMMUserID);
+                    VM_MainListHelper.Instance.AllGroupsDictionary[response.Result.AnimeGroupID] =
+                        (VM_AnimeGroup_User) group;
+                }
 
             }
             catch (Exception ex)
@@ -336,7 +310,6 @@ namespace Shoko.Desktop.Forms
         void rbGroupNew_Checked(object sender, RoutedEventArgs e)
         {
             EvaluateRadioButtons();
-            txtGroupName.Focus();
         }
 
         void rbGroupExisting_Checked(object sender, RoutedEventArgs e)
@@ -381,12 +354,12 @@ namespace Shoko.Desktop.Forms
             EvaluateRadioButtons();
         }
 
-		public void Init(VM_AniDB_Anime anime, string defaultGroupName)
-		{
-			VM_AnimeSearch srch = new VM_AnimeSearch();
-			srch.AnimeID = anime.AnimeID;
-			srch.MainTitle = anime.MainTitle;
-			srch.Titles = new HashSet<string>(anime.GetAllTitles(),StringComparer.InvariantCultureIgnoreCase);
+        public void Init(VM_AniDB_Anime anime, string defaultGroupName)
+        {
+            VM_AnimeSearch srch = new VM_AnimeSearch();
+            srch.AnimeID = anime.AnimeID;
+            srch.MainTitle = anime.MainTitle;
+            srch.Titles = new HashSet<string>(anime.GetAllTitles(),StringComparer.InvariantCultureIgnoreCase);
 
             SetSelectedAnime(srch);
             EvaluateRadioButtons();
@@ -405,7 +378,8 @@ namespace Shoko.Desktop.Forms
                 ViewSearchResults = CollectionViewSource.GetDefaultView(SearchResults);
                 ViewSearchResults.SortDescriptions.Add(new SortDescription("MainTitle", ListSortDirection.Ascending));
 
-                List<VM_AnimeGroup_User> grpsRaw = VM_ShokoServer.Instance.ShokoServices.GetAllGroups(VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_AnimeGroup_User>();
+                List<VM_AnimeGroup_User> grpsRaw = VM_ShokoServer.Instance.ShokoServices
+                    .GetAllGroups(VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_AnimeGroup_User>();
 
                 foreach (VM_AnimeGroup_User grp in grpsRaw)
                 {
@@ -413,9 +387,6 @@ namespace Shoko.Desktop.Forms
                 }
 
                 ViewGroups.Filter = GroupSearchFilter;
-
-                txtGroupName.Text = defaultGroupName;
-                txtGroupSortName.Text = defaultGroupName;
 
             }
             catch (Exception ex)
@@ -445,7 +416,8 @@ namespace Shoko.Desktop.Forms
                 ViewSearchResults = CollectionViewSource.GetDefaultView(SearchResults);
                 ViewSearchResults.SortDescriptions.Add(new SortDescription("MainTitle", ListSortDirection.Ascending));
 
-                List<VM_AnimeGroup_User> grpsRaw = VM_ShokoServer.Instance.ShokoServices.GetAllGroups(VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_AnimeGroup_User>();
+                List<VM_AnimeGroup_User> grpsRaw = VM_ShokoServer.Instance.ShokoServices
+                    .GetAllGroups(VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_AnimeGroup_User>();
 
                 foreach (VM_AnimeGroup_User grp in grpsRaw)
                 {
@@ -453,9 +425,6 @@ namespace Shoko.Desktop.Forms
                 }
 
                 ViewGroups.Filter = GroupSearchFilter;
-
-                txtGroupName.Text = defaultGroupName;
-                txtGroupSortName.Text = defaultGroupName;
 
             }
             catch (Exception ex)
