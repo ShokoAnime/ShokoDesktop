@@ -278,10 +278,7 @@ namespace Shoko.Desktop.ViewModel.Server
                 {
                     ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.AniDB_Cover, this, false);
                     MainWindow.imageHelper.DownloadImage(req);
-                    if (File.Exists(fileName)) return fileName;
-
-                    string packUriBlank = $"pack://application:,,,/{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name};component/Images/blankposter.png";
-                    return packUriBlank;
+                    return fileName;
                 }
                 return fileName;
             }
@@ -708,7 +705,7 @@ namespace Shoko.Desktop.ViewModel.Server
         {
             get
             {
-                string packUriBlank = $"pack://application:,,,/{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name};component/Images/blankposter.png";
+                string packUriBlank = $"pack://application:,,,/{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name};component/Images/blankfanart.png";
 
                 // this should be randomised or use the default 
                 if (DefaultImageFanart != null)
