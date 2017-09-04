@@ -118,6 +118,7 @@ Name: "{commondesktop}\Shoko Desktop"; Filename: "{app}\ShokoDesktop.exe"; Tasks
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\Shoko Desktop"; Filename: "{app}\ShokoDesktop.exe"; Tasks: quicklaunchicon
 
 [Run]
+Filename: "{app}\FixPermissions.bat";
 Filename: "{app}\ShokoDesktop.exe"; Flags: nowait postinstall skipifsilent shellexec; Description: "{cm:LaunchProgram,Shoko Desktop}"
 Filename: "https://shokoanime.com/shoko-version-3-8-released/"; Flags: shellexec runasoriginaluser postinstall; Description: "View 3.8 Release Notes"
 
