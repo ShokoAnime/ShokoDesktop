@@ -109,6 +109,7 @@ Source: "..\Shoko.Desktop\bin\Release\pt\*"; DestDir: "{app}\pt"; Flags: ignorev
 Source: "..\Shoko.Desktop\bin\Release\ru\*"; DestDir: "{app}\ru"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "..\Shoko.Desktop\bin\Release\x64\*"; DestDir: "{app}\x64"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "..\Shoko.Desktop\bin\Release\x86\*"; DestDir: "{app}\x86"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "FixPermissions.bat"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
