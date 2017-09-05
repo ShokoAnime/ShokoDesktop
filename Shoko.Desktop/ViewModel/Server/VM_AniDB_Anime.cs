@@ -731,7 +731,15 @@ namespace Shoko.Desktop.ViewModel.Server
         public string EndYearAsString => EndYear > 0 ? EndYear.ToString() : Shoko.Commons.Properties.Resources.Ongoing;
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
-        public string AirDateAndEndDate => $"{AirDateAsString}  {Shoko.Commons.Properties.Resources.To}  {EndDateAsString}";
+        public string AirDateAndEndDate
+        {
+            get
+            {
+                if (AirDateAsString.Equals(EndDateAsString, StringComparison.InvariantCultureIgnoreCase))
+                    return AirDateAsString;
+                return $"{AirDateAsString}  {Shoko.Commons.Properties.Resources.To}  {EndDateAsString}";
+            }
+        }
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string BeginYearAndEndYear => BeginYear == EndYear ? BeginYear.ToString() : $"{BeginYear} - {EndYearAsString}";
