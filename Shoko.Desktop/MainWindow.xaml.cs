@@ -237,7 +237,7 @@ namespace Shoko.Desktop
 
                 //videoHandler.HandleFileChange(@"C:\Program Files (x86)\Combined Community Codec Pack\MPC\mpc-hc.ini");
 
-                videoHandler.VideoWatchedEvent += new VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
+                //videoHandler.VideoWatchedEvent += new VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
 
                 if (AppSettings.DashboardType == DashboardType.Normal)
                     dash.Visibility = Visibility.Visible;
@@ -317,16 +317,6 @@ namespace Shoko.Desktop
              }
           }
        }
-
-       void videoHandler_VideoWatchedEvent(VideoWatchedEventArgs ev)
-        {
-            if (tabControl1.SelectedIndex == (int) TAB_MAIN.Collection || tabControl1.SelectedIndex == (int) TAB_MAIN.Pinned)
-            {
-
-
-                //RefreshView();
-            }
-        }
 
         void btnClearServerImageQueue_Click(object sender, RoutedEventArgs e)
         {
