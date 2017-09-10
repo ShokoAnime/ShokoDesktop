@@ -80,9 +80,7 @@ namespace Shoko.Desktop.ViewModel.Server
                         break;
                 }
 
-                if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
-                    return fileName;
-                return $"pack://application:,,,/{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name};component/Images/blankposter.png";
+                return fileName;
             }
         }
 
@@ -170,9 +168,7 @@ namespace Shoko.Desktop.ViewModel.Server
                         break;
                 }
 
-                if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
-                    return fileName;
-                return $"pack://application:,,,/{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name};component/Images/blankposter.png";
+                return fileName;
             }
         }
 

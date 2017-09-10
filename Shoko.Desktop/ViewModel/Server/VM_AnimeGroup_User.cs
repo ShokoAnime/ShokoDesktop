@@ -389,17 +389,16 @@ namespace Shoko.Desktop.ViewModel.Server
         {
             get
             {
-                string packUriBlank = $"pack://application:,,,/{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name};component/Images/blankposter.png";
+                string poster = null;
 
                 List<string> allPosters = GetPosterFilenames();
-                string posterName = "";
                 if (allPosters.Count > 0)
-                    posterName = allPosters[fanartRandom.Next(0, allPosters.Count)];
+                    poster = allPosters[fanartRandom.Next(0, allPosters.Count)];
 
-                if (!String.IsNullOrEmpty(posterName))
-                    return posterName;
+                if (!string.IsNullOrEmpty(poster))
+                    return poster;
 
-                return packUriBlank;
+                return poster;
             }
         }
 

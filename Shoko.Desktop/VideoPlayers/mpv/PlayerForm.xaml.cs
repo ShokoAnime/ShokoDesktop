@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Timers;
 using System.Windows;
 using System.Windows.Input;
@@ -15,6 +16,10 @@ namespace Shoko.Desktop.VideoPlayers.mpv
         private VideoInfo _vinfo;
         public event BaseVideoPlayer.FilePositionHandler FilePosition;
 
+        static PlayerForm()
+        {
+            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+        }
 
         public PlayerForm(MPVVideoPlayer player)
         {
@@ -38,7 +43,17 @@ namespace Shoko.Desktop.VideoPlayers.mpv
                 BaseVideoPlayer.PlaybackStopped(_vinfo, (long)Player.Time);
         }
 
+        private static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+        {
+            if (args.Name == "NutzCode.MPVPlayer.WPF.Wrapper, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null")
+            {
+                // Have to use FullName because relative path will return the same exception otherwise.
+                return Assembly.LoadFile(new System.IO.FileInfo("NutzCode.MPVPlayer.WPF.Wrapper.dll")
+                    .FullName); 
+            }
 
+            return null;
+        }
 
 
         public void Quit()

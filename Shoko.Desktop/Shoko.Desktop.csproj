@@ -672,9 +672,6 @@
     <Compile Include="UserControls\SimilarAnimeControl.xaml.cs">
       <DependentUpon>SimilarAnimeControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\SmartImage.xaml.cs">
-      <DependentUpon>SmartImage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\Tags.xaml.cs">
       <DependentUpon>Tags.xaml</DependentUpon>
     </Compile>
@@ -1238,10 +1235,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\SimilarAnimeControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\SmartImage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
