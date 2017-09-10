@@ -206,7 +206,7 @@
                                 <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_FileNotFound}"/>
                             </Image.ToolTip>
                         </Image>
-                        <TextBlock Text="{Binding Path=FileName}"  VerticalAlignment="Center">
+                        <TextBlock Text="{Binding Path=VideoFilename}"  VerticalAlignment="Center">
                             <TextBlock.ToolTip>
                                 <TextBlock Text="{Binding Path=FullPath}"/>
                             </TextBlock.ToolTip>

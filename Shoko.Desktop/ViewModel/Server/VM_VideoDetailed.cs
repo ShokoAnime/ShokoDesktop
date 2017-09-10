@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Web.Script.Serialization;
@@ -232,6 +233,9 @@ namespace Shoko.Desktop.ViewModel.Server
         {
             return new List<IListWrapper>();
         }
+
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        public string VideoFilename => System.IO.Path.GetFileName(Places.FirstOrDefault()?.GetFileName());
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public int ObjectType => 5;
