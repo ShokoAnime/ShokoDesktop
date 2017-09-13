@@ -2399,12 +2399,6 @@ namespace Shoko.Desktop
                     Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
                     if (res == MessageBoxResult.Yes)
                     {
-                        // remove from group list
-                        //gfc.Delete();
-
-
-                        // fund the GroupFilter
-
                         foreach (VM_GroupFilter gf in VM_MainListHelper.Instance.AllGroupFiltersDictionary.Values)
                         {
                             if (!gf.AllowEditing) continue; // all filter
@@ -2414,7 +2408,7 @@ namespace Shoko.Desktop
                                 for (int i = 0; i < gf.Obs_FilterConditions.Count; i++)
                                 {
                                     if (gfc.ConditionOperator == gf.Obs_FilterConditions[i].ConditionOperator &&
-                                        gfc.ConditionParameter == gf.Obs_FilterConditions[i].ConditionParameter &&
+                                        gfc.ConditionParameter.Equals(gf.Obs_FilterConditions[i].ConditionParameter) &&
                                         gfc.ConditionType == gf.Obs_FilterConditions[i].ConditionType)
                                     {
                                         pos = i;
