@@ -1,46 +1,56 @@
-﻿using Infralution.Localization.Wpf;
-using Shoko.Desktop.Utilities;
-using NLog;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Threading;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Navigation;
 using System.Windows.Threading;
+using Infralution.Localization.Wpf;
+using NLog;
 using Shoko.Commons.Extensions;
 using Shoko.Desktop.AutoUpdates;
-using Shoko.Commons.Downloads;
 using Shoko.Desktop.Enums;
 using Shoko.Desktop.Forms;
 using Shoko.Desktop.ImageDownload;
 using Shoko.Desktop.UserControls;
 using Shoko.Desktop.UserControls.Community;
+using Shoko.Desktop.Utilities;
 using Shoko.Desktop.VideoPlayers;
 using Shoko.Desktop.ViewModel;
 using Shoko.Desktop.ViewModel.Helpers;
 using Shoko.Desktop.ViewModel.Server;
 using Shoko.Models.Client;
 using Shoko.Models.Enums;
-using AnimeSeries = Shoko.Desktop.UserControls.AnimeSeries;
+using Application = System.Windows.Forms.Application;
+using Binding = System.Windows.Data.Binding;
+using Cursors = System.Windows.Input.Cursors;
+using ListBox = System.Windows.Controls.ListBox;
+using MessageBox = System.Windows.MessageBox;
 using PlaylistItemType = Shoko.Models.Enums.PlaylistItemType;
+using TabControl = System.Windows.Controls.TabControl;
+using Timer = System.Timers.Timer;
 
 namespace Shoko.Desktop
 {
+    /// <inheritdoc cref="Window" />
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         public enum TAB_MAIN
         {
@@ -76,7 +86,7 @@ namespace Shoko.Desktop
             Rename,
             UpdateData,
             Rankings
-        };
+        }
 
         public enum TAB_Settings
         {
@@ -87,38 +97,38 @@ namespace Shoko.Desktop
             Display
         }
 
-        private static System.Timers.Timer postStartTimer = null;
+        private static Timer postStartTimer;
 
-        private int lastFileManagerTab = (int) TAB_UTILITY.Unrecognised;
-
-        public static VM_GroupFilter groupFilterVM = null;
+        public static VM_GroupFilter groupFilterVM;
         public static List<UserCulture> userLanguages = new List<UserCulture>();
-        public static ImageDownloader imageHelper = null;
+        public static ImageDownloader imageHelper;
 
-        private VM_AnimeGroup_User groupBeforeChanges = null;
-        private VM_GroupFilter groupFilterBeforeChanges = null;
+        private VM_AnimeGroup_User groupBeforeChanges;
+        private VM_GroupFilter groupFilterBeforeChanges;
 
+#pragma warning disable 414
+        private int lastFileManagerTab = (int) TAB_UTILITY.Unrecognised;
+#pragma warning restore 414
 
+        private readonly BackgroundWorker showChildWrappersWorker = new BackgroundWorker();
+        private readonly BackgroundWorker refreshGroupsWorker = new BackgroundWorker();
+        private readonly BackgroundWorker downloadImagesWorker = new BackgroundWorker();
+        private readonly BackgroundWorker toggleStatusWorker = new BackgroundWorker();
+        private readonly BackgroundWorker moveSeriesWorker = new BackgroundWorker();
 
-        BackgroundWorker showChildWrappersWorker = new BackgroundWorker();
-        BackgroundWorker refreshGroupsWorker = new BackgroundWorker();
-        BackgroundWorker downloadImagesWorker = new BackgroundWorker();
-        BackgroundWorker toggleStatusWorker = new BackgroundWorker();
-        BackgroundWorker moveSeriesWorker = new BackgroundWorker();
-
-        BackgroundWorker showDashboardWorker = new BackgroundWorker();
+        private readonly BackgroundWorker showDashboardWorker = new BackgroundWorker();
 
         // Locks
-        private Object lockDashBoardTab = new Object();
-        private Object lockCollectionsTab = new Object();
-        private Object lockPlaylistsTab = new Object();
-        private Object lockBookmarksTab = new Object();
-        private Object lockServerTab = new Object();
-        private Object lockUtilitiesTab = new Object();
-        private Object lockSettingsTab = new Object();
-        private Object lockPinnedTab = new Object();
-        private Object lockDownloadsTab = new Object();
-        private Object lockSearchTab = new Object();
+        private readonly object lockDashBoardTab = new object();
+        private readonly object lockCollectionsTab = new object();
+        private readonly object lockPlaylistsTab = new object();
+        private readonly object lockBookmarksTab = new object();
+        private readonly object lockServerTab = new object();
+        private readonly object lockUtilitiesTab = new object();
+        private readonly object lockSettingsTab = new object();
+        private readonly object lockPinnedTab = new object();
+        private readonly object lockDownloadsTab = new object();
+        private readonly object lockSearchTab = new object();
 
         public static VideoHandler videoHandler = new VideoHandler();
         private bool _blockTabControlChanged;
@@ -148,96 +158,84 @@ namespace Shoko.Desktop
 
                 Closing += (o, args) => ImageDownloader.Stopping = true;
 
-                lbGroupsSeries.MouseDoubleClick += new MouseButtonEventHandler(lbGroupsSeries_MouseDoubleClick);
-                lbGroupsSeries.SelectionChanged += new SelectionChangedEventHandler(lbGroupsSeries_SelectionChanged);
-                grdMain.LayoutUpdated += new EventHandler(grdMain_LayoutUpdated);
-                LayoutUpdated += new EventHandler(MainWindow_LayoutUpdated);
+                lbGroupsSeries.MouseDoubleClick += lbGroupsSeries_MouseDoubleClick;
+                lbGroupsSeries.SelectionChanged += lbGroupsSeries_SelectionChanged;
+                grdMain.LayoutUpdated += grdMain_LayoutUpdated;
+                LayoutUpdated += MainWindow_LayoutUpdated;
 
-                lbPlaylists.SelectionChanged += new SelectionChangedEventHandler(lbPlaylists_SelectionChanged);
+                lbPlaylists.SelectionChanged += lbPlaylists_SelectionChanged;
 
 
 
-                showChildWrappersWorker.DoWork += new DoWorkEventHandler(showChildWrappersWorker_DoWork);
-                showChildWrappersWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(showChildWrappersWorker_RunWorkerCompleted);
+                showChildWrappersWorker.DoWork += showChildWrappersWorker_DoWork;
+                showChildWrappersWorker.RunWorkerCompleted += showChildWrappersWorker_RunWorkerCompleted;
 
-                downloadImagesWorker.DoWork += new DoWorkEventHandler(downloadImagesWorker_DoWork);
+                downloadImagesWorker.DoWork += downloadImagesWorker_DoWork;
 
-                refreshGroupsWorker.DoWork += new DoWorkEventHandler(refreshGroupsWorker_DoWork);
-                refreshGroupsWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(refreshGroupsWorker_RunWorkerCompleted);
+                refreshGroupsWorker.DoWork += refreshGroupsWorker_DoWork;
+                refreshGroupsWorker.RunWorkerCompleted += refreshGroupsWorker_RunWorkerCompleted;
 
-                toggleStatusWorker.DoWork += new DoWorkEventHandler(toggleStatusWorker_DoWork);
-                toggleStatusWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(toggleStatusWorker_RunWorkerCompleted);
+                toggleStatusWorker.DoWork += toggleStatusWorker_DoWork;
+                toggleStatusWorker.RunWorkerCompleted += toggleStatusWorker_RunWorkerCompleted;
 
-                moveSeriesWorker.DoWork += new DoWorkEventHandler(moveSeriesWorker_DoWork);
-                moveSeriesWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(moveSeriesWorker_RunWorkerCompleted);
+                moveSeriesWorker.DoWork += moveSeriesWorker_DoWork;
+                moveSeriesWorker.RunWorkerCompleted += moveSeriesWorker_RunWorkerCompleted;
 
-                txtGroupSearch.TextChanged += new TextChangedEventHandler(txtGroupSearch_TextChanged);
+                txtGroupSearch.TextChanged += txtGroupSearch_TextChanged;
 
-                showDashboardWorker.DoWork += new DoWorkEventHandler(showDashboardWorker_DoWork);
-                showDashboardWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(showDashboardWorker_RunWorkerCompleted);
+                showDashboardWorker.DoWork += showDashboardWorker_DoWork;
+                showDashboardWorker.RunWorkerCompleted += showDashboardWorker_RunWorkerCompleted;
                 showDashboardWorker.WorkerSupportsCancellation = true;
 
                 VM_MainListHelper.Instance.ViewGroups.Filter = GroupSearchFilter;
-                cboLanguages.SelectionChanged += new SelectionChangedEventHandler(cboLanguages_SelectionChanged);
+                cboLanguages.SelectionChanged += cboLanguages_SelectionChanged;
 
                 if (VM_MainListHelper.Instance.SeriesSearchTextBox == null) VM_MainListHelper.Instance.SeriesSearchTextBox = seriesSearch.txtSeriesSearch;
-
-                //grdSplitEps.DragCompleted += new System.Windows.Controls.Primitives.DragCompletedEventHandler(grdSplitEps_DragCompleted);
-
 
                 imageHelper = new ImageDownloader();
                 imageHelper.Init();
 
                 videoHandler.Init();
-                //videoHandler.HandleFileChange(AppSettings.MPCFolder + "\\mpc-hc.ini");
 
                 InitCulture();
 
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
-                imageHelper.QueueUpdateEvent += new ImageDownloader.QueueUpdateEventHandler(imageHelper_QueueUpdateEvent);
+                imageHelper.QueueUpdateEvent += imageHelper_QueueUpdateEvent;
 
                 cboGroupSort.Items.Clear();
                 foreach (string sType in Commons.Extensions.Models.GetAllSortTypes())
                     cboGroupSort.Items.Add(sType);
                 cboGroupSort.SelectedIndex = 0;
-                btnToolbarSort.Click += new RoutedEventHandler(btnToolbarSort_Click);
+                btnToolbarSort.Click += btnToolbarSort_Click;
 
-                tabControl1.SelectionChanged += new SelectionChangedEventHandler(tabControl1_SelectionChanged);
-                tabFileManager.SelectionChanged += new SelectionChangedEventHandler(tabFileManager_SelectionChanged);
-                tabSettingsChild.SelectionChanged += new SelectionChangedEventHandler(tabSettingsChild_SelectionChanged);
+                tabControl1.SelectionChanged += tabControl1_SelectionChanged;
+                tabFileManager.SelectionChanged += tabFileManager_SelectionChanged;
+                tabSettingsChild.SelectionChanged += tabSettingsChild_SelectionChanged;
 
-                Loaded += new RoutedEventHandler(MainWindow_Loaded);
-                StateChanged += new EventHandler(MainWindow_StateChanged);
-
-                // Have commented this out because it is no good when Desktop and Server are sharing
-                // the same base image path
-                //DeleteAvatarImages();
+                Loaded += MainWindow_Loaded;
+                StateChanged += MainWindow_StateChanged;
 
                 AddHandler(CloseableTabItem.CloseTabEvent, new RoutedEventHandler(CloseTab));
 
-                btnUpdateMediaInfo.Click += new RoutedEventHandler(btnUpdateMediaInfo_Click);
-                btnFeed.Click += new RoutedEventHandler(btnFeed_Click);
-                btnDiscord.Click += new RoutedEventHandler(btnDiscord_Click);
-                btnAbout.Click += new RoutedEventHandler(btnAbout_Click);
-                btnClearHasherQueue.Click += new RoutedEventHandler(btnClearHasherQueue_Click);
-                btnClearGeneralQueue.Click += new RoutedEventHandler(btnClearGeneralQueue_Click);
-                btnClearServerImageQueue.Click += new RoutedEventHandler(btnClearServerImageQueue_Click);
-                btnAdminMessages.Click += new RoutedEventHandler(btnAdminMessages_Click);
+                btnUpdateMediaInfo.Click += btnUpdateMediaInfo_Click;
+                btnFeed.Click += btnFeed_Click;
+                btnDiscord.Click += btnDiscord_Click;
+                btnAbout.Click += btnAbout_Click;
+                btnClearHasherQueue.Click += btnClearHasherQueue_Click;
+                btnClearGeneralQueue.Click += btnClearGeneralQueue_Click;
+                btnClearServerImageQueue.Click += btnClearServerImageQueue_Click;
+                btnAdminMessages.Click += btnAdminMessages_Click;
 
                 VM_ShokoServer.Instance.BaseImagePath = Utils.GetBaseImagesPath();
 
                 // timer for automatic updates
-                postStartTimer = new System.Timers.Timer();
+                postStartTimer = new Timer();
                 postStartTimer.AutoReset = false;
                 postStartTimer.Interval = 5 * 1000; // 15 seconds
-                postStartTimer.Elapsed += new System.Timers.ElapsedEventHandler(postStartTimer_Elapsed);
+                postStartTimer.Elapsed += postStartTimer_Elapsed;
 
-                btnSwitchUser.Click += new RoutedEventHandler(btnSwitchUser_Click);
-
-                //videoHandler.HandleFileChange(@"C:\Program Files (x86)\Combined Community Codec Pack\MPC\mpc-hc.ini");
-
-                //videoHandler.VideoWatchedEvent += new VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
+                btnSwitchUser.Click += btnSwitchUser_Click;
 
                 if (AppSettings.DashboardType == DashboardType.Normal)
                     dash.Visibility = Visibility.Visible;
@@ -255,13 +253,11 @@ namespace Shoko.Desktop
 
         private void CollView_CurrentChanging(object sender, CurrentChangingEventArgs e)
         {
-            if (_blockTabControlChanged)
-            {
-                int previousIndex = tabControl1.Items.IndexOf(tabControl1.SelectedContent);
-                tabControl1.SelectedIndex = previousIndex;
+            if (!_blockTabControlChanged) return;
+            int previousIndex = tabControl1.Items.IndexOf(tabControl1.SelectedContent);
+            tabControl1.SelectedIndex = previousIndex;
 
-                e.Cancel = true;
-            }
+            e.Cancel = true;
         }
 
         private void Instance_Refreshed(object sender, EventArgs e)
@@ -284,41 +280,46 @@ namespace Shoko.Desktop
             }));
         }
 
-       void btnSwitchUser_Click(object sender, RoutedEventArgs e)
+       private void btnSwitchUser_Click(object sender, RoutedEventArgs e)
        {
-          // authenticate user
-          if (VM_ShokoServer.Instance.ServerOnline)
-          {
-             if (VM_ShokoServer.Instance.AuthenticateUser())
-             {
-                VM_MainListHelper.Instance.ClearData();
-                VM_MainListHelper.Instance.ShowChildWrappers(null);
+           // authenticate user
+           if (!VM_ShokoServer.Instance.ServerOnline) return;
+           if (!VM_ShokoServer.Instance.AuthenticateUser()) return;
+           VM_MainListHelper.Instance.ClearData();
+           VM_MainListHelper.Instance.ShowChildWrappers(null);
 
-                RecentAdditionsType addType = RecentAdditionsType.Episode;
-                if (dash.cboDashRecentAdditionsType.SelectedIndex == 0) addType = RecentAdditionsType.Episode;
-                if (dash.cboDashRecentAdditionsType.SelectedIndex == 1) addType = RecentAdditionsType.Series;
+           RecentAdditionsType addType = RecentAdditionsType.Episode;
+           switch (dash.cboDashRecentAdditionsType.SelectedIndex)
+           {
+               case 0:
+                   addType = RecentAdditionsType.Episode;
+                   break;
+               case 1:
+                   addType = RecentAdditionsType.Series;
+                   break;
+           }
 
-                RefreshOptions opt = new RefreshOptions();
-                opt.RecentAdditionType = addType;
-                opt.RefreshRecentAdditions = true;
-                opt.RefreshContinueWatching = true;
-                opt.RefreshOtherWidgets = true;
+           RefreshOptions opt = new RefreshOptions
+           {
+               RecentAdditionType = addType,
+               RefreshRecentAdditions = true,
+               RefreshContinueWatching = true,
+               RefreshOtherWidgets = true
+           };
 
-                // Check if worker is busy and cancel if needed
-                if (showDashboardWorker.IsBusy)
-                   showDashboardWorker.CancelAsync();
+           // Check if worker is busy and cancel if needed
+           if (showDashboardWorker.IsBusy)
+               showDashboardWorker.CancelAsync();
 
-                if (!showDashboardWorker.IsBusy)
-                  showDashboardWorker.RunWorkerAsync(opt);
-               else
-                  logger.Error("Failed to start showDashboardWorker for btnSwitchUser");
+           if (!showDashboardWorker.IsBusy)
+               showDashboardWorker.RunWorkerAsync(opt);
+           else
+               logger.Error("Failed to start showDashboardWorker for btnSwitchUser");
 
-                tabControl1.SelectedIndex = (int) TAB_MAIN.Dashboard;
-             }
-          }
+           tabControl1.SelectedIndex = (int) TAB_MAIN.Dashboard;
        }
 
-        void btnClearServerImageQueue_Click(object sender, RoutedEventArgs e)
+        private void btnClearServerImageQueue_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -332,7 +333,7 @@ namespace Shoko.Desktop
             Cursor = Cursors.Arrow;
         }
 
-        void btnClearGeneralQueue_Click(object sender, RoutedEventArgs e)
+        private void btnClearGeneralQueue_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -346,7 +347,7 @@ namespace Shoko.Desktop
             Cursor = Cursors.Arrow;
         }
 
-        void btnClearHasherQueue_Click(object sender, RoutedEventArgs e)
+        private void btnClearHasherQueue_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -360,42 +361,43 @@ namespace Shoko.Desktop
             Cursor = Cursors.Arrow;
         }
 
-        void btnFeed_Click(object sender, RoutedEventArgs e)
+        private void btnFeed_Click(object sender, RoutedEventArgs e)
         {
             FeedForm frm = new FeedForm();
             frm.Owner = this;
             frm.ShowDialog();
         }
 
-        void btnDiscord_Click(object sender, RoutedEventArgs e)
+        private void btnDiscord_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 Process.Start("https://discord.gg/0XKJW7TObKLajoKc");
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage($"Unable to open link: {ex.Message}", ex);
+            }
         }
 
-        void btnAbout_Click(object sender, RoutedEventArgs e)
+        private void btnAbout_Click(object sender, RoutedEventArgs e)
         {
-            AboutForm frm = new AboutForm();
-            frm.Owner = this;
+            AboutForm frm = new AboutForm {Owner = this};
             frm.ShowDialog();
         }
 
-        void btnAdminMessages_Click(object sender, RoutedEventArgs e)
+        private void btnAdminMessages_Click(object sender, RoutedEventArgs e)
         {
-            AdminMessagesForm frm = new AdminMessagesForm();
-            frm.Owner = this;
+            AdminMessagesForm frm = new AdminMessagesForm {Owner = this};
             frm.ShowDialog();
         }
 
-        void btnUpdateMediaInfo_Click(object sender, RoutedEventArgs e)
+        private void btnUpdateMediaInfo_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 VM_ShokoServer.Instance.ShokoServices.RefreshAllMediaInfo();
-                MessageBox.Show(Shoko.Commons.Properties.Resources.Main_ProcessRunning, Shoko.Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Commons.Properties.Resources.Main_ProcessRunning, Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
@@ -403,45 +405,23 @@ namespace Shoko.Desktop
             }
         }
 
-        private void DeleteAvatarImages()
-        {
-            try
-            {
-                string path = Utils.GetTraktImagePath_Avatars();
-                if (!Directory.Exists(path)) return;
-
-                string[] imageFiles = Directory.GetFiles(path, "*.jpg");
-                foreach (string filename in imageFiles)
-                    File.Delete(filename);
-            }
-            catch { }
-        }
-
         private void CloseTab(object source, RoutedEventArgs args)
         {
-            TabItem tabItem = args.Source as TabItem;
-            if (tabItem != null)
-            {
-                TabControl tabControl = tabItem.Parent as TabControl;
-                if (tabControl != null)
-                    tabControl.Items.Remove(tabItem);
-            }
+            if (!(args.Source is TabItem tabItem)) return;
+            if (tabItem.Parent is TabControl tabControl)
+                tabControl.Items.Remove(tabItem);
         }
 
 
-        void MainWindow_StateChanged(object sender, EventArgs e)
+        private void MainWindow_StateChanged(object sender, EventArgs e)
         {
-            //if (this.WindowState == System.Windows.WindowState.Minimized) this.Hide();
-
             if (WindowState == WindowState.Normal || WindowState == WindowState.Maximized)
                 AppSettings.DefaultWindowState = WindowState;
         }
 
 
-        void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            //this.WindowState = AppSettings.DefaultWindowState;
-
             if (AppSettings.WindowFullScreen)
                 SetWindowFullscreen();
             else
@@ -457,14 +437,11 @@ namespace Shoko.Desktop
                 loggedIn = VM_ShokoServer.Instance.LoginAsLastUser();
 
             if (!loggedIn)
-            {
-                // authenticate user
                 if (VM_ShokoServer.Instance.ServerOnline && !VM_ShokoServer.Instance.AuthenticateUser())
                 {
                     Close();
                     return;
                 }
-            }
 
             if (VM_ShokoServer.Instance.ServerOnline)
             {
@@ -476,11 +453,8 @@ namespace Shoko.Desktop
                 tabControl1.SelectedIndex = (int) TAB_MAIN.Settings;
 
 
-            System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
-            if (a != null)
-            {
-                VM_ShokoServer.Instance.ApplicationVersion = Utils.GetApplicationVersion(a);
-            }
+            Assembly a = Assembly.GetExecutingAssembly();
+            VM_ShokoServer.Instance.ApplicationVersion = Utils.GetApplicationVersion(a);
 
             postStartTimer.Start();
 
@@ -490,7 +464,7 @@ namespace Shoko.Desktop
             collView.CurrentChanging += CollView_CurrentChanging;
         }
 
-        void postStartTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        private void postStartTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             postStartTimer.Stop();
 
@@ -502,32 +476,22 @@ namespace Shoko.Desktop
         {
             try
             {
-                long verCurrent = 0;
-                long verNew = 0;
-
                 // get the user's version
-                System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
-                if (a == null)
-                {
-                    logger.Error("Could not get current version");
-                    return;
-                }
-                System.Reflection.AssemblyName an = a.GetName();
+                Assembly a = Assembly.GetExecutingAssembly();
+                AssemblyName an = a.GetName();
 
-                verNew =
-                        ShokoAutoUpdatesHelper.ConvertToAbsoluteVersion(
-                            ShokoAutoUpdatesHelper.GetLatestVersionNumber(AppSettings.UpdateChannel));
-                
+                var verNew = ShokoAutoUpdatesHelper.ConvertToAbsoluteVersion(
+                    ShokoAutoUpdatesHelper.GetLatestVersionNumber(AppSettings.UpdateChannel));
+
                 //verNew = verInfo.versions.DesktopVersionAbs;
-                verCurrent = (an.Version.Revision * 100) +
-                    (an.Version.Build * 100 * 100) +
-                    (an.Version.Minor * 100 * 100 * 100) +
-                    (an.Version.Major * 100 * 100 * 100 * 100);
+                long verCurrent = (an.Version.Revision * 100) +
+                                  (an.Version.Build * 100 * 100) +
+                                  (an.Version.Minor * 100 * 100 * 100) +
+                                  (an.Version.Major * 100 * 100 * 100 * 100);
 
                 if (forceShowForm || verNew > verCurrent)
                 {
-                    UpdateForm frm = new UpdateForm();
-                    frm.Owner = this;
+                    UpdateForm frm = new UpdateForm {Owner = this};
                     frm.ShowDialog();
                 }
 
@@ -540,7 +504,7 @@ namespace Shoko.Desktop
         }
 
 
-        void MainWindow_LayoutUpdated(object sender, EventArgs e)
+        private void MainWindow_LayoutUpdated(object sender, EventArgs e)
         {
             // Why am I doing this?
             // Basically there is weird problem if you try and set the content control's width to the exact
@@ -553,18 +517,15 @@ namespace Shoko.Desktop
                 //Debug.Print("Scroller ViewportWidth = {0}", Scroller.ViewportWidth);
 
                 double tempWidth = ccDetail.ActualWidth - 8;
-                double tempHeight = ccDetail.ActualHeight - 8;
                 if (tempWidth > 0)
-                {
                     VM_MainListHelper.Instance.MainScrollerWidth = tempWidth;
-                }
 
                 tempWidth = tabControl1.ActualWidth - 20;
                 //tempWidth = tabControl1.ActualWidth - 300;
                 if (tempWidth > 0)
                     VM_MainListHelper.Instance.FullScrollerWidth = tempWidth;
 
-                tempHeight = tabControl1.ActualHeight - 50;
+                var tempHeight = tabControl1.ActualHeight - 50;
                 if (tempHeight > 0)
                     VM_MainListHelper.Instance.FullScrollerHeight = tempHeight;
 
@@ -581,57 +542,46 @@ namespace Shoko.Desktop
             }
         }
 
-        void tabFileManager_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void tabFileManager_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
-                if (e.Source is TabControl)
+                if (!(e.Source is TabControl)) return;
+                TabControl tab = e.Source as TabControl;
+                Cursor = Cursors.Wait;
+                switch (tab.SelectedIndex)
                 {
-                    TabControl tab = e.Source as TabControl;
-                    Cursor = Cursors.Wait;
-                    if (tab.SelectedIndex == (int) TAB_UTILITY.Unrecognised)
-                    {
+                    case (int) TAB_UTILITY.Unrecognised:
                         if (unRecVids.UnrecognisedFiles.Count == 0) unRecVids.RefreshUnrecognisedFiles();
                         if (unRecVids.AllSeries.Count == 0) unRecVids.RefreshSeries();
                         lastFileManagerTab = (int) TAB_UTILITY.Unrecognised;
-                    }
-
-                    if (tab.SelectedIndex == (int) TAB_UTILITY.Ignored)
-                    {
+                        break;
+                    case (int) TAB_UTILITY.Ignored:
                         if (ignoredFiles.IgnoredFilesCollection.Count == 0) ignoredFiles.RefreshIgnoredFiles();
                         lastFileManagerTab = (int) TAB_UTILITY.Ignored;
-                    }
-
-                    if (tab.SelectedIndex == (int) TAB_UTILITY.ManuallyLinked)
-                    {
+                        break;
+                    case (int) TAB_UTILITY.ManuallyLinked:
                         if (linkedFiles.ManuallyLinkedFiles.Count == 0) linkedFiles.RefreshLinkedFiles();
                         lastFileManagerTab = (int) TAB_UTILITY.ManuallyLinked;
-                    }
-
-                    if (tab.SelectedIndex == (int) TAB_UTILITY.DuplicateFiles)
-                    {
+                        break;
+                    case (int) TAB_UTILITY.DuplicateFiles:
                         if (duplicateFiles.DuplicateFilesCollection.Count == 0) duplicateFiles.RefreshDuplicateFiles();
                         lastFileManagerTab = (int) TAB_UTILITY.DuplicateFiles;
-                    }
-                    if (tab.SelectedIndex == (int) TAB_UTILITY.MultipleFiles)
-                    {
-                        //if (multipleFiles.CurrentEpisodes.Count == 0) multipleFiles.RefreshMultipleFiles();
+                        break;
+                    case (int) TAB_UTILITY.MultipleFiles:
                         lastFileManagerTab = (int) TAB_UTILITY.MultipleFiles;
-                    }
-
-                    if (tab.SelectedIndex == (int) TAB_UTILITY.Rename)
-                    {
+                        break;
+                    case (int) TAB_UTILITY.Rename:
                         if (fileRenaming.RenameScripts.Count == 0) fileRenaming.RefreshScripts();
                         lastFileManagerTab = (int) TAB_UTILITY.Rename;
-                    }
-
-                    if (tab.SelectedIndex == (int) TAB_UTILITY.Rankings)
-                    {
+                        break;
+                    case (int) TAB_UTILITY.Rankings:
                         if (rankings.AllAnime.Count == 0) rankings.Init();
                         lastFileManagerTab = (int) TAB_UTILITY.Rankings;
-                    }
-                    Cursor = Cursors.Arrow;
+                        break;
                 }
+
+                Cursor = Cursors.Arrow;
             }
             catch (Exception ex)
             {
@@ -640,15 +590,15 @@ namespace Shoko.Desktop
 
         }
 
-        void showDashboardWorker_DoWork(object sender, DoWorkEventArgs e)
+        private void showDashboardWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             RefreshOptions opt = e.Argument as RefreshOptions;
-            
+
             VM_Dashboard.Instance.RefreshData(opt.RefreshContinueWatching, opt.RefreshRecentAdditions,
                 opt.RefreshOtherWidgets, opt.RecentAdditionType);
         }
 
-        void showDashboardWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void showDashboardWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             Cursor = Cursors.Arrow;
             tabControl1.IsEnabled = true;
@@ -660,147 +610,135 @@ namespace Shoko.Desktop
             {
                 CurrentMainTabIndex = tabIndex;
 
-                if (tabIndex == (int) TAB_MAIN.Dashboard)
+                switch ((TAB_MAIN) tabIndex)
                 {
-                    lock (lockDashBoardTab)
-                    {
-                        if (dash.Visibility == Visibility.Visible)
+                    case TAB_MAIN.Dashboard:
+                        lock (lockDashBoardTab)
                         {
-                            if (VM_Dashboard.Instance.EpsWatchNext_Recent.Count == 0 &&
-                                VM_Dashboard.Instance.SeriesMissingEps.Count == 0
-                                && VM_Dashboard.Instance.MiniCalendar.Count == 0 &&
-                                VM_Dashboard.Instance.RecommendationsWatch.Count == 0
-                                && VM_Dashboard.Instance.RecommendationsDownload.Count == 0)
+                            if (dash.Visibility == Visibility.Visible)
                             {
-                                tabControl1.IsEnabled = false;
-                                Cursor = Cursors.Wait;
+                                if (VM_Dashboard.Instance.EpsWatchNext_Recent.Count == 0 &&
+                                    VM_Dashboard.Instance.SeriesMissingEps.Count == 0
+                                    && VM_Dashboard.Instance.MiniCalendar.Count == 0 &&
+                                    VM_Dashboard.Instance.RecommendationsWatch.Count == 0
+                                    && VM_Dashboard.Instance.RecommendationsDownload.Count == 0)
+                                {
+                                    tabControl1.IsEnabled = false;
+                                    Cursor = Cursors.Wait;
 
-                                RecentAdditionsType addType = RecentAdditionsType.Episode;
-                                if (dash.cboDashRecentAdditionsType.SelectedIndex == 0)
-                                    addType = RecentAdditionsType.Episode;
-                                if (dash.cboDashRecentAdditionsType.SelectedIndex == 1)
-                                    addType = RecentAdditionsType.Series;
+                                    RecentAdditionsType addType = RecentAdditionsType.Episode;
+                                    switch (dash.cboDashRecentAdditionsType.SelectedIndex)
+                                    {
+                                        case 0:
+                                            addType = RecentAdditionsType.Episode;
+                                            break;
+                                        case 1:
+                                            addType = RecentAdditionsType.Series;
+                                            break;
+                                    }
 
-                                RefreshOptions opt = new RefreshOptions();
-                                opt.RecentAdditionType = addType;
-                                opt.RefreshRecentAdditions = true;
-                                opt.RefreshContinueWatching = true;
-                                opt.RefreshOtherWidgets = true;
+                                    RefreshOptions opt = new RefreshOptions
+                                    {
+                                        RecentAdditionType = addType,
+                                        RefreshRecentAdditions = true,
+                                        RefreshContinueWatching = true,
+                                        RefreshOtherWidgets = true
+                                    };
 
-                                // Check if worker is busy and cancel if needed
-                                if (showDashboardWorker.IsBusy)
-                                    showDashboardWorker.CancelAsync();
+                                    // Check if worker is busy and cancel if needed
+                                    if (showDashboardWorker.IsBusy)
+                                        showDashboardWorker.CancelAsync();
 
-                                if (!showDashboardWorker.IsBusy)
-                                    showDashboardWorker.RunWorkerAsync(opt);
-                                else
-                                    logger.Error("Failed to start showDashboardWorker for TAB_MAIN.Dashboard");
+                                    if (!showDashboardWorker.IsBusy)
+                                        showDashboardWorker.RunWorkerAsync(opt);
+                                    else
+                                        logger.Error("Failed to start showDashboardWorker for TAB_MAIN.Dashboard");
+                                }
+                            }
+                            else
+                            {
+                                if (VM_DashboardMetro.Instance.ContinueWatching.Count == 0)
+                                    dashMetro.RefreshAllData();
+                            }
+
+                            if (VM_ShokoServer.Instance.AllCustomTags.Count == 0) VM_ShokoServer.Instance.RefreshAllCustomTags();
+                        }
+                        break;
+                    case TAB_MAIN.Collection:
+                        lock (lockCollectionsTab)
+                        {
+                            if (VM_MainListHelper.Instance.AllGroupsDictionary.Count == 0)
+                                VM_MainListHelper.Instance.RefreshGroupsSeriesData();
+
+                            if (VM_MainListHelper.Instance.CurrentWrapper == null && lbGroupsSeries.Items.Count == 0)
+                            {
+                                VM_MainListHelper.Instance.SearchTextBox = txtGroupSearch;
+                                VM_MainListHelper.Instance.CurrentGroupFilter = VM_MainListHelper.Instance.AllGroupFilter;
+                                VM_MainListHelper.Instance.ShowChildWrappers(VM_MainListHelper.Instance.CurrentWrapper);
+                                lbGroupsSeries.SelectedIndex = 0;
                             }
                         }
-                        else
-                        {
-                            if (VM_DashboardMetro.Instance.ContinueWatching.Count == 0)
-                                dashMetro.RefreshAllData();
-                        }
-
                         if (VM_ShokoServer.Instance.AllCustomTags.Count == 0) VM_ShokoServer.Instance.RefreshAllCustomTags();
-                    }
-                }
-
-                if (tabIndex == (int) TAB_MAIN.Collection)
-                {
-                    lock (lockCollectionsTab)
-                    {
-                        if (VM_MainListHelper.Instance.AllGroupsDictionary.Count == 0)
-                        {
-                            VM_MainListHelper.Instance.RefreshGroupsSeriesData();
-                        }
-
-                        if (VM_MainListHelper.Instance.CurrentWrapper == null && lbGroupsSeries.Items.Count == 0)
-                        {
-                            VM_MainListHelper.Instance.SearchTextBox = txtGroupSearch;
-                            VM_MainListHelper.Instance.CurrentGroupFilter = VM_MainListHelper.Instance.AllGroupFilter;
-                            VM_MainListHelper.Instance.ShowChildWrappers(VM_MainListHelper.Instance.CurrentWrapper);
-                            lbGroupsSeries.SelectedIndex = 0;
-                        }
-                    }
-                    if (VM_ShokoServer.Instance.AllCustomTags.Count == 0) VM_ShokoServer.Instance.RefreshAllCustomTags();
-                }
-
-
-                if (tabIndex == (int) TAB_MAIN.FileManger)
-                {
-                    if (unRecVids.UnrecognisedFiles.Count == 0) unRecVids.RefreshUnrecognisedFiles();
-                    if (VM_ShokoServer.Instance.AllCustomTags.Count == 0) VM_ShokoServer.Instance.RefreshAllCustomTags();
-                }
-
-                if (tabIndex == (int) TAB_MAIN.Playlists)
-                {
-                    lock (lockPlaylistsTab)
-                    {
-                        if (VM_PlaylistHelper.Instance.Playlists == null ||
-                            VM_PlaylistHelper.Instance.Playlists.Count == 0) VM_PlaylistHelper.Instance.RefreshData();
-                        if (lbPlaylists.Items.Count > 0 && lbPlaylists.SelectedIndex < 0)
-                            lbPlaylists.SelectedIndex = 0;
-                    }
-
-                }
-
-                if (tabIndex == (int) TAB_MAIN.Bookmarks)
-                {
-                    lock (lockBookmarksTab)
-                    {
-                        if (VM_MainListHelper.Instance.BookmarkedAnime == null ||
-                            VM_MainListHelper.Instance.BookmarkedAnime.Count == 0)
-                            VM_MainListHelper.Instance.RefreshBookmarkedAnime();
-
-                        if (ucBookmarks.lbBookmarks.Items.Count > 0)
-                            ucBookmarks.lbBookmarks.SelectedIndex = 0;
-                    }
-
-                }
-
-                if (tabIndex == (int) TAB_MAIN.Search)
-                {
-                    lock (lockSearchTab)
-                    {
-                        if (VM_MainListHelper.Instance.AllSeriesDictionary == null ||
-                            VM_MainListHelper.Instance.AllSeriesDictionary.Count == 0)
-                            VM_MainListHelper.Instance.RefreshGroupsSeriesData();
-                    }
-                }
-
-                if (tabIndex == (int) TAB_MAIN.Server)
-                {
-                    lock (lockServerTab)
-                    {
-                        if (VM_ShokoServer.Instance.FolderProviders.Count == 0)
-                            VM_ShokoServer.Instance.RefreshCloudAccounts();
-                        if (VM_ShokoServer.Instance.ImportFolders.Count == 0) VM_ShokoServer.Instance.RefreshImportFolders();
-                    }
-                }
-
-                if (tabIndex == (int) TAB_MAIN.Settings)
-                {
-                    lock (lockSettingsTab)
-                    {
-                        if (VM_ShokoServer.Instance.FolderProviders.Count == 0)
-                            VM_ShokoServer.Instance.RefreshCloudAccounts();
-                        if (VM_ShokoServer.Instance.ImportFolders.Count == 0) VM_ShokoServer.Instance.RefreshImportFolders();
-                        if (VM_ShokoServer.Instance.SelectedLanguages.Count == 0)
-                            VM_ShokoServer.Instance.RefreshNamingLanguages();
-                        if (VM_ShokoServer.Instance.AllUsers.Count == 0) VM_ShokoServer.Instance.RefreshAllUsers();
-                        if (VM_ShokoServer.Instance.AllTags.Count == 0) VM_ShokoServer.Instance.RefreshAllTags();
+                        break;
+                    case TAB_MAIN.FileManger:
+                        if (unRecVids.UnrecognisedFiles.Count == 0) unRecVids.RefreshUnrecognisedFiles();
                         if (VM_ShokoServer.Instance.AllCustomTags.Count == 0) VM_ShokoServer.Instance.RefreshAllCustomTags();
-                    }
-                }
+                        break;
+                    case TAB_MAIN.Playlists:
+                        lock (lockPlaylistsTab)
+                        {
+                            if (VM_PlaylistHelper.Instance.Playlists == null ||
+                                VM_PlaylistHelper.Instance.Playlists.Count == 0) VM_PlaylistHelper.Instance.RefreshData();
+                            if (lbPlaylists.Items.Count > 0 && lbPlaylists.SelectedIndex < 0)
+                                lbPlaylists.SelectedIndex = 0;
+                        }
+                        break;
+                    case TAB_MAIN.Bookmarks:
+                        lock (lockBookmarksTab)
+                        {
+                            if (VM_MainListHelper.Instance.BookmarkedAnime == null ||
+                                VM_MainListHelper.Instance.BookmarkedAnime.Count == 0)
+                                VM_MainListHelper.Instance.RefreshBookmarkedAnime();
 
-                if (tabIndex == (int) TAB_MAIN.Pinned)
-                {
-                    lock (lockPinnedTab)
-                    {
-                        if (VM_ShokoServer.Instance.AllCustomTags.Count == 0) VM_ShokoServer.Instance.RefreshAllCustomTags();
-                    }
+                            if (ucBookmarks.lbBookmarks.Items.Count > 0)
+                                ucBookmarks.lbBookmarks.SelectedIndex = 0;
+                        }
+                        break;
+                    case TAB_MAIN.Search:
+                        lock (lockSearchTab)
+                        {
+                            if (VM_MainListHelper.Instance.AllSeriesDictionary == null ||
+                                VM_MainListHelper.Instance.AllSeriesDictionary.Count == 0)
+                                VM_MainListHelper.Instance.RefreshGroupsSeriesData();
+                        }
+                        break;
+                    case TAB_MAIN.Server:
+                        lock (lockServerTab)
+                        {
+                            if (VM_ShokoServer.Instance.FolderProviders.Count == 0)
+                                VM_ShokoServer.Instance.RefreshCloudAccounts();
+                            if (VM_ShokoServer.Instance.ImportFolders.Count == 0) VM_ShokoServer.Instance.RefreshImportFolders();
+                        }
+                        break;
+                    case TAB_MAIN.Settings:
+                        lock (lockSettingsTab)
+                        {
+                            if (VM_ShokoServer.Instance.FolderProviders.Count == 0)
+                                VM_ShokoServer.Instance.RefreshCloudAccounts();
+                            if (VM_ShokoServer.Instance.ImportFolders.Count == 0) VM_ShokoServer.Instance.RefreshImportFolders();
+                            if (VM_ShokoServer.Instance.SelectedLanguages.Count == 0)
+                                VM_ShokoServer.Instance.RefreshNamingLanguages();
+                            if (VM_ShokoServer.Instance.AllUsers.Count == 0) VM_ShokoServer.Instance.RefreshAllUsers();
+                            if (VM_ShokoServer.Instance.AllTags.Count == 0) VM_ShokoServer.Instance.RefreshAllTags();
+                            if (VM_ShokoServer.Instance.AllCustomTags.Count == 0) VM_ShokoServer.Instance.RefreshAllCustomTags();
+                        }
+                        break;
+                    case TAB_MAIN.Pinned:
+                        lock (lockPinnedTab)
+                        {
+                            if (VM_ShokoServer.Instance.AllCustomTags.Count == 0) VM_ShokoServer.Instance.RefreshAllCustomTags();
+                        }
+                        break;
                 }
             }
             catch (Exception ex)
@@ -810,7 +748,7 @@ namespace Shoko.Desktop
             }
         }
 
-        void tabControl1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void tabControl1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
@@ -820,8 +758,7 @@ namespace Shoko.Desktop
                 if (!VM_ShokoServer.Instance.UserAuthenticated) return;
 
 
-                TabControl tab = e.Source as TabControl;
-                if (tab == null) return;
+                if (!(e.Source is TabControl tab)) return;
 
                 if (!tab.Name.Equals("tabControl1", StringComparison.InvariantCultureIgnoreCase)) return;
 
@@ -835,19 +772,13 @@ namespace Shoko.Desktop
             }
         }
 
-        void tabSettingsChild_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void tabSettingsChild_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
-                if (e.Source is TabControl)
-                {
-                    TabControl tab = e.Source as TabControl;
-                    if (tab.SelectedIndex == (int) TAB_Settings.Display)
-                    {
-                        if (VM_ShokoServer.Instance.SelectedLanguages.Count == 0) VM_ShokoServer.Instance.RefreshNamingLanguages();
-                    }
-
-                }
+                TabControl tab = e.Source as TabControl;
+                if (tab?.SelectedIndex != (int) TAB_Settings.Display) return;
+                if (VM_ShokoServer.Instance.SelectedLanguages.Count == 0) VM_ShokoServer.Instance.RefreshNamingLanguages();
             }
             catch (Exception ex)
             {
@@ -855,20 +786,20 @@ namespace Shoko.Desktop
             }
         }
 
-        void btnToolbarSort_Click(object sender, RoutedEventArgs e)
+        private void btnToolbarSort_Click(object sender, RoutedEventArgs e)
         {
             VM_MainListHelper.Instance.ViewGroups.SortDescriptions.Clear();
-            GroupFilterSorting sortType = Commons.Extensions.Models.GetEnumForText_Sorting(cboGroupSort.SelectedItem.ToString());
+            GroupFilterSorting sortType = cboGroupSort.SelectedItem.ToString().GetEnumForText_Sorting();
             VM_MainListHelper.Instance.ViewGroups.SortDescriptions.Add(sortType.GetSortDescription(GroupFilterSortDirection.Asc));
         }
 
 
 
-        void imageHelper_QueueUpdateEvent(QueueUpdateEventArgs ev)
+        private void imageHelper_QueueUpdateEvent(QueueUpdateEventArgs ev)
         {
             try
             {
-                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new System.Windows.Forms.MethodInvoker(delegate ()
+                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new MethodInvoker(delegate
                 {
                     tbImageDownloadQueueStatus.Text = ev.queueCount.ToString();
                 }));
@@ -880,7 +811,7 @@ namespace Shoko.Desktop
         }
 
 
-        void cboLanguages_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void cboLanguages_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SetCulture();
         }
@@ -896,12 +827,9 @@ namespace Shoko.Desktop
                 for (int i = 0; i < cboLanguages.Items.Count; i++)
                 {
                     UserCulture ul = cboLanguages.Items[i] as UserCulture;
-                    if (ul.Culture.Trim().ToUpper() == currentCulture.Trim().ToUpper())
-                    {
-                        cboLanguages.SelectedIndex = i;
-                        break;
-                    }
-
+                    if (ul?.Culture.Trim().ToUpper() != currentCulture.Trim().ToUpper()) continue;
+                    cboLanguages.SelectedIndex = i;
+                    break;
                 }
                 if (cboLanguages.SelectedIndex < 0)
                     cboLanguages.SelectedIndex = 0;
@@ -918,7 +846,6 @@ namespace Shoko.Desktop
             if (cboLanguages.SelectedItem == null) return;
             UserCulture ul = cboLanguages.SelectedItem as UserCulture;
             bool isLanguageChanged = AppSettings.Culture != ul.Culture;
-            System.Windows.Forms.DialogResult result;
 
             try
             {
@@ -930,14 +857,14 @@ namespace Shoko.Desktop
 
                 if (isLanguageChanged)
                 {
-                    result = FlexibleMessageBox.Show(Shoko.Commons.Properties.Resources.Language_Info, Shoko.Commons.Properties.Resources.Language_Switch, System.Windows.Forms.MessageBoxButtons.OKCancel, System.Windows.Forms.MessageBoxIcon.Information);
+                    var result = FlexibleMessageBox.Show(Commons.Properties.Resources.Language_Info, Commons.Properties.Resources.Language_Switch, MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                     if (result == System.Windows.Forms.DialogResult.OK)
                     {
-                        System.Windows.Forms.Application.Restart();
-                        Application.Current.Shutdown();
+                        Application.Restart();
+                        System.Windows.Application.Current.Shutdown();
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -946,7 +873,7 @@ namespace Shoko.Desktop
 
         }
 
-        void txtGroupSearch_TextChanged(object sender, TextChangedEventArgs e)
+        private void txtGroupSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
             {
@@ -967,8 +894,7 @@ namespace Shoko.Desktop
 
         private bool GroupSearchFilter(object obj)
         {
-            IListWrapper grp = obj as IListWrapper;
-            if (grp == null) return true;
+            if (!(obj is IListWrapper grp)) return true;
 
             if (obj.GetType() != typeof(VM_AnimeGroup_User) && obj.GetType() != typeof(VM_AnimeSeries_User))
                 return true;
@@ -994,12 +920,12 @@ namespace Shoko.Desktop
             return true;
         }
 
-        void refreshGroupsWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void refreshGroupsWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             showChildWrappersWorker.RunWorkerAsync(VM_MainListHelper.Instance.CurrentWrapper);
         }
 
-        void refreshGroupsWorker_DoWork(object sender, DoWorkEventArgs e)
+        private void refreshGroupsWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             try
             {
@@ -1012,15 +938,13 @@ namespace Shoko.Desktop
             }
         }
 
-        void showChildWrappersWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void showChildWrappersWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             try
             {
                 EnableDisableGroupControls(true);
                 if (lbGroupsSeries.Items.Count > 0)
-                {
                     HighlightMainListItem();
-                }
                 else
                     SetDetailBinding(null);
             }
@@ -1030,7 +954,7 @@ namespace Shoko.Desktop
             }
         }
 
-        void showChildWrappersWorker_DoWork(object sender, DoWorkEventArgs e)
+        private void showChildWrappersWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             try
             {
@@ -1042,14 +966,14 @@ namespace Shoko.Desktop
             }
         }
 
-        void toggleStatusWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void toggleStatusWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             EnableDisableGroupControls(true);
             Cursor = Cursors.Arrow;
         }
 
 
-        void toggleStatusWorker_DoWork(object sender, DoWorkEventArgs e)
+        private void toggleStatusWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             try
             {
@@ -1076,7 +1000,7 @@ namespace Shoko.Desktop
                         newStatus, VM_ShokoServer.Instance.CurrentUser.JMMUserID);
                     if (!string.IsNullOrEmpty(response.ErrorMessage))
                     {
-                        MessageBox.Show(response.ErrorMessage, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(response.ErrorMessage, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
 
@@ -1085,10 +1009,8 @@ namespace Shoko.Desktop
                     ser = VM_MainListHelper.Instance.GetSeriesForEpisode(ep);
                 }
 
-                if (newStatus == true && ser != null)
-                {
+                if (newStatus && ser != null)
                     Utils.PromptToRateSeries(ser, this);
-                }
             }
             catch (Exception ex)
             {
@@ -1096,7 +1018,7 @@ namespace Shoko.Desktop
             }
         }
 
-        void moveSeriesWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void moveSeriesWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             EnableDisableGroupControls(true);
             SetDetailBinding(null);
@@ -1108,7 +1030,7 @@ namespace Shoko.Desktop
             showChildWrappersWorker.RunWorkerAsync(VM_MainListHelper.Instance.CurrentWrapper);
         }
 
-        void moveSeriesWorker_DoWork(object sender, DoWorkEventArgs e)
+        private void moveSeriesWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             try
             {
@@ -1116,58 +1038,21 @@ namespace Shoko.Desktop
                 if (obj.GetType() != typeof(VM_MoveSeriesDetails)) return;
 
                 VM_MoveSeriesDetails request = obj as VM_MoveSeriesDetails;
-                DateTime start = DateTime.Now;
 
                 //request.UpdatedSeries.Save();
                 CL_Response<CL_AnimeSeries_User> response =
                     VM_ShokoServer.Instance.ShokoServices.MoveSeries(request.UpdatedSeries.AnimeSeriesID, request.UpdatedSeries.AnimeGroupID,
                     VM_ShokoServer.Instance.CurrentUser.JMMUserID);
                 if (!string.IsNullOrEmpty(response.ErrorMessage))
-                {
-                    Application.Current.Dispatcher.Invoke(
+                    System.Windows.Application.Current.Dispatcher.Invoke(
                         DispatcherPriority.Normal, (Action)
-                            delegate()
-                            {
-                                Cursor = Cursors.Arrow;
-                                MessageBox.Show(response.ErrorMessage);
-                            });
-                    return;
-                }
+                        delegate
+                        {
+                            Cursor = Cursors.Arrow;
+                            FlexibleMessageBox.Show(response.ErrorMessage);
+                        });
                 else
-                {
                     request.UpdatedSeries.Populate((VM_AnimeSeries_User)response.Result);
-                }
-
-
-
-
-                // update all the attached groups
-
-                /*Dictionary<int, JMMServerBinary.Contract_AnimeGroup> grpsDict = new Dictionary<int, JMMServerBinary.Contract_AnimeGroup>();
-                List<JMMServerBinary.Contract_AnimeGroup> grps = VM_ShokoServer.Instance.clientBinaryHTTP.GetAllGroupsAboveGroupInclusive(request.UpdatedSeries.AnimeGroupID,
-                    VM_ShokoServer.Instance.CurrentUser.JMMUserID.Value);
-                List<JMMServerBinary.Contract_AnimeGroup> grpsOld = VM_ShokoServer.Instance.clientBinaryHTTP.GetAllGroupsAboveGroupInclusive(request.OldAnimeGroupID,
-                    VM_ShokoServer.Instance.CurrentUser.JMMUserID.Value);
-
-                foreach (JMMServerBinary.Contract_AnimeGroup tempGrp in grps)
-                    grpsDict[tempGrp.AnimeGroupID] = tempGrp;
-
-                foreach (JMMServerBinary.Contract_AnimeGroup tempGrp in grpsOld)
-                    grpsDict[tempGrp.AnimeGroupID] = tempGrp;
-                
-                foreach (VM_AnimeGroup_User grp in VM_MainListHelper.Instance.AllGroups)
-                {
-                    if (grpsDict.ContainsKey(grp.AnimeGroupID.Value))
-                    {
-                        grp.Populate(grpsDict[grp.AnimeGroupID.Value]);
-                    }
-
-                }
-                TimeSpan ts = DateTime.Now - start;
-                Console.Write(ts.TotalMilliseconds);*/
-
-
-
             }
             catch (Exception ex)
             {
@@ -1181,11 +1066,11 @@ namespace Shoko.Desktop
             //  downloadImagesWorker.RunWorkerAsync();
         }
 
-        void downloadImagesWorker_DoWork(object sender, DoWorkEventArgs e)
+        private void downloadImagesWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             // 1. Download posters from AniDB
             List<VM_AniDB_Anime> contracts = VM_ShokoServer.Instance.ShokoServices.GetAllAnime().CastList<VM_AniDB_Anime>();
-            
+
             int i = 0;
             foreach (VM_AniDB_Anime anime in contracts)
             {
@@ -1199,50 +1084,38 @@ namespace Shoko.Desktop
             // 2. Download posters from TvDB
             List<VM_TvDB_ImagePoster> posters = VM_ShokoServer.Instance.ShokoServices.GetAllTvDBPosters(null).CastList<VM_TvDB_ImagePoster>();
             foreach (VM_TvDB_ImagePoster poster in posters)
-            {
-                //Thread.Sleep(5); // don't use too many resources
+            //Thread.Sleep(5); // don't use too many resources
                 imageHelper.DownloadTvDBPoster(poster, false);
-            }
 
             // 2a. Download posters from MovieDB
             List<VM_MovieDB_Poster> moviePosters = VM_ShokoServer.Instance.ShokoServices.GetAllMovieDBPosters(null).CastList<VM_MovieDB_Poster>();
             foreach (VM_MovieDB_Poster poster in moviePosters)
-            {
-                //Thread.Sleep(5); // don't use too many resources
+            //Thread.Sleep(5); // don't use too many resources
                 imageHelper.DownloadMovieDBPoster(poster, false);
-            }
 
             // 3. Download wide banners from TvDB
             List<VM_TvDB_ImageWideBanner> banners = VM_ShokoServer.Instance.ShokoServices.GetAllTvDBWideBanners(null).CastList<VM_TvDB_ImageWideBanner>();
             foreach (VM_TvDB_ImageWideBanner banner in banners)
-            {
-                //Thread.Sleep(5); // don't use too many resources
+            //Thread.Sleep(5); // don't use too many resources
                 imageHelper.DownloadTvDBWideBanner(banner, false);
-            }
 
             // 4. Download fanart from TvDB
             List<VM_TvDB_ImageFanart> fanarts = VM_ShokoServer.Instance.ShokoServices.GetAllTvDBFanart(null).CastList<VM_TvDB_ImageFanart>();
             foreach (VM_TvDB_ImageFanart fanart in fanarts)
-            {
-                //Thread.Sleep(5); // don't use too many resources
+            //Thread.Sleep(5); // don't use too many resources
                 imageHelper.DownloadTvDBFanart(fanart, false);
-            }
 
             // 4a. Download fanart from MovieDB
             List<VM_MovieDB_Fanart> movieFanarts = VM_ShokoServer.Instance.ShokoServices.GetAllMovieDBFanart(null).CastList<VM_MovieDB_Fanart>();
             foreach (VM_MovieDB_Fanart fanart in movieFanarts)
-            {
-                //Thread.Sleep(5); // don't use too many resources
+            //Thread.Sleep(5); // don't use too many resources
                 imageHelper.DownloadMovieDBFanart(fanart, false);
-            }
 
             // 5. Download episode images from TvDB
             List<VM_TvDB_Episode> eps = VM_ShokoServer.Instance.ShokoServices.GetAllTvDBEpisodes(null).CastList<VM_TvDB_Episode>();
             foreach (VM_TvDB_Episode episode in eps)
-            {
-                //Thread.Sleep(5); // don't use too many resources
+            //Thread.Sleep(5); // don't use too many resources
                 imageHelper.DownloadTvDBEpisode(episode, false);
-            }
         }
 
         private void RefreshView()
@@ -1272,18 +1145,13 @@ namespace Shoko.Desktop
                 }
 
                 // we are inside one of the group filters, groups or series
-                if (VM_MainListHelper.Instance.CurrentWrapper != null)
-                {
-                    // refresh the groups and series data
-                    refreshGroupsWorker.RunWorkerAsync(null);
+                if (VM_MainListHelper.Instance.CurrentWrapper == null) return;
+                // refresh the groups and series data
+                refreshGroupsWorker.RunWorkerAsync(null);
 
-                    // refresh the episodes
-                    if (lbGroupsSeries.SelectedItem is VM_AnimeSeries_User)
-                    {
-                        VM_AnimeSeries_User ser = lbGroupsSeries.SelectedItem as VM_AnimeSeries_User;
-                        ser.RefreshEpisodes();
-                    }
-                }
+                // refresh the episodes
+                VM_AnimeSeries_User ser = lbGroupsSeries.SelectedItem as VM_AnimeSeries_User;
+                ser?.RefreshEpisodes();
             }
             catch (Exception ex)
             {
@@ -1311,10 +1179,8 @@ namespace Shoko.Desktop
         {
             try
             {
-                foreach (VM_AVDump dumpTemp in VM_MainListHelper.Instance.AVDumpFiles)
-                {
-                    if (dumpTemp.FullPath == vid.GetLocalFileSystemFullPath()) return;
-                }
+                if (VM_MainListHelper.Instance.AVDumpFiles.Any(dumpTemp => dumpTemp.FullPath == vid.GetLocalFileSystemFullPath()))
+                    return;
 
                 VM_AVDump dump = new VM_AVDump(vid);
                 VM_MainListHelper.Instance.AVDumpFiles.Add(dump);
@@ -1327,54 +1193,6 @@ namespace Shoko.Desktop
             {
                 Utils.ShowErrorMessage(ex);
             }
-        }
-
-        public void ShowPinnedSeriesOld(VM_AnimeSeries_User series)
-        {
-            Cursor = Cursors.Wait;
-
-            CloseableTabItem cti = new CloseableTabItem();
-            //TabItem cti = new TabItem();
-
-            // if the pinned tab already has this, don't open it again.
-            int curTab = -1;
-            foreach (object obj in tabPinned.Items)
-            {
-                curTab++;
-                CloseableTabItem ctiTemp = obj as CloseableTabItem;
-                if (ctiTemp == null) continue;
-
-                AnimeSeries ctrl = ctiTemp.Content as AnimeSeries;
-                if (ctrl == null) continue;
-
-                VM_AnimeSeries_User ser = ctrl.DataContext as VM_AnimeSeries_User;
-                if (ser == null) continue;
-
-                if (ser.AnimeSeriesID == series.AnimeSeriesID)
-                {
-                    tabControl1.SelectedIndex = (int) TAB_MAIN.Pinned;
-                    tabPinned.SelectedIndex = curTab;
-                    Cursor = Cursors.Arrow;
-                    return;
-                }
-            }
-
-            string tabHeader = series.SeriesName;
-            if (tabHeader.Length > 30)
-                tabHeader = tabHeader.Substring(0, 30) + "...";
-            cti.Header = tabHeader;
-
-            //AnimeSeries_Hulu seriesControl = new AnimeSeries_Hulu();
-            AnimeSeries seriesControl = new AnimeSeries();
-            seriesControl.DataContext = series;
-            cti.Content = seriesControl;
-
-            tabPinned.Items.Add(cti);
-
-            tabControl1.SelectedIndex = (int) TAB_MAIN.Pinned;
-            tabPinned.SelectedIndex = tabPinned.Items.Count - 1;
-
-            Cursor = Cursors.Arrow;
         }
 
         public void ShowPinnedSeries(VM_AnimeSeries_User series, bool isMetroDash = false)
@@ -1390,42 +1208,23 @@ namespace Shoko.Desktop
             {
                 curTab++;
                 CloseableTabItem ctiTemp = obj as CloseableTabItem;
-                if (ctiTemp == null) continue;
 
-                VM_AnimeSeries_User ser = null;
-                ContentControl ctrl = ctiTemp.Content as AnimeSeriesContainerControl;
-                if (ctrl == null)
-                {
-                    ContentControl subControl = ctrl.Content as AnimeSeriesSimplifiedControl;
-                    if (subControl == null)
-                        subControl = ctrl.Content as AnimeSeries;
+                ContentControl ctrl = ctiTemp?.Content as AnimeSeriesContainerControl;
+                if (ctrl == null) continue;
 
-                    if (subControl != null)
-                        ctrl = subControl;
-                }
-                else
-                {
-                    ContentControl subControl = ctrl.DataContext as AnimeSeriesSimplifiedControl;
-                    if (subControl == null)
-                        subControl = ctrl.DataContext as AnimeSeries;
+                ContentControl subControl = (ContentControl) (ctrl.DataContext as AnimeSeriesSimplifiedControl) ?? ctrl.DataContext as AnimeSeries;
 
-                    if (subControl != null)
-                        ctrl = subControl;
-                }
+                if (subControl != null)
+                    ctrl = subControl;
 
-                if (ctrl == null)
-                    continue;
+                var ser = ctrl.DataContext as VM_AnimeSeries_User;
 
-                ser = ctrl.DataContext as VM_AnimeSeries_User;
-                if (ser == null) continue;
+                if (ser?.AnimeSeriesID != series.AnimeSeriesID) continue;
 
-                if (ser.AnimeSeriesID == series.AnimeSeriesID)
-                {
-                    tabControl1.SelectedIndex = (int) TAB_MAIN.Pinned;
-                    tabPinned.SelectedIndex = curTab;
-                    Cursor = Cursors.Arrow;
-                    return;
-                }
+                tabControl1.SelectedIndex = (int) TAB_MAIN.Pinned;
+                tabPinned.SelectedIndex = curTab;
+                Cursor = Cursors.Arrow;
+                return;
             }
 
             string tabHeader = series.SeriesName;
@@ -1435,12 +1234,13 @@ namespace Shoko.Desktop
 
             if (AppSettings.DisplaySeriesSimple)
             {
-                AnimeSeriesSimplifiedControl ctrl = new AnimeSeriesSimplifiedControl();
-                ctrl.DataContext = series;
+                AnimeSeriesSimplifiedControl ctrl = new AnimeSeriesSimplifiedControl {DataContext = series};
 
-                AnimeSeriesContainerControl cont = new AnimeSeriesContainerControl();
-                cont.IsMetroDash = false;
-                cont.DataContext = ctrl;
+                AnimeSeriesContainerControl cont = new AnimeSeriesContainerControl
+                {
+                    IsMetroDash = false,
+                    DataContext = ctrl
+                };
 
                 cti.Content = cont;
 
@@ -1448,12 +1248,13 @@ namespace Shoko.Desktop
             }
             else
             {
-                AnimeSeries seriesControl = new AnimeSeries();
-                seriesControl.DataContext = series;
+                AnimeSeries seriesControl = new AnimeSeries {DataContext = series};
 
-                AnimeSeriesContainerControl cont = new AnimeSeriesContainerControl();
-                cont.IsMetroDash = false;
-                cont.DataContext = seriesControl;
+                AnimeSeriesContainerControl cont = new AnimeSeriesContainerControl
+                {
+                    IsMetroDash = false,
+                    DataContext = seriesControl
+                };
 
                 cti.Content = cont;
 
@@ -1474,38 +1275,21 @@ namespace Shoko.Desktop
             foreach (object obj in tabPinned.Items)
             {
                 CloseableTabItem ctiTemp = obj as CloseableTabItem;
-                if (ctiTemp == null) continue;
 
-                VM_AnimeSeries_User ser = null;
-                ContentControl ctrl = ctiTemp.Content as AnimeSeriesContainerControl;
-                if (ctrl == null)
-                {
-                    ContentControl subControl = ctrl.Content as AnimeSeriesSimplifiedControl;
-                    if (subControl == null)
-                        subControl = ctrl.Content as AnimeSeries;
+                ContentControl ctrl = ctiTemp?.Content as AnimeSeriesContainerControl;
+                if (ctrl == null) continue;
 
-                    if (subControl != null)
-                        ctrl = subControl;
-                }
-                else
-                {
-                    ContentControl subControl = ctrl.DataContext as AnimeSeriesSimplifiedControl;
-                    if (subControl == null)
-                        subControl = ctrl.DataContext as AnimeSeries;
+                ContentControl subControl = (ContentControl) (ctrl.DataContext as AnimeSeriesSimplifiedControl) ?? ctrl.DataContext as AnimeSeries;
 
-                    if (subControl != null)
-                        ctrl = subControl;
-                }
+                if (subControl != null)
+                    ctrl = subControl;
 
-                if (ctrl == null)
-                    continue;
+                var ser = ctrl.DataContext as VM_AnimeSeries_User;
 
-                ser = ctrl.DataContext as VM_AnimeSeries_User;
-                if (ser == null) continue;
+                if (ser?.AnimeSeriesID == 0) continue;
 
-                if (ser.AnimeSeriesID!=0)
-                    if (VM_MainListHelper.Instance.AllSeriesDictionary.TryGetValue(ser.AnimeSeriesID, out ser))
-                        ctrl.DataContext = ser;
+                if (VM_MainListHelper.Instance.AllSeriesDictionary.TryGetValue(ser.AnimeSeriesID, out ser))
+                    ctrl.DataContext = ser;
             }
 
             Cursor = Cursors.Arrow;
@@ -1517,14 +1301,10 @@ namespace Shoko.Desktop
             foreach (object obj in lbPlaylists.Items)
             {
                 var playListVM = obj as VM_Playlist;
-                if (playListVM == null)
-                    continue;
 
-                var playListObjects = playListVM.PlaylistObjects;
+                var playListObjects = playListVM?.PlaylistObjects;
                 if (playListObjects != null)
-                {
                     foreach (var item in playListObjects)
-                    {
                         if (item.ItemType == PlaylistItemType.AnimeSeries)
                         {
                             var itemSer = item.Series;
@@ -1535,10 +1315,8 @@ namespace Shoko.Desktop
                             if (VM_MainListHelper.Instance.AllSeriesDictionary.TryGetValue(itemSeriesId, out itemSer))
                                 item.Series = itemSer;
                         }
-                    }
-                }
 
-                var ser = playListVM.Series;
+                var ser = playListVM?.Series;
                 if (ser == null) continue;
                 if (playListVM.Series.AnimeSeriesID==0) continue;
 
@@ -1555,7 +1333,6 @@ namespace Shoko.Desktop
         private void SetColours()
         {
             if (tabControl1.SelectedIndex == (int) TAB_MAIN.Dashboard)
-            {
                 if (dash.Visibility == Visibility.Visible)
                 {
                     tabControl1.Background = new SolidColorBrush(Colors.Transparent);
@@ -1566,7 +1343,6 @@ namespace Shoko.Desktop
                     tabControl1.Background = (Brush)bc.ConvertFrom("#F1F1F1");
                     //tabControl1.Background = new SolidColorBrush(Colors.LightGray);
                 }
-            }
             else
                 tabControl1.Background = new SolidColorBrush(Colors.Transparent);
         }
@@ -1619,35 +1395,27 @@ namespace Shoko.Desktop
 
                     if (obj.GetType() == typeof(VM_AniDB_Anime_Similar))
                         anime = ((VM_AniDB_Anime_Similar)obj).AniDB_Anime;
+                    if (anime == null) return;
 
                     // check if a series already exists
                     bool seriesExists = VM_ShokoServer.Instance.ShokoServices.GetSeriesExistingForAnime(anime.AnimeID);
                     if (seriesExists)
                     {
-                        MessageBox.Show(Shoko.Commons.Properties.Resources.ERROR_SeriesExists, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(Commons.Properties.Resources.ERROR_SeriesExists, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
 
-                    NewSeries frmNewSeries = new NewSeries();
-                    frmNewSeries.Owner = this;
+                    NewSeries frmNewSeries = new NewSeries {Owner = this};
                     frmNewSeries.Init(anime, anime.FormattedTitle);
 
-                    bool? result = frmNewSeries.ShowDialog();
-                    if (result.HasValue && result.Value == true)
-                    {
-
-                    }
+                    frmNewSeries.ShowDialog();
                 }
                 else
                 {
                     NewSeries frm = new NewSeries();
                     frm.Owner = this;
                     frm.Init(0, "");
-                    bool? result = frm.ShowDialog();
-                    if (result.HasValue && result.Value == true)
-                    {
-
-                    }
+                    frm.ShowDialog();
                 }
 
             }
@@ -1661,8 +1429,6 @@ namespace Shoko.Desktop
         {
             try
             {
-                Window parentWindow = GetWindow(this);
-
                 object obj = e.Parameter;
                 if (obj == null) return;
 
@@ -1670,10 +1436,9 @@ namespace Shoko.Desktop
                 {
                     VM_VideoLocal vid = obj as VM_VideoLocal;
 
-                    foreach (VM_AVDump dumpTemp in VM_MainListHelper.Instance.AVDumpFiles)
-                    {
-                        if (dumpTemp.FullPath == vid.GetLocalFileSystemFullPath()) return;
-                    }
+                    if (VM_MainListHelper.Instance.AVDumpFiles.Any(dumpTemp =>
+                        dumpTemp.FullPath == vid.GetLocalFileSystemFullPath()))
+                        return;
 
                     VM_AVDump dump = new VM_AVDump(vid);
                     VM_MainListHelper.Instance.AVDumpFiles.Add(dump);
@@ -1682,25 +1447,17 @@ namespace Shoko.Desktop
 
                 if (obj.GetType() == typeof(MultipleVideos))
                 {
-                    MultipleVideos mv = obj as MultipleVideos;
-                    foreach (VM_VideoLocal vid in mv.VideoLocals)
-                    {
-                        bool alreadyExists = false;
-                        foreach (VM_AVDump dumpTemp in VM_MainListHelper.Instance.AVDumpFiles)
+                    if (obj is MultipleVideos mv)
+                        foreach (VM_VideoLocal vid in mv.VideoLocals)
                         {
-                            if (dumpTemp.FullPath == vid.GetLocalFileSystemFullPath())
-                            {
-                                alreadyExists = true;
-                                break;
-                            }
+                            bool alreadyExists = VM_MainListHelper.Instance.AVDumpFiles.Any(dumpTemp =>
+                                dumpTemp.FullPath == vid.GetLocalFileSystemFullPath());
 
+                            if (alreadyExists) continue;
+
+                            VM_AVDump dump = new VM_AVDump(vid);
+                            VM_MainListHelper.Instance.AVDumpFiles.Add(dump);
                         }
-
-                        if (alreadyExists) continue;
-
-                        VM_AVDump dump = new VM_AVDump(vid);
-                        VM_MainListHelper.Instance.AVDumpFiles.Add(dump);
-                    }
                 }
 
                 tabControl1.SelectedIndex = (int) TAB_MAIN.FileManger;
@@ -1725,14 +1482,15 @@ namespace Shoko.Desktop
             {
                 if (obj.GetType() == typeof(VM_Recommendation))
                 {
-                    VM_Recommendation rec = obj as VM_Recommendation;
-                    if (rec == null) return;
+                    if (!(obj is VM_Recommendation rec)) return;
 
-                    VM_BookmarkedAnime bookmark = new VM_BookmarkedAnime();
-                    bookmark.AnimeID = rec.RecommendedAnimeID;
-                    bookmark.Downloading = 0;
-                    bookmark.Notes = "";
-                    bookmark.Priority = 1;
+                    VM_BookmarkedAnime bookmark = new VM_BookmarkedAnime
+                    {
+                        AnimeID = rec.RecommendedAnimeID,
+                        Downloading = 0,
+                        Notes = "",
+                        Priority = 1
+                    };
                     if (bookmark.Save())
                         VM_MainListHelper.Instance.RefreshBookmarkedAnime();
 
@@ -1740,54 +1498,60 @@ namespace Shoko.Desktop
 
                 if (obj.GetType() == typeof(VM_MissingEpisode))
                 {
-                    VM_MissingEpisode rec = obj as VM_MissingEpisode;
-                    if (rec == null) return;
+                    if (!(obj is VM_MissingEpisode rec)) return;
 
-                    VM_BookmarkedAnime bookmark = new VM_BookmarkedAnime();
-                    bookmark.AnimeID = rec.AnimeID;
-                    bookmark.Downloading = 0;
-                    bookmark.Notes = "";
-                    bookmark.Priority = 1;
+                    VM_BookmarkedAnime bookmark = new VM_BookmarkedAnime
+                    {
+                        AnimeID = rec.AnimeID,
+                        Downloading = 0,
+                        Notes = "",
+                        Priority = 1
+                    };
                     if (bookmark.Save())
                         VM_MainListHelper.Instance.RefreshBookmarkedAnime();
                 }
 
                 if (obj.GetType() == typeof(VM_AniDB_Anime))
                 {
-                    VM_AniDB_Anime rec = obj as VM_AniDB_Anime;
-                    if (rec == null) return;
+                    if (!(obj is VM_AniDB_Anime rec)) return;
 
-                    VM_BookmarkedAnime bookmark = new VM_BookmarkedAnime();
-                    bookmark.AnimeID = rec.AnimeID;
-                    bookmark.Downloading = 0;
-                    bookmark.Notes = "";
-                    bookmark.Priority = 1;
+                    VM_BookmarkedAnime bookmark = new VM_BookmarkedAnime
+                    {
+                        AnimeID = rec.AnimeID,
+                        Downloading = 0,
+                        Notes = "",
+                        Priority = 1
+                    };
                     if (bookmark.Save())
                         VM_MainListHelper.Instance.RefreshBookmarkedAnime();
                 }
 
                 if (obj.GetType() == typeof(VM_AniDB_Anime_Similar))
                 {
-                    VM_AniDB_Anime_Similar sim = (VM_AniDB_Anime_Similar)obj;
+                    if (!(obj is VM_AniDB_Anime_Similar sim)) return;
 
-                    VM_BookmarkedAnime bookmark = new VM_BookmarkedAnime();
-                    bookmark.AnimeID = sim.SimilarAnimeID;
-                    bookmark.Downloading = 0;
-                    bookmark.Notes = "";
-                    bookmark.Priority = 1;
+                    VM_BookmarkedAnime bookmark = new VM_BookmarkedAnime
+                    {
+                        AnimeID = sim.SimilarAnimeID,
+                        Downloading = 0,
+                        Notes = "",
+                        Priority = 1
+                    };
                     if (bookmark.Save())
                         VM_MainListHelper.Instance.RefreshBookmarkedAnime();
                 }
 
                 if (obj.GetType() == typeof(VM_AniDB_Anime_Relation))
                 {
-                    VM_AniDB_Anime_Relation rel = (VM_AniDB_Anime_Relation)obj;
+                    if (!(obj is VM_AniDB_Anime_Relation rel)) return;
 
-                    VM_BookmarkedAnime bookmark = new VM_BookmarkedAnime();
-                    bookmark.AnimeID = rel.RelatedAnimeID;
-                    bookmark.Downloading = 0;
-                    bookmark.Notes = "";
-                    bookmark.Priority = 1;
+                    VM_BookmarkedAnime bookmark = new VM_BookmarkedAnime
+                    {
+                        AnimeID = rel.RelatedAnimeID,
+                        Downloading = 0,
+                        Notes = "",
+                        Priority = 1
+                    };
                     if (bookmark.Save())
                         VM_MainListHelper.Instance.RefreshBookmarkedAnime();
                 }
@@ -1800,8 +1564,6 @@ namespace Shoko.Desktop
 
         private void CommandBinding_RefreshBookmarks(object sender, ExecutedRoutedEventArgs e)
         {
-            Window parentWindow = GetWindow(this);
-
             try
             {
                 VM_MainListHelper.Instance.RefreshBookmarkedAnime();
@@ -1816,11 +1578,11 @@ namespace Shoko.Desktop
         {
             try
             {
-                SearchCriteria crit = new SearchCriteria();
-
-                crit = new SearchCriteria();
-                crit.ExtraInfo = string.Empty;
-                crit.AnimeID = anime.AnimeID;
+                var crit = new SearchCriteria
+                {
+                    ExtraInfo = string.Empty,
+                    AnimeID = anime.AnimeID
+                };
 
                 tabControl1.SelectedIndex = (int) TAB_MAIN.Community;
                 tabcCommunity.SelectedIndex = 0;
@@ -1847,20 +1609,19 @@ namespace Shoko.Desktop
                 if (obj.GetType() == typeof(VM_AniDB_Anime))
                 {
                     VM_AniDB_Anime anime = (VM_AniDB_Anime)obj;
-                    crit = new SearchCriteria();
-                    crit.ExtraInfo = string.Empty;
-                    crit.AnimeID = anime.AnimeID;
+                    crit = new SearchCriteria
+                    {
+                        ExtraInfo = string.Empty,
+                        AnimeID = anime.AnimeID
+                    };
                 }
 
-                if (crit != null)
-                {
-                    tabControl1.SelectedIndex = (int) TAB_MAIN.Community;
-                    tabcCommunity.SelectedIndex = 0;
+                if (crit == null) return;
+                tabControl1.SelectedIndex = (int) TAB_MAIN.Community;
+                tabcCommunity.SelectedIndex = 0;
 
-                    ucComLinks.PerformTvDBSearch(crit);
-                    ucComLinks.PerformTraktSearch(crit);
-                }
-
+                ucComLinks.PerformTvDBSearch(crit);
+                ucComLinks.PerformTraktSearch(crit);
             }
             catch (Exception ex)
             {
@@ -1880,92 +1641,79 @@ namespace Shoko.Desktop
 
                 if (obj.GetType() == typeof(VM_AnimeEpisode_User))
                 {
-                    VM_AnimeEpisode_User ep = (VM_AnimeEpisode_User)obj;
+                    VM_AnimeEpisode_User ep = (VM_AnimeEpisode_User) obj;
                     objID = ep.AnimeSeriesID;
                 }
-
-                if (obj.GetType() == typeof(VM_AnimeSeries_User))
+                else if (obj.GetType() == typeof(VM_AnimeSeries_User))
                 {
-                    VM_AnimeSeries_User ser = (VM_AnimeSeries_User)obj;
-                    objID = ser.AnimeSeriesID;
+                    VM_AnimeSeries_User series = (VM_AnimeSeries_User) obj;
+                    objID = series.AnimeSeriesID;
                 }
-
-                if (obj.GetType() == typeof(VM_AniDB_Anime_Similar))
+                else if (obj.GetType() == typeof(VM_AniDB_Anime_Similar))
                 {
-                    VM_AniDB_Anime_Similar sim = (VM_AniDB_Anime_Similar)obj;
+                    VM_AniDB_Anime_Similar sim = (VM_AniDB_Anime_Similar) obj;
                     objID = sim.AnimeSeries.AnimeSeriesID;
                 }
-
-                if (obj.GetType() == typeof(VM_AniDB_Anime_Relation))
+                else if (obj.GetType() == typeof(VM_AniDB_Anime_Relation))
                 {
-                    VM_AniDB_Anime_Relation rel = (VM_AniDB_Anime_Relation)obj;
+                    VM_AniDB_Anime_Relation rel = (VM_AniDB_Anime_Relation) obj;
                     objID = rel.AnimeSeries.AnimeSeriesID;
                 }
-
-                if (obj.GetType() == typeof(VM_Recommendation))
+                else if (obj.GetType() == typeof(VM_Recommendation))
                 {
-                    VM_Recommendation rec = (VM_Recommendation)obj;
+                    VM_Recommendation rec = (VM_Recommendation) obj;
                     objID = rec.Recommended_AnimeSeries.AnimeSeriesID;
                 }
-
-                if (obj.GetType() == typeof(VM_MissingFile))
+                else if (obj.GetType() == typeof(VM_MissingFile))
                 {
-                    VM_MissingFile mis = (VM_MissingFile)obj;
+                    VM_MissingFile mis = (VM_MissingFile) obj;
                     objID = mis.AnimeSeries.AnimeSeriesID;
                 }
-
-                if (obj.GetType() == typeof(VM_MissingEpisode))
+                else if (obj.GetType() == typeof(VM_MissingEpisode))
                 {
-                    VM_MissingEpisode misEp = (VM_MissingEpisode)obj;
+                    VM_MissingEpisode misEp = (VM_MissingEpisode) obj;
                     objID = misEp.AnimeSeries.AnimeSeriesID;
                 }
-
-                if (obj.GetType() == typeof(VM_PlaylistItem))
+                else if (obj.GetType() == typeof(VM_PlaylistItem))
                 {
-                    VM_PlaylistItem pli = (VM_PlaylistItem)obj;
-                    if (pli.ItemType == PlaylistItemType.AnimeSeries)
+                    VM_PlaylistItem pli = (VM_PlaylistItem) obj;
+                    switch (pli.ItemType)
                     {
-                        var ser = (VM_AnimeSeries_User)pli.PlaylistItem;
-                        objID = ser.AnimeSeriesID;
-                    }
-                    else if (pli.ItemType == PlaylistItemType.Episode)
-                    {
-                        VM_AnimeEpisode_User ep = pli.PlaylistItem as VM_AnimeEpisode_User;
-                        objID = ep.AnimeSeriesID;
+                        case PlaylistItemType.AnimeSeries:
+                            var series = (VM_AnimeSeries_User) pli.PlaylistItem;
+                            objID = series.AnimeSeriesID;
+                            break;
+                        case PlaylistItemType.Episode:
+                            VM_AnimeEpisode_User ep = pli.PlaylistItem as VM_AnimeEpisode_User;
+                            objID = ep?.AnimeSeriesID;
+                            break;
                     }
                 }
-
-                if (obj.GetType() == typeof(VM_AnimeSearch))
+                else if (obj.GetType() == typeof(VM_AnimeSearch))
                 {
-                    VM_AnimeSearch search = (VM_AnimeSearch)obj;
+                    VM_AnimeSearch search = (VM_AnimeSearch) obj;
                     objID = search.AnimeSeriesID;
                 }
-
-                if (obj.GetType() == typeof(TraktSeriesData))
+                else if (obj.GetType() == typeof(TraktSeriesData))
                 {
-                    TraktSeriesData trakt = (TraktSeriesData)obj;
+                    TraktSeriesData trakt = (TraktSeriesData) obj;
                     objID = trakt.AnimeSeriesID;
                 }
 
-                if (objID != null)
+                if (objID == null) return;
+                var valObjID = objID.Value;
+
+                if (!VM_MainListHelper.Instance.AllSeriesDictionary.TryGetValue(valObjID, out var ser))
                 {
-                    var valObjID = objID.Value;
-
-                    VM_AnimeSeries_User ser;
-                    if (VM_MainListHelper.Instance.AllSeriesDictionary.TryGetValue(valObjID, out ser) == false)
-                    {
-                        // get the series
-                        ser = (VM_AnimeSeries_User)VM_ShokoServer.Instance.ShokoServices.GetSeries(valObjID, VM_ShokoServer.Instance.CurrentUser.JMMUserID);
-                        if (ser != null)
-                        {
-                            VM_MainListHelper.Instance.AllSeriesDictionary[valObjID] = ser;
-                        }
-                    }
-
+                    // get the series
+                    ser = (VM_AnimeSeries_User) VM_ShokoServer.Instance.ShokoServices.GetSeries(valObjID,
+                        VM_ShokoServer.Instance.CurrentUser.JMMUserID);
                     if (ser != null)
-                        ShowPinnedSeries(ser);
+                        VM_MainListHelper.Instance.AllSeriesDictionary[valObjID] = ser;
                 }
 
+                if (ser != null)
+                    ShowPinnedSeries(ser);
             }
             catch (Exception ex)
             {
@@ -1985,16 +1733,11 @@ namespace Shoko.Desktop
                 // move to all groups
                 VM_MainListHelper.Instance.ShowAllGroups();
 
-                if (e.Parameter is VM_AnimeTag)
-                {
-                    VM_AnimeTag obj = e.Parameter as VM_AnimeTag;
+                if (e.Parameter is VM_AnimeTag obj)
                     txtGroupSearch.Text = obj.TagName;
-                }
 
                 tabControl1.SelectedIndex = (int) TAB_MAIN.Collection;
                 HighlightMainListItem();
-
-
             }
             catch (Exception ex)
             {
@@ -2017,7 +1760,6 @@ namespace Shoko.Desktop
 
         private void CommandBinding_Edit(object sender, ExecutedRoutedEventArgs e)
         {
-            //object obj = lbGroupsSeries.SelectedItem;
             object obj = e.Parameter;
             if (obj == null) return;
 
@@ -2045,31 +1787,38 @@ namespace Shoko.Desktop
 
                     if (gf.GroupFilterID!=0)
                     {
-                        groupFilterBeforeChanges = new VM_GroupFilter();
-                        groupFilterBeforeChanges.GroupFilterName = gf.GroupFilterName;
-                        groupFilterBeforeChanges.BaseCondition = gf.BaseCondition;
-                        groupFilterBeforeChanges.ApplyToSeries = gf.ApplyToSeries;
+                        groupFilterBeforeChanges = new VM_GroupFilter
+                        {
+                            GroupFilterName = gf.GroupFilterName,
+                            BaseCondition = gf.BaseCondition,
+                            ApplyToSeries = gf.ApplyToSeries
+                        };
 
                         foreach (VM_GroupFilterCondition gfc_cur in gf.Obs_FilterConditions)
                         {
-                            VM_GroupFilterCondition gfc = new VM_GroupFilterCondition();
-                            gfc.ConditionOperator = gfc_cur.ConditionOperator;
-                            gfc.ConditionParameter = gfc_cur.ConditionParameter;
-                            gfc.ConditionType = gfc_cur.ConditionType;
-                            gfc.GroupFilterConditionID = gfc_cur.GroupFilterConditionID;
-                            gfc.GroupFilterID = gfc_cur.GroupFilterID;
+                            VM_GroupFilterCondition gfc =
+                                new VM_GroupFilterCondition
+                                {
+                                    ConditionOperator = gfc_cur.ConditionOperator,
+                                    ConditionParameter = gfc_cur.ConditionParameter,
+                                    ConditionType = gfc_cur.ConditionType,
+                                    GroupFilterConditionID = gfc_cur.GroupFilterConditionID,
+                                    GroupFilterID = gfc_cur.GroupFilterID
+                                };
                             groupFilterBeforeChanges.Obs_FilterConditions.Add(gfc);
                         }
 
                         foreach (VM_GroupFilterSortingCriteria gfcs_cur in gf.SortCriteriaList)
                         {
-                            VM_GroupFilterSortingCriteria gfsc = new VM_GroupFilterSortingCriteria();
-                            gfsc.GroupFilterID = gfcs_cur.GroupFilterID;
-                            gfsc.SortDirection = gfcs_cur.SortDirection;
-                            gfsc.SortType = gfcs_cur.SortType;
+                            VM_GroupFilterSortingCriteria gfsc =
+                                new VM_GroupFilterSortingCriteria
+                                {
+                                    GroupFilterID = gfcs_cur.GroupFilterID,
+                                    SortDirection = gfcs_cur.SortDirection,
+                                    SortType = gfcs_cur.SortType
+                                };
                             groupFilterBeforeChanges.SortCriteriaList.Add(gfsc);
                         }
-                        //Cloner.Clone(gf, groupFilterBeforeChanges);
                     }
 
                     gf.Locked = 0;
@@ -2130,8 +1879,6 @@ namespace Shoko.Desktop
                         }
 
                     }
-                    //BindingExpression be = ccDetail.GetBindingExpression(ContentControl.ContentProperty);
-                    //be.UpdateSource();
                 }
 
                 if (obj.GetType() == typeof(VM_GroupFilter))
@@ -2176,7 +1923,7 @@ namespace Shoko.Desktop
                     VM_ImportFolder fldr = (VM_ImportFolder)obj;
 
                     VM_ShokoServer.Instance.ShokoServices.ScanFolder(fldr.ImportFolderID);
-                    MessageBox.Show(Shoko.Commons.Properties.Resources.Import_Running, Shoko.Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(Commons.Properties.Resources.Import_Running, Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (Exception ex)
@@ -2199,8 +1946,8 @@ namespace Shoko.Desktop
                 {
                     VM_GroupFilter gf = (VM_GroupFilter)obj;
 
-                    MessageBoxResult res = MessageBox.Show(string.Format(Shoko.Commons.Properties.Resources.Filter_DeleteGroup, gf.GroupFilterName),
-                    Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    MessageBoxResult res = MessageBox.Show(string.Format(Commons.Properties.Resources.Filter_DeleteGroup, gf.GroupFilterName),
+                    Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
                     if (res == MessageBoxResult.Yes)
                     {
                         // remove from group list
@@ -2217,10 +1964,7 @@ namespace Shoko.Desktop
                         if (idx >= 0)
                         {
                             if (idx > 0)
-                            {
-                                // we will move to the item above the item being deleted
                                 idx = idx - 1;
-                            }
                             // otherwise just move to the first item
                             lbGroupsSeries.SelectedIndex = idx;
                             lbGroupsSeries.Focus();
@@ -2249,11 +1993,7 @@ namespace Shoko.Desktop
                             VM_MainListHelper.Instance.AllGroupFiltersDictionary.Remove(gf.GroupFilterID);
                         // remove from current wrapper list
                         if (pos >= 0)
-                        {
                             VM_MainListHelper.Instance.CurrentWrapperList.RemoveAt(pos);
-                            //VM_MainListHelper.Instance.ViewGroups.Refresh();
-                        }
-
                     }
                 }
             }
@@ -2319,21 +2059,27 @@ namespace Shoko.Desktop
 
                         foreach (VM_GroupFilterCondition gfc_old in groupFilterBeforeChanges.Obs_FilterConditions)
                         {
-                            VM_GroupFilterCondition gfc = new VM_GroupFilterCondition();
-                            gfc.ConditionOperator = gfc_old.ConditionOperator;
-                            gfc.ConditionParameter = gfc_old.ConditionParameter;
-                            gfc.ConditionType = gfc_old.ConditionType;
-                            gfc.GroupFilterConditionID = gfc_old.GroupFilterConditionID;
-                            gfc.GroupFilterID = gfc_old.GroupFilterID;
+                            VM_GroupFilterCondition gfc =
+                                new VM_GroupFilterCondition
+                                {
+                                    ConditionOperator = gfc_old.ConditionOperator,
+                                    ConditionParameter = gfc_old.ConditionParameter,
+                                    ConditionType = gfc_old.ConditionType,
+                                    GroupFilterConditionID = gfc_old.GroupFilterConditionID,
+                                    GroupFilterID = gfc_old.GroupFilterID
+                                };
                             gf.Obs_FilterConditions.Add(gfc);
                         }
 
                         foreach (VM_GroupFilterSortingCriteria gfsc_old in groupFilterBeforeChanges.SortCriteriaList)
                         {
-                            VM_GroupFilterSortingCriteria gfsc = new VM_GroupFilterSortingCriteria();
-                            gfsc.GroupFilterID = gfsc_old.GroupFilterID;
-                            gfsc.SortDirection = gfsc_old.SortDirection;
-                            gfsc.SortType = gfsc_old.SortType;
+                            VM_GroupFilterSortingCriteria gfsc =
+                                new VM_GroupFilterSortingCriteria
+                                {
+                                    GroupFilterID = gfsc_old.GroupFilterID,
+                                    SortDirection = gfsc_old.SortDirection,
+                                    SortType = gfsc_old.SortType
+                                };
                             gf.SortCriteriaList.Add(gfsc);
                         }
 
@@ -2362,16 +2108,18 @@ namespace Shoko.Desktop
         {
             try
             {
-                VM_GroupFilter gfNew = new VM_GroupFilter();
-                gfNew.Locked = 0;
-                gfNew.IsBeingEdited = true;
+                VM_GroupFilter gfNew = new VM_GroupFilter
+                {
+                    Locked = 0,
+                    IsBeingEdited = true,
+                    GroupFilterName = Commons.Properties.Resources.Filter_New,
+                    ApplyToSeries = 0,
+                    BaseCondition = (int) GroupFilterBaseCondition.Include
+                };
 
-                gfNew.GroupFilterName = Shoko.Commons.Properties.Resources.Filter_New;
-                gfNew.ApplyToSeries = 0;
-                gfNew.BaseCondition = (int)GroupFilterBaseCondition.Include;
-               
+
                 VM_MainListHelper.Instance.AllGroupFiltersDictionary[0]=gfNew;
-                
+
                 groupFilterVM = gfNew;
                 VM_MainListHelper.Instance.ViewGroupsForms.Filter = GroupFilter_GroupSearch;
                 VM_MainListHelper.Instance.SetGroupFilterSortingOnForms(gfNew);
@@ -2391,43 +2139,33 @@ namespace Shoko.Desktop
 
             try
             {
-                if (obj.GetType() == typeof(VM_GroupFilterCondition))
+                if (obj.GetType() != typeof(VM_GroupFilterCondition)) return;
+                VM_GroupFilterCondition gfc = (VM_GroupFilterCondition)obj;
+
+                MessageBoxResult res = MessageBox.Show(string.Format(Commons.Properties.Resources.Filter_DeleteCondition, gfc.NiceDescription),
+                    Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (res != MessageBoxResult.Yes) return;
+                foreach (VM_GroupFilter gf in VM_MainListHelper.Instance.AllGroupFiltersDictionary.Values)
                 {
-                    VM_GroupFilterCondition gfc = (VM_GroupFilterCondition)obj;
-
-                    MessageBoxResult res = MessageBox.Show(string.Format(Shoko.Commons.Properties.Resources.Filter_DeleteCondition, gfc.NiceDescription),
-                    Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
-                    if (res == MessageBoxResult.Yes)
-                    {
-                        foreach (VM_GroupFilter gf in VM_MainListHelper.Instance.AllGroupFiltersDictionary.Values)
+                    if (!gf.AllowEditing) continue; // all filter
+                    if (gf.GroupFilterID != gfc.GroupFilterID) continue;
+                    int pos = -1;
+                    for (int i = 0; i < gf.Obs_FilterConditions.Count; i++)
+                        if (gfc.ConditionOperator == gf.Obs_FilterConditions[i].ConditionOperator &&
+                            gfc.ConditionParameter.Equals(gf.Obs_FilterConditions[i].ConditionParameter) &&
+                            gfc.ConditionType == gf.Obs_FilterConditions[i].ConditionType)
                         {
-                            if (!gf.AllowEditing) continue; // all filter
-                            if (gf.GroupFilterID == gfc.GroupFilterID)
-                            {
-                                int pos = -1;
-                                for (int i = 0; i < gf.Obs_FilterConditions.Count; i++)
-                                {
-                                    if (gfc.ConditionOperator == gf.Obs_FilterConditions[i].ConditionOperator &&
-                                        gfc.ConditionParameter.Equals(gf.Obs_FilterConditions[i].ConditionParameter) &&
-                                        gfc.ConditionType == gf.Obs_FilterConditions[i].ConditionType)
-                                    {
-                                        pos = i;
-                                        break;
-                                    }
-                                }
-                                if (pos >= 0)
-                                    gf.Obs_FilterConditions.RemoveAt(pos);
-
-                                VM_GroupFilter tempGF = (VM_GroupFilter)VM_ShokoServer.Instance.ShokoServices.EvaluateGroupFilter(gf);
-                                gf.Populate(tempGF);
-                                groupFilterVM = gf;
-                                VM_MainListHelper.Instance.ViewGroupsForms.Filter = GroupFilter_GroupSearch;
-                                VM_MainListHelper.Instance.SetGroupFilterSortingOnForms(gf);
-                            }
+                            pos = i;
+                            break;
                         }
+                    if (pos >= 0)
+                        gf.Obs_FilterConditions.RemoveAt(pos);
 
-
-                    }
+                    VM_GroupFilter tempGF = (VM_GroupFilter)VM_ShokoServer.Instance.ShokoServices.EvaluateGroupFilter(gf);
+                    gf.Populate(tempGF);
+                    groupFilterVM = gf;
+                    VM_MainListHelper.Instance.ViewGroupsForms.Filter = GroupFilter_GroupSearch;
+                    VM_MainListHelper.Instance.SetGroupFilterSortingOnForms(gf);
                 }
             }
             catch (Exception ex)
@@ -2446,8 +2184,7 @@ namespace Shoko.Desktop
                 VM_GroupFilter gf = (VM_GroupFilter)obj;
                 VM_GroupFilterCondition gfc = new VM_GroupFilterCondition();
 
-                GroupFilterConditionForm frm = new GroupFilterConditionForm();
-                frm.Owner = this;
+                GroupFilterConditionForm frm = new GroupFilterConditionForm {Owner = this};
                 frm.Init(gf, gfc);
                 bool? result = frm.ShowDialog();
                 if (result.HasValue && result.Value)
@@ -2478,11 +2215,10 @@ namespace Shoko.Desktop
                 VM_GroupFilter gf = (VM_GroupFilter)obj;
                 VM_GroupFilterSortingCriteria gfsc = new VM_GroupFilterSortingCriteria();
 
-                GroupFilterSortingForm frm = new GroupFilterSortingForm();
-                frm.Owner = this;
+                GroupFilterSortingForm frm = new GroupFilterSortingForm {Owner = this};
                 frm.Init(gf, gfsc);
                 bool? result = frm.ShowDialog();
-                if (result.HasValue && result.Value == true)
+                if (result.HasValue && result.Value)
                 {
                     gf.SortCriteriaList.Add(gfsc);
 
@@ -2505,11 +2241,9 @@ namespace Shoko.Desktop
 
             try
             {
-                if (obj.GetType() == typeof(VM_GroupFilterSortingCriteria))
-                {
-                    VM_GroupFilterSortingCriteria gfsc = (VM_GroupFilterSortingCriteria)obj;
-                    GroupFilterSortMoveUpDown(gfsc, 1);
-                }
+                if (obj.GetType() != typeof(VM_GroupFilterSortingCriteria)) return;
+                VM_GroupFilterSortingCriteria gfsc = (VM_GroupFilterSortingCriteria)obj;
+                GroupFilterSortMoveUpDown(gfsc, 1);
             }
             catch (Exception ex)
             {
@@ -2524,11 +2258,9 @@ namespace Shoko.Desktop
 
             try
             {
-                if (obj.GetType() == typeof(VM_GroupFilterSortingCriteria))
-                {
-                    VM_GroupFilterSortingCriteria gfsc = (VM_GroupFilterSortingCriteria)obj;
-                    GroupFilterSortMoveUpDown(gfsc, 2);
-                }
+                if (obj.GetType() != typeof(VM_GroupFilterSortingCriteria)) return;
+                VM_GroupFilterSortingCriteria gfsc = (VM_GroupFilterSortingCriteria)obj;
+                GroupFilterSortMoveUpDown(gfsc, 2);
             }
             catch (Exception ex)
             {
@@ -2547,38 +2279,30 @@ namespace Shoko.Desktop
             foreach (VM_GroupFilter gf in VM_MainListHelper.Instance.AllGroupFiltersDictionary.Values)
             {
                 if (!gf.AllowEditing) continue; // all filter
-                if (gf.GroupFilterID == gfsc.GroupFilterID)
-                {
-                    int pos = -1;
-                    for (int i = 0; i < gf.SortCriteriaList.Count; i++)
+                if (gf.GroupFilterID != gfsc.GroupFilterID) continue;
+                int pos = -1;
+                for (int i = 0; i < gf.SortCriteriaList.Count; i++)
+                    if (gfsc.SortType == gf.SortCriteriaList[i].SortType)
                     {
-                        if (gfsc.SortType == gf.SortCriteriaList[i].SortType)
-                        {
-                            pos = i;
-                            break;
-                        }
+                        pos = i;
+                        break;
                     }
 
-                    if (direction == 1) // up
-                    {
-                        if (pos > 0)
-                        {
-                            gf.SortCriteriaList.Move(pos, pos - 1);
-                            groupFilterVM = gf;
-                            VM_MainListHelper.Instance.ViewGroupsForms.Filter = GroupFilter_GroupSearch;
-                            VM_MainListHelper.Instance.SetGroupFilterSortingOnForms(gf);
-                        }
-                    }
-                    else
-                    {
-                        if (pos + 1 < gf.SortCriteriaList.Count)
-                        {
-                            gf.SortCriteriaList.Move(pos, pos + 1);
-                            groupFilterVM = gf;
-                            VM_MainListHelper.Instance.ViewGroupsForms.Filter = GroupFilter_GroupSearch;
-                            VM_MainListHelper.Instance.SetGroupFilterSortingOnForms(gf);
-                        }
-                    }
+                if (direction == 1) // up
+                {
+                    if (pos <= 0) continue;
+                    gf.SortCriteriaList.Move(pos, pos - 1);
+                    groupFilterVM = gf;
+                    VM_MainListHelper.Instance.ViewGroupsForms.Filter = GroupFilter_GroupSearch;
+                    VM_MainListHelper.Instance.SetGroupFilterSortingOnForms(gf);
+                }
+                else
+                {
+                    if (pos + 1 >= gf.SortCriteriaList.Count) continue;
+                    gf.SortCriteriaList.Move(pos, pos + 1);
+                    groupFilterVM = gf;
+                    VM_MainListHelper.Instance.ViewGroupsForms.Filter = GroupFilter_GroupSearch;
+                    VM_MainListHelper.Instance.SetGroupFilterSortingOnForms(gf);
                 }
             }
         }
@@ -2592,40 +2316,29 @@ namespace Shoko.Desktop
 
             try
             {
-                if (obj.GetType() == typeof(VM_GroupFilterSortingCriteria))
+                if (obj.GetType() != typeof(VM_GroupFilterSortingCriteria)) return;
+                VM_GroupFilterSortingCriteria gfsc = (VM_GroupFilterSortingCriteria)obj;
+
+                MessageBoxResult res = MessageBox.Show(string.Format(Commons.Properties.Resources.Filter_DeleteSort),
+                    Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (res != MessageBoxResult.Yes) return;
+                foreach (VM_GroupFilter gf in VM_MainListHelper.Instance.AllGroupFiltersDictionary.Values)
                 {
-                    VM_GroupFilterSortingCriteria gfsc = (VM_GroupFilterSortingCriteria)obj;
-
-                    MessageBoxResult res = MessageBox.Show(string.Format(Shoko.Commons.Properties.Resources.Filter_DeleteSort),
-                    Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
-                    if (res == MessageBoxResult.Yes)
-                    {
-                        // find the sorting condition
-                        foreach (VM_GroupFilter gf in VM_MainListHelper.Instance.AllGroupFiltersDictionary.Values)
+                    if (!gf.AllowEditing) continue; // all filter
+                    if (gf.GroupFilterID != gfsc.GroupFilterID) continue;
+                    int pos = -1;
+                    for (int i = 0; i < gf.SortCriteriaList.Count; i++)
+                        if (gfsc.SortType == gf.SortCriteriaList[i].SortType)
                         {
-                            if (!gf.AllowEditing) continue; // all filter
-                            if (gf.GroupFilterID == gfsc.GroupFilterID)
-                            {
-                                int pos = -1;
-                                for (int i = 0; i < gf.SortCriteriaList.Count; i++)
-                                {
-                                    if (gfsc.SortType == gf.SortCriteriaList[i].SortType)
-                                    {
-                                        pos = i;
-                                        break;
-                                    }
-                                }
-                                if (pos >= 0)
-                                    gf.SortCriteriaList.RemoveAt(pos);
-
-                                groupFilterVM = gf;
-                                VM_MainListHelper.Instance.ViewGroupsForms.Filter = GroupFilter_GroupSearch;
-                                VM_MainListHelper.Instance.SetGroupFilterSortingOnForms(gf);
-                            }
+                            pos = i;
+                            break;
                         }
+                    if (pos >= 0)
+                        gf.SortCriteriaList.RemoveAt(pos);
 
-
-                    }
+                    groupFilterVM = gf;
+                    VM_MainListHelper.Instance.ViewGroupsForms.Filter = GroupFilter_GroupSearch;
+                    VM_MainListHelper.Instance.SetGroupFilterSortingOnForms(gf);
                 }
             }
             catch (Exception ex)
@@ -2638,9 +2351,11 @@ namespace Shoko.Desktop
         {
             try
             {
-                VM_AnimeGroup_User grpNew = new VM_AnimeGroup_User();
-                grpNew.IsReadOnly = false;
-                grpNew.IsBeingEdited = true;
+                VM_AnimeGroup_User grpNew = new VM_AnimeGroup_User
+                {
+                    IsReadOnly = false,
+                    IsBeingEdited = true
+                };
                 SetDetailBinding(grpNew);
             }
             catch (Exception ex)
@@ -2655,14 +2370,12 @@ namespace Shoko.Desktop
 
             try
             {
-                VM_AnimeGroup_User grp = e.Parameter as VM_AnimeGroup_User;
-                if (grp == null) return;
+                if (!(e.Parameter is VM_AnimeGroup_User grp)) return;
 
-                DeleteSeriesGroupForm frm = new DeleteSeriesGroupForm();
-                frm.Owner = this;
+                DeleteSeriesGroupForm frm = new DeleteSeriesGroupForm {Owner = this};
                 bool? result = frm.ShowDialog();
 
-                if (result.HasValue && result.Value == true)
+                if (result.HasValue && result.Value)
                 {
                     bool deleteFiles = frm.DeleteFiles;
 
@@ -2688,8 +2401,7 @@ namespace Shoko.Desktop
         {
             try
             {
-                VM_AnimeGroup_User grp = e.Parameter as VM_AnimeGroup_User;
-                if (grp == null) return;
+                if (!(e.Parameter is VM_AnimeGroup_User grp)) return;
 
                 SetDetailBinding(grp);
 
@@ -2706,15 +2418,16 @@ namespace Shoko.Desktop
 
         private void CommandBinding_AddSubGroup(object sender, ExecutedRoutedEventArgs e)
         {
-            VM_AnimeGroup_User grp = e.Parameter as VM_AnimeGroup_User;
-            if (grp == null) return;
+            if (!(e.Parameter is VM_AnimeGroup_User grp)) return;
 
             try
             {
-                VM_AnimeGroup_User grpNew = new VM_AnimeGroup_User();
-                grpNew.IsReadOnly = false;
-                grpNew.IsBeingEdited = true;
-                grpNew.AnimeGroupParentID = grp.AnimeGroupID;
+                VM_AnimeGroup_User grpNew = new VM_AnimeGroup_User
+                {
+                    IsReadOnly = false,
+                    IsBeingEdited = true,
+                    AnimeGroupParentID = grp.AnimeGroupID
+                };
                 SetDetailBinding(grpNew);
             }
             catch (Exception ex)
@@ -2730,37 +2443,32 @@ namespace Shoko.Desktop
 
         private void CommandBinding_DeletePlaylist(object sender, ExecutedRoutedEventArgs e)
         {
-            VM_Playlist pl = e.Parameter as VM_Playlist;
-            if (pl == null) return;
-
-
+            if (!(e.Parameter is VM_Playlist pl)) return;
 
             try
             {
-                MessageBoxResult res = MessageBox.Show(string.Format(Shoko.Commons.Properties.Resources.Playlist_Delete, pl.PlaylistName),
-                    Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (res == MessageBoxResult.Yes)
+                MessageBoxResult res = MessageBox.Show(string.Format(Commons.Properties.Resources.Playlist_Delete, pl.PlaylistName),
+                    Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (res != MessageBoxResult.Yes) return;
+                Cursor = Cursors.Wait;
+
+                if (pl.PlaylistID!=0)
                 {
-                    Cursor = Cursors.Wait;
-
-                    if (pl.PlaylistID!=0)
-                    {
-                        string msg = VM_ShokoServer.Instance.ShokoServices.DeletePlaylist(pl.PlaylistID);
-                        if (!string.IsNullOrEmpty(msg))
-                            Utils.ShowErrorMessage(msg);
-                    }
-
-                    SetDetailBindingPlaylist(null);
-
-                    // refresh data
-                    VM_PlaylistHelper.Instance.RefreshData();
-                    if (lbPlaylists.Items.Count > 0)
-                        lbPlaylists.SelectedIndex = 0;
-
-
-
-                    Cursor = Cursors.Arrow;
+                    string msg = VM_ShokoServer.Instance.ShokoServices.DeletePlaylist(pl.PlaylistID);
+                    if (!string.IsNullOrEmpty(msg))
+                        Utils.ShowErrorMessage(msg);
                 }
+
+                SetDetailBindingPlaylist(null);
+
+                // refresh data
+                VM_PlaylistHelper.Instance.RefreshData();
+                if (lbPlaylists.Items.Count > 0)
+                    lbPlaylists.SelectedIndex = 0;
+
+
+
+                Cursor = Cursors.Arrow;
             }
             catch (Exception ex)
             {
@@ -2770,11 +2478,9 @@ namespace Shoko.Desktop
 
         private void CommandBinding_DeletePlaylistItem(object sender, ExecutedRoutedEventArgs e)
         {
-
             try
             {
-                VM_PlaylistItem pli = e.Parameter as VM_PlaylistItem;
-                if (pli == null) return;
+                if (!(e.Parameter is VM_PlaylistItem pli)) return;
 
                 Cursor = Cursors.Wait;
 
@@ -2783,19 +2489,19 @@ namespace Shoko.Desktop
                 if (pl == null)
                 {
                     Cursor = Cursors.Arrow;
-                    MessageBox.Show(Shoko.Commons.Properties.Resources.Filter_PlaylistMissing, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Commons.Properties.Resources.Filter_PlaylistMissing,
+                        Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
-                if (pli.ItemType == PlaylistItemType.AnimeSeries)
+                switch (pli.ItemType)
                 {
-                    VM_AnimeSeries_User ser = pli.PlaylistItem as VM_AnimeSeries_User;
-                    pl.RemoveSeries(ser.AnimeSeriesID);
-                }
-                if (pli.ItemType == PlaylistItemType.Episode)
-                {
-                    VM_AnimeEpisode_User ep = pli.PlaylistItem as VM_AnimeEpisode_User;
-                    pl.RemoveEpisode(ep.AnimeEpisodeID);
+                    case PlaylistItemType.AnimeSeries:
+                        if (pli.PlaylistItem is VM_AnimeSeries_User ser) pl.RemoveSeries(ser.AnimeSeriesID);
+                        break;
+                    case PlaylistItemType.Episode:
+                        if (pli.PlaylistItem is VM_AnimeEpisode_User ep) pl.RemoveEpisode(ep.AnimeEpisodeID);
+                        break;
                 }
 
                 pl.Save();
@@ -2805,17 +2511,15 @@ namespace Shoko.Desktop
                 if (lbPlaylists.Items.Count > 0)
                 {
                     // get the current playlist
-                    VM_Playlist selPL = lbPlaylists.SelectedItem as VM_Playlist;
-                    if (selPL != null && pl != null && selPL.PlaylistID == pl.PlaylistID)
+                    if (lbPlaylists.SelectedItem is VM_Playlist selPL && pl != null &&
+                        selPL.PlaylistID == pl.PlaylistID)
                     {
                         selPL.Populate(pl);
                         selPL.PopulatePlaylistObjects();
                         VM_PlaylistHelper.Instance.OnPlaylistModified(new PlaylistModifiedEventArgs(pl.PlaylistID));
                     }
                     else
-                    {
                         VM_PlaylistHelper.Instance.RefreshData();
-                    }
                 }
 
                 Cursor = Cursors.Arrow;
@@ -2842,8 +2546,6 @@ namespace Shoko.Desktop
             }
         }
 
-
-
         private void CommandBinding_IncrementSeriesImageSize(object sender, ExecutedRoutedEventArgs e)
         {
             VM_UserSettings.Instance.SeriesGroup_Image_Height = VM_UserSettings.Instance.SeriesGroup_Image_Height + 10;
@@ -2859,29 +2561,23 @@ namespace Shoko.Desktop
 
         }
 
-        private int prevgf = -1;
         private void CommandBinding_DeleteSeries(object sender, ExecutedRoutedEventArgs e)
         {
-            VM_AnimeSeries_User ser = e.Parameter as VM_AnimeSeries_User;
-            if (ser == null) return;
+            if (!(e.Parameter is VM_AnimeSeries_User ser)) return;
 
             try
             {
-                DeleteSeriesGroupForm frm = new DeleteSeriesGroupForm();
-                frm.Owner = this;
+                DeleteSeriesGroupForm frm = new DeleteSeriesGroupForm {Owner = this};
                 bool? result = frm.ShowDialog();
 
-                if (result.HasValue && result.Value == true)
-                {
-                    Cursor = Cursors.Wait;
+                if (!result.HasValue || !result.Value) return;
+                Cursor = Cursors.Wait;
 
-                    VM_ShokoServer.Instance.ShokoServices.DeleteAnimeSeries(ser.AnimeSeriesID, frm.DeleteFiles, frm.DeleteGroups);
-                    VM_MainListHelper.Instance.RefreshGroupsSeriesData();
-                    VM_MainListHelper.Instance.ShowChildWrappers(VM_MainListHelper.Instance.CurrentWrapper);
-                    SetDetailBinding(null);
-                    Cursor = Cursors.Arrow;
-
-                }
+                VM_ShokoServer.Instance.ShokoServices.DeleteAnimeSeries(ser.AnimeSeriesID, frm.DeleteFiles, frm.DeleteGroups);
+                VM_MainListHelper.Instance.RefreshGroupsSeriesData();
+                VM_MainListHelper.Instance.ShowChildWrappers(VM_MainListHelper.Instance.CurrentWrapper);
+                SetDetailBinding(null);
+                Cursor = Cursors.Arrow;
             }
             catch (Exception ex)
             {
@@ -2892,35 +2588,30 @@ namespace Shoko.Desktop
                 Cursor = Cursors.Arrow;
             }
         }
- 
+
 
         private void CommandBinding_MoveSeries(object sender, ExecutedRoutedEventArgs e)
         {
-            VM_AnimeSeries_User ser = e.Parameter as VM_AnimeSeries_User;
-            if (ser == null) return;
+            if (!(e.Parameter is VM_AnimeSeries_User ser)) return;
 
             try
             {
-                MoveSeries frm = new MoveSeries();
-                frm.Owner = this;
+                MoveSeries frm = new MoveSeries {Owner = this};
                 frm.Init(ser);
                 bool? result = frm.ShowDialog();
 
-                if (result.HasValue && result.Value == true)
-                {
-                    VM_AnimeGroup_User grpSelected = frm.SelectedGroup;
-                    if (grpSelected == null) return;
+                if (!result.HasValue || !result.Value) return;
+                VM_AnimeGroup_User grpSelected = frm.SelectedGroup;
+                if (grpSelected == null) return;
 
-                    VM_MoveSeriesDetails request = new VM_MoveSeriesDetails();
-                    request.OldAnimeGroupID = ser.AnimeGroupID;
+                VM_MoveSeriesDetails request = new VM_MoveSeriesDetails {OldAnimeGroupID = ser.AnimeGroupID};
 
-                    ser.AnimeGroupID = grpSelected.AnimeGroupID;
-                    request.UpdatedSeries = ser;
+                ser.AnimeGroupID = grpSelected.AnimeGroupID;
+                request.UpdatedSeries = ser;
 
-                    Cursor = Cursors.Wait;
-                    EnableDisableGroupControls(false);
-                    moveSeriesWorker.RunWorkerAsync(request);
-                }
+                Cursor = Cursors.Wait;
+                EnableDisableGroupControls(false);
+                moveSeriesWorker.RunWorkerAsync(request);
             }
             catch (Exception ex)
             {
@@ -2939,7 +2630,8 @@ namespace Shoko.Desktop
             try
             {
                 VM_ShokoServer.Instance.RunImport();
-                MessageBox.Show(Shoko.Commons.Properties.Resources.Import_Running, Shoko.Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Commons.Properties.Resources.Import_Running, Commons.Properties.Resources.Success,
+                    MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
@@ -2952,13 +2644,12 @@ namespace Shoko.Desktop
         {
             try
             {
-                MessageBoxResult res = MessageBox.Show(string.Format(Shoko.Commons.Properties.Resources.Main_RunProcess),
-                    Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (res == MessageBoxResult.Yes)
-                {
-                    VM_ShokoServer.Instance.RemoveMissingFiles();
-                    MessageBox.Show(Shoko.Commons.Properties.Resources.Process_Running, Shoko.Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
-                }
+                MessageBoxResult res = MessageBox.Show(string.Format(Commons.Properties.Resources.Main_RunProcess),
+                    Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (res != MessageBoxResult.Yes) return;
+                VM_ShokoServer.Instance.RemoveMissingFiles();
+                MessageBox.Show(Commons.Properties.Resources.Process_Running, Commons.Properties.Resources.Success,
+                    MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
@@ -2971,7 +2662,8 @@ namespace Shoko.Desktop
             try
             {
                 VM_ShokoServer.Instance.SyncMyList();
-                MessageBox.Show(Shoko.Commons.Properties.Resources.Process_Running, Shoko.Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Commons.Properties.Resources.Process_Running, Commons.Properties.Resources.Success,
+                    MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
@@ -2984,7 +2676,8 @@ namespace Shoko.Desktop
             try
             {
                 VM_ShokoServer.Instance.SyncVotes();
-                MessageBox.Show(Shoko.Commons.Properties.Resources.Process_Running, Shoko.Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Commons.Properties.Resources.Process_Running, Commons.Properties.Resources.Success,
+                    MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
@@ -2997,7 +2690,8 @@ namespace Shoko.Desktop
             try
             {
                 VM_ShokoServer.Instance.ShokoServices.SyncMALUpload();
-                MessageBox.Show(Shoko.Commons.Properties.Resources.Process_Queued, Shoko.Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Commons.Properties.Resources.Process_Queued, Commons.Properties.Resources.Success,
+                    MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
@@ -3010,7 +2704,8 @@ namespace Shoko.Desktop
             try
             {
                 VM_ShokoServer.Instance.ShokoServices.SyncMALDownload();
-                MessageBox.Show(Shoko.Commons.Properties.Resources.Process_Queued, Shoko.Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Commons.Properties.Resources.Process_Queued, Commons.Properties.Resources.Success,
+                    MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
@@ -3020,8 +2715,7 @@ namespace Shoko.Desktop
 
         private void CommandBinding_RevokeVote(object sender, ExecutedRoutedEventArgs e)
         {
-            VM_AnimeSeries_User ser = e.Parameter as VM_AnimeSeries_User;
-            if (ser == null) return;
+            if (!(e.Parameter is VM_AnimeSeries_User ser)) return;
 
             try
             {
@@ -3060,13 +2754,14 @@ namespace Shoko.Desktop
             try
             {
                 // switching back to the top view (show all filters)
-                if (e.Parameter == null)
+                switch (e.Parameter)
                 {
-                    VM_MainListHelper.Instance.ShowChildWrappers(null);
-                }
-                if (e.Parameter is IListWrapper)
-                {
-                    VM_MainListHelper.Instance.ShowChildWrappers(e.Parameter as IListWrapper);
+                    case null:
+                        VM_MainListHelper.Instance.ShowChildWrappers(null);
+                        break;
+                    case IListWrapper list:
+                        VM_MainListHelper.Instance.ShowChildWrappers(list);
+                        break;
                 }
                 HighlightMainListItem();
             }
@@ -3124,7 +2819,6 @@ namespace Shoko.Desktop
         {
             WindowState = WindowState.Normal;
             WindowStyle = WindowStyle.None;
-            //this.Topmost = true;
             WindowState = WindowState.Maximized;
         }
 
@@ -3243,19 +2937,13 @@ namespace Shoko.Desktop
 
         #endregion
 
-
-
-
-
-
         public bool GroupFilter_GroupSearch(object obj)
         {
-            VM_AnimeGroup_User grpvm = obj as VM_AnimeGroup_User;
-            if (grpvm == null) return false;
+            if (!(obj is VM_AnimeGroup_User grpvm)) return false;
             return GroupSearchFilterHelper.EvaluateGroupFilter(groupFilterVM, grpvm);
         }
 
-        void lbPlaylists_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void lbPlaylists_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
@@ -3287,12 +2975,10 @@ namespace Shoko.Desktop
             }
         }
 
-        void lbGroupsSeries_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void lbGroupsSeries_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
-                //epListMain.DataContext = null;
-
                 ListBox lb = (ListBox)sender;
 
                 object obj = lb.SelectedItem;
@@ -3302,21 +2988,17 @@ namespace Shoko.Desktop
                 {
 
                     VM_AnimeSeries_User series = obj as VM_AnimeSeries_User;
-                    //series.RefreshBase();
-                    //VM_MainListHelper.Instance.LastAnimeSeriesID = series.AnimeSeriesID.Value;
                     VM_MainListHelper.Instance.CurrentSeries = series;
                 }
 
                 if (obj.GetType() == typeof(VM_AnimeGroup_User))
                 {
                     VM_AnimeGroup_User grp = obj as VM_AnimeGroup_User;
-                    //VM_MainListHelper.Instance.LastAnimeGroupID = grp.AnimeGroupID.Value;
                 }
 
                 if (obj.GetType() == typeof(VM_GroupFilter))
                 {
                     VM_GroupFilter gf = obj as VM_GroupFilter;
-                    //VM_MainListHelper.Instance.LastGroupFilterID = gf.GroupFilterID.Value;
 
                     groupFilterVM = gf;
                     VM_MainListHelper.Instance.ViewGroupsForms.Filter = GroupFilter_GroupSearch;
@@ -3326,14 +3008,7 @@ namespace Shoko.Desktop
                 if (!string.IsNullOrEmpty(VM_MainListHelper.Instance.CurrentOpenGroupFilter) && lbGroupsSeries.SelectedItem != null)
                     VM_MainListHelper.Instance.LastGroupForGF[VM_MainListHelper.Instance.CurrentOpenGroupFilter] = lbGroupsSeries.SelectedIndex;
 
-                //SetDetailBinding(VM_MainListHelper.Instance.AllGroups[0]);
                 SetDetailBinding(obj);
-
-                if (obj.GetType() == typeof(VM_AnimeSeries_User))
-                {
-                    VM_AnimeSeries_User series = obj as VM_AnimeSeries_User;
-                    //epListMain.DataContext = series;
-                }
             }
             catch (Exception ex)
             {
@@ -3343,49 +3018,43 @@ namespace Shoko.Desktop
 
         public void ShowChildrenForCurrentGroup(VM_AnimeSeries_User ser)
         {
-            if (lbGroupsSeries.SelectedItem == null) return;
+            if (!(lbGroupsSeries.SelectedItem is IListWrapper)) return;
+            // this is the last supported drill down
+            if (lbGroupsSeries.SelectedItem.GetType() == typeof(VM_AnimeSeries_User)) return;
 
-            if (lbGroupsSeries.SelectedItem is IListWrapper)
-            {
-                // this is the last supported drill down
-                if (lbGroupsSeries.SelectedItem.GetType() == typeof(VM_AnimeSeries_User)) return;
+            //VM_MainListHelper.Instance.LastAnimeSeriesID = ser.AnimeSeriesID.Value;
 
-                //VM_MainListHelper.Instance.LastAnimeSeriesID = ser.AnimeSeriesID.Value;
-
-                EnableDisableGroupControls(false);
-                showChildWrappersWorker.RunWorkerAsync(lbGroupsSeries.SelectedItem);
-            }
+            EnableDisableGroupControls(false);
+            showChildWrappersWorker.RunWorkerAsync(lbGroupsSeries.SelectedItem);
         }
 
-        void lbGroupsSeries_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void lbGroupsSeries_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var originalSource = e.OriginalSource as FrameworkElement;
             var source = e.Source as FrameworkElement;
 
-            if (Equals(originalSource.DataContext, source.DataContext)) //both null, or both what ever the scrollbar and the listview/treeview
+            if (Equals(originalSource?.DataContext, source?.DataContext)) //both null, or both what ever the scrollbar and the listview/treeview
                 return;
 
             try
             {
                 var selItem = lbGroupsSeries.SelectedItem;
-                if (selItem == null) return;
-
-                var animeGroup = selItem as VM_AnimeGroup_User;
-                if (animeGroup != null)
-                    VM_MainListHelper.Instance.CurrentOpenGroupFilter = "VM_AnimeGroup_User|" + animeGroup.AnimeGroupID;
-
-                var groupFilter = selItem as VM_GroupFilter;
-                if (groupFilter != null)
-                    VM_MainListHelper.Instance.CurrentOpenGroupFilter = "GroupFilterVM|" + groupFilter.GroupFilterID;
-
-                if (selItem is IListWrapper)
+                switch (selItem)
                 {
-                    //SetDetailBinding(null);
-                    // this is the last supported drill down
-                    if (selItem.GetType() == typeof(VM_AnimeSeries_User)) return;
+                    case null:
+                        return;
+                    case VM_AnimeGroup_User animeGroup:
+                        VM_MainListHelper.Instance.CurrentOpenGroupFilter = "VM_AnimeGroup_User|" + animeGroup.AnimeGroupID;
+                        break;
+                    case VM_GroupFilter groupFilter:
+                        VM_MainListHelper.Instance.CurrentOpenGroupFilter = "GroupFilterVM|" + groupFilter.GroupFilterID;
+                        break;
+                    case IListWrapper wrapper:
+                        if (wrapper.GetType() == typeof(VM_AnimeSeries_User)) return;
 
-                    EnableDisableGroupControls(false);
-                    showChildWrappersWorker.RunWorkerAsync(lbGroupsSeries.SelectedItem);
+                        EnableDisableGroupControls(false);
+                        showChildWrappersWorker.RunWorkerAsync(lbGroupsSeries.SelectedItem);
+                        break;
                 }
             }
             catch (Exception ex)
@@ -3411,33 +3080,24 @@ namespace Shoko.Desktop
 
                         return;
                     }
-                    else
-                    {
-                        // move to the previous item
-                        if (lastSelIndex - 1 <= lbGroupsSeries.Items.Count)
+                    // move to the previous item
+                    if (lastSelIndex - 1 <= lbGroupsSeries.Items.Count)
+                        if (lastSelIndex > 0)
                         {
-                            if (lastSelIndex > 0)
-                            {
-                                lbGroupsSeries.SelectedItem = lbGroupsSeries.Items[lastSelIndex - 1];
-                                lbGroupsSeries.Focus();
-                                lbGroupsSeries.ScrollIntoView(lbGroupsSeries.Items[lastSelIndex - 1]);
-                                //SetDetailBinding(lbGroupsSeries.SelectedItem);
+                            lbGroupsSeries.SelectedItem = lbGroupsSeries.Items[lastSelIndex - 1];
+                            lbGroupsSeries.Focus();
+                            lbGroupsSeries.ScrollIntoView(lbGroupsSeries.Items[lastSelIndex - 1]);
+                            //SetDetailBinding(lbGroupsSeries.SelectedItem);
 
-                                return;
-                            }
+                            return;
                         }
-                    }
                 }
 
-                if (lbGroupsSeries.Items != null && lbGroupsSeries.Items.Count > 0)
-                {
-                    lbGroupsSeries.SelectedIndex = 0;
-                    lbGroupsSeries.Focus();
-                    lbGroupsSeries.ScrollIntoView(lbGroupsSeries.SelectedItem);
-                    //SetDetailBinding(lbGroupsSeries.SelectedItem);
-                }
-
-                return;                
+                if (lbGroupsSeries.Items.Count <= 0) return;
+                lbGroupsSeries.SelectedIndex = 0;
+                lbGroupsSeries.Focus();
+                lbGroupsSeries.ScrollIntoView(lbGroupsSeries.SelectedItem);
+                //SetDetailBinding(lbGroupsSeries.SelectedItem);
             }
             catch (Exception ex)
             {
@@ -3445,55 +3105,51 @@ namespace Shoko.Desktop
             }
         }
 
-
-
-
         private void EnableDisableGroupControls(bool val)
         {
             lbGroupsSeries.IsEnabled = val;
             txtGroupSearch.IsEnabled = val;
             tbSeriesEpisodes.IsEnabled = val;
-            //epListMain.IsEnabled = val;
-            //ccDetail.IsEnabled = val;
         }
-
 
         private void SetDetailBinding(object objToBind)
         {
             try
             {
-                //BindingOperations.ClearBinding(ccDetail, ContentControl.ContentProperty);
-
-                if (objToBind != null && objToBind.GetType().Equals(typeof(VM_AnimeSeries_User)))
+                if (objToBind != null && objToBind.GetType() == typeof(VM_AnimeSeries_User))
                 {
                     VM_AnimeSeries_User ser = objToBind as VM_AnimeSeries_User;
                     if (AppSettings.DisplaySeriesSimple)
                     {
-                        AnimeSeriesSimplifiedControl ctrl = new AnimeSeriesSimplifiedControl();
-                        ctrl.DataContext = ser;
+                        AnimeSeriesSimplifiedControl ctrl = new AnimeSeriesSimplifiedControl {DataContext = ser};
 
-                        AnimeSeriesContainerControl cont = new AnimeSeriesContainerControl();
-                        cont.IsMetroDash = false;
-                        cont.DataContext = ctrl;
+                        AnimeSeriesContainerControl cont = new AnimeSeriesContainerControl
+                        {
+                            IsMetroDash = false,
+                            DataContext = ctrl
+                        };
 
                         objToBind = cont;
                     }
                     else
                     {
-                        AnimeSeries ctrl = new AnimeSeries();
-                        ctrl.DataContext = ser;
+                        AnimeSeries ctrl = new AnimeSeries {DataContext = ser};
 
-                        AnimeSeriesContainerControl cont = new AnimeSeriesContainerControl();
-                        cont.IsMetroDash = false;
-                        cont.DataContext = ctrl;
+                        AnimeSeriesContainerControl cont = new AnimeSeriesContainerControl
+                        {
+                            IsMetroDash = false,
+                            DataContext = ctrl
+                        };
 
                         objToBind = cont;
                     }
                 }
 
-                Binding b = new Binding();
-                b.Source = objToBind;
-                b.UpdateSourceTrigger = UpdateSourceTrigger.Explicit;
+                Binding b = new Binding
+                {
+                    Source = objToBind,
+                    UpdateSourceTrigger = UpdateSourceTrigger.Explicit
+                };
                 ccDetail.SetBinding(ContentProperty, b);
             }
             catch (Exception ex)
@@ -3507,10 +3163,11 @@ namespace Shoko.Desktop
         {
             try
             {
-                //BindingOperations.ClearBinding(ccDetail, ContentControl.ContentProperty);
-                Binding b = new Binding();
-                b.Source = objToBind;
-                b.UpdateSourceTrigger = UpdateSourceTrigger.Explicit;
+                Binding b = new Binding
+                {
+                    Source = objToBind,
+                    UpdateSourceTrigger = UpdateSourceTrigger.Explicit
+                };
                 ccPlaylist.SetBinding(ContentProperty, b);
             }
             catch (Exception ex)
@@ -3520,16 +3177,13 @@ namespace Shoko.Desktop
 
         }
 
-
-
-
-        void URL_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        private void URL_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
             Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
             e.Handled = true;
         }
 
-        void grdMain_LayoutUpdated(object sender, EventArgs e)
+        private void grdMain_LayoutUpdated(object sender, EventArgs e)
         {
         }
 
@@ -3538,6 +3192,5 @@ namespace Shoko.Desktop
             Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
             e.Handled = true;
         }
-
     }
 }

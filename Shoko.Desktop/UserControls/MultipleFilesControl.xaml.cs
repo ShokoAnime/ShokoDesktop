@@ -49,8 +49,8 @@ namespace Shoko.Desktop.UserControls
 
         public int EpisodeCount
         {
-            get { return (int)GetValue(EpisodeCountProperty); }
-            set { SetValue(EpisodeCountProperty, value); }
+            get => (int)GetValue(EpisodeCountProperty);
+            set => SetValue(EpisodeCountProperty, value);
         }
 
         public static readonly DependencyProperty IsLoadingProperty = DependencyProperty.Register("IsLoading",
@@ -58,7 +58,7 @@ namespace Shoko.Desktop.UserControls
 
         public bool IsLoading
         {
-            get { return (bool)GetValue(IsLoadingProperty); }
+            get => (bool)GetValue(IsLoadingProperty);
             set
             {
                 SetValue(IsLoadingProperty, value);
@@ -71,8 +71,8 @@ namespace Shoko.Desktop.UserControls
 
         public bool IsNotLoading
         {
-            get { return (bool)GetValue(IsNotLoadingProperty); }
-            set { SetValue(IsNotLoadingProperty, value); }
+            get => (bool)GetValue(IsNotLoadingProperty);
+            set => SetValue(IsNotLoadingProperty, value);
         }
 
         public static readonly DependencyProperty StatusMessageProperty = DependencyProperty.Register("StatusMessage",
@@ -80,8 +80,8 @@ namespace Shoko.Desktop.UserControls
 
         public string StatusMessage
         {
-            get { return (string)GetValue(StatusMessageProperty); }
-            set { SetValue(StatusMessageProperty, value); }
+            get => (string)GetValue(StatusMessageProperty);
+            set => SetValue(StatusMessageProperty, value);
         }
 
         private List<VM_AnimeEpisode_User> contracts = new List<VM_AnimeEpisode_User>();
@@ -93,14 +93,14 @@ namespace Shoko.Desktop.UserControls
         private ObservableCollection<string> PreferredResolutions = new ObservableCollection<string>();
         private ObservableCollection<string> PreferredAudioCodecs = new ObservableCollection<string>();
         private ObservableCollection<string> PreferredVideoCodecs = new ObservableCollection<string>();
-        
+
         private ObservableCollection<FileQualityFilterType> RequiredTypes = new ObservableCollection<FileQualityFilterType>();
         private ObservableCollection<string> RequiredSubGroups = new ObservableCollection<string>();
         private ObservableCollection<string> RequiredSources = new ObservableCollection<string>();
         private ObservableCollection<string> RequiredResolutions = new ObservableCollection<string>();
         private ObservableCollection<string> RequiredAudioCodecs = new ObservableCollection<string>();
         private ObservableCollection<string> RequiredVideoCodecs = new ObservableCollection<string>();
-        
+
         public static readonly DependencyProperty EnableDeleteOnImportProperty = DependencyProperty.Register("EnableDeleteOnImport",
             typeof(bool), typeof(MultipleFilesControl), new UIPropertyMetadata(false, null));
         public bool EnableDeleteOnImport
@@ -108,7 +108,7 @@ namespace Shoko.Desktop.UserControls
             get => (bool) GetValue(EnableDeleteOnImportProperty);
             set => SetValue(EnableDeleteOnImportProperty, value);
         }
-        
+
         public static readonly DependencyProperty AllowDeletionOfImportingFilesProperty = DependencyProperty.Register("AllowDeletionOfImportingFiles",
             typeof(bool), typeof(MultipleFilesControl), new UIPropertyMetadata(false, null));
         public bool AllowDeletionOfImportingFiles
@@ -132,7 +132,7 @@ namespace Shoko.Desktop.UserControls
             get => (bool) GetValue(Require10BitProperty);
             set => SetValue(Require10BitProperty, value);
         }
-        
+
         public static readonly DependencyProperty MaxNumberOfFilesProperty = DependencyProperty.Register("MaxNumberOfFiles",
             typeof(int), typeof(MultipleFilesControl), new UIPropertyMetadata(1, null));
         public int MaxNumberOfFiles
@@ -140,7 +140,7 @@ namespace Shoko.Desktop.UserControls
             get => (int) GetValue(MaxNumberOfFilesProperty);
             set => SetValue(MaxNumberOfFilesProperty, value);
         }
-        
+
         public static readonly DependencyProperty RequiredSubStreamCountProperty = DependencyProperty.Register("RequiredSubStreamCount",
             typeof(int), typeof(MultipleFilesControl), new UIPropertyMetadata(0, null));
         public int RequiredSubStreamCount
@@ -148,7 +148,7 @@ namespace Shoko.Desktop.UserControls
             get => (int) GetValue(RequiredSubStreamCountProperty);
             set => SetValue(RequiredSubStreamCountProperty, value);
         }
-        
+
         public static readonly DependencyProperty RequiredAudioStreamCountProperty = DependencyProperty.Register("RequiredAudioStreamCount",
             typeof(int), typeof(MultipleFilesControl), new UIPropertyMetadata(0, null));
         public int RequiredAudioStreamCount
@@ -156,7 +156,7 @@ namespace Shoko.Desktop.UserControls
             get => (int) GetValue(RequiredAudioStreamCountProperty);
             set => SetValue(RequiredAudioStreamCountProperty, value);
         }
-        
+
         public static readonly DependencyProperty RequiredSourcesProperty = DependencyProperty.Register("RequiredSourcesOperator",
             typeof(string), typeof(MultipleFilesControl), new UIPropertyMetadata("IN", null));
         public string RequiredSourcesOperator
@@ -164,7 +164,7 @@ namespace Shoko.Desktop.UserControls
             get => (string) GetValue(RequiredSourcesProperty);
             set => SetValue(RequiredSourcesProperty, value);
         }
-        
+
         public static readonly DependencyProperty RequiredResolutionsProperty = DependencyProperty.Register("RequiredResolutionsOperator",
             typeof(string), typeof(MultipleFilesControl), new UIPropertyMetadata("IN", null));
         public string RequiredResolutionsOperator
@@ -172,7 +172,7 @@ namespace Shoko.Desktop.UserControls
             get => (string) GetValue(RequiredResolutionsProperty);
             set => SetValue(RequiredResolutionsProperty, value);
         }
-        
+
         public static readonly DependencyProperty RequiredAudioCodecsProperty = DependencyProperty.Register("RequiredAudioCodecsOperator",
             typeof(string), typeof(MultipleFilesControl), new UIPropertyMetadata("IN", null));
         public string RequiredAudioCodecsOperator
@@ -180,7 +180,7 @@ namespace Shoko.Desktop.UserControls
             get => (string) GetValue(RequiredAudioCodecsProperty);
             set => SetValue(RequiredAudioCodecsProperty, value);
         }
-        
+
         public static readonly DependencyProperty RequiredVideoCodecsProperty = DependencyProperty.Register("RequiredVideoCodecsOperator",
             typeof(string), typeof(MultipleFilesControl), new UIPropertyMetadata("IN", null));
         public string RequiredVideoCodecsOperator
@@ -188,7 +188,7 @@ namespace Shoko.Desktop.UserControls
             get => (string) GetValue(RequiredVideoCodecsProperty);
             set => SetValue(RequiredVideoCodecsProperty, value);
         }
-        
+
         public static readonly DependencyProperty RequiredSubGroupsProperty = DependencyProperty.Register("RequiredSubGroupsOperator",
             typeof(string), typeof(MultipleFilesControl), new UIPropertyMetadata("IN", null));
         public string RequiredSubGroupsOperator
@@ -212,7 +212,7 @@ namespace Shoko.Desktop.UserControls
             get => (string) GetValue(RequiredAudioStreamCountOperatorProperty);
             set => SetValue(RequiredAudioStreamCountOperatorProperty, value);
         }
-        
+
         public MultipleFilesControl()
         {
             InitializeComponent();
@@ -222,11 +222,11 @@ namespace Shoko.Desktop.UserControls
             FileQualityPreferences prefs = null;
             try
             {
-                prefs = JsonConvert.DeserializeObject<FileQualityPreferences>(VM_ShokoServer.Instance.FileQualityPreferences, new[] { new StringEnumConverter() });
+                prefs = JsonConvert.DeserializeObject<FileQualityPreferences>(VM_ShokoServer.Instance.FileQualityPreferences, new StringEnumConverter());
             }
-            catch (Exception e)
+            catch
             {
-
+                // ignored
             }
             if (prefs != null)
             {
@@ -236,7 +236,7 @@ namespace Shoko.Desktop.UserControls
                 PreferredAudioCodecs = new ObservableCollection<string>(prefs.AudioCodecPreferences);
                 PreferredVideoCodecs = new ObservableCollection<string>(prefs.VideoCodecPreferences);
                 PreferredSubGroups = new ObservableCollection<string>(prefs.SubGroupPreferences);
-                
+
                 RequiredTypes = new ObservableCollection<FileQualityFilterType>(prefs.RequiredTypes);
                 RequiredSources = new ObservableCollection<string>(prefs.RequiredSources);
                 RequiredResolutions = new ObservableCollection<string>(prefs.RequiredResolutions);
@@ -267,7 +267,7 @@ namespace Shoko.Desktop.UserControls
                 lbPreferred_AudioCodecs.ItemsSource = PreferredAudioCodecs;
                 lbPreferred_VideoCodecs.ItemsSource = PreferredVideoCodecs;
                 lbPreferred_SubGroups.ItemsSource = PreferredSubGroups;
-                
+
                 lbRequired_Types.ItemsSource = RequiredTypes;
                 lbRequired_Sources.ItemsSource = RequiredSources;
                 lbRequired_Resolutions.ItemsSource = RequiredResolutions;
@@ -634,6 +634,7 @@ namespace Shoko.Desktop.UserControls
             }
             catch (Exception exception)
             {
+                logger.Error(exception);
             }
         }
 
@@ -663,7 +664,7 @@ namespace Shoko.Desktop.UserControls
         {
             Move(PreferredAudioCodecs, lbPreferred_AudioCodecs, MoveDirection.Down);
         }
-        
+
         private void btnRequired_Types_Up_Click(object sender, RoutedEventArgs e)
         {
             Move(RequiredTypes, lbRequired_Types, MoveDirection.Up);
@@ -683,6 +684,7 @@ namespace Shoko.Desktop.UserControls
             }
             catch (Exception exception)
             {
+                logger.Error(exception);
             }
         }
 
@@ -733,6 +735,7 @@ namespace Shoko.Desktop.UserControls
             }
             catch (Exception exception)
             {
+                logger.Error(exception);
             }
         }
 

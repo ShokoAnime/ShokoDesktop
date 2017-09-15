@@ -235,7 +235,10 @@ namespace Shoko.Desktop.UserControls
                 foreach (ScrollViewer sv in Utils.GetScrollViewers(this))
                     sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta / 3D);
             }
-            catch { }
+            catch
+            {
+                // ignore
+            }
         }
 
         void videoHandler_VideoWatchedEvent(VideoWatchedEventArgs ev)
@@ -1044,7 +1047,10 @@ namespace Shoko.Desktop.UserControls
                 }
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
         }
 
         void btnAddCustomTag_Click(object sender, RoutedEventArgs e)
@@ -1067,10 +1073,11 @@ namespace Shoko.Desktop.UserControls
 
                 CrossRef_CustomTag xref = new CrossRef_CustomTag();
                 xref.CrossRefID = ser.AniDB_ID;
-                xref.CrossRefType = (int)CustomTagCrossRefType.Anime;
+                xref.CrossRefType = (int) CustomTagCrossRefType.Anime;
                 xref.CustomTagID = tag.CustomTagID;
 
-                CL_Response<CrossRef_CustomTag> resp = VM_ShokoServer.Instance.ShokoServices.SaveCustomTagCrossRef(xref);
+                CL_Response<CrossRef_CustomTag>
+                    resp = VM_ShokoServer.Instance.ShokoServices.SaveCustomTagCrossRef(xref);
                 if (!string.IsNullOrEmpty(resp.ErrorMessage))
                 {
                     Utils.ShowErrorMessage(resp.ErrorMessage);
@@ -1081,9 +1088,11 @@ namespace Shoko.Desktop.UserControls
                     ser.AniDBAnime.ViewCustomTags.Refresh();
                     VM_MainListHelper.Instance.UpdateAll();
                 }
-
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
         }
 
         private void CommandBinding_DeleteCustomTag(object sender, ExecutedRoutedEventArgs e)

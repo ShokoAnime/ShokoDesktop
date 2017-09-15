@@ -140,7 +140,10 @@ namespace Shoko.Desktop.Utilities
                 {
                     fi.SetValue(destination, fi.GetValue(source));
                 }
-                catch { }
+                catch
+                {
+                    // ignore
+                }
             }
         }
     }

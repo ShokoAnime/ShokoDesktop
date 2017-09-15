@@ -8,14 +8,10 @@ namespace Shoko.Desktop.UserControls.ValidationRules
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            int parameter = 0;
-
             try
             {
-                if (((string)value).Length > 0)
-                {
-                    parameter = int.Parse((String)value);
-                }
+                if (((string)value).Length > 0 && !int.TryParse((String)value, out int parameter))
+                        return new ValidationResult(false, "Must be an integer");
             }
             catch (Exception)
             {

@@ -21,10 +21,10 @@ namespace Shoko.Desktop.UserControls.Settings
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             chkRelationSettings_AutoGroupSeries.Click += chkRelationSettings_AutoGroupSeries_Click;
-	        chkRelationSettings_AutoGroupSeriesUseScoreAlgorithm.Click += chkRelationSettings_AutoGroupSeriesUseScoreAlgorithm_Click;
+            chkRelationSettings_AutoGroupSeriesUseScoreAlgorithm.Click += chkRelationSettings_AutoGroupSeriesUseScoreAlgorithm_Click;
 
-	        chkRelationSettings_AllowDissimilarTitleExclusion.Click += new RoutedEventHandler(settingChanged);
-	        chkRelationSettings_OVA.Click += new RoutedEventHandler(settingChanged);
+            chkRelationSettings_AllowDissimilarTitleExclusion.Click += new RoutedEventHandler(settingChanged);
+            chkRelationSettings_OVA.Click += new RoutedEventHandler(settingChanged);
             chkRelationSettings_Movie.Click += new RoutedEventHandler(settingChanged);
             chkRelationSettings_SameSetting.Click += new RoutedEventHandler(settingChanged);
             chkRelationSettings_AltSetting.Click += new RoutedEventHandler(settingChanged);
@@ -44,10 +44,10 @@ namespace Shoko.Desktop.UserControls.Settings
             VM_ShokoServer.Instance.SaveServerSettingsAsync();
         }
 
-	    void chkRelationSettings_AutoGroupSeriesUseScoreAlgorithm_Click(object sender, RoutedEventArgs e)
-	    {
-		    VM_ShokoServer.Instance.SaveServerSettingsAsync();
-	    }
+        void chkRelationSettings_AutoGroupSeriesUseScoreAlgorithm_Click(object sender, RoutedEventArgs e)
+        {
+            VM_ShokoServer.Instance.SaveServerSettingsAsync();
+        }
 
         void btnRecreateGroups_Click(object sender, RoutedEventArgs e)
         {
@@ -70,8 +70,9 @@ namespace Shoko.Desktop.UserControls.Settings
                     Window parentWindow = Window.GetWindow(this);
                     parentWindow.Cursor = Cursors.Arrow;
                 }
-                catch (Exception exc)
+                catch
                 {
+                    // ignore
                 }
             }
         }

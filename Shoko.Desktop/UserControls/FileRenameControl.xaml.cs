@@ -439,7 +439,10 @@ namespace Shoko.Desktop.UserControls
                 RenameTag tag = cboTagType.SelectedItem as RenameTag;
                 txtRenameScript.Text = txtRenameScript.Text.Insert(txtRenameScript.CaretIndex, tag.Tag);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage($"Unable to add tag: {ex.Message}", ex);
+            }
         }
 
         void btnAddTest_Click(object sender, RoutedEventArgs e)
@@ -452,7 +455,10 @@ namespace Shoko.Desktop.UserControls
                 RenameTest test = cboTestType.SelectedItem as RenameTest;
                 txtRenameScript.Text = txtRenameScript.Text.Insert(txtRenameScript.CaretIndex, test.Test);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage($"Unable to add test: {ex.Message}", ex);
+            }
         }
 
         void btnClearList_Click(object sender, RoutedEventArgs e)

@@ -131,11 +131,13 @@ namespace Shoko.Desktop.Forms
                     {
                         int idx = k.LastIndexOf('\\');
                         string n = (idx >= 0) ? k.Substring(idx + 1) : k;
-                        
-                        item.Items.Add(GenerateFromDirectory(n, Path.Combine(path,n)));
+                        item.Items.Add(GenerateFromDirectory(n, Path.Combine(path, n)));
                     }
                 }
-                catch (Exception) { }
+                catch (Exception)
+                {
+                    // ignore
+                }
             }
             Cursor = Cursors.Arrow;
         }

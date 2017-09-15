@@ -105,9 +105,12 @@ namespace Shoko.Desktop.UserControls
             try
             {
                 foreach (ScrollViewer sv in Utils.GetScrollViewers(this))
-                    sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta / 3);
+                    sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta / 3D);
             }
-            catch { }
+            catch
+            {
+                // ignore
+            }
         }
 
 
@@ -263,8 +266,7 @@ namespace Shoko.Desktop.UserControls
             catch (Exception ex)
             {
                 Cursor = Cursors.Arrow;
-                Utils.ShowErrorMessage("SetWatchedStatusOnSeries: " + ex.Message);
-                logger.Error(ex, ex.ToString());
+                Utils.ShowErrorMessage("SetWatchedStatusOnSeries: " + ex.Message, ex);
             }
         }
 

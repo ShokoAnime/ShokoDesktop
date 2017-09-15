@@ -4,6 +4,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using NLog;
 
 namespace Shoko.Desktop.UserControls
 {
@@ -134,7 +135,7 @@ namespace Shoko.Desktop.UserControls
             }
             catch (Exception ex)
             {
-                Console.Write(ex.ToString());
+                LogManager.GetCurrentClassLogger().Error(ex);
             }
         }
 

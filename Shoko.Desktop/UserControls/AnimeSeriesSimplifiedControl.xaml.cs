@@ -159,7 +159,10 @@ namespace Shoko.Desktop.UserControls
                 foreach (ScrollViewer sv in Utils.GetScrollViewers(this))
                     sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta / 3D);
             }
-            catch { }
+            catch
+            {
+                // ignored
+            }
         }
 
         private void BtnSwitchView_Click(object sender, RoutedEventArgs e)
@@ -205,7 +208,10 @@ namespace Shoko.Desktop.UserControls
                 foreach (ScrollViewer sv in Utils.GetScrollViewers(this))
                     sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta / 3D);
             }
-            catch { }
+            catch
+            {
+                // ignored
+            }
         }
 
         void lbEpisodes_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
@@ -215,7 +221,10 @@ namespace Shoko.Desktop.UserControls
                 foreach (ScrollViewer sv in Utils.GetScrollViewers(this))
                     sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta / 3D);
             }
-            catch { }
+            catch
+            {
+                // ignored
+            }
         }
 
         void grdMain_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
@@ -225,7 +234,10 @@ namespace Shoko.Desktop.UserControls
                 foreach (ScrollViewer sv in Utils.GetScrollViewers(this))
                     sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta / 3D);
             }
-            catch { }
+            catch
+            {
+                // ignored
+            }
         }
 
         void cRating_OnRatingValueChangedEvent(RatingValueEventArgs ev)
@@ -270,7 +282,7 @@ namespace Shoko.Desktop.UserControls
         {
             VM_Trakt_CommentPost comment = e.Argument as VM_Trakt_CommentPost;
 
-            string msg = "";
+            string msg;
             try
             {
                 CL_Response<bool> r=VM_ShokoServer.Instance.ShokoServices.PostTraktCommentShow(comment.TraktID, comment.CommentText, comment.Spoiler);
@@ -436,12 +448,16 @@ namespace Shoko.Desktop.UserControls
         {
             try
             {
-                MainWindow mainwdw = (MainWindow)Window.GetWindow(this);
+                MainWindow mainwdw = (MainWindow) Window.GetWindow(this);
 
-                if (MainWindow.CurrentMainTabIndex == (int) MainWindow.TAB_MAIN.Dashboard && mainwdw.tileContinueWatching.Visibility == Visibility.Visible)
+                if (MainWindow.CurrentMainTabIndex == (int) MainWindow.TAB_MAIN.Dashboard &&
+                    mainwdw?.tileContinueWatching.Visibility == Visibility.Visible)
                     RefreshData();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+            }
         }
 
         void btnPlayAllEps_Click(object sender, RoutedEventArgs e)

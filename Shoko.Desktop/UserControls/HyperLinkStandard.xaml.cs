@@ -3,13 +3,15 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using NLog;
 
 namespace Shoko.Desktop.UserControls
 {
+    /// <inheritdoc cref="UserControl" />
     /// <summary>
     /// Interaction logic for HyperLinkStandard.xaml
     /// </summary>
-    public partial class HyperLinkStandard : UserControl
+    public partial class HyperLinkStandard
     {
         public static readonly DependencyProperty DisplayTextProperty = DependencyProperty.Register("DisplayText",
             typeof(string), typeof(HyperLinkStandard), new UIPropertyMetadata("", displayTextChangedCallback));
@@ -22,14 +24,14 @@ namespace Shoko.Desktop.UserControls
 
         public string ForegroundOverride
         {
-            get { return (string)GetValue(ForegroundOverrideProperty); }
-            set { SetValue(ForegroundOverrideProperty, value); }
+            get => (string)GetValue(ForegroundOverrideProperty);
+            set => SetValue(ForegroundOverrideProperty, value);
         }
 
         public string DisplayText
         {
-            get { return (string)GetValue(DisplayTextProperty); }
-            set { SetValue(DisplayTextProperty, value); }
+            get => (string)GetValue(DisplayTextProperty);
+            set => SetValue(DisplayTextProperty, value);
         }
 
         private static void displayTextChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -48,8 +50,8 @@ namespace Shoko.Desktop.UserControls
 
         public string URL
         {
-            get { return (string)GetValue(URLProperty); }
-            set { SetValue(URLProperty, value); }
+            get => (string)GetValue(URLProperty);
+            set => SetValue(URLProperty, value);
         }
 
         private static void urlChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -62,7 +64,7 @@ namespace Shoko.Desktop.UserControls
         {
             InitializeComponent();
 
-            hlURL.Click += new RoutedEventHandler(hlURL_Click);
+            hlURL.Click += hlURL_Click;
         }
 
         void hlURL_Click(object sender, RoutedEventArgs e)
@@ -73,7 +75,10 @@ namespace Shoko.Desktop.UserControls
 
                 Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
             }
-            catch { }
+            catch (Exception ex)
+            {
+                LogManager.GetCurrentClassLogger().Error($"Unable to open hyperlink: {ex}");
+            }
 
             e.Handled = true;
         }

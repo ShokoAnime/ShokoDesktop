@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using NLog;
 using Shoko.Desktop.ViewModel.Server;
 
 namespace Shoko.Desktop.UserControls
@@ -72,7 +73,10 @@ namespace Shoko.Desktop.UserControls
                 }
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                LogManager.GetCurrentClassLogger().Error(ex);
+            }
         }
     }
 }

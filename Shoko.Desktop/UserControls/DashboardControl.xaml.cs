@@ -5,6 +5,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using NLog;
 using Shoko.Desktop.Enums;
 using Shoko.Models.Enums;
 using Shoko.Desktop.Forms;
@@ -268,12 +269,16 @@ namespace Shoko.Desktop.UserControls
         {
             try
             {
-                MainWindow mainwdw = (MainWindow)Window.GetWindow(this);
+                MainWindow mainwdw = (MainWindow) Window.GetWindow(this);
 
-                if (MainWindow.CurrentMainTabIndex == (int) MainWindow.TAB_MAIN.Dashboard && mainwdw.dash.Visibility == Visibility.Visible)
+                if (MainWindow.CurrentMainTabIndex == (int) MainWindow.TAB_MAIN.Dashboard &&
+                    mainwdw?.dash.Visibility == Visibility.Visible)
                     RefreshData(true, false, false);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                LogManager.GetCurrentClassLogger().Error(ex);
+            }
         }
 
 

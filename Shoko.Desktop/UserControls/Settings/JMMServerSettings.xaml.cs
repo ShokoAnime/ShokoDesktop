@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel;
 
 namespace Shoko.Desktop.UserControls.Settings
@@ -64,7 +65,7 @@ namespace Shoko.Desktop.UserControls.Settings
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                Utils.ShowErrorMessage(ex.Message, ex);
             }
         }
 

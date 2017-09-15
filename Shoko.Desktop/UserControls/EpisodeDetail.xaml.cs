@@ -753,7 +753,7 @@ namespace Shoko.Desktop.UserControls
             }
             catch (Exception)
             {
-
+                // ignore
             }
 
             return value;

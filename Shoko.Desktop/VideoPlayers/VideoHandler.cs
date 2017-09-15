@@ -97,7 +97,7 @@ namespace Shoko.Desktop.VideoPlayers
         protected void OnVideoWatchedEvent(VideoWatchedEventArgs ev)
         {
             VideoWatchedEvent?.Invoke(ev);
-        }   
+        }
 
         private void AddTempPathToSubtilePaths()
         {
@@ -190,14 +190,14 @@ namespace Shoko.Desktop.VideoPlayers
                     }
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    logger.Error(ex);
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
+                logger.Error(e);
             }
         }
 
@@ -207,15 +207,15 @@ namespace Shoko.Desktop.VideoPlayers
             if (p != null && p.Active)
                 return p;
             return Players.FirstOrDefault(a => a.Active);
-        } 
+        }
 
         public bool IsActive(VideoPlayer p)
         {
             IVideoPlayer v = Players.FirstOrDefault(a => a.Player == p);
             if (v == null)
                 return false;
-            v.Init();            
-			return v.Active;
+            v.Init();
+            return v.Active;
         }
 
         public bool Active
@@ -249,7 +249,7 @@ namespace Shoko.Desktop.VideoPlayers
                 if (player == null)
                     throw new Exception("Please configure a Video Player");
                 VideoInfo info = vid.ToVideoInfo(forcebegining);
-                
+
                 if(player.Player == VideoPlayer.WindowsDefault && info.IsUrl)
                     throw new Exception("Streaming is not supported from Windows default player, please select one of the supported ones from settings");
 
@@ -484,7 +484,7 @@ namespace Shoko.Desktop.VideoPlayers
                     List<VM_VideoDetailed> vids = ep.FilesForEpisode.OrderByDescending(a=>a.GetOverallVideoSourceRanking()).ToList();
 
                     // sort by quality
- 
+
                     if (AppSettings.AutoFileSubsequent == (int)AutoFileSubsequentType.BestQuality)
                     {
                         // just use the best quality file

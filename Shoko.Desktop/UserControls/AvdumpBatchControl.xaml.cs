@@ -158,7 +158,7 @@ namespace Shoko.Desktop.UserControls
             }
             catch (Exception)
             {
-                //Utils.ShowErrorMessage(ex);
+                // ignore
             }
         }
 

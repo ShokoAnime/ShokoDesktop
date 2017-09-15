@@ -184,7 +184,10 @@ namespace Shoko.Desktop.UserControls
                     ScrollerDashMetroDX.LineRight();
                 e.Handled = true;
             }
-            catch { }
+            catch
+            {
+                // ignore
+            }
         }
 
         void LayoutRoot_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
@@ -197,7 +200,10 @@ namespace Shoko.Desktop.UserControls
                     ScrollerDashMetroDX.LineRight();
                 e.Handled = true;
             }
-            catch { }
+            catch
+            {
+                // ignore
+            }
         }
 
         private void SetSectionOrder()

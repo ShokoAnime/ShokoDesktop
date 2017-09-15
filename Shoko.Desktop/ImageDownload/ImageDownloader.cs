@@ -1,24 +1,23 @@
-﻿using NLog;
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.ComponentModel;
 using System.IO;
 using System.Threading;
+using NLog;
 using Shoko.Desktop.Utilities;
-using Shoko.Models.Enums;
 using Shoko.Desktop.ViewModel;
 using Shoko.Desktop.ViewModel.Server;
+using Shoko.Models;
+using Shoko.Models.Enums;
 
 namespace Shoko.Desktop.ImageDownload
 {
     public class ImageDownloader
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
-        private const string QUEUE_STOP = "StopQueue";
-        private ConcurrentQueue<ImageDownloadRequest> imagesToDownload = new ConcurrentQueue<ImageDownloadRequest>();
-        //private BlockingList<ImageDownloadRequest> imagesToDownload = new BlockingList<ImageDownloadRequest>();
-        private BackgroundWorker workerImages = new BackgroundWorker();
-        private static object downloadsLock = new object();
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly ConcurrentQueue<ImageDownloadRequest> imagesToDownload = new ConcurrentQueue<ImageDownloadRequest>();
+        private readonly BackgroundWorker workerImages = new BackgroundWorker();
+        private static readonly object downloadsLock = new object();
         public static bool Stopping = false;
 
         public int QueueCount => imagesToDownload.Count;
@@ -27,27 +26,21 @@ namespace Shoko.Desktop.ImageDownload
         {
             workerImages.WorkerReportsProgress = true;
             workerImages.WorkerSupportsCancellation = true;
-            workerImages.DoWork += new DoWorkEventHandler(ProcessImages);
+            workerImages.DoWork += ProcessImages;
         }
 
         public delegate void QueueUpdateEventHandler(QueueUpdateEventArgs ev);
         public event QueueUpdateEventHandler QueueUpdateEvent;
         protected void OnQueueUpdateEvent(QueueUpdateEventArgs ev)
         {
-            if (QueueUpdateEvent != null)
-            {
-                QueueUpdateEvent(ev);
-            }
+            QueueUpdateEvent?.Invoke(ev);
         }
 
         public delegate void ImageDownloadEventHandler(ImageDownloadEventArgs ev);
         public event ImageDownloadEventHandler ImageDownloadEvent;
         protected void OnImageDownloadEvent(ImageDownloadEventArgs ev)
         {
-            if (ImageDownloadEvent != null)
-            {
-                ImageDownloadEvent(ev);
-            }
+            ImageDownloadEvent?.Invoke(ev);
         }
 
         public void Init()
@@ -61,12 +54,6 @@ namespace Shoko.Desktop.ImageDownload
 
             try
             {
-                if (anime.AnimeID == 8580)
-                    Console.Write("");
-
-                string url = string.Format(Models.Constants.URLS.AniDB_Images, anime.Picname);
-                string filename = anime.PosterPathNoDefault;
-
                 ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.AniDB_Cover, anime, forceDownload);
 
                 // check if this file has already been downloaded and exists
@@ -99,9 +86,6 @@ namespace Shoko.Desktop.ImageDownload
 
             try
             {
-                string url = string.Format(Models.Constants.URLS.TvDB_Images, poster.BannerPath);
-                string filename = poster.FullImagePath;
-
                 ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.TvDB_Cover, poster, forceDownload);
 
                 // check if this file has already been downloaded and exists
@@ -134,9 +118,6 @@ namespace Shoko.Desktop.ImageDownload
 
             try
             {
-                string url = string.Format(Models.Constants.URLS.TvDB_Images, wideBanner.BannerPath);
-                string filename = wideBanner.FullImagePath;
-
                 ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.TvDB_Banner, wideBanner, forceDownload);
 
                 // check if this file has already been downloaded and exists
@@ -169,9 +150,6 @@ namespace Shoko.Desktop.ImageDownload
 
             try
             {
-                string url = string.Format(Models.Constants.URLS.TvDB_Images, episode.Filename);
-                string filename = episode.FullImagePath;
-
                 ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.TvDB_Episode, episode, forceDownload);
 
                 // check if this file has already been downloaded and exists
@@ -204,9 +182,6 @@ namespace Shoko.Desktop.ImageDownload
 
             try
             {
-                string url = string.Format(Models.Constants.URLS.TvDB_Images, fanart.BannerPath);
-                string filename = fanart.FullImagePath;
-
                 ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.TvDB_FanArt, fanart, forceDownload);
 
                 // check if this file has already been downloaded and exists
@@ -239,9 +214,6 @@ namespace Shoko.Desktop.ImageDownload
 
             try
             {
-                string url = poster.URL;
-                string filename = poster.FullImagePath;
-
                 ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.MovieDB_Poster, poster, forceDownload);
 
                 // check if this file has already been downloaded and exists
@@ -274,9 +246,6 @@ namespace Shoko.Desktop.ImageDownload
 
             try
             {
-                string url = fanart.URL;
-                string filename = fanart.FullImagePath;
-
                 ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.MovieDB_FanArt, fanart, forceDownload);
 
                 // check if this file has already been downloaded and exists
@@ -310,54 +279,54 @@ namespace Shoko.Desktop.ImageDownload
                 case ImageEntityType.AniDB_Cover:
 
                     VM_AniDB_Anime anime = req.ImageData as VM_AniDB_Anime;
-                    return anime.PosterPathNoDefaultPlain;
+                    return anime?.PosterPathNoDefaultPlain;
 
                 case ImageEntityType.TvDB_Cover:
 
                     VM_TvDB_ImagePoster poster = req.ImageData as VM_TvDB_ImagePoster;
-                    return poster.FullImagePathPlain;
+                    return poster?.FullImagePathPlain;
 
                 case ImageEntityType.TvDB_Banner:
 
                     VM_TvDB_ImageWideBanner banner = req.ImageData as VM_TvDB_ImageWideBanner;
-                    return banner.FullImagePathPlain;
+                    return banner?.FullImagePathPlain;
 
                 case ImageEntityType.TvDB_Episode:
 
                     VM_TvDB_Episode episode = req.ImageData as VM_TvDB_Episode;
-                    return episode.FullImagePathPlain;
+                    return episode?.FullImagePathPlain;
 
                 case ImageEntityType.TvDB_FanArt:
 
                     VM_TvDB_ImageFanart fanart = req.ImageData as VM_TvDB_ImageFanart;
 
                     if (thumbNailOnly)
-                        return fanart.FullThumbnailPathPlain;
+                        return fanart?.FullThumbnailPathPlain;
                     else
-                        return fanart.FullImagePathPlain;
+                        return fanart?.FullImagePathPlain;
 
                 case ImageEntityType.MovieDB_Poster:
 
                     VM_MovieDB_Poster moviePoster = req.ImageData as VM_MovieDB_Poster;
-                    return moviePoster.FullImagePathPlain;
+                    return moviePoster?.FullImagePathPlain;
 
                 case ImageEntityType.MovieDB_FanArt:
 
                     VM_MovieDB_Fanart movieFanart = req.ImageData as VM_MovieDB_Fanart;
-                    return movieFanart.FullImagePathPlain;
+                    return movieFanart?.FullImagePathPlain;
 
                 case ImageEntityType.AniDB_Character:
 
                     VM_AniDB_Character chr = req.ImageData as VM_AniDB_Character;
-                    return chr.ImagePathPlain;
+                    return chr?.ImagePathPlain;
 
                 case ImageEntityType.AniDB_Creator:
 
                     VM_AniDB_Seiyuu cre = req.ImageData as VM_AniDB_Seiyuu;
-                    return cre.ImagePathPlain;
+                    return cre?.ImagePathPlain;
 
                 default:
-                    return "";
+                    return string.Empty;
             }
 
         }
@@ -369,50 +338,50 @@ namespace Shoko.Desktop.ImageDownload
                 case ImageEntityType.AniDB_Cover:
 
                     VM_AniDB_Anime anime = req.ImageData as VM_AniDB_Anime;
-                    return anime.AnimeID.ToString();
+                    return anime?.AnimeID.ToString();
 
                 case ImageEntityType.TvDB_Cover:
 
                     VM_TvDB_ImagePoster poster = req.ImageData as VM_TvDB_ImagePoster;
-                    return poster.TvDB_ImagePosterID.ToString();
+                    return poster?.TvDB_ImagePosterID.ToString();
 
                 case ImageEntityType.TvDB_Banner:
 
                     VM_TvDB_ImageWideBanner banner = req.ImageData as VM_TvDB_ImageWideBanner;
-                    return banner.TvDB_ImageWideBannerID.ToString();
+                    return banner?.TvDB_ImageWideBannerID.ToString();
 
                 case ImageEntityType.TvDB_Episode:
 
                     VM_TvDB_Episode episode = req.ImageData as VM_TvDB_Episode;
-                    return episode.TvDB_EpisodeID.ToString();
+                    return episode?.TvDB_EpisodeID.ToString();
 
                 case ImageEntityType.TvDB_FanArt:
 
                     VM_TvDB_ImageFanart fanart = req.ImageData as VM_TvDB_ImageFanart;
-                    return fanart.TvDB_ImageFanartID.ToString();
+                    return fanart?.TvDB_ImageFanartID.ToString();
 
                 case ImageEntityType.MovieDB_Poster:
 
                     VM_MovieDB_Poster moviePoster = req.ImageData as VM_MovieDB_Poster;
-                    return moviePoster.MovieDB_PosterID.ToString();
+                    return moviePoster?.MovieDB_PosterID.ToString();
 
                 case ImageEntityType.MovieDB_FanArt:
 
                     VM_MovieDB_Fanart movieFanart = req.ImageData as VM_MovieDB_Fanart;
-                    return movieFanart.MovieDB_FanartID.ToString();
+                    return movieFanart?.MovieDB_FanartID.ToString();
 
                 case ImageEntityType.AniDB_Character:
 
                     VM_AniDB_Character chr = req.ImageData as VM_AniDB_Character;
-                    return chr.AniDB_CharacterID.ToString();
+                    return chr?.AniDB_CharacterID.ToString();
 
                 case ImageEntityType.AniDB_Creator:
 
                     VM_AniDB_Seiyuu cre = req.ImageData as VM_AniDB_Seiyuu;
-                    return cre.AniDB_SeiyuuID.ToString();
+                    return cre?.AniDB_SeiyuuID.ToString();
 
                 default:
-                    return "";
+                    return string.Empty;
             }
 
         }
@@ -428,15 +397,7 @@ namespace Shoko.Desktop.ImageDownload
                     bool downloadImage = true;
                     bool fileExists = string.IsNullOrEmpty(fileName) || File.Exists(fileName);
 
-                    if (fileExists)
-                    {
-                        if (!req.ForceDownload)
-                            downloadImage = false;
-                        else
-                            downloadImage = true;
-                    }
-                    else
-                        downloadImage = true;
+                    if (fileExists && !req.ForceDownload) downloadImage = false;
 
                     if (downloadImage)
                     {
@@ -444,7 +405,7 @@ namespace Shoko.Desktop.ImageDownload
                         if (File.Exists(tempName)) File.Delete(tempName);
 
 
-                        OnImageDownloadEvent(new ImageDownloadEventArgs("", req, ImageDownloadEventType.Started));
+                        OnImageDownloadEvent(new ImageDownloadEventArgs(string.Empty, req, ImageDownloadEventType.Started));
                         if (fileExists) File.Delete(fileName);
 
                         try
@@ -467,9 +428,6 @@ namespace Shoko.Desktop.ImageDownload
 
                         // move the file to it's final location
                         File.Move(tempName, fileName);
-
-
-
                     }
 
 
@@ -481,22 +439,14 @@ namespace Shoko.Desktop.ImageDownload
                         downloadImage = true;
                         fileExists = File.Exists(fileName);
 
-                        if (fileExists)
-                        {
-                            if (!req.ForceDownload)
-                                downloadImage = false;
-                            else
-                                downloadImage = true;
-                        }
-                        else
-                            downloadImage = true;
+                        if (fileExists && !req.ForceDownload) downloadImage = false;
 
                         if (downloadImage)
                         {
                             string tempName = Path.Combine(Utils.GetImagesTempFolder(), Path.GetFileName(fileName));
                             if (File.Exists(tempName)) File.Delete(tempName);
 
-                            OnImageDownloadEvent(new ImageDownloadEventArgs("", req, ImageDownloadEventType.Started));
+                            OnImageDownloadEvent(new ImageDownloadEventArgs(string.Empty, req, ImageDownloadEventType.Started));
                             if (fileExists) File.Delete(fileName);
 
                             try
@@ -537,8 +487,7 @@ namespace Shoko.Desktop.ImageDownload
             {
                 while (!imagesToDownload.IsEmpty)
                 {
-                    ImageDownloadRequest req;
-                    if (imagesToDownload.TryDequeue(out req))
+                    if (imagesToDownload.TryDequeue(out var req))
                     {
                         try
                         {
@@ -553,23 +502,6 @@ namespace Shoko.Desktop.ImageDownload
                 }
                 Thread.Sleep(100);
             }
-            /*
-            foreach (ImageDownloadRequest req in imagesToDownload)
-            {
-                try
-                {
-                    DownloadImage(req);
-                    imagesToDownload.Remove(req);
-                    OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
-                }
-                catch (Exception ex)
-                {
-                    imagesToDownload.Remove(req);
-                    OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
-                    logger.Error(ex, ex.ToString());
-                }
-            }
-            */
         }
     }
 }

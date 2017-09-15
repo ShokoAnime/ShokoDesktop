@@ -56,9 +56,10 @@ namespace Shoko.Desktop
                 }
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show($"We are unable to move the directory '{From}' to '{To}', please move the directory with explorer", "Migration ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                Utils.ShowErrorMessage(
+                    $"We are unable to move the directory '{From}' to '{To}', please move the directory with explorer", ex);
                 return false;
             }
         }

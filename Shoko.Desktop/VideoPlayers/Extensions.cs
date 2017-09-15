@@ -112,14 +112,15 @@ namespace Shoko.Desktop.VideoPlayers
                             File.WriteAllText(filePath, subtitle);
                             subs.Add(filePath);
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
+                            logger.Warn("Cannot download subtitle: " + ex);
                         }
 
                     }
                     catch (Exception e)
                     {
-                        logger.Warn("Cannot download subtitle: " + e.ToString());
+                        logger.Warn("Cannot download subtitle: " + e);
                     }
                 }
             }

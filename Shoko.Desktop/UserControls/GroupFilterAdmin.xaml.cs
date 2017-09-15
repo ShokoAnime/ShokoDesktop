@@ -10,39 +10,38 @@ using Shoko.Models.Enums;
 
 namespace Shoko.Desktop.UserControls
 {
+    /// <inheritdoc cref="UserControl" />
     /// <summary>
     /// Interaction logic for GroupFilterAdmin.xaml
     /// </summary>
-    public partial class GroupFilterAdmin : UserControl
+    public partial class GroupFilterAdmin
     {
-
-
         public GroupFilterAdmin()
         {
             InitializeComponent();
 
 
             cboBaseCondition.Items.Clear();
-            cboBaseCondition.Items.Add(Shoko.Commons.Properties.Resources.GroupFilter_BaseCondition_IncludeAll);
-            cboBaseCondition.Items.Add(Shoko.Commons.Properties.Resources.GroupFilter_BaseCondition_ExcludeAll);
+            cboBaseCondition.Items.Add(Commons.Properties.Resources.GroupFilter_BaseCondition_IncludeAll);
+            cboBaseCondition.Items.Add(Commons.Properties.Resources.GroupFilter_BaseCondition_ExcludeAll);
 
             cboBaseConditionEditing.SelectedIndex = 0;
             cboBaseConditionEditing.Items.Clear();
-            cboBaseConditionEditing.Items.Add(Shoko.Commons.Properties.Resources.GroupFilter_BaseCondition_IncludeAll);
-            cboBaseConditionEditing.Items.Add(Shoko.Commons.Properties.Resources.GroupFilter_BaseCondition_ExcludeAll);
+            cboBaseConditionEditing.Items.Add(Commons.Properties.Resources.GroupFilter_BaseCondition_IncludeAll);
+            cboBaseConditionEditing.Items.Add(Commons.Properties.Resources.GroupFilter_BaseCondition_ExcludeAll);
 
-            cboBaseConditionEditing.SelectionChanged += new SelectionChangedEventHandler(cboBaseConditionEditing_SelectionChanged);
+            cboBaseConditionEditing.SelectionChanged += cboBaseConditionEditing_SelectionChanged;
 
 
-            DataContextChanged += new DependencyPropertyChangedEventHandler(GroupFilterAdmin_DataContextChanged);
+            DataContextChanged += GroupFilterAdmin_DataContextChanged;
             cboBaseCondition.SelectedIndex = 0;
 
-            chkApplyToSeriesEditing.Click += new RoutedEventHandler(chkApplyToSeriesEditing_Click);
+            chkApplyToSeriesEditing.Click += chkApplyToSeriesEditing_Click;
 
-            lbFilterConditions_Editing.MouseDoubleClick += new MouseButtonEventHandler(lbFilterConditions_Editing_MouseDoubleClick);
+            lbFilterConditions_Editing.MouseDoubleClick += lbFilterConditions_Editing_MouseDoubleClick;
 
-            btnRandomSeries.Click += new RoutedEventHandler(btnRandomSeries_Click);
-            btnRandomEpisode.Click += new RoutedEventHandler(btnRandomEpisode_Click);
+            btnRandomSeries.Click += btnRandomSeries_Click;
+            btnRandomEpisode.Click += btnRandomEpisode_Click;
 
             lbGroups.PreviewMouseWheel += LbGroups_PreviewMouseWheel;
 
@@ -53,69 +52,55 @@ namespace Shoko.Desktop.UserControls
             try
             {
                 foreach (ScrollViewer sv in Utils.GetScrollViewers(this))
-                    sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta / 3);
+                    sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta / 3D);
             }
-            catch { }
+            catch
+            {
+                // ignore
+            }
         }
         void btnRandomEpisode_Click(object sender, RoutedEventArgs e)
         {
-            VM_GroupFilter gf = DataContext as VM_GroupFilter;
-            if (gf == null) return;
+            if (!(DataContext is VM_GroupFilter gf)) return;
 
-            MainWindow mainwdw = (MainWindow)Window.GetWindow(this);
-
-            RandomEpisodeForm frm = new RandomEpisodeForm();
-            frm.Owner = Window.GetWindow(this); ;
+            RandomEpisodeForm frm = new RandomEpisodeForm {Owner = Window.GetWindow(this)};
             frm.Init(RandomSeriesEpisodeLevel.GroupFilter, gf);
-            bool? result = frm.ShowDialog();
-
+            frm.ShowDialog();
         }
 
         void btnRandomSeries_Click(object sender, RoutedEventArgs e)
         {
-            VM_GroupFilter gf = DataContext as VM_GroupFilter;
-            if (gf == null) return;
+            if (!(DataContext is VM_GroupFilter gf)) return;
 
             MainWindow mainwdw = (MainWindow)Window.GetWindow(this);
 
-            RandomSeriesForm frm = new RandomSeriesForm();
-            frm.Owner = Window.GetWindow(this); ;
+            RandomSeriesForm frm = new RandomSeriesForm {Owner = Window.GetWindow(this)};
             frm.Init(RandomSeriesEpisodeLevel.GroupFilter, gf);
             bool? result = frm.ShowDialog();
             if (result.HasValue && result.Value && frm.Series != null)
-            {
-                if (mainwdw == null) return;
-                mainwdw.ShowPinnedSeries(frm.Series);
-            }
+                mainwdw?.ShowPinnedSeries(frm.Series);
         }
 
         void lbFilterConditions_Editing_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            VM_GroupFilter gf = DataContext as VM_GroupFilter;
-            if (gf == null) return;
+            if (!(DataContext is VM_GroupFilter gf)) return;
 
-            VM_GroupFilterCondition gfc = lbFilterConditions_Editing.SelectedItem as VM_GroupFilterCondition;
-            if (gfc == null) return;
+            if (!(lbFilterConditions_Editing.SelectedItem is VM_GroupFilterCondition gfc)) return;
 
             try
             {
 
-                GroupFilterConditionForm frm = new GroupFilterConditionForm();
-                frm.Owner = Window.GetWindow(this);
+                GroupFilterConditionForm frm = new GroupFilterConditionForm {Owner = Window.GetWindow(this)};
                 frm.Init(gf, gfc);
                 bool? result = frm.ShowDialog();
-                if (result.HasValue && result.Value == true)
-                {
+                if (!result.HasValue || !result.Value) return;
+                Window win = Window.GetWindow(this);
+                MainWindow main = win as MainWindow;
+                gf.IsBeingEdited = true;
 
-                    Window win = Window.GetWindow(this);
-                    MainWindow main = win as MainWindow;
-                    gf.IsBeingEdited = true;
-
-                    //gf.FilterConditions.Add(gfc);
-
-                    VM_MainListHelper.Instance.ViewGroupsForms.Filter = main.GroupFilter_GroupSearch;
-                    VM_MainListHelper.Instance.SetGroupFilterSortingOnForms(gf);
-                }
+                if (main == null) return;
+                VM_MainListHelper.Instance.ViewGroupsForms.Filter = main.GroupFilter_GroupSearch;
+                VM_MainListHelper.Instance.SetGroupFilterSortingOnForms(gf);
             }
             catch (Exception ex)
             {
@@ -127,29 +112,23 @@ namespace Shoko.Desktop.UserControls
         {
             chkApplyToSeries.IsChecked = chkApplyToSeriesEditing.IsChecked;
 
-            VM_GroupFilter gf = DataContext as VM_GroupFilter;
-            if (gf == null) return;
+            if (!(DataContext is VM_GroupFilter gf)) return;
 
-            gf.ApplyToSeries = chkApplyToSeriesEditing.IsChecked.Value ? 1 : 0;
+            gf.ApplyToSeries = chkApplyToSeriesEditing.IsChecked != null && chkApplyToSeriesEditing.IsChecked.Value ? 1 : 0;
         }
 
         void cboBaseConditionEditing_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            VM_GroupFilter gf = DataContext as VM_GroupFilter;
-            if (gf == null) return;
+            if (!(DataContext is VM_GroupFilter gf)) return;
 
-            if (cboBaseConditionEditing.SelectedIndex == 0)
-                gf.BaseCondition = 1;
-            else
-                gf.BaseCondition = 2;
+            gf.BaseCondition = cboBaseConditionEditing.SelectedIndex == 0 ? 1 : 2;
 
             cboBaseCondition.SelectedIndex = cboBaseConditionEditing.SelectedIndex;
         }
 
         void GroupFilterAdmin_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            VM_GroupFilter gf = DataContext as VM_GroupFilter;
-            if (gf == null) return;
+            if (!(DataContext is VM_GroupFilter gf)) return;
 
             if (gf.BaseCondition == 1)
             {

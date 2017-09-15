@@ -174,7 +174,10 @@ namespace Shoko.Desktop.Utilities
                 //since it hasn't thrown an exception, then we already have one copy of the app open.
                 return true; // already running
             }
-            catch { }
+            catch
+            {
+                // ignore
+            }
             
             string JMMServerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{0BA2D22B-A0B7-48F8-8AA1-BAAEFC2034CB}_is1", "InstallLocation", null);
 
@@ -583,7 +586,7 @@ namespace Shoko.Desktop.Utilities
 
                     // Step 6
                     d[i, j] = Math.Min(Math.Min(d[i - 1, j] + 1, d[i, j - 1] + 1),
-                              d[i - 1, j - 1] + cost);
+                        d[i - 1, j - 1] + cost);
                 }
             }
 
@@ -618,7 +621,7 @@ namespace Shoko.Desktop.Utilities
 
                     // Step 6
                     d[i, j] = Math.Min(Math.Min(d[i - 1, j] + 1, d[i, j - 1] + 1),
-                              d[i - 1, j - 1] + cost);
+                        d[i - 1, j - 1] + cost);
                 }
             }
 
@@ -811,9 +814,9 @@ namespace Shoko.Desktop.Utilities
                 // Display the command output.
                 Console.WriteLine(result);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // Log the exception
+                logger.Error(ex);
             }
         }
 
@@ -872,26 +875,19 @@ namespace Shoko.Desktop.Utilities
 
         public static bool IsDirectoryWritable(string dirPath, bool throwIfFails = false)
         {
-          try
-          {
-            using (FileStream fs = File.Create(
-                Path.Combine(
-                    dirPath,
-                    Path.GetRandomFileName()
-                ),
-                1,
-                FileOptions.DeleteOnClose)
-            )
-            { }
-            return true;
-          }
-          catch
-          {
-            if (throwIfFails)
-              throw;
-            else
-              return false;
-          }
+            try
+            {
+                using (FileStream fs = File.Create(Path.Combine(dirPath, Path.GetRandomFileName()), 1,
+                    FileOptions.DeleteOnClose))
+                {
+                }
+                return true;
+            }
+            catch
+            {
+                if (throwIfFails) throw;
+                return false;
+            }
         }
-  }
+    }
 }

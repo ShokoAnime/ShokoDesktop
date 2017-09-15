@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using NLog;
 using Shoko.Commons.Extensions;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel;
@@ -211,7 +212,10 @@ namespace Shoko.Desktop.Forms
                     txtTitles.Text += Environment.NewLine;
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                LogManager.GetCurrentClassLogger().Error(ex);
+            }
 
             //txtDescription.Text = searchResult.Titles;
 
