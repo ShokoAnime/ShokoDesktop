@@ -14,107 +14,40 @@ namespace Shoko.Desktop.ViewModel.Metro
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propname));
         }
 
-        private String showName;
-        public String ShowName
-        {
-            get { return showName; }
-            set
-            {
-                this.SetField(()=>showName,value);
-            }
-        }
+        private string showName;
+        public string ShowName { get => showName; set => this.SetField(()=>showName,value); }
 
-        private String friendName;
-        public String FriendName
-        {
-            get { return friendName; }
-            set
-            {
-                this.SetField(()=>friendName,value);
-            }
-        }
+        private string friendName;
+        public string FriendName { get => friendName; set => this.SetField(()=>friendName,value); }
 
-        private String details;
-        public String Details
-        {
-            get { return details; }
-            set
-            {
-                this.SetField(()=>details,value);
-            }
-        }
+        private string details;
+        public string Details { get => details; set => this.SetField(()=>details,value); }
 
-        private String shoutText;
-        public String ShoutText
-        {
-            get { return shoutText; }
-            set
-            {
-                this.SetField(()=>shoutText,value);
-            }
-        }
+        private string shoutText;
+        public string ShoutText { get => shoutText; set => this.SetField(()=>shoutText,value); }
 
         private string shoutDateString;
-        public String ShoutDateString
-        {
-            get { return shoutDateString; }
-            set
-            {
-                this.SetField(()=>shoutDateString,value);
-            }
-        }
+        public string ShoutDateString { get => shoutDateString; set => this.SetField(()=>shoutDateString,value); }
 
-        private String showPicture;
-        public String ShowPicture
-        {
-            get { return showPicture; }
-            set
-            {
-                this.SetField(()=>showPicture,value);
-            }
-        }
+        private string showPicture;
+        public string ShowPicture { get => showPicture; set => this.SetField(()=>showPicture,value); }
 
-        private String uRL;
-        public String URL
-        {
-            get { return uRL; }
-            set
-            {
-                this.SetField(()=>uRL,value);
-            }
-        }
+        private string url;
+        public string URL { get => url; set => this.SetField(()=>url,value); }
 
-        public long Height { get; set; }
-        public String TileSize { get; set; }
+        private long height;
+        public long Height { get => height; set => this.SetField(()=> height, value); }
 
-        private String friendPicture;
-        public String FriendPicture
-        {
-            get { return friendPicture; }
-            set
-            {
-                this.SetField(()=>friendPicture,value);
-            }
-        }
+        private string tileSize;
+        public string TileSize { get => tileSize; set => this.SetField(()=> tileSize, value); }
 
-        private String onlineShowPicture;
-        public String OnlineShowPicture
-        {
-            get { return onlineShowPicture; }
-            set
-            {
-                this.SetField(()=>onlineShowPicture,value);
-            }
-        }
+        private string friendPicture;
+        public string FriendPicture { get => friendPicture; set => this.SetField(()=>friendPicture,value); }
 
-        private String onlineFriendPicture;
-        public String OnlineFriendPicture
-        {
-            get { return onlineFriendPicture; }
-            set
-            {
-                this.SetField(()=>OnlineFriendPicture,value);
-            }
-        }
+        private string onlineShowPicture;
+        public string OnlineShowPicture { get => onlineShowPicture; set => this.SetField(()=>onlineShowPicture,value); }
+
+        private string onlineFriendPicture;
+        public string OnlineFriendPicture { get => onlineFriendPicture; set => this.SetField(()=>OnlineFriendPicture,value); }
     }
 }

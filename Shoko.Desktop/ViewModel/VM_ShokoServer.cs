@@ -145,6 +145,7 @@ namespace Shoko.Desktop.ViewModel
                 mappings.Add(typeof(AniDB_Recommendation), typeof(VM_AniDB_Recommendation));
                 mappings.Add(typeof(AniDB_Seiyuu), typeof(VM_AniDB_Seiyuu));
                 mappings.Add(typeof(CL_AnimeTag), typeof(VM_AnimeTag));
+                mappings.Add(typeof(CustomTag), typeof(VM_CustomTag));
                 mappings.Add(typeof(CL_AnimeEpisode_User), typeof(VM_AnimeEpisode_User));
                 mappings.Add(typeof(CL_AnimeGroup_User), typeof(VM_AnimeGroup_User));
                 mappings.Add(typeof(CL_AnimeRating), typeof(VM_AnimeRating));
@@ -572,7 +573,7 @@ namespace Shoko.Desktop.ViewModel
         public ObservableCollection<VM_ImportFolder> ImportFolders { get; set; }
         public ObservableCollection<VM_JMMUser> AllUsers { get; set; }
         public ObservableCollection<string> AllTags { get; set; }
-        public ObservableCollection<CustomTag> AllCustomTags { get; set; }
+        public ObservableCollection<VM_CustomTag> AllCustomTags { get; set; }
         public ICollectionView ViewCustomTagsAll { get; set; }
 
         public ObservableCollection<NamingLanguage> UnselectedLanguages { get; set; }
@@ -1828,7 +1829,7 @@ namespace Shoko.Desktop.ViewModel
             SelectedLanguages = new ObservableCollection<NamingLanguage>();
             AllUsers = new ObservableCollection<VM_JMMUser>();
             AllTags = new ObservableCollection<string>();
-            AllCustomTags = new ObservableCollection<CustomTag>();
+            AllCustomTags = new ObservableCollection<VM_CustomTag>();
             ViewCustomTagsAll = CollectionViewSource.GetDefaultView(Instance.AllCustomTags);
             ViewCustomTagsAll.SortDescriptions.Add(new SortDescription("TagName", ListSortDirection.Ascending));
 
@@ -2236,9 +2237,9 @@ namespace Shoko.Desktop.ViewModel
             if (!ServerOnline) return;
             try
             {
-                List<CustomTag> tagsRaw = Instance.ShokoServices.GetAllCustomTags().CastList<CustomTag>();
+                List<VM_CustomTag> tagsRaw = Instance.ShokoServices.GetAllCustomTags().CastList<VM_CustomTag>();
 
-                foreach (CustomTag tag in tagsRaw)
+                foreach (VM_CustomTag tag in tagsRaw)
                     AllCustomTags.Add(tag);
 
                 ViewCustomTagsAll.Refresh();

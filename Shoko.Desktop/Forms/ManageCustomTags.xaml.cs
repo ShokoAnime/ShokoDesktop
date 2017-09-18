@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Input;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel;
+using Shoko.Desktop.ViewModel.Server;
 using Shoko.Models.Client;
 using Shoko.Models.Server;
 
@@ -48,7 +49,7 @@ namespace Shoko.Desktop.Forms
                     return;
                 }
 
-                CustomTag contract = new CustomTag();
+                VM_CustomTag contract = new VM_CustomTag();
                 contract.TagName = txtTagName.Text.Trim();
                 contract.TagDescription = txtTagDescription.Text.Trim();
 
@@ -62,7 +63,7 @@ namespace Shoko.Desktop.Forms
                 }
                 else
                 {
-                    VM_ShokoServer.Instance.AllCustomTags.Add((CustomTag)resp.Result);
+                    VM_ShokoServer.Instance.AllCustomTags.Add((VM_CustomTag) resp.Result);
                     VM_ShokoServer.Instance.ViewCustomTagsAll.Refresh();
                 }
             }
@@ -88,10 +89,10 @@ namespace Shoko.Desktop.Forms
 
 
                 // NOTE if we are disabling an image we should also make sure it is not the default
-                CustomTag tag = null;
-                if (obj.GetType() == typeof(CustomTag))
+                VM_CustomTag tag = null;
+                if (obj.GetType() == typeof(VM_CustomTag))
                 {
-                    tag = (CustomTag)obj;
+                    tag = (VM_CustomTag)obj;
                     res = VM_ShokoServer.Instance.ShokoServices.DeleteCustomTag(tag.CustomTagID);
                 }
 
@@ -101,8 +102,8 @@ namespace Shoko.Desktop.Forms
                 }
                 else
                 {
-                    CustomTag ctagToRemove = null;
-                    foreach (CustomTag ctag in VM_ShokoServer.Instance.AllCustomTags)
+                    VM_CustomTag ctagToRemove = null;
+                    foreach (VM_CustomTag ctag in VM_ShokoServer.Instance.AllCustomTags)
                     {
                         if (ctag.CustomTagID == tag.CustomTagID)
                         {

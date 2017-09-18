@@ -631,7 +631,7 @@ namespace Shoko.Desktop.Forms
 
             ViewCustomTagNames = CollectionViewSource.GetDefaultView(AllCustomTagNames);
 
-            foreach (CustomTag tag in VM_ShokoServer.Instance.AllCustomTags.OrderBy(a => a.TagName.ToLower(CultureInfo.InvariantCulture)))
+            foreach (VM_CustomTag tag in VM_ShokoServer.Instance.AllCustomTags.OrderBy(a => a.TagName.ToLower(CultureInfo.InvariantCulture)))
                 AllCustomTagNames.Add(tag.TagName);
 
 

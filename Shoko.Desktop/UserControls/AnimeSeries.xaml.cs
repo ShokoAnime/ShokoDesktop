@@ -1062,10 +1062,10 @@ namespace Shoko.Desktop.UserControls
                 VM_AnimeSeries_User ser = DataContext as VM_AnimeSeries_User;
                 if (ser == null) return;
 
-                CustomTag tag = cboCustomTag.SelectedItem as CustomTag;
+                VM_CustomTag tag = cboCustomTag.SelectedItem as VM_CustomTag;
 
                 // check if we already have this tag
-                foreach (CustomTag ctag in ser.AniDBAnime.CustomTags)
+                foreach (VM_CustomTag ctag in ser.AniDBAnime.CustomTags)
                 {
                     if (ctag.CustomTagID == tag.CustomTagID)
                         return;
@@ -1110,10 +1110,10 @@ namespace Shoko.Desktop.UserControls
 
 
                 // NOTE if we are disabling an image we should also make sure it is not the default
-                CustomTag tag = null;
-                if (obj.GetType() == typeof(CustomTag))
+                VM_CustomTag tag = null;
+                if (obj.GetType() == typeof(VM_CustomTag))
                 {
-                    tag = (CustomTag)obj;
+                    tag = (VM_CustomTag)obj;
                     res = VM_ShokoServer.Instance.ShokoServices.DeleteCustomTagCrossRef(
                         tag.CustomTagID, (int)CustomTagCrossRefType.Anime, ser.AniDB_ID);
 
@@ -1125,8 +1125,8 @@ namespace Shoko.Desktop.UserControls
                 }
                 else
                 {
-                    CustomTag ctagToRemove = null;
-                    foreach (CustomTag ctag in ser.AniDBAnime.CustomTags)
+                    VM_CustomTag ctagToRemove = null;
+                    foreach (VM_CustomTag ctag in ser.AniDBAnime.CustomTags)
                     {
                         if (ctag.CustomTagID == tag.CustomTagID)
                         {

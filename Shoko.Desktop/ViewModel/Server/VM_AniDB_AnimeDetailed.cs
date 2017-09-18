@@ -54,12 +54,12 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public List<VM_AnimeTag> TagsSummary => Tags.Take(5).ToList();
 
-        public new List<CustomTag> CustomTags
+        public new List<VM_CustomTag> CustomTags
         {
-            get { return base.CustomTags; }
+            get { return base.CustomTags.CastList<VM_CustomTag>(); }
             set
             {
-                base.CustomTags = value.OrderBy(a => a.TagName.ToLowerInvariant()).ToList();
+                base.CustomTags = value.OrderBy(a => a.TagName.ToLowerInvariant()).ToList().CastList<CustomTag>();
                 ViewCustomTags = CollectionViewSource.GetDefaultView(CustomTags);
                 ViewCustomTags.Refresh();
             }

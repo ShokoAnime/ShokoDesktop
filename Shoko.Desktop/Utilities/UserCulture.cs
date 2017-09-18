@@ -1,12 +1,25 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
+using Shoko.Commons.Notification;
 
 namespace Shoko.Desktop.Utilities
 {
-    public class UserCulture
+    public class UserCulture : INotifyPropertyChangedExt
     {
-        public string LanguageName { get; set; }
-        public string Culture { get; set; }
-        public string FlagImage { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged(string propname)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propname));
+        }
+
+        private string languageName;
+        public string LanguageName { get => languageName; set => this.SetField(()=> languageName, value); }
+
+        private string culture;
+        public string Culture { get => culture; set => this.SetField(()=> culture, value); }
+
+        private string flagImage;
+        public string FlagImage { get => flagImage; set => this.SetField(()=> flagImage, value); }
 
         public UserCulture()
         {

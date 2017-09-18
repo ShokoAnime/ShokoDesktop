@@ -1169,7 +1169,7 @@ namespace Shoko.Desktop
 
         #region Command Bindings
 
-        private void CommandBinding_EditTraktCredentials(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_EditTraktCredentials(object sender, ExecutedRoutedEventArgs e)
         {
             tabControl1.SelectedIndex = (int) TAB_MAIN.Settings;
             tabSettingsChild.SelectedIndex = (int) TAB_Settings.TvDB;
@@ -1379,7 +1379,7 @@ namespace Shoko.Desktop
             ShowDashMetroView(viewType, null);
         }
 
-        private void CommandBinding_CreateSeriesFromAnime(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_CreateSeriesFromAnime(object sender, ExecutedRoutedEventArgs e)
         {
             object obj = e.Parameter;
             if (obj == null) return;
@@ -1425,7 +1425,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_AvdumpFile(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_AvdumpFile(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
@@ -1471,7 +1471,7 @@ namespace Shoko.Desktop
 
         }
 
-        private void CommandBinding_BookmarkAnime(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_BookmarkAnime(object sender, ExecutedRoutedEventArgs e)
         {
             Window parentWindow = GetWindow(this);
 
@@ -1562,7 +1562,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_RefreshBookmarks(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_RefreshBookmarks(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
@@ -1597,7 +1597,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_ShowWebCacheAdmin(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_ShowWebCacheAdmin(object sender, ExecutedRoutedEventArgs e)
         {
             object obj = e.Parameter;
             if (obj == null) return;
@@ -1629,7 +1629,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_ShowPinnedSeries(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_ShowPinnedSeries(object sender, ExecutedRoutedEventArgs e)
         {
             //object obj = lbGroupsSeries.SelectedItem;
             object obj = e.Parameter;
@@ -1721,12 +1721,12 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_Refresh(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_Refresh(object sender, ExecutedRoutedEventArgs e)
         {
             RefreshView();
         }
 
-        private void CommandBinding_Search(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_Search(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
@@ -1745,7 +1745,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_Back(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_Back(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
@@ -1758,7 +1758,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_Edit(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_Edit(object sender, ExecutedRoutedEventArgs e)
         {
             object obj = e.Parameter;
             if (obj == null) return;
@@ -1842,7 +1842,7 @@ namespace Shoko.Desktop
             EnableDisableGroupControls(false);
         }
 
-        private void CommandBinding_Save(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_Save(object sender, ExecutedRoutedEventArgs e)
         {
             object obj = e.Parameter;
             if (obj == null) return;
@@ -1911,7 +1911,7 @@ namespace Shoko.Desktop
             EnableDisableGroupControls(true);
         }
 
-        private void CommandBinding_ScanFolder(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_ScanFolder(object sender, ExecutedRoutedEventArgs e)
         {
             object obj = e.Parameter;
             if (obj == null) return;
@@ -1933,7 +1933,7 @@ namespace Shoko.Desktop
 
         }
 
-        private void CommandBinding_Delete(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_Delete(object sender, ExecutedRoutedEventArgs e)
         {
             object obj = e.Parameter;
             if (obj == null) return;
@@ -2005,7 +2005,7 @@ namespace Shoko.Desktop
             EnableDisableGroupControls(true);
         }
 
-        private void CommandBinding_Cancel(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_Cancel(object sender, ExecutedRoutedEventArgs e)
         {
             object obj = e.Parameter;
             if (obj == null) return;
@@ -2104,7 +2104,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_NewGroupFilter(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_NewGroupFilter(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
@@ -2132,7 +2132,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_DeleteFilterCondition(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_DeleteFilterCondition(object sender, ExecutedRoutedEventArgs e)
         {
             object obj = e.Parameter;
             if (obj == null) return;
@@ -2174,7 +2174,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_NewFilterCondition(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_NewFilterCondition(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
@@ -2205,7 +2205,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_NewFilterSorting(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_NewFilterSorting(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
@@ -2234,7 +2234,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_MoveUpFilterSort(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_MoveUpFilterSort(object sender, ExecutedRoutedEventArgs e)
         {
             object obj = e.Parameter;
             if (obj == null) return;
@@ -2251,7 +2251,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_MoveDownFilterSort(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_MoveDownFilterSort(object sender, ExecutedRoutedEventArgs e)
         {
             object obj = e.Parameter;
             if (obj == null) return;
@@ -2309,7 +2309,7 @@ namespace Shoko.Desktop
 
 
 
-        private void CommandBinding_DeleteFilterSort(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_DeleteFilterSort(object sender, ExecutedRoutedEventArgs e)
         {
             object obj = e.Parameter;
             if (obj == null) return;
@@ -2347,7 +2347,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_NewGroup(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_NewGroup(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
@@ -2364,7 +2364,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_DeleteGroup(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_DeleteGroup(object sender, ExecutedRoutedEventArgs e)
         {
             EnableDisableGroupControls(false);
 
@@ -2397,7 +2397,7 @@ namespace Shoko.Desktop
             EnableDisableGroupControls(true);
         }
 
-        private void CommandBinding_ViewGroup(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_ViewGroup(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
@@ -2416,7 +2416,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_AddSubGroup(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_AddSubGroup(object sender, ExecutedRoutedEventArgs e)
         {
             if (!(e.Parameter is VM_AnimeGroup_User grp)) return;
 
@@ -2436,12 +2436,12 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_AddPlaylist(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_AddPlaylist(object sender, ExecutedRoutedEventArgs e)
         {
             VM_PlaylistHelper.CreatePlaylist(this);
         }
 
-        private void CommandBinding_DeletePlaylist(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_DeletePlaylist(object sender, ExecutedRoutedEventArgs e)
         {
             if (!(e.Parameter is VM_Playlist pl)) return;
 
@@ -2476,7 +2476,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_DeletePlaylistItem(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_DeletePlaylistItem(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
@@ -2531,7 +2531,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_RefreshPlaylist(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_RefreshPlaylist(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
@@ -2546,22 +2546,22 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_IncrementSeriesImageSize(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_IncrementSeriesImageSize(object sender, ExecutedRoutedEventArgs e)
         {
             VM_UserSettings.Instance.SeriesGroup_Image_Height = VM_UserSettings.Instance.SeriesGroup_Image_Height + 10;
         }
 
-        private void CommandBinding_DecrementSeriesImageSize(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_DecrementSeriesImageSize(object sender, ExecutedRoutedEventArgs e)
         {
             VM_UserSettings.Instance.SeriesGroup_Image_Height = VM_UserSettings.Instance.SeriesGroup_Image_Height - 10;
         }
 
-        private void CommandBinding_NewSeries(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_NewSeries(object sender, ExecutedRoutedEventArgs e)
         {
 
         }
 
-        private void CommandBinding_DeleteSeries(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_DeleteSeries(object sender, ExecutedRoutedEventArgs e)
         {
             if (!(e.Parameter is VM_AnimeSeries_User ser)) return;
 
@@ -2590,7 +2590,7 @@ namespace Shoko.Desktop
         }
 
 
-        private void CommandBinding_MoveSeries(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_MoveSeries(object sender, ExecutedRoutedEventArgs e)
         {
             if (!(e.Parameter is VM_AnimeSeries_User ser)) return;
 
@@ -2619,13 +2619,13 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_ClearSearch(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_ClearSearch(object sender, ExecutedRoutedEventArgs e)
         {
             txtGroupSearch.Text = "";
             HighlightMainListItem();
         }
 
-        private void CommandBinding_RunImport(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_RunImport(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
@@ -2640,7 +2640,7 @@ namespace Shoko.Desktop
 
         }
 
-        private void CommandBinding_RemoveMissingFiles(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_RemoveMissingFiles(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
@@ -2657,7 +2657,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_SyncMyList(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_SyncMyList(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
@@ -2671,7 +2671,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_SyncVotes(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_SyncVotes(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
@@ -2685,7 +2685,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_SyncMALUp(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_SyncMALUp(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
@@ -2699,7 +2699,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_SyncMALDown(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_SyncMALDown(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
@@ -2713,7 +2713,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_RevokeVote(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_RevokeVote(object sender, ExecutedRoutedEventArgs e)
         {
             if (!(e.Parameter is VM_AnimeSeries_User ser)) return;
 
@@ -2738,7 +2738,7 @@ namespace Shoko.Desktop
         }
 
 
-        private void CommandBinding_ToggleWatchedStatus(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_ToggleWatchedStatus(object sender, ExecutedRoutedEventArgs e)
         {
             object obj = e.Parameter;
             if (obj == null) return;
@@ -2749,7 +2749,7 @@ namespace Shoko.Desktop
         }
 
 
-        private void CommandBinding_BreadCrumbSelect(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_BreadCrumbSelect(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
@@ -2771,7 +2771,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_ToggleFave(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_ToggleFave(object sender, ExecutedRoutedEventArgs e)
         {
             object obj = e.Parameter;
             if (obj == null) return;
@@ -2805,12 +2805,12 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_ToggleExpandTags(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_ToggleExpandTags(object sender, ExecutedRoutedEventArgs e)
         {
             VM_UserSettings.Instance.TagsExpanded = !VM_UserSettings.Instance.TagsExpanded;
         }
 
-        private void CommandBinding_ToggleExpandTitles(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_ToggleExpandTitles(object sender, ExecutedRoutedEventArgs e)
         {
             VM_UserSettings.Instance.TitlesExpanded = !VM_UserSettings.Instance.TitlesExpanded;
         }
@@ -2822,7 +2822,7 @@ namespace Shoko.Desktop
             WindowState = WindowState.Maximized;
         }
 
-        private void CommandBinding_WindowFullScreen(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_WindowFullScreen(object sender, ExecutedRoutedEventArgs e)
         {
             VM_UserSettings.Instance.WindowFullScreen = true;
             VM_UserSettings.Instance.WindowNormal = false;
@@ -2835,19 +2835,19 @@ namespace Shoko.Desktop
             WindowStyle = WindowStyle.SingleBorderWindow;
         }
 
-        private void CommandBinding_WindowNormal(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_WindowNormal(object sender, ExecutedRoutedEventArgs e)
         {
             VM_UserSettings.Instance.WindowFullScreen = false;
             VM_UserSettings.Instance.WindowNormal = true;
             SetWindowNormal();
         }
 
-        private void CommandBinding_WindowClose(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_WindowClose(object sender, ExecutedRoutedEventArgs e)
         {
             Close();
         }
 
-        private void CommandBinding_WindowMinimize(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_WindowMinimize(object sender, ExecutedRoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
         }
@@ -2855,7 +2855,7 @@ namespace Shoko.Desktop
 
         #region Server Queue Actions
 
-        private void CommandBinding_HasherQueuePause(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_HasherQueuePause(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
@@ -2868,7 +2868,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_HasherQueueResume(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_HasherQueueResume(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
@@ -2881,7 +2881,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_GeneralQueuePause(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_GeneralQueuePause(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
@@ -2894,7 +2894,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_GeneralQueueResume(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_GeneralQueueResume(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
@@ -2907,7 +2907,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_ServerImageQueuePause(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_ServerImageQueuePause(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
@@ -2920,7 +2920,7 @@ namespace Shoko.Desktop
             }
         }
 
-        private void CommandBinding_ServerImageQueueResume(object sender, ExecutedRoutedEventArgs e)
+        public void CommandBinding_ServerImageQueueResume(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
@@ -3028,7 +3028,7 @@ namespace Shoko.Desktop
             showChildWrappersWorker.RunWorkerAsync(lbGroupsSeries.SelectedItem);
         }
 
-        private void lbGroupsSeries_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        public void lbGroupsSeries_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var originalSource = e.OriginalSource as FrameworkElement;
             var source = e.Source as FrameworkElement;
@@ -3049,13 +3049,13 @@ namespace Shoko.Desktop
                     case VM_GroupFilter groupFilter:
                         VM_MainListHelper.Instance.CurrentOpenGroupFilter = "GroupFilterVM|" + groupFilter.GroupFilterID;
                         break;
-                    case IListWrapper wrapper:
-                        if (wrapper.GetType() == typeof(VM_AnimeSeries_User)) return;
-
-                        EnableDisableGroupControls(false);
-                        showChildWrappersWorker.RunWorkerAsync(lbGroupsSeries.SelectedItem);
-                        break;
                 }
+
+                if (!(selItem is IListWrapper)) return;
+                if (selItem.GetType() == typeof(VM_AnimeSeries_User)) return;
+
+                EnableDisableGroupControls(false);
+                showChildWrappersWorker.RunWorkerAsync(lbGroupsSeries.SelectedItem);
             }
             catch (Exception ex)
             {
@@ -3064,7 +3064,7 @@ namespace Shoko.Desktop
         }
 
 
-        private void HighlightMainListItem()
+        public void HighlightMainListItem()
         {
             try
             {
@@ -3105,14 +3105,14 @@ namespace Shoko.Desktop
             }
         }
 
-        private void EnableDisableGroupControls(bool val)
+        public void EnableDisableGroupControls(bool val)
         {
             lbGroupsSeries.IsEnabled = val;
             txtGroupSearch.IsEnabled = val;
             tbSeriesEpisodes.IsEnabled = val;
         }
 
-        private void SetDetailBinding(object objToBind)
+        public void SetDetailBinding(object objToBind)
         {
             try
             {
@@ -3159,7 +3159,7 @@ namespace Shoko.Desktop
 
         }
 
-        private void SetDetailBindingPlaylist(object objToBind)
+        public void SetDetailBindingPlaylist(object objToBind)
         {
             try
             {

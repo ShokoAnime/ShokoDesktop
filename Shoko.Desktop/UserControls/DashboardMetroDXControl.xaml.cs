@@ -235,8 +235,7 @@ namespace Shoko.Desktop.UserControls
 
         private void CommandBinding_MoveUpSection(object sender, ExecutedRoutedEventArgs e)
         {
-            MetroDashSection sect = e.Parameter as MetroDashSection;
-            if (sect == null) return;
+            if (!(e.Parameter is MetroDashSection sect)) return;
 
             VM_UserSettings.Instance.MoveUpDashboardMetroSection(sect.SectionType);
             SetSectionOrder();
@@ -244,8 +243,7 @@ namespace Shoko.Desktop.UserControls
 
         private void CommandBinding_MoveDownSection(object sender, ExecutedRoutedEventArgs e)
         {
-            MetroDashSection sect = e.Parameter as MetroDashSection;
-            if (sect == null) return;
+            if (!(e.Parameter is MetroDashSection sect)) return;
 
             VM_UserSettings.Instance.MoveDownDashboardMetroSection(sect.SectionType);
             SetSectionOrder();
@@ -253,8 +251,7 @@ namespace Shoko.Desktop.UserControls
 
         private void CommandBinding_EnableSectionCommand(object sender, ExecutedRoutedEventArgs e)
         {
-            MetroDashSection sect = e.Parameter as MetroDashSection;
-            if (sect == null) return;
+            if (!(e.Parameter is MetroDashSection sect)) return;
 
             VM_UserSettings.Instance.EnableDisableDashboardMetroSection(sect.SectionType, true);
             SetSectionOrder();
@@ -262,8 +259,7 @@ namespace Shoko.Desktop.UserControls
 
         private void CommandBinding_DisableSectionCommand(object sender, ExecutedRoutedEventArgs e)
         {
-            MetroDashSection sect = e.Parameter as MetroDashSection;
-            if (sect == null) return;
+            if (!(e.Parameter is MetroDashSection sect)) return;
 
             VM_UserSettings.Instance.EnableDisableDashboardMetroSection(sect.SectionType, false);
             SetSectionOrder();
@@ -440,8 +436,7 @@ namespace Shoko.Desktop.UserControls
         private void tileLayoutContinueWatching_TileClick(object sender, TileClickEventArgs e)
         {
             Tile mytile = e.Tile;
-            ContinueWatchingTile item = mytile.DataContext as ContinueWatchingTile;
-            if (item == null) return;
+            if (!(mytile.DataContext is ContinueWatchingTile item)) return;
 
             VM_DashboardMetro.Instance.NavigateForward(MetroViews.ContinueWatching, item.AnimeSeries);
         }

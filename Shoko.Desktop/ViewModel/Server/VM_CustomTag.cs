@@ -1,10 +1,11 @@
 using System.ComponentModel;
 using Shoko.Commons.Notification;
 using Shoko.Models.Client;
+using Shoko.Models.Server;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_AnimeTag : CL_AnimeTag, INotifyPropertyChangedExt
+    public class VM_CustomTag : CustomTag, INotifyPropertyChangedExt
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propname)
