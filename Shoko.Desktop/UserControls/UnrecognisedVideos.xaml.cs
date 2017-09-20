@@ -457,8 +457,6 @@ namespace Shoko.Desktop.UserControls
                         else
                         {
                             RefreshUnrecognisedFiles();
-                            //VM_MainListHelper.Instance.UpdateHeirarchy(ep, ((MainWindow)parentWindow).epListMain);
-                            VM_MainListHelper.Instance.RefreshHeirarchy(ep);
                         }
                     }
                 }
@@ -490,16 +488,12 @@ namespace Shoko.Desktop.UserControls
                                 EnableDisableControls(true);
                                 return;
                             }
-                            else
+                            // check again
+                            if (series.LatestRegularEpisodeNumber < endEpNum)
                             {
-                                // check again
-                                if (series.LatestRegularEpisodeNumber < endEpNum)
-                                {
-                                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_InvalidEp, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                                    EnableDisableControls(true);
-                                    return;
-                                }
-
+                                MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_InvalidEp, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                                EnableDisableControls(true);
+                                return;
                             }
                         }
                         else
@@ -526,9 +520,6 @@ namespace Shoko.Desktop.UserControls
                     else
                     {
                         RefreshUnrecognisedFiles();
-
-                        //VM_MainListHelper.Instance.UpdateHeirarchy(ep, ((MainWindow)parentWindow).epListMain);
-                        //ep.RefreshFilesForEpisode();
                     }
 
                 }
