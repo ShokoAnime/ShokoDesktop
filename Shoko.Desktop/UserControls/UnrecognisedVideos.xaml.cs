@@ -439,10 +439,6 @@ namespace Shoko.Desktop.UserControls
                         {
                             MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         }
-                        else
-                        {
-                            RefreshUnrecognisedFiles();
-                        }
                     }
                     else
                     {
@@ -453,10 +449,6 @@ namespace Shoko.Desktop.UserControls
                         if (result.Length > 0)
                         {
                             MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-                        }
-                        else
-                        {
-                            RefreshUnrecognisedFiles();
                         }
                     }
                 }
@@ -516,10 +508,6 @@ namespace Shoko.Desktop.UserControls
                     if (msg.Length > 0)
                     {
                         MessageBox.Show(msg, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                    else
-                    {
-                        RefreshUnrecognisedFiles();
                     }
 
                 }
