@@ -342,7 +342,7 @@ namespace Shoko.Desktop.ViewModel.Server
                 {
                     foreach (
                         VM_AnimeGroup_User grp in
-                            Groups[VM_ShokoServer.Instance.CurrentUser.JMMUserID].Select(
+                            Groups[VM_ShokoServer.Instance.CurrentUser.JMMUserID].Where(a => VM_MainListHelper.Instance.AllGroupsDictionary.ContainsKey(a)).Select(
                                 a => VM_MainListHelper.Instance.AllGroupsDictionary[a]))
                     {
                         if (grp.AnimeGroupParentID.HasValue) continue;
