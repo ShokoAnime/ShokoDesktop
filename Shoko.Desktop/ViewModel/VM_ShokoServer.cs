@@ -210,7 +210,7 @@ namespace Shoko.Desktop.ViewModel
             }
             catch (Exception ex)
             {
-                logger.Error("Unable to connect to Shoko Server");
+                logger.Error($"Unable to connect to Shoko Server: {ex}");
                 Utils.ShowErrorMessage("Unable to connect to server.");
                 return false;
             }
