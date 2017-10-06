@@ -164,10 +164,10 @@
       <HintPath>$(SolutionDir)packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="Nancy.Rest.Annotations, Version=1.4.3.7, Culture=neutral, PublicKeyToken=e33b67d3bb5581e4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Nancy.Rest.Annotations.1.4.3.7-beta\lib\net452\Nancy.Rest.Annotations.dll</HintPath>
+      <HintPath>$(SolutionDir)packages\Nancy.Rest.Annotations.1.4.3.7-beta\lib\net452\Nancy.Rest.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="Nancy.Rest.Client, Version=1.4.3.7, Culture=neutral, PublicKeyToken=e33b67d3bb5581e4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Nancy.Rest.Client.1.4.3.7-beta\lib\net452\Nancy.Rest.Client.dll</HintPath>
+      <HintPath>$(SolutionDir)packages\Nancy.Rest.Client.1.4.3.7-beta\lib\net452\Nancy.Rest.Client.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>$(SolutionDir)packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
