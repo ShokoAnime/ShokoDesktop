@@ -260,7 +260,7 @@ namespace Shoko.Desktop.Forms
 
 
                 CL_Response<CL_AnimeSeries_User> response = VM_ShokoServer.Instance.ShokoServices.CreateSeriesFromAnime(
-                    animeID, groupID, VM_ShokoServer.Instance.CurrentUser.JMMUserID);
+                    animeID, groupID, VM_ShokoServer.Instance.CurrentUser.JMMUserID, false);
                 if (response.ErrorMessage.Length > 0)
                 {
                     Cursor = Cursors.Arrow;
