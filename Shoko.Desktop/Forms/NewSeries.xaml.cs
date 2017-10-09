@@ -11,6 +11,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using NLog;
 using Shoko.Commons.Extensions;
+using Shoko.Commons.Utils;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel;
 using Shoko.Desktop.ViewModel.Helpers;
@@ -32,7 +33,7 @@ namespace Shoko.Desktop.Forms
 
         public ICollectionView ViewSearchResults { get; set; }
         public ObservableCollectionEx<VM_AnimeSearch> SearchResults { get; set; }
-        
+
         public static readonly DependencyProperty IsNewGroupProperty = DependencyProperty.Register("IsNewGroup",
             typeof(bool), typeof(NewSeries), new UIPropertyMetadata(false, null));
 
@@ -44,20 +45,20 @@ namespace Shoko.Desktop.Forms
 
         public bool IsNewGroup
         {
-            get { return (bool)GetValue(IsNewGroupProperty); }
-            set { SetValue(IsNewGroupProperty, value); }
+            get => (bool) GetValue(IsNewGroupProperty);
+            set => SetValue(IsNewGroupProperty, value);
         }
 
         public bool IsExistingGroup
         {
-            get { return (bool)GetValue(IsExistingGroupProperty); }
-            set { SetValue(IsExistingGroupProperty, value); }
+            get => (bool) GetValue(IsExistingGroupProperty);
+            set => SetValue(IsExistingGroupProperty, value);
         }
 
         public bool IsAnimeDisplayed
         {
-            get { return (bool)GetValue(IsAnimeDisplayedProperty); }
-            set { SetValue(IsAnimeDisplayedProperty, value); }
+            get => (bool) GetValue(IsAnimeDisplayedProperty);
+            set => SetValue(IsAnimeDisplayedProperty, value);
         }
 
 
@@ -67,8 +68,8 @@ namespace Shoko.Desktop.Forms
 
         public bool IsAnimeSelected
         {
-            get { return (bool)GetValue(IsAnimeSelectedProperty); }
-            set { SetValue(IsAnimeSelectedProperty, value); }
+            get => (bool) GetValue(IsAnimeSelectedProperty);
+            set => SetValue(IsAnimeSelectedProperty, value);
         }
 
 
@@ -77,8 +78,8 @@ namespace Shoko.Desktop.Forms
 
         public bool IsAnimeNotSelected
         {
-            get { return (bool)GetValue(IsAnimeNotSelectedProperty); }
-            set { SetValue(IsAnimeNotSelectedProperty, value); }
+            get => (bool) GetValue(IsAnimeNotSelectedProperty);
+            set => SetValue(IsAnimeNotSelectedProperty, value);
         }
 
 
@@ -90,20 +91,20 @@ namespace Shoko.Desktop.Forms
 
             AnimeSeries = null;
 
-            txtGroupSearch.TextChanged += new TextChangedEventHandler(txtGroupSearch_TextChanged);
+            txtGroupSearch.TextChanged += txtGroupSearch_TextChanged;
 
-            btnClearGroupSearch.Click += new RoutedEventHandler(btnClearGroupSearch_Click);
-            btnAnimeSearch.Click += new RoutedEventHandler(btnAnimeSearch_Click);
-            btnStep1.Click += new RoutedEventHandler(btnStep1_Click);
+            btnClearGroupSearch.Click += btnClearGroupSearch_Click;
+            btnAnimeSearch.Click += btnAnimeSearch_Click;
+            btnStep1.Click += btnStep1_Click;
 
-            rbGroupExisting.Checked += new RoutedEventHandler(rbGroupExisting_Checked);
-            rbGroupNew.Checked += new RoutedEventHandler(rbGroupNew_Checked);
+            rbGroupExisting.Checked += rbGroupExisting_Checked;
+            rbGroupNew.Checked += rbGroupNew_Checked;
 
-            btnCancel.Click += new RoutedEventHandler(btnCancel_Click);
-            btnConfirm.Click += new RoutedEventHandler(btnConfirm_Click);
+            btnCancel.Click += btnCancel_Click;
+            btnConfirm.Click += btnConfirm_Click;
 
-            lbAnime.SelectionChanged += new SelectionChangedEventHandler(lbAnime_SelectionChanged);
-            Loaded += new RoutedEventHandler(NewSeries_Loaded);
+            lbAnime.SelectionChanged += lbAnime_SelectionChanged;
+            Loaded += NewSeries_Loaded;
         }
 
         void NewSeries_Loaded(object sender, RoutedEventArgs e)
@@ -122,8 +123,6 @@ namespace Shoko.Desktop.Forms
 
         private void CommandBinding_UseThis(object sender, ExecutedRoutedEventArgs e)
         {
-            Window parentWindow = GetWindow(this);
-
             object obj = e.Parameter;
             if (obj == null) return;
 
@@ -156,7 +155,6 @@ namespace Shoko.Desktop.Forms
                 IsAnimeDisplayed = false;
 
                 Cursor = Cursors.Wait;
-                Window parentWindow = GetWindow(this);
                 btnAnimeSearch.IsEnabled = false;
                 btnConfirm.IsEnabled = false;
                 btnCancel.IsEnabled = false;
@@ -180,15 +178,14 @@ namespace Shoko.Desktop.Forms
         void lbAnime_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             IsAnimeDisplayed = false;
-            VM_AnimeSearch searchResult = lbAnime.SelectedItem as VM_AnimeSearch;
-            if (searchResult == null) return;
+            if (!(lbAnime.SelectedItem is VM_AnimeSearch searchResult)) return;
 
             SetAnimeDisplay(searchResult);
         }
 
         private void SetAnimeDisplay(VM_AnimeSearch searchResult)
         {
-            txtTitles.Text = "";
+            txtTitles.Text = string.Empty;
             txtMainTitle.Text = searchResult.MainTitle;
 
             lnkAniDB.DisplayText = searchResult.AnimeID_Friendly;
@@ -267,10 +264,31 @@ namespace Shoko.Desktop.Forms
                 if (response.ErrorMessage.Length > 0)
                 {
                     Cursor = Cursors.Arrow;
-                    MessageBox.Show(response.ErrorMessage, Commons.Properties.Resources.Error,
-                        MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
+                    if (response.ErrorMessage.Equals("A series already exists for this anime",
+                        StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        var result = MessageBox.Show(response.ErrorMessage + "\nWould you like to continue anyway?", Commons.Properties.Resources.Error,
+                            MessageBoxButton.YesNo, MessageBoxImage.Error, MessageBoxResult.No);
+                        if (result == MessageBoxResult.No) return;
+                        Cursor = Cursors.Wait;
+                        response = VM_ShokoServer.Instance.ShokoServices.CreateSeriesFromAnime(
+                            animeID, groupID, VM_ShokoServer.Instance.CurrentUser.JMMUserID, true);
+                        if (response.ErrorMessage.Length > 0)
+                        {
+                            Cursor = Cursors.Arrow;
+                            MessageBox.Show(response.ErrorMessage, Commons.Properties.Resources.Error,
+                                MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(response.ErrorMessage, Commons.Properties.Resources.Error,
+                            MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
                 }
+
                 AnimeSeries = (VM_AnimeSeries_User)response.Result;
                 VM_MainListHelper.Instance.AllSeriesDictionary[response.Result.AnimeSeriesID] =
                     (VM_AnimeSeries_User) response.Result;
