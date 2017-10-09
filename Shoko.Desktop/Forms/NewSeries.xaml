@@ -35,8 +35,7 @@
                         <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Path=AnimeID}" FontSize="12" Foreground="LightGray" HorizontalAlignment="Left" VerticalAlignment="Center" />
                         <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=MainTitle}" FontSize="12" HorizontalAlignment="Left"  Margin="7,0,0,0" VerticalAlignment="Center" />
 
-                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1"
-                                    Visibility="{Binding Path=SeriesExists, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
 
                             <!-- Use this button -->
                             <Button Margin="5,5,2,5" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
