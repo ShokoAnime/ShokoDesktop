@@ -223,7 +223,7 @@ namespace Shoko.Desktop.Forms
         {
             //VM_AnimeGroup_User grp = null;
             int animeID = 0;
-            int? groupID = null;
+            int? groupID = 0;
 
             try
             {
