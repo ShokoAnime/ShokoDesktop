@@ -13,8 +13,8 @@ namespace Shoko.Desktop.ViewModel.Server
 
         public new VM_AniDB_Anime Anime
         {
-            get { return (VM_AniDB_Anime)base.Anime; }
-            set { base.Anime = value; }
+            get => (VM_AniDB_Anime) base.Anime;
+            set => base.Anime = value;
         }
 
 
@@ -36,6 +36,6 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
-        public string DisplayName => Anime != null ? Anime.FormattedTitle : $"Anime ID: {AnimeID}";
+        public string DisplayName => Anime?.FormattedTitle ?? Anime?.MainTitle ?? $"Anime ID: {AnimeID}";
     }
 }

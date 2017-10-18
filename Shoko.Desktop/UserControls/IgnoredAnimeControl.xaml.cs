@@ -27,8 +27,8 @@ namespace Shoko.Desktop.UserControls
 
         public int AnimeCount
         {
-            get { return (int)GetValue(AnimeCountProperty); }
-            set { SetValue(AnimeCountProperty, value); }
+            get => (int) GetValue(AnimeCountProperty);
+            set => SetValue(AnimeCountProperty, value);
         }
 
         public static readonly DependencyProperty IsLoadingProperty = DependencyProperty.Register("IsLoading",
@@ -36,7 +36,7 @@ namespace Shoko.Desktop.UserControls
 
         public bool IsLoading
         {
-            get { return (bool)GetValue(IsLoadingProperty); }
+            get => (bool)GetValue(IsLoadingProperty);
             set
             {
                 SetValue(IsLoadingProperty, value);
@@ -49,8 +49,8 @@ namespace Shoko.Desktop.UserControls
 
         public bool IsNotLoading
         {
-            get { return (bool)GetValue(IsNotLoadingProperty); }
-            set { SetValue(IsNotLoadingProperty, value); }
+            get => (bool) GetValue(IsNotLoadingProperty);
+            set => SetValue(IsNotLoadingProperty, value);
         }
 
         public IgnoredAnimeControl()
