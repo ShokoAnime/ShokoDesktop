@@ -934,8 +934,7 @@ namespace Shoko.Desktop.UserControls
                     if (result == MessageBoxResult.Yes)
                     {
                         Cursor = Cursors.Wait;
-                        string res = VM_ShokoServer.Instance.ShokoServices.RemoveLinkAniDBTvDB(link.AnimeID, link.AniDBStartEpisodeType, link.AniDBStartEpisodeNumber,
-                            link.TvDBID, link.TvDBSeasonNumber, link.TvDBStartEpisodeNumber);
+                        string res = VM_ShokoServer.Instance.ShokoServices.RemoveLinkAniDBTvDB(link);
                         if (res.Length > 0)
                             MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         else

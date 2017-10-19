@@ -164,8 +164,8 @@ namespace Shoko.Desktop.Forms
                 // add links
                 foreach (VM_CrossRef_AniDB_TvDBV2 xref in CrossRef_AniDB_TvDBResult)
                 {
-                    res = VM_ShokoServer.Instance.ShokoServices.LinkAniDBTvDB(xref.AnimeID, xref.AniDBStartEpisodeType, xref.AniDBStartEpisodeNumber,
-                        xref.TvDBID, xref.TvDBSeasonNumber, xref.TvDBStartEpisodeNumber, null);
+                    xref.CrossRef_AniDB_TvDBV2ID = 0;
+                    res = VM_ShokoServer.Instance.ShokoServices.LinkAniDBTvDB(xref);
                     if (res.Length > 0)
                     {
                         MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);

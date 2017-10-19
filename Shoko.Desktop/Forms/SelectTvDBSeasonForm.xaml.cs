@@ -12,6 +12,7 @@ using Shoko.Desktop.ViewModel;
 using Shoko.Desktop.ViewModel.Server;
 using Shoko.Models;
 using Shoko.Models.Enums;
+using Shoko.Models.Server;
 
 namespace Shoko.Desktop.Forms
 {
@@ -172,8 +173,18 @@ namespace Shoko.Desktop.Forms
 
                 Cursor = Cursors.Wait;
 
-                string res = VM_ShokoServer.Instance.ShokoServices.LinkAniDBTvDB(AnimeID, AnimeEpisodeType, AnimeEpisodeNumber,
-                    TvDBID, TvDBSeason, TvDBEpisodeNumber, CrossRef_AniDB_TvDBV2ID);
+                var xref = new CrossRef_AniDB_TvDBV2
+                {
+                    AnimeID = AnimeID,
+                    AniDBStartEpisodeType = AnimeEpisodeType,
+                    AniDBStartEpisodeNumber = AnimeEpisodeNumber,
+                    TvDBID = TvDBID,
+                    TvDBSeasonNumber = TvDBSeason,
+                    TvDBStartEpisodeNumber = TvDBEpisodeNumber,
+                    CrossRef_AniDB_TvDBV2ID = 0,
+                    CrossRefSource = (int) CrossrefSource.User
+                };
+                string res = VM_ShokoServer.Instance.ShokoServices.LinkAniDBTvDB(xref);
                 if (res.Length > 0)
                     MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 else
