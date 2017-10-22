@@ -890,7 +890,7 @@ namespace Shoko.Desktop.UserControls
                     frm.Owner = wdw;
                     //TODO
                     frm.Init(anime.AnimeID, anime.FormattedTitle, (EpisodeType)link.AniDBStartEpisodeType, link.AniDBStartEpisodeNumber, link.TvDBID,
-                        link.TvDBSeasonNumber, link.TvDBStartEpisodeNumber, link.TvDBTitle, anime, link.CrossRef_AniDB_TvDBV2ID);
+                        link.TvDBSeasonNumber, link.TvDBStartEpisodeNumber, link.TvDBTitle, anime);
                     bool? result = frm.ShowDialog();
                     if (result.Value)
                     {

@@ -1,11 +1,11 @@
-﻿using NLog;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
+using NLog;
 using Shoko.Commons.Extensions;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel;
@@ -40,32 +40,32 @@ namespace Shoko.Desktop.Forms
 
         public bool IsSearch
         {
-            get { return (bool)GetValue(IsSearchProperty); }
-            set { SetValue(IsSearchProperty, value); }
+            get => (bool)GetValue(IsSearchProperty);
+            set => SetValue(IsSearchProperty, value);
         }
 
         public bool IsExisting
         {
-            get { return (bool)GetValue(IsExistingProperty); }
-            set { SetValue(IsExistingProperty, value); }
+            get => (bool)GetValue(IsExistingProperty);
+            set => SetValue(IsExistingProperty, value);
         }
 
         public bool HasWebCacheRec
         {
-            get { return (bool)GetValue(HasWebCacheRecProperty); }
-            set { SetValue(HasWebCacheRecProperty, value); }
+            get => (bool)GetValue(HasWebCacheRecProperty);
+            set => SetValue(HasWebCacheRecProperty, value);
         }
 
         public List<VM_CrossRef_AniDB_TvDBV2> CrossRef_AniDB_TvDBResult
         {
-            get { return (List<VM_CrossRef_AniDB_TvDBV2>)GetValue(CrossRef_AniDB_TvDBResultProperty); }
-            set { SetValue(CrossRef_AniDB_TvDBResultProperty, value); }
+            get => (List<VM_CrossRef_AniDB_TvDBV2>)GetValue(CrossRef_AniDB_TvDBResultProperty);
+            set => SetValue(CrossRef_AniDB_TvDBResultProperty, value);
         }
 
         public List<VM_TVDB_Series_Search_Response> TVDBSeriesSearchResults
         {
-            get { return (List<VM_TVDB_Series_Search_Response>)GetValue(TVDBSeriesSearchResultsProperty); }
-            set { SetValue(TVDBSeriesSearchResultsProperty, value); }
+            get => (List<VM_TVDB_Series_Search_Response>)GetValue(TVDBSeriesSearchResultsProperty);
+            set => SetValue(TVDBSeriesSearchResultsProperty, value);
         }
 
         public static readonly DependencyProperty AnimeNameProperty = DependencyProperty.Register("AnimeName",
@@ -73,14 +73,14 @@ namespace Shoko.Desktop.Forms
 
         public string AnimeName
         {
-            get { return (string)GetValue(AnimeNameProperty); }
-            set { SetValue(AnimeNameProperty, value); }
+            get => (string)GetValue(AnimeNameProperty);
+            set => SetValue(AnimeNameProperty, value);
         }
 
-        private int AnimeID = 0;
-        private int? ExistingTVDBID = null;
-        public int? SelectedTvDBID = null;
-        private VM_AniDB_Anime Anime = null;
+        private int AnimeID;
+        private int? ExistingTVDBID;
+        public int? SelectedTvDBID;
+        private VM_AniDB_Anime Anime;
 
         public SearchTvDBForm()
         {
@@ -90,29 +90,35 @@ namespace Shoko.Desktop.Forms
 
             CrossRef_AniDB_TvDBResult = new List<VM_CrossRef_AniDB_TvDBV2>();
 
-            rbExisting.Checked += new RoutedEventHandler(rbExisting_Checked);
-            rbSearch.Checked += new RoutedEventHandler(rbSearch_Checked);
+            rbExisting.Checked += rbExisting_Checked;
+            rbSearch.Checked += rbSearch_Checked;
 
-            hlURL.Click += new RoutedEventHandler(hlURL_Click);
+            hlURL.Click += hlURL_Click;
 
             rbSearch.IsChecked = true;
             rbExisting.IsChecked = false;
 
-            btnSearch.Click += new RoutedEventHandler(btnSearch_Click);
-            btnClose.Click += new RoutedEventHandler(btnClose_Click);
-            btnUseThis.Click += new RoutedEventHandler(btnUseThis_Click);
-            btnUseThisExisting.Click += new RoutedEventHandler(btnUseThisExisting_Click);
+            txtSearch.KeyDown += (sender, evt) =>
+            {
+                if (evt.Key == Key.Enter || evt.Key == Key.Return)
+                    btnSearch_Click(this, new RoutedEventArgs());
+            };
+
+            btnSearch.Click += btnSearch_Click;
+            btnClose.Click += btnClose_Click;
+            btnUseThis.Click += btnUseThis_Click;
+            btnUseThisExisting.Click += btnUseThisExisting_Click;
         }
 
         void btnUseThisExisting_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                int id = 0;
+                int id;
                 int.TryParse(txtSeriesID.Text, out id);
                 if (id <= 0)
                 {
-                    MessageBox.Show(Shoko.Commons.Properties.Resources.Search_InvalidTvDB, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Commons.Properties.Resources.Search_InvalidTvDB, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtSeriesID.Focus();
                     return;
                 }
@@ -125,9 +131,9 @@ namespace Shoko.Desktop.Forms
                 Cursor = Cursors.Wait;
                 SelectTvDBSeasonForm frm = new SelectTvDBSeasonForm();
                 frm.Owner = wdw;
-                frm.Init(AnimeID, AnimeName, EpisodeType.Episode, 1, id, 1, 1, AnimeName, Anime, null);
+                frm.Init(AnimeID, AnimeName, EpisodeType.Episode, 1, id, 1, 1, AnimeName, Anime);
                 bool? result = frm.ShowDialog();
-                if (result.Value)
+                if (result != null && result.Value)
                 {
                     SelectedTvDBID = id;
                     DialogResult = true;
@@ -150,25 +156,14 @@ namespace Shoko.Desktop.Forms
             try
             {
                 Cursor = Cursors.Wait;
-
-                // remove any existing links
-                string res = VM_ShokoServer.Instance.ShokoServices.RemoveLinkAniDBTvDBForAnime(AnimeID);
-                if (res.Length > 0)
-                {
-                    MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-                    Cursor = Cursors.Arrow;
-                    return;
-                }
-
-
                 // add links
                 foreach (VM_CrossRef_AniDB_TvDBV2 xref in CrossRef_AniDB_TvDBResult)
                 {
                     xref.CrossRef_AniDB_TvDBV2ID = 0;
-                    res = VM_ShokoServer.Instance.ShokoServices.LinkAniDBTvDB(xref);
+                    string res = VM_ShokoServer.Instance.ShokoServices.LinkAniDBTvDB(xref);
                     if (res.Length > 0)
                     {
-                        MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(res, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         Cursor = Cursors.Arrow;
                         return;
                     }
@@ -198,8 +193,6 @@ namespace Shoko.Desktop.Forms
 
         private void CommandBinding_UseThis(object sender, ExecutedRoutedEventArgs e)
         {
-            Window parentWindow = GetWindow(this);
-
             object obj = e.Parameter;
             if (obj == null) return;
 
@@ -216,9 +209,9 @@ namespace Shoko.Desktop.Forms
                     Cursor = Cursors.Wait;
                     SelectTvDBSeasonForm frm = new SelectTvDBSeasonForm();
                     frm.Owner = wdw;
-                    frm.Init(AnimeID, AnimeName, EpisodeType.Episode, 1, searchResult.SeriesID, 1, 1, searchResult.SeriesName, Anime, null);
+                    frm.Init(AnimeID, AnimeName, EpisodeType.Episode, 1, searchResult.SeriesID, 1, 1, searchResult.SeriesName, Anime);
                     bool? result = frm.ShowDialog();
-                    if (result.Value)
+                    if (result != null && result.Value)
                     {
                         SelectedTvDBID = searchResult.SeriesID;
                         DialogResult = true;

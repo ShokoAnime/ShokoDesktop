@@ -1,5 +1,4 @@
-﻿using NLog;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -7,6 +6,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using NLog;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel;
 using Shoko.Desktop.ViewModel.Server;
@@ -21,20 +21,17 @@ namespace Shoko.Desktop.Forms
     /// </summary>
     public partial class SelectTvDBSeasonForm : Window
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
-        private VM_AniDB_Anime Anime = null;
-        private List<VM_AniDB_Episode> AniDBEpisodes = null;
+        private List<VM_AniDB_Episode> AniDBEpisodes;
         private bool FirstLoad = true;
-        private int? CrossRef_AniDB_TvDBV2ID = null;
-        private VM_TvDBDetails TvDetails = null;
+        private VM_TvDBDetails TvDetails;
 
         public static readonly DependencyProperty AnimeIDProperty = DependencyProperty.Register("AnimeID",
             typeof(int), typeof(SelectTvDBSeasonForm), new UIPropertyMetadata(0, null));
 
         public int AnimeID
         {
-            get { return (int)GetValue(AnimeIDProperty); }
-            set { SetValue(AnimeIDProperty, value); }
+            get => (int) GetValue(AnimeIDProperty);
+            set => SetValue(AnimeIDProperty, value);
         }
 
         public static readonly DependencyProperty AnimeNameProperty = DependencyProperty.Register("AnimeName",
@@ -42,8 +39,8 @@ namespace Shoko.Desktop.Forms
 
         public string AnimeName
         {
-            get { return (string)GetValue(AnimeNameProperty); }
-            set { SetValue(AnimeNameProperty, value); }
+            get => (string) GetValue(AnimeNameProperty);
+            set => SetValue(AnimeNameProperty, value);
         }
 
 
@@ -52,8 +49,8 @@ namespace Shoko.Desktop.Forms
 
         public int AnimeEpisodeType
         {
-            get { return (int)GetValue(AnimeEpisodeTypeProperty); }
-            set { SetValue(AnimeEpisodeTypeProperty, value); }
+            get => (int) GetValue(AnimeEpisodeTypeProperty);
+            set => SetValue(AnimeEpisodeTypeProperty, value);
         }
 
         public static readonly DependencyProperty AnimeEpisodeNumberProperty = DependencyProperty.Register("AnimeEpisodeNumber",
@@ -61,8 +58,8 @@ namespace Shoko.Desktop.Forms
 
         public int AnimeEpisodeNumber
         {
-            get { return (int)GetValue(AnimeEpisodeNumberProperty); }
-            set { SetValue(AnimeEpisodeNumberProperty, value); }
+            get => (int) GetValue(AnimeEpisodeNumberProperty);
+            set => SetValue(AnimeEpisodeNumberProperty, value);
         }
 
         public static readonly DependencyProperty AnimeURLProperty = DependencyProperty.Register("AnimeURL",
@@ -70,8 +67,8 @@ namespace Shoko.Desktop.Forms
 
         public string AnimeURL
         {
-            get { return (string)GetValue(AnimeURLProperty); }
-            set { SetValue(AnimeURLProperty, value); }
+            get => (string) GetValue(AnimeURLProperty);
+            set => SetValue(AnimeURLProperty, value);
         }
 
         public static readonly DependencyProperty TvDBIDProperty = DependencyProperty.Register("TvDBID",
@@ -79,8 +76,8 @@ namespace Shoko.Desktop.Forms
 
         public int TvDBID
         {
-            get { return (int)GetValue(TvDBIDProperty); }
-            set { SetValue(TvDBIDProperty, value); }
+            get => (int) GetValue(TvDBIDProperty);
+            set => SetValue(TvDBIDProperty, value);
         }
 
         public static readonly DependencyProperty TvDBSeasonProperty = DependencyProperty.Register("TvDBSeason",
@@ -88,8 +85,8 @@ namespace Shoko.Desktop.Forms
 
         public int TvDBSeason
         {
-            get { return (int)GetValue(TvDBSeasonProperty); }
-            set { SetValue(TvDBSeasonProperty, value); }
+            get => (int) GetValue(TvDBSeasonProperty);
+            set => SetValue(TvDBSeasonProperty, value);
         }
 
         public static readonly DependencyProperty TvDBEpisodeNumberProperty = DependencyProperty.Register("TvDBEpisodeNumber",
@@ -97,8 +94,8 @@ namespace Shoko.Desktop.Forms
 
         public int TvDBEpisodeNumber
         {
-            get { return (int)GetValue(TvDBEpisodeNumberProperty); }
-            set { SetValue(TvDBEpisodeNumberProperty, value); }
+            get => (int) GetValue(TvDBEpisodeNumberProperty);
+            set => SetValue(TvDBEpisodeNumberProperty, value);
         }
 
         public static readonly DependencyProperty TvDBSeriesNameProperty = DependencyProperty.Register("TvDBSeriesName",
@@ -106,8 +103,8 @@ namespace Shoko.Desktop.Forms
 
         public string TvDBSeriesName
         {
-            get { return (string)GetValue(TvDBSeriesNameProperty); }
-            set { SetValue(TvDBSeriesNameProperty, value); }
+            get => (string)GetValue(TvDBSeriesNameProperty);
+            set => SetValue(TvDBSeriesNameProperty, value);
         }
 
         public static readonly DependencyProperty TvDBURLProperty = DependencyProperty.Register("TvDBURL",
@@ -115,8 +112,8 @@ namespace Shoko.Desktop.Forms
 
         public string TvDBURL
         {
-            get { return (string)GetValue(TvDBURLProperty); }
-            set { SetValue(TvDBURLProperty, value); }
+            get => (string)GetValue(TvDBURLProperty);
+            set => SetValue(TvDBURLProperty, value);
         }
 
 
@@ -125,8 +122,8 @@ namespace Shoko.Desktop.Forms
 
         public VM_TvDB_Episode SelectedEpisode
         {
-            get { return (VM_TvDB_Episode)GetValue(SelectedEpisodeProperty); }
-            set { SetValue(SelectedEpisodeProperty, value); }
+            get => (VM_TvDB_Episode)GetValue(SelectedEpisodeProperty);
+            set => SetValue(SelectedEpisodeProperty, value);
         }
 
         public SelectTvDBSeasonForm()
@@ -135,8 +132,13 @@ namespace Shoko.Desktop.Forms
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
-            btnClose.Click += new RoutedEventHandler(btnClose_Click);
-            btnUpdate.Click += new RoutedEventHandler(btnUpdate_Click);
+            btnClose.Click += btnClose_Click;
+            btnUpdate.Click += btnUpdate_Click;
+
+            cboEpisodeType.SelectionChanged += cboEpisodeType_SelectionChanged;
+
+            cboSeasonNumber.SelectionChanged += cboSeasonNumber_SelectionChanged;
+            cboEpisodeNumber.SelectionChanged += cboEpisodeNumber_SelectionChanged;
         }
 
         void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -145,14 +147,14 @@ namespace Shoko.Desktop.Forms
             {
                 if (cboSeasonNumber.Items.Count == 0)
                 {
-                    MessageBox.Show(Shoko.Commons.Properties.Resources.TvDB_NoSeasons, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Commons.Properties.Resources.TvDB_NoSeasons, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
                 VM_AniDB_Episode aniEp = cboAniDBEpisodeNumber.SelectedItem as VM_AniDB_Episode;
                 if (aniEp == null)
                 {
-                    MessageBox.Show(Shoko.Commons.Properties.Resources.TvDB_NoAniDB, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Commons.Properties.Resources.TvDB_NoAniDB, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 AnimeEpisodeNumber = aniEp.EpisodeNumber;
@@ -160,7 +162,7 @@ namespace Shoko.Desktop.Forms
                 VM_TvDB_Episode tvep = cboEpisodeNumber.SelectedItem as VM_TvDB_Episode;
                 if (tvep == null)
                 {
-                    MessageBox.Show(Shoko.Commons.Properties.Resources.TvDB_NoTvDB, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Commons.Properties.Resources.TvDB_NoTvDB, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 TvDBEpisodeNumber = tvep.EpisodeNumber;
@@ -186,7 +188,7 @@ namespace Shoko.Desktop.Forms
                 };
                 string res = VM_ShokoServer.Instance.ShokoServices.LinkAniDBTvDB(xref);
                 if (res.Length > 0)
-                    MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(res, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 else
                 {
                     DialogResult = true;
@@ -210,9 +212,8 @@ namespace Shoko.Desktop.Forms
         }
 
         public void Init(int animeID, string animeName, EpisodeType aniEpType, int aniEpNumber, int tvDBID, int tvSeason, int tvEpNumber, string tvSeriesName,
-            VM_AniDB_Anime anime, int? crossRef_AniDB_TvDBV2ID)
+            VM_AniDB_Anime anime)
         {
-            Anime = anime;
             AnimeID = animeID;
             AnimeName = animeName;
             AnimeEpisodeType = (int)aniEpType;
@@ -221,7 +222,6 @@ namespace Shoko.Desktop.Forms
             TvDBSeason = tvSeason;
             TvDBEpisodeNumber = tvEpNumber;
             TvDBSeriesName = tvSeriesName;
-            CrossRef_AniDB_TvDBV2ID = crossRef_AniDB_TvDBV2ID;
 
             AnimeURL = string.Format(Constants.URLS.AniDB_Series, AnimeID);
             TvDBURL = string.Format(Constants.URLS.TvDB_Series, TvDBID);
@@ -235,15 +235,10 @@ namespace Shoko.Desktop.Forms
             }
 
             cboEpisodeType.Items.Clear();
-            cboEpisodeType.Items.Add(Shoko.Commons.Properties.Resources.Anime_Episodes);
-            if (hasSpecials) cboEpisodeType.Items.Add(Shoko.Commons.Properties.Resources.Anime_Specials);
+            cboEpisodeType.Items.Add(Commons.Properties.Resources.Anime_Episodes);
+            if (hasSpecials) cboEpisodeType.Items.Add(Commons.Properties.Resources.Anime_Specials);
 
-            cboEpisodeType.SelectionChanged += new SelectionChangedEventHandler(cboEpisodeType_SelectionChanged);
-
-            if (aniEpType == EpisodeType.Episode)
-                cboEpisodeType.SelectedIndex = 0;
-            else
-                cboEpisodeType.SelectedIndex = 1;
+            cboEpisodeType.SelectedIndex = aniEpType == EpisodeType.Episode ? 0 : 1;
 
 
 
@@ -253,7 +248,7 @@ namespace Shoko.Desktop.Forms
             {
                 cboSeasonNumber.Items.Clear();
 
-                List<int> seasons = null;
+                List<int> seasons;
                 if (anime.TvSummary.TvDetails.ContainsKey(tvDBID))
                 {
                     TvDetails = anime.TvSummary.TvDetails[tvDBID];
@@ -265,7 +260,8 @@ namespace Shoko.Desktop.Forms
                     TvDetails = new VM_TvDBDetails(tvDBID);
                     if (TvDetails.TvDBEpisodes == null || TvDetails.TvDBEpisodes.Count <= 0)
                     {
-                        Utils.ShowErrorMessage("The series data is being downloaded, try again in a few seconds.");
+                        Utils.ShowErrorMessage("The series data is being downloaded, try again when the queue has cleared.");
+                        DialogResult = false;
                         Close();
                     }
                     seasons = TvDetails.DictTvDBSeasons.Keys.ToList();
@@ -280,9 +276,6 @@ namespace Shoko.Desktop.Forms
                     if (season == tvSeason) idx = i;
                     i++;
                 }
-
-                cboSeasonNumber.SelectionChanged += new SelectionChangedEventHandler(cboSeasonNumber_SelectionChanged);
-                cboEpisodeNumber.SelectionChanged += new SelectionChangedEventHandler(cboEpisodeNumber_SelectionChanged);
 
                 cboSeasonNumber.SelectedIndex = idx;
 
@@ -305,7 +298,6 @@ namespace Shoko.Desktop.Forms
 
 
                 foreach (VM_AniDB_Episode ep in AniDBEpisodes)
-                {
                     if (ep.EpisodeType == epType)
                     {
                         cboAniDBEpisodeNumber.Items.Add(ep);
@@ -313,10 +305,8 @@ namespace Shoko.Desktop.Forms
                         if (AnimeEpisodeNumber == ep.EpisodeNumber) idx = i;
                         i++;
                     }
-                }
 
                 if (cboAniDBEpisodeNumber.Items.Count > 0)
-                {
                     if (FirstLoad)
                     {
                         cboAniDBEpisodeNumber.SelectedIndex = idx;
@@ -324,8 +314,6 @@ namespace Shoko.Desktop.Forms
                     }
                     else
                         cboAniDBEpisodeNumber.SelectedIndex = 0;
-                }
-
             }
             catch (Exception ex)
             {
@@ -344,9 +332,7 @@ namespace Shoko.Desktop.Forms
             int idxCount = 0;
             cboEpisodeNumber.Items.Clear();
             if (TvDetails != null)
-            {
                 foreach (VM_TvDB_Episode ep in TvDetails.DictTvDBEpisodes.Values)
-                {
                     if (ep.SeasonNumber == int.Parse(cboSeasonNumber.SelectedItem.ToString()))
                     {
                         cboEpisodeNumber.Items.Add(ep);
@@ -356,12 +342,8 @@ namespace Shoko.Desktop.Forms
 
                         idxCount++;
                     }
-                }
-            }
             if (cboEpisodeNumber.Items.Count > 0)
-            {
                 cboEpisodeNumber.SelectedIndex = idx;
-            }
         }
     }
 }
