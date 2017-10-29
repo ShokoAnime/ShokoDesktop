@@ -492,7 +492,7 @@ namespace Shoko.Desktop.UserControls
                 VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
                 if (anime == null) return;
 
-                if (obj.GetType() == typeof(CrossRef_AniDB_MAL))
+                if (obj is CrossRef_AniDB_MAL)
                 {
                     Cursor = Cursors.Wait;
                     CrossRef_AniDB_MAL malLink = obj as CrossRef_AniDB_MAL;
@@ -531,7 +531,7 @@ namespace Shoko.Desktop.UserControls
                 VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
                 if (anime == null) return;
 
-                if (obj.GetType() == typeof(CrossRef_AniDB_MAL))
+                if (obj is CrossRef_AniDB_MAL)
                 {
                     Cursor = Cursors.Wait;
                     CrossRef_AniDB_MAL malLink = obj as CrossRef_AniDB_MAL;
