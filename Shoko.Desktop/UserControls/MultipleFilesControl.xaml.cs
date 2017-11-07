@@ -23,7 +23,7 @@ using Shoko.Models.Client;
 using Shoko.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using static Shoko.Models.FileQualityFilter;
+using Shoko.Models.Enums;
 
 namespace Shoko.Desktop.UserControls
 {
