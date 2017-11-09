@@ -1086,7 +1086,7 @@ namespace Shoko.Desktop.UserControls
                 {
                     ser.AniDBAnime.CustomTags.Add(tag);
                     ser.AniDBAnime.ViewCustomTags.Refresh();
-                    VM_MainListHelper.Instance.UpdateAll();
+                    VM_MainListHelper.Instance.RefreshGroupsSeriesData();
                 }
             }
             catch (Exception ex)
@@ -1166,7 +1166,7 @@ namespace Shoko.Desktop.UserControls
         {
             VM_AnimeSeries_User ser = DataContext as VM_AnimeSeries_User;
             if (ser == null) return;
-            VM_MainListHelper.Instance.UpdateAll();
+            VM_MainListHelper.Instance.RefreshGroupsSeriesData();
 
             LoadSeries();
         }
@@ -1177,6 +1177,9 @@ namespace Shoko.Desktop.UserControls
 
             VM_AnimeSeries_User ser = DataContext as VM_AnimeSeries_User;
             if (ser == null) return;
+
+            ser.AniDBAnime?.AniDBAnime.ClearTvDBData();
+            ser.AniDBAnime?.AniDBAnime.ClearTraktData();
 
             FullDescription = false;
             TruncatedDescription = true;

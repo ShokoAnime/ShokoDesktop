@@ -301,7 +301,11 @@ namespace Shoko.Desktop.ViewModel.Server
             get
             {
                 if (string.IsNullOrEmpty(episodeOverviewLoading))
-                    EpisodeOverviewLoading = Shoko.Commons.Properties.Resources.AnimeEpisode_NoOverview;
+                {
+                    EpisodeOverviewLoading = (Description?.Length ?? 0) > 0
+                        ? Description
+                        : Commons.Properties.Resources.AnimeEpisode_NoOverview;
+                }
                 return episodeOverviewLoading;
             }
             set
@@ -467,6 +471,8 @@ namespace Shoko.Desktop.ViewModel.Server
             TvDBLinkExists = false;
             TvDBLinkMissing = true;
 
+            // TODO Titles and Overviews not stupid.
+
             #region episode override
             // check if this episode has a direct tvdb over-ride
             if (tvSummary.DictTvDBCrossRefEpisodes.ContainsKey(AniDB_EpisodeID))
@@ -475,7 +481,10 @@ namespace Shoko.Desktop.ViewModel.Server
                 {
                     if (tvSummary.DictTvDBCrossRefEpisodes[AniDB_EpisodeID] == tvep.Id)
                     {
-                        EpisodeOverviewLoading = string.IsNullOrEmpty(tvep.Overview) ? "Episode Overview Not Available" : tvep.Overview;
+                        if(!string.IsNullOrEmpty(tvep.Overview))
+                            EpisodeOverviewLoading = tvep.Overview;
+                        if (string.IsNullOrEmpty(EpisodeOverviewLoading))
+                            EpisodeOverviewLoading = Commons.Properties.Resources.AnimeEpisode_NoOverview;
 
                         if (string.IsNullOrEmpty(tvep.FullImagePathPlain) || !File.Exists(tvep.FullImagePath))
                         {
@@ -558,7 +567,10 @@ namespace Shoko.Desktop.ViewModel.Server
 
                                 //logger.Trace("SetTvDBInfo: loading episode overview");
                                 VM_TvDB_Episode tvep = dictTvDBEpisodes[episodeNumber];
-                                EpisodeOverviewLoading = string.IsNullOrEmpty(tvep.Overview) ? "Episode Overview Not Available" : tvep.Overview;
+                                if(!string.IsNullOrEmpty(tvep.Overview))
+                                    EpisodeOverviewLoading = tvep.Overview;
+                                if (string.IsNullOrEmpty(EpisodeOverviewLoading))
+                                    EpisodeOverviewLoading = Commons.Properties.Resources.AnimeEpisode_NoOverview;
 
                                 //logger.Trace("SetTvDBInfo: loading episode overview - done");
 
@@ -633,7 +645,10 @@ namespace Shoko.Desktop.ViewModel.Server
                             if (dictTvDBEpisodes.ContainsKey(episodeNumber))
                             {
                                 VM_TvDB_Episode tvep = dictTvDBEpisodes[episodeNumber];
-                                EpisodeOverviewLoading = tvep.Overview;
+                                if(!string.IsNullOrEmpty(tvep.Overview))
+                                    EpisodeOverviewLoading = tvep.Overview;
+                                if (string.IsNullOrEmpty(EpisodeOverviewLoading))
+                                    EpisodeOverviewLoading = Commons.Properties.Resources.AnimeEpisode_NoOverview;
 
                                 if (string.IsNullOrEmpty(tvep.FullImagePathPlain) || !File.Exists(tvep.FullImagePath))
                                 {
@@ -988,6 +1003,7 @@ namespace Shoko.Desktop.ViewModel.Server
                 AniDB_RomajiName = contract.AniDB_RomajiName;
                 AniDB_EnglishName = contract.AniDB_EnglishName;
                 AniDB_AirDate = contract.AniDB_AirDate;
+                Description = contract.Description;
                 LocalFileCount = contract.LocalFileCount;
                 PlayedCount = contract.PlayedCount;
                 StoppedCount = contract.StoppedCount;
