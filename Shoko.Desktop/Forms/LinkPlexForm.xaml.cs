@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
@@ -26,6 +28,7 @@ namespace Shoko.Desktop.Forms
     {
         private readonly JMMUser _user;
         private readonly Timer _timer;
+        private LinkPlexVM _vm;
 
         public LinkPlexForm(JMMUser user)
         {
@@ -35,7 +38,9 @@ namespace Shoko.Desktop.Forms
             btnLink.Click += BtnLinkOnClick;
             btnInvalidate.Click += BtnInvalidateOnClick;
 
-            _timer = new Timer {Interval = 10*1000};//10 seconds
+            this.DataContext = _vm = new LinkPlexVM();
+
+            _timer = new Timer {Interval = 1*1000};//10 seconds
             _timer.Elapsed += TimerOnElapsed;
             _timer.Start();
         }
@@ -44,17 +49,62 @@ namespace Shoko.Desktop.Forms
 
         private void TimerOnElapsed(object sender, ElapsedEventArgs elapsedEventArgs)
         {
-            bool isAuthorized = VM_ShokoServer.Instance.ShokoServices.IsPlexAuthenticated(_user.JMMUserID);
+            _vm.Authorized = VM_ShokoServer.Instance.ShokoServices.IsPlexAuthenticated(_user.JMMUserID);
 
-            if (!isAuthorized)
+            if (!_vm.Authorized)
                 return;
 
-            this.Dispatcher.Invoke(() => txtPin.Text = Commons.Properties.Resources.Done);
             _timer.Stop();
         }
 
-        private void BtnLinkOnClick(object sender, RoutedEventArgs routedEventArgs) => txtPin.Text = VM_ShokoServer.Instance.ShokoServices.LinkToPlex(_user.JMMUserID);
+        private void BtnLinkOnClick(object sender, RoutedEventArgs routedEventArgs) => _vm.LinkUrl = VM_ShokoServer.Instance.ShokoServices.LoginUrl(_user.JMMUserID);
 
         private void BtnClose_Click(object sender, RoutedEventArgs routedEventArgs) => Close();
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e) => System.Diagnostics.Process.Start(e.Uri.AbsoluteUri);
+    }
+
+    public sealed class LinkPlexVM : INotifyPropertyChanged
+    {
+        private string _linkUrl;
+        private bool _isAuthorized;
+
+        public string LinkUrl
+        {
+            get => _linkUrl;
+            set
+            {
+                _linkUrl = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(LinkGenerated));
+                OnPropertyChanged(nameof(ShouldDisplayLink));
+            }
+        }
+
+        public string LinkDisplay => _isAuthorized
+            ? Shoko.Commons.Properties.Resources.Done
+            : Shoko.Commons.Properties.Resources.Plex_UsageMessage;
+
+        public bool ShouldDisplayLink => !string.IsNullOrEmpty(LinkUrl) && !_isAuthorized;
+
+        public bool Authorized
+        {
+            get => _isAuthorized;
+            set
+            {
+                _isAuthorized = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShouldDisplayLink));
+                OnPropertyChanged(nameof(LinkDisplay));
+            }
+        }
+
+        public bool LinkGenerated => !string.IsNullOrEmpty(LinkUrl);
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
