@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using Pri.LongPath;
 using Shoko.Desktop.ViewModel;
 
@@ -54,10 +55,24 @@ namespace Shoko.Desktop.UserControls.Settings
 
         void btnChooseImagesFolder_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
-            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            //needed check, 
+            if (CommonFileDialog.IsPlatformSupported)
             {
-                AppSettings.ImagesPath = dialog.SelectedPath;
+                var dialog = new CommonOpenFileDialog();
+                dialog.IsFolderPicker = true;
+                //CommonFileDialogResult result = dialog.ShowDialog();
+                if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+                {
+                    AppSettings.ImagesPath = dialog.FileName;
+                }
+            }
+            else
+            {
+                System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    AppSettings.ImagesPath = dialog.SelectedPath;
+                }
             }
         }
 

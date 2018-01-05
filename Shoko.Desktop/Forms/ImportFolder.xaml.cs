@@ -7,6 +7,7 @@ using System.Windows;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel;
 using Shoko.Desktop.ViewModel.Server;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace Shoko.Desktop.Forms
 {
@@ -68,15 +69,33 @@ namespace Shoko.Desktop.Forms
 
         private void BtnChooseFolder_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
-
-            if (!string.IsNullOrEmpty(txtLocalPath.Text) &&
-                Directory.Exists(txtLocalPath.Text))
-                dialog.SelectedPath = txtLocalPath.Text;
-
-            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            //needed check, 
+            if (CommonFileDialog.IsPlatformSupported)
             {
-                txtLocalPath.Text = dialog.SelectedPath;
+                var dialog = new CommonOpenFileDialog();
+                dialog.IsFolderPicker = true;
+
+                if (!string.IsNullOrEmpty(txtLocalPath.Text) &&
+                    Directory.Exists(txtLocalPath.Text))
+                    dialog.InitialDirectory = txtLocalPath.Text;
+
+                if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+                {
+                    txtLocalPath.Text = dialog.FileName;
+                }
+            }
+            else
+            {
+                System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+
+                if (!string.IsNullOrEmpty(txtLocalPath.Text) &&
+                    Directory.Exists(txtLocalPath.Text))
+                    dialog.SelectedPath = txtLocalPath.Text;
+
+                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    txtLocalPath.Text = dialog.SelectedPath;
+                }
             }
         }
 
