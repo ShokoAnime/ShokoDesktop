@@ -63,7 +63,7 @@
                     <TextBlock VerticalAlignment="Center" Text="{Binding Path=EpisodeCount, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}}" Margin="10,0,0,0" Foreground="DarkGray" />
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Anime_Episodes}" Margin="10,0,0,0" Foreground="DarkGray"/>
                     <CheckBox Name="chkOnlyFinished" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFiles_Finished}" VerticalAlignment="Center" Margin="15,0,0,0"/>
-                    <CheckBox Name="chkIgnoreVariations" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFiles_Ignore}" VerticalAlignment="Center" Margin="15,0,0,0"/>
+                    <CheckBox Name="chkIgnoreVariations" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFiles_Ignore}" VerticalAlignment="Center" Margin="15,0,0,0" IsChecked="True"/>
 
                 </StackPanel>
 
