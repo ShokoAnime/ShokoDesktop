@@ -94,6 +94,24 @@ namespace Shoko.Desktop.ViewModel
             }
         }
 
+        private IShokoServerPlex _plexClient;
+        public IShokoServerPlex ShokoPlex
+        {
+            get
+            {
+                if (_plexClient != null) return _plexClient;
+                try
+                {
+                    SetupPlexClient();
+                }
+                catch
+                {
+                    // ignored
+                }
+                return _plexClient;
+            }
+        }
+
 
 
         public static bool SettingsAreValid()
@@ -115,6 +133,23 @@ namespace Shoko.Desktop.ViewModel
             try
             {
                 _imageClient = ClientFactory.Create<IShokoServerImage>($"http://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/");
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
+
+        public void SetupPlexClient()
+        {
+            //ServerOnline = false;
+            _plexClient = null;
+
+            if (!SettingsAreValid()) return;
+
+            try
+            {
+                _plexClient = ClientFactory.Create<IShokoServerPlex>($"http://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/");
             }
             catch (Exception ex)
             {

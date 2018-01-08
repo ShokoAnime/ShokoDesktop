@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,7 +14,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DevExpress.Data.PLinq.Helpers;
 using Shoko.Desktop.ViewModel;
+using Shoko.Models.Plex.Connections;
+using Shoko.Models.Plex.Libraries;
 
 namespace Shoko.Desktop.UserControls.Settings
 {
@@ -22,42 +26,53 @@ namespace Shoko.Desktop.UserControls.Settings
     /// </summary>
     public partial class PlexSettings : UserControl
     {
+        private BackgroundWorker worker;
+        private VM_PlexSettings _settings;
         public PlexSettings()
         {
             InitializeComponent();
-
-            btnAdd.Click += BtnAddOnClick;
-            btnRemove.Click += BtnRemoveOnClick;
-            txtPlexHost.LostKeyboardFocus += (sender, args) =>
+            
+            cbServer.SelectionChanged += (sender, args) =>
             {
-                VM_ShokoServer.Instance.Plex_ServerHost = txtPlexHost.Text;
-                VM_ShokoServer.Instance.SaveServerSettingsAsync();
+                VM_ShokoServer.Instance.ShokoPlex.UseDevice(VM_ShokoServer.Instance.CurrentUser.JMMUserID, cbServer.SelectedItem as MediaDevice);
+                _settings.UpdateDirectories();
             };
-        }
-        private void BtnRemoveOnClick(object sender, RoutedEventArgs routedEventArgs)
-        {
-            VM_ShokoServer.Instance.Plex_Sections.Remove((int)lstPlexIDs.SelectedItem);
-            VM_ShokoServer.Instance.SaveServerSettingsAsync();
-        }
 
-        private void BtnAddOnClick(object sender, RoutedEventArgs routedEventArgs)
-        {
-            int item;
-            string currentText = txtNewItem.Text;
-            txtNewItem.Text = "";
-            if (!int.TryParse(currentText, out item))
+            lstPlexIDs.SelectionChanged += (sender, args) =>
             {
-                return;
-            }
+                VM_ShokoServer.Instance.ShokoPlex.UseDirectories(VM_ShokoServer.Instance.CurrentUser.JMMUserID,
+                    lstPlexIDs.SelectedItems.Cast<Directory>().ToList());
+            };
 
-            if (VM_ShokoServer.Instance.Plex_Sections.Contains(item))
+            this.DataContext = _settings = new VM_PlexSettings();
+            worker = new BackgroundWorker();
+            worker.DoWork += (o, e) =>
             {
-                return;
-            }
+                do
+                {
+                    Thread.Sleep(TimeSpan.FromSeconds(10));
+                } while (VM_ShokoServer.Instance.CurrentUser == null);
 
-            VM_ShokoServer.Instance.Plex_Sections.Add(item);
+                Application.Current.Dispatcher.Invoke(() => _settings.UpdateServers());
+                var currentServer = VM_ShokoServer.Instance.ShokoPlex.CurrentDevice(VM_ShokoServer.Instance.CurrentUser.JMMUserID);
+                if (currentServer == null) return;
 
-            VM_ShokoServer.Instance.SaveServerSettingsAsync();
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    for (var i = 0; i < _settings.PlexDevices.Count; i++)
+                    {
+                        if (_settings.PlexDevices[i].ClientIdentifier == currentServer.ClientIdentifier)
+                            cbServer.SelectedIndex = i;
+                    }
+
+                    lstPlexIDs.SelectedItems.Clear();
+                    foreach (var itm in lstPlexIDs.Items)
+                        if (VM_ShokoServer.Instance.Plex_Sections.Contains(((Directory) itm).Key))
+                            lstPlexIDs.SelectedItems.Add(itm);
+                });
+                
+            };
+            worker.RunWorkerAsync();
         }
     }
 }

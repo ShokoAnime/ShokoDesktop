@@ -6,6 +6,9 @@
              xmlns:local="clr-namespace:Shoko.Desktop.UserControls.Settings"
              xmlns:viewModel="clr-namespace:Shoko.Desktop.ViewModel"
              mc:Ignorable="d">
+    <UserControl.DataContext>
+        <viewModel:VM_PlexSettings/>
+    </UserControl.DataContext>
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -20,7 +23,18 @@
 
 
             <TextBlock Grid.Column="0" VerticalAlignment="Center" Grid.Row="0" Text="Plex Host" Margin="5,0,0,5"/>
-            <TextBox Grid.Column="1" MinWidth="200" Grid.Row="0" Text="{Binding Source={x:Static viewModel:VM_ShokoServer.Instance},Path=Plex_ServerHost}" Margin="10,0,0,5" x:Name="txtPlexHost"/>
+            <!--<TextBox Grid.Column="1" MinWidth="200" Grid.Row="0" Text="{Binding Source={x:Static viewModel:VM_ShokoServer.Instance},Path=Plex_ServerHost}" Margin="10,0,0,5" x:Name="txtPlexHost"/>-->
+
+            <ComboBox x:Name="cbServer" Grid.Column="1" MinWidth="200" Grid.Row="0" ItemsSource="{Binding Path=PlexDevices}" Margin="10,0,0,5">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <TextBlock Text="{Binding Name}" Padding="0,0,10,0"/>
+                            <TextBlock Text="{Binding SourceTitle}"/>
+                        </DockPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
 
             <TextBlock Grid.Column="0" VerticalAlignment="Center" Grid.Row="1" Text="Plex Library IDs" Margin="5,0,0,5"/>
             <Grid Grid.Column="1" Grid.Row="1" Margin="10,0,0,5">
@@ -34,26 +48,17 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <ListBox Width="150" Height="100" Grid.Column="0" Grid.Row="1" x:Name="lstPlexIDs" Margin="0,1,1,1" SelectionMode="Single" ItemsSource="{Binding Source={x:Static viewModel:VM_ShokoServer.Instance},Path=Plex_Sections}"></ListBox>
-                <TextBox Width="150" Grid.Column="0" Grid.Row="0" Margin="0,1,1,1" x:Name="txtNewItem"/>
-
-                <StackPanel Grid.Column="1" Grid.Row="1">
-                    <!-- Remove -->
-                    <Button x:Name="btnRemove" Margin="1,0,0,0" Style="{DynamicResource RoundButtonStyle}" >
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                            <Image Height="16" Width="16" Source="/Images/16_clear.png" Margin="0,0,3,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx Key=Remove, ResxName=Shoko.Commons.Properties.Resources}" Margin="0,0,0,0"/>
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
-
-                <!-- Add -->
-                <Button x:Name="btnAdd" Margin="1,1,1,1" Style="{DynamicResource RoundButtonStyle}" Grid.Column="1" Grid.Row="0">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                        <Image Height="16" Width="16" Source="/Images/16_add.png" Margin="0,0,3,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx Key=Add, ResxName=Shoko.Commons.Properties.Resources}" Margin="0,0,0,0"/>
-                    </StackPanel>
-                </Button>
+                <ListBox MinWidth="200" Height="100" Grid.Column="0" Grid.Row="0" x:Name="lstPlexIDs" Margin="0,1,1,1" SelectionMode="Multiple" ItemsSource="{Binding PlexDirectories}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Title}"/>
+                                <TextBlock Text=" - " />
+                                <TextBlock Text="{Binding Agent}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </Grid>
         </Grid>
     </Grid>
