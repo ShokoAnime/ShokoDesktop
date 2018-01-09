@@ -1852,6 +1852,7 @@ namespace Shoko.Desktop
                 if (obj.GetType() == typeof(VM_AnimeGroup_User))
                 {
                     VM_AnimeGroup_User grp = (VM_AnimeGroup_User)obj;
+                    grp.SortName = grp.SortName ?? grp.GroupName;
                     bool isnew = grp.AnimeGroupID==0;
                     if (grp.Validate())
                     {
