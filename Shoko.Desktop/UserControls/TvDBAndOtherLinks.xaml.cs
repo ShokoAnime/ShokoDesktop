@@ -546,7 +546,8 @@ namespace Shoko.Desktop.UserControls
                     {
                         Cursor = Cursors.Wait;
 
-                        string res = VM_ShokoServer.Instance.ShokoServices.RemoveLinkAniDBMAL(anime.AnimeID, malLink.StartEpisodeType, malLink.StartEpisodeNumber);
+                        string res = VM_ShokoServer.Instance.ShokoServices.RemoveLinkAniDBMAL(anime.AnimeID,
+                            malLink.MALID, malLink.StartEpisodeType, malLink.StartEpisodeNumber);
                         if (res.Length > 0)
                             MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         else
