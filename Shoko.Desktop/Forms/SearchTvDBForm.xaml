@@ -114,6 +114,7 @@
                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TvDB_SearchPrompt}" Margin="0,0,20,0"/>
                 <RadioButton Name="rbSearch" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search}" Margin="5,0,0,0"/>
                 <RadioButton Name="rbExisting" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Existing}" Margin="5,0,0,0"/>
+                <CheckBox Name="chkReplaceAll" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ReplaceAllLinks}" Margin="50,0,0,0" IsChecked="{Binding Path=ReplaceAll, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchTvDBForm}}, Mode=TwoWay}" />
             </StackPanel>
         </Border>
 

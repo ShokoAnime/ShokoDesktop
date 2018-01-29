@@ -1,5 +1,4 @@
-﻿using NLog;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -11,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using NLog;
 using Shoko.Commons.Extensions;
 using Shoko.Desktop.Forms;
 using Shoko.Desktop.UserControls.Community;
@@ -80,13 +80,13 @@ namespace Shoko.Desktop.UserControls
 
             btnTvDBCommLinks1.ContextMenu = commTvDBMenu;
             btnTvDBCommLinks2.ContextMenu = commTvDBMenu;
-            btnTvDBCommLinks1.Click += new RoutedEventHandler(btnTvDBCommLinks_Click);
-            btnTvDBCommLinks2.Click += new RoutedEventHandler(btnTvDBCommLinks_Click);
+            btnTvDBCommLinks1.Click += btnTvDBCommLinks_Click;
+            btnTvDBCommLinks2.Click += btnTvDBCommLinks_Click;
 
             btnTraktCommLinks1.ContextMenu = commTraktMenu;
             btnTraktCommLinks2.ContextMenu = commTraktMenu;
-            btnTraktCommLinks1.Click += new RoutedEventHandler(btnTraktCommLinks_Click);
-            btnTraktCommLinks2.Click += new RoutedEventHandler(btnTraktCommLinks_Click);
+            btnTraktCommLinks1.Click += btnTraktCommLinks_Click;
+            btnTraktCommLinks2.Click += btnTraktCommLinks_Click;
 
             CommunityTVDBLinks = new ObservableCollection<VM_CrossRef_AniDB_TvDBV2>();
             CommunityTraktLinks = new ObservableCollection<VM_CrossRef_AniDB_TraktV2>();
@@ -94,47 +94,45 @@ namespace Shoko.Desktop.UserControls
             ViewCommunityTVDBLinks = CollectionViewSource.GetDefaultView(CommunityTVDBLinks);
             ViewCommunityTraktLinks = CollectionViewSource.GetDefaultView(CommunityTraktLinks);
 
-            DataContextChanged += new DependencyPropertyChangedEventHandler(TvDBAndOtherLinks_DataContextChanged);
+            DataContextChanged += TvDBAndOtherLinks_DataContextChanged;
 
-            btnSearchTvDB.Click += new RoutedEventHandler(btnSearch_Click);
-            btnSearchExistingTvDB.Click += new RoutedEventHandler(btnSearchExisting_Click);
+            btnSearchTvDB.Click += btnSearch_Click;
+            btnSearchExistingTvDB.Click += btnSearchExisting_Click;
 
-            btnSearchExistingMovieDB.Click += new RoutedEventHandler(btnSearchExistingMovieDB_Click);
-            btnSearchMovieDB.Click += new RoutedEventHandler(btnSearchMovieDB_Click);
+            btnSearchExistingMovieDB.Click += btnSearchExistingMovieDB_Click;
+            btnSearchMovieDB.Click += btnSearchMovieDB_Click;
 
-            btnSearchExistingTrakt.Click += new RoutedEventHandler(btnSearchExistingTrakt_Click);
-            btnSearchTrakt.Click += new RoutedEventHandler(btnSearchTrakt_Click);
+            btnSearchExistingTrakt.Click += btnSearchExistingTrakt_Click;
+            btnSearchTrakt.Click += btnSearchTrakt_Click;
 
-            btnSearchExistingMAL.Click += new RoutedEventHandler(btnSearchExistingMAL_Click);
-            btnSearchMAL.Click += new RoutedEventHandler(btnSearchMAL_Click);
+            btnSearchExistingMAL.Click += btnSearchExistingMAL_Click;
+            btnSearchMAL.Click += btnSearchMAL_Click;
 
             communityWorker.WorkerSupportsCancellation = false;
             communityWorker.WorkerReportsProgress = true;
-            communityWorker.DoWork += new DoWorkEventHandler(communityWorker_DoWork);
-            communityWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(communityWorker_RunWorkerCompleted);
+            communityWorker.DoWork += communityWorker_DoWork;
+            communityWorker.RunWorkerCompleted += communityWorker_RunWorkerCompleted;
         }
 
         void btnTvDBCommLinks_Click(object sender, RoutedEventArgs e)
         {
+            MenuItem itemSeriesAdmin = new MenuItem();
             try
             {
-                CommTvDBTraktMenuCommand cmd = null;
-
                 // get all playlists
                 commTvDBMenu.Items.Clear();
 
-                MenuItem itemSeriesAdmin = new MenuItem();
-                itemSeriesAdmin.Header = Shoko.Commons.Properties.Resources.CommunityLinks_ShowAdmin;
-                itemSeriesAdmin.Click += new RoutedEventHandler(commTvDBMenuItem_Click);
-                cmd = new CommTvDBTraktMenuCommand(CommTvDBTraktItemType.ShowCommAdmin, -1); // new playlist
+                itemSeriesAdmin.Header = Commons.Properties.Resources.CommunityLinks_ShowAdmin;
+                itemSeriesAdmin.Click += commTvDBMenuItem_Click;
+                var cmd = new CommTvDBTraktMenuCommand(CommTvDBTraktItemType.ShowCommAdmin, -1);
                 itemSeriesAdmin.CommandParameter = cmd;
                 commTvDBMenu.Items.Add(itemSeriesAdmin);
 
                 if (AniDB_AnimeCrossRefs.TvDBCrossRefExists)
                 {
                     MenuItem itemSeriesLinks = new MenuItem();
-                    itemSeriesLinks.Header = Shoko.Commons.Properties.Resources.CommunityLins_UseMyLinks;
-                    itemSeriesLinks.Click += new RoutedEventHandler(commTvDBMenuItem_Click);
+                    itemSeriesLinks.Header = Commons.Properties.Resources.CommunityLins_UseMyLinks;
+                    itemSeriesLinks.Click += commTvDBMenuItem_Click;
                     cmd = new CommTvDBTraktMenuCommand(CommTvDBTraktItemType.UseMyLinks, -1); // new playlist
                     itemSeriesLinks.CommandParameter = cmd;
                     commTvDBMenu.Items.Add(itemSeriesLinks);
@@ -153,19 +151,15 @@ namespace Shoko.Desktop.UserControls
         {
             try
             {
-                MenuItem item = e.Source as MenuItem;
-                MenuItem itemSender = sender as MenuItem;
-
-                if (item == null || itemSender == null) return;
+                if (!(e.Source is MenuItem item) || !(sender is MenuItem itemSender)) return;
                 if (!item.Header.ToString().Equals(itemSender.Header.ToString())) return;
 
-                if (item != null && item.CommandParameter != null)
+                if (item.CommandParameter != null)
                 {
                     CommTvDBTraktMenuCommand cmd = item.CommandParameter as CommTvDBTraktMenuCommand;
-                    Debug.Write("Comm TvDB Menu: " + cmd.ToString() + Environment.NewLine);
+                    Debug.Write("Comm TvDB Menu: " + cmd + Environment.NewLine);
 
-                    VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
-                    if (anime == null) return;
+                    if (!(DataContext is VM_AniDB_Anime anime)) return;
 
 
                     Cursor = Cursors.Wait;
@@ -181,13 +175,13 @@ namespace Shoko.Desktop.UserControls
                     {
                         if (!AniDB_AnimeCrossRefs.TvDBCrossRefExists)
                         {
-                            MessageBox.Show(Shoko.Commons.Properties.Resources.CommunityLinks_NoLinks, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(Commons.Properties.Resources.CommunityLinks_NoLinks, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
                         }
 
                         string res = VM_ShokoServer.Instance.ShokoServices.UseMyTvDBLinksWebCache(anime.AnimeID);
                         Cursor = Cursors.Arrow;
-                        MessageBox.Show(res, Shoko.Commons.Properties.Resources.Result, MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show(res, Commons.Properties.Resources.Result, MessageBoxButton.OK, MessageBoxImage.Information);
                     }
 
                     Cursor = Cursors.Arrow;
@@ -205,23 +199,21 @@ namespace Shoko.Desktop.UserControls
         {
             try
             {
-                CommTvDBTraktMenuCommand cmd = null;
-
                 // get all playlists
                 commTraktMenu.Items.Clear();
 
-                MenuItem itemSeriesAdmin = new MenuItem();
-                itemSeriesAdmin.Header = Shoko.Commons.Properties.Resources.CommunityLinks_ShowAdmin;
-                itemSeriesAdmin.Click += new RoutedEventHandler(commTraktMenuItem_Click);
-                cmd = new CommTvDBTraktMenuCommand(CommTvDBTraktItemType.ShowCommAdmin, -1); // new playlist
+                MenuItem itemSeriesAdmin =
+                    new MenuItem {Header = Commons.Properties.Resources.CommunityLinks_ShowAdmin};
+                itemSeriesAdmin.Click += commTraktMenuItem_Click;
+                var cmd = new CommTvDBTraktMenuCommand(CommTvDBTraktItemType.ShowCommAdmin, -1);
                 itemSeriesAdmin.CommandParameter = cmd;
                 commTraktMenu.Items.Add(itemSeriesAdmin);
 
                 if (AniDB_AnimeCrossRefs.TraktCrossRefExists)
                 {
                     MenuItem itemSeriesLinks = new MenuItem();
-                    itemSeriesLinks.Header = Shoko.Commons.Properties.Resources.CommunityLins_UseMyLinks;
-                    itemSeriesLinks.Click += new RoutedEventHandler(commTraktMenuItem_Click);
+                    itemSeriesLinks.Header = Commons.Properties.Resources.CommunityLins_UseMyLinks;
+                    itemSeriesLinks.Click += commTraktMenuItem_Click;
                     cmd = new CommTvDBTraktMenuCommand(CommTvDBTraktItemType.UseMyLinks, -1); // new playlist
                     itemSeriesLinks.CommandParameter = cmd;
                     commTraktMenu.Items.Add(itemSeriesLinks);
@@ -240,19 +232,15 @@ namespace Shoko.Desktop.UserControls
         {
             try
             {
-                MenuItem item = e.Source as MenuItem;
-                MenuItem itemSender = sender as MenuItem;
-
-                if (item == null || itemSender == null) return;
+                if (!(e.Source is MenuItem item) || !(sender is MenuItem itemSender)) return;
                 if (!item.Header.ToString().Equals(itemSender.Header.ToString())) return;
 
-                if (item != null && item.CommandParameter != null)
+                if (item.CommandParameter != null)
                 {
                     CommTvDBTraktMenuCommand cmd = item.CommandParameter as CommTvDBTraktMenuCommand;
-                    Debug.Write("Comm TvDB Menu: " + cmd.ToString() + Environment.NewLine);
+                    Debug.Write("Comm TvDB Menu: " + cmd + Environment.NewLine);
 
-                    VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
-                    if (anime == null) return;
+                    if (!(DataContext is VM_AniDB_Anime anime)) return;
 
 
                     Cursor = Cursors.Wait;
@@ -268,13 +256,13 @@ namespace Shoko.Desktop.UserControls
                     {
                         if (!AniDB_AnimeCrossRefs.TraktCrossRefExists)
                         {
-                            MessageBox.Show(Shoko.Commons.Properties.Resources.CommunityLinks_NoLinks, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(Commons.Properties.Resources.CommunityLinks_NoLinks, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
                         }
 
                         string res = VM_ShokoServer.Instance.ShokoServices.UseMyTraktLinksWebCache(anime.AnimeID);
                         Cursor = Cursors.Arrow;
-                        MessageBox.Show(res, Shoko.Commons.Properties.Resources.Result, MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show(res, Commons.Properties.Resources.Result, MessageBoxButton.OK, MessageBoxImage.Information);
                     }
 
                     Cursor = Cursors.Arrow;
@@ -294,35 +282,34 @@ namespace Shoko.Desktop.UserControls
 
 
 
-            SearchCommunityResults res = new SearchCommunityResults();
-            res.ErrorMessage = string.Empty;
-            res.TvDBLinks = new List<VM_CrossRef_AniDB_TvDBV2>();
-            res.TraktLinks = new List<VM_CrossRef_AniDB_TraktV2>();
-            res.ExtraInfo = string.Empty;
-            res.AnimeID = -1;
+            SearchCommunityResults res = new SearchCommunityResults
+            {
+                ErrorMessage = string.Empty,
+                TvDBLinks = new List<VM_CrossRef_AniDB_TvDBV2>(),
+                TraktLinks = new List<VM_CrossRef_AniDB_TraktV2>(),
+                ExtraInfo = string.Empty,
+                AnimeID = -1
+            };
 
             try
             {
-                VM_AniDB_Anime anime = e.Argument as VM_AniDB_Anime;
-                if (anime == null) return;
+                if (!(e.Argument is VM_AniDB_Anime anime)) return;
 
                 res.AnimeID = anime.AnimeID;
 
-                SearchCriteria crit = new SearchCriteria();
-                crit.AnimeID = anime.AnimeID;
-                crit.ExtraInfo = string.Empty;
+                SearchCriteria crit = new SearchCriteria
+                {
+                    AnimeID = anime.AnimeID,
+                    ExtraInfo = string.Empty
+                };
 
                 // search for TvDB links
                 try
                 {
                     List<Azure_CrossRef_AniDB_TvDB> xrefs = VM_ShokoServer.Instance.ShokoServices.GetTVDBCrossRefWebCache(crit.AnimeID, true).CastList<Azure_CrossRef_AniDB_TvDB>();
                     if (xrefs != null && xrefs.Count > 0)
-                    {
                         foreach (Azure_CrossRef_AniDB_TvDB xref in xrefs)
-                        {
                             res.TvDBLinks.Add((VM_CrossRef_AniDB_TvDBV2)xref);
-                        }
-                    }
                 }
                 catch (Exception ex)
                 {
@@ -334,12 +321,8 @@ namespace Shoko.Desktop.UserControls
                 {
                     List<Azure_CrossRef_AniDB_Trakt> xrefs = VM_ShokoServer.Instance.ShokoServices.GetTraktCrossRefWebCache(crit.AnimeID, true);
                     if (xrefs != null && xrefs.Count > 0)
-                    {
                         foreach (Azure_CrossRef_AniDB_Trakt xref in xrefs)
-                        {
                             res.TraktLinks.Add((VM_CrossRef_AniDB_TraktV2)xref);
-                        }
-                    }
                 }
                 catch (Exception ex)
                 {
@@ -360,18 +343,13 @@ namespace Shoko.Desktop.UserControls
         {
             try
             {
-                SearchCommunityResults res = e.Result as SearchCommunityResults;
-                if (res == null) return;
+                if (!(e.Result is SearchCommunityResults res)) return;
 
-                VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
-                if (anime == null) return;
+                if (!(DataContext is VM_AniDB_Anime anime)) return;
 
                 if (anime.AnimeID != res.AnimeID) return;
 
-                if (!string.IsNullOrEmpty(res.ErrorMessage))
-                {
-                    return;
-                }
+                if (!string.IsNullOrEmpty(res.ErrorMessage)) return;
 
                 foreach (VM_CrossRef_AniDB_TvDBV2 tvxref in res.TvDBLinks)
                     CommunityTVDBLinks.Add(tvxref);
@@ -382,35 +360,31 @@ namespace Shoko.Desktop.UserControls
                 btnTvDBCommLinks1.IsEnabled = true;
                 btnTvDBCommLinks2.IsEnabled = true;
 
-                CommTvDBButtonText = Shoko.Commons.Properties.Resources.CommunityLinks_NoLinksAvailable;
+                CommTvDBButtonText = Commons.Properties.Resources.CommunityLinks_NoLinksAvailable;
                 if (CommunityTVDBLinks.Count > 0)
                 {
-                    CommTvDBButtonText = Shoko.Commons.Properties.Resources.CommunityLinks_NeedApproval;
+                    CommTvDBButtonText = Commons.Properties.Resources.CommunityLinks_NeedApproval;
                     foreach (VM_CrossRef_AniDB_TvDBV2 xref in CommunityTVDBLinks)
-                    {
                         if (xref.IsAdminApprovedBool)
                         {
-                            CommTvDBButtonText = Shoko.Commons.Properties.Resources.CommunityLinks_ApprovalExists;
+                            CommTvDBButtonText = Commons.Properties.Resources.CommunityLinks_ApprovalExists;
                             break;
                         }
-                    }
                 }
 
                 btnTraktCommLinks1.IsEnabled = true;
                 btnTraktCommLinks2.IsEnabled = true;
 
-                CommTraktButtonText = Shoko.Commons.Properties.Resources.CommunityLinks_NoLinksAvailable;
+                CommTraktButtonText = Commons.Properties.Resources.CommunityLinks_NoLinksAvailable;
                 if (CommunityTraktLinks.Count > 0)
                 {
-                    CommTraktButtonText = Shoko.Commons.Properties.Resources.CommunityLinks_NeedApproval;
+                    CommTraktButtonText = Commons.Properties.Resources.CommunityLinks_NeedApproval;
                     foreach (VM_CrossRef_AniDB_TraktV2 xref in CommunityTraktLinks)
-                    {
                         if (xref.IsAdminApprovedBool)
                         {
-                            CommTraktButtonText = Shoko.Commons.Properties.Resources.CommunityLinks_ApprovalExists;
+                            CommTraktButtonText = Commons.Properties.Resources.CommunityLinks_ApprovalExists;
                             break;
                         }
-                    }
                 }
 
                 //SearchStatus = string.Format("{0} Anime still need TvDB approval", link.AnimeNeedingApproval);
@@ -421,9 +395,6 @@ namespace Shoko.Desktop.UserControls
                 logger.Error(ex, ex.ToString());
             }
         }
-
-
-
 
 
         #region MAL
@@ -442,39 +413,17 @@ namespace Shoko.Desktop.UserControls
         {
             try
             {
-                VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
-                if (anime == null) return;
+                if (!(DataContext is VM_AniDB_Anime anime)) return;
 
                 Window wdw = Window.GetWindow(this);
 
                 Cursor = Cursors.Wait;
-                SearchMALForm frm = new SearchMALForm();
-                frm.Owner = wdw;
+                SearchMALForm frm = new SearchMALForm {Owner = wdw};
                 frm.Init(anime.AnimeID, anime.FormattedTitle, anime.MainTitle);
                 bool? result = frm.ShowDialog();
-                if (result.Value)
-                {
-                    // update info
-                    RefreshData();
-                }
+                if (result != null && result.Value) RefreshData();
 
                 Cursor = Cursors.Arrow;
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-        }
-
-        void btnEditMALDetails_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                // prompt to select details
-                Window wdw = Window.GetWindow(this);
-
-                Cursor = Cursors.Wait;
-
             }
             catch (Exception ex)
             {
@@ -489,8 +438,7 @@ namespace Shoko.Desktop.UserControls
 
             try
             {
-                VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
-                if (anime == null) return;
+                if (!(DataContext is VM_AniDB_Anime anime)) return;
 
                 if (obj is CrossRef_AniDB_MAL)
                 {
@@ -504,11 +452,7 @@ namespace Shoko.Desktop.UserControls
                     frm.Owner = wdw;
                     frm.Init(malLink.AnimeID, anime.FormattedTitle, malLink.MALTitle, malLink.MALID, malLink.StartEpisodeType, malLink.StartEpisodeNumber);
                     bool? result = frm.ShowDialog();
-                    if (result.Value)
-                    {
-                        // update info
-                        RefreshData();
-                    }
+                    if (result != null && result.Value) RefreshData();
                 }
             }
             catch (Exception ex)
@@ -528,8 +472,7 @@ namespace Shoko.Desktop.UserControls
 
             try
             {
-                VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
-                if (anime == null) return;
+                if (!(DataContext is VM_AniDB_Anime anime)) return;
 
                 if (obj is CrossRef_AniDB_MAL)
                 {
@@ -537,10 +480,8 @@ namespace Shoko.Desktop.UserControls
                     CrossRef_AniDB_MAL malLink = obj as CrossRef_AniDB_MAL;
 
                     // prompt to select details
-                    Window wdw = Window.GetWindow(this);
-
-                    string msg = string.Format(Shoko.Commons.Properties.Resources.CommunityLinks_DeleteLink);
-                    MessageBoxResult result = MessageBox.Show(msg, Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    string msg = string.Format(Commons.Properties.Resources.CommunityLinks_DeleteLink);
+                    MessageBoxResult result = MessageBox.Show(msg, Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                     if (result == MessageBoxResult.Yes)
                     {
@@ -549,12 +490,9 @@ namespace Shoko.Desktop.UserControls
                         string res = VM_ShokoServer.Instance.ShokoServices.RemoveLinkAniDBMAL(anime.AnimeID,
                             malLink.MALID, malLink.StartEpisodeType, malLink.StartEpisodeNumber);
                         if (res.Length > 0)
-                            MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(res, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         else
-                        {
-                            // update info
                             RefreshData();
-                        }
 
                         Cursor = Cursors.Arrow;
                     }
@@ -583,10 +521,7 @@ namespace Shoko.Desktop.UserControls
             {
                 if (obj.GetType() == typeof(VM_CrossRef_AniDB_TvDBV2))
                 {
-                    VM_CrossRef_AniDB_TraktV2 link = obj as VM_CrossRef_AniDB_TraktV2;
-
-                    VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
-                    if (anime == null) return;
+                    if (!(DataContext is VM_AniDB_Anime)) return;
 
                     Cursor = Cursors.Wait;
 
@@ -614,15 +549,12 @@ namespace Shoko.Desktop.UserControls
                 {
                     VM_CrossRef_AniDB_TraktV2 link = obj as VM_CrossRef_AniDB_TraktV2;
 
-                    VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
-                    if (anime == null) return;
+                    if (!(DataContext is VM_AniDB_Anime)) return;
 
                     Cursor = Cursors.Wait;
 
-                    Window wdw = Window.GetWindow(this);
-
-                    string msg = string.Format(Shoko.Commons.Properties.Resources.CommunityLinks_DeleteLink);
-                    MessageBoxResult result = MessageBox.Show(msg, Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    string msg = string.Format(Commons.Properties.Resources.CommunityLinks_DeleteLink);
+                    MessageBoxResult result = MessageBox.Show(msg, Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                     if (result == MessageBoxResult.Yes)
                     {
@@ -630,12 +562,9 @@ namespace Shoko.Desktop.UserControls
                         string res = VM_ShokoServer.Instance.ShokoServices.RemoveLinkAniDBTrakt(link.AnimeID, link.AniDBStartEpisodeType, link.AniDBStartEpisodeNumber,
                             link.TraktID, link.TraktSeasonNumber, link.TraktStartEpisodeNumber);
                         if (res.Length > 0)
-                            MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(res, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         else
-                        {
-                            // update info
                             RefreshData();
-                        }
 
                         Cursor = Cursors.Arrow;
                     }
@@ -664,22 +593,16 @@ namespace Shoko.Desktop.UserControls
                 {
                     VM_CrossRef_AniDB_TraktV2 link = obj as VM_CrossRef_AniDB_TraktV2;
 
-                    VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
-                    if (anime == null) return;
+                    if (!(DataContext is VM_AniDB_Anime anime)) return;
 
                     Window wdw = Window.GetWindow(this);
 
                     Cursor = Cursors.Wait;
-                    SelectTraktSeasonForm frm = new SelectTraktSeasonForm();
-                    frm.Owner = wdw;
+                    SelectTraktSeasonForm frm = new SelectTraktSeasonForm {Owner = wdw};
                     frm.Init(anime.AnimeID, anime.FormattedTitle, (EpisodeType)link.AniDBStartEpisodeType, link.AniDBStartEpisodeNumber, link.TraktID,
                         link.TraktSeasonNumber, link.TraktStartEpisodeNumber, link.TraktTitle, anime, link.CrossRef_AniDB_TraktV2ID);
                     bool? result = frm.ShowDialog();
-                    if (result.Value)
-                    {
-                        // update info
-                        RefreshData();
-                    }
+                    if (result != null && result.Value) RefreshData();
                 }
 
             }
@@ -702,8 +625,7 @@ namespace Shoko.Desktop.UserControls
             {
                 if (obj.GetType() == typeof(VM_CrossRef_AniDB_TraktV2))
                 {
-                    VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
-                    if (anime == null) return;
+                    if (!(DataContext is VM_AniDB_Anime anime)) return;
 
                     Cursor = Cursors.Wait;
 
@@ -739,14 +661,13 @@ namespace Shoko.Desktop.UserControls
             {
                 if (obj.GetType() == typeof(VM_CrossRef_AniDB_TraktV2))
                 {
-                    VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
-                    if (anime == null) return;
+                    if (!(DataContext is VM_AniDB_Anime anime)) return;
 
                     string response = VM_ShokoServer.Instance.ShokoServices.SyncTraktSeries(anime.AnimeID);
                     if (!string.IsNullOrEmpty(response))
-                        MessageBox.Show(response, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(response, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     else
-                        MessageBox.Show(Shoko.Commons.Properties.Resources.CommunityLinks_CommandQueued, Shoko.Commons.Properties.Resources.Done, MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show(Commons.Properties.Resources.CommunityLinks_CommandQueued, Commons.Properties.Resources.Done, MessageBoxButton.OK, MessageBoxImage.Information);
 
                 }
 
@@ -775,8 +696,7 @@ namespace Shoko.Desktop.UserControls
         {
             try
             {
-                VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
-                if (anime == null) return;
+                if (!(DataContext is VM_AniDB_Anime anime)) return;
 
                 Window wdw = Window.GetWindow(this);
 
@@ -785,11 +705,7 @@ namespace Shoko.Desktop.UserControls
                 frm.Owner = wdw;
                 frm.Init(anime.AnimeID, anime.FormattedTitle, anime.FormattedTitle, ExistingTraktID, anime);
                 bool? result = frm.ShowDialog();
-                if (result.Value)
-                {
-                    // update info
-                    RefreshData();
-                }
+                if (result != null && result.Value) RefreshData();
 
                 Cursor = Cursors.Arrow;
             }
@@ -817,21 +733,15 @@ namespace Shoko.Desktop.UserControls
         {
             try
             {
-                VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
-                if (anime == null) return;
+                if (!(DataContext is VM_AniDB_Anime anime)) return;
 
                 Window wdw = Window.GetWindow(this);
 
                 Cursor = Cursors.Wait;
-                SearchTvDBForm frm = new SearchTvDBForm();
-                frm.Owner = wdw;
+                SearchTvDBForm frm = new SearchTvDBForm {Owner = wdw};
                 frm.Init(anime.AnimeID, anime.FormattedTitle, anime.FormattedTitle, ExistingSeriesID, anime);
                 bool? result = frm.ShowDialog();
-                if (result.Value)
-                {
-                    // update info
-                    RefreshData();
-                }
+                if (result != null && result.Value) RefreshData();
 
                 Cursor = Cursors.Arrow;
             }
@@ -850,10 +760,7 @@ namespace Shoko.Desktop.UserControls
             {
                 if (obj.GetType() == typeof(VM_CrossRef_AniDB_TvDBV2))
                 {
-                    VM_CrossRef_AniDB_TvDBV2 link = obj as VM_CrossRef_AniDB_TvDBV2;
-
-                    VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
-                    if (anime == null) return;
+                    if (!(DataContext is VM_AniDB_Anime)) return;
 
                     Cursor = Cursors.Wait;
 
@@ -881,23 +788,17 @@ namespace Shoko.Desktop.UserControls
                 {
                     VM_CrossRef_AniDB_TvDBV2 link = obj as VM_CrossRef_AniDB_TvDBV2;
 
-                    VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
-                    if (anime == null) return;
+                    if (!(DataContext is VM_AniDB_Anime anime)) return;
 
                     Window wdw = Window.GetWindow(this);
 
                     Cursor = Cursors.Wait;
-                    SelectTvDBSeasonForm frm = new SelectTvDBSeasonForm();
-                    frm.Owner = wdw;
+                    SelectTvDBSeasonForm frm = new SelectTvDBSeasonForm {Owner = wdw};
                     //TODO
                     frm.Init(anime.AnimeID, anime.FormattedTitle, (EpisodeType)link.AniDBStartEpisodeType, link.AniDBStartEpisodeNumber, link.TvDBID,
-                        link.TvDBSeasonNumber, link.TvDBStartEpisodeNumber, link.TvDBTitle, anime);
+                        link.TvDBSeasonNumber, link.TvDBStartEpisodeNumber, link.TvDBTitle, anime, true);
                     bool? result = frm.ShowDialog();
-                    if (result.Value)
-                    {
-                        // update info
-                        RefreshData();
-                    }
+                    if (result != null && result.Value) RefreshData();
                 }
 
             }
@@ -922,27 +823,23 @@ namespace Shoko.Desktop.UserControls
                 {
                     VM_CrossRef_AniDB_TvDBV2 link = obj as VM_CrossRef_AniDB_TvDBV2;
 
-                    VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
-                    if (anime == null) return;
+                    if (!(DataContext is VM_AniDB_Anime)) return;
 
                     Cursor = Cursors.Wait;
 
                     Window wdw = Window.GetWindow(this);
 
-                    string msg = string.Format(Shoko.Commons.Properties.Resources.CommunityLinks_DeleteLink);
-                    MessageBoxResult result = MessageBox.Show(msg, Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    string msg = string.Format(Commons.Properties.Resources.CommunityLinks_DeleteLink);
+                    MessageBoxResult result = MessageBox.Show(msg, Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                     if (result == MessageBoxResult.Yes)
                     {
                         Cursor = Cursors.Wait;
                         string res = VM_ShokoServer.Instance.ShokoServices.RemoveLinkAniDBTvDB(link);
                         if (res.Length > 0)
-                            MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(res, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         else
-                        {
-                            // update info
                             RefreshData();
-                        }
 
                         Cursor = Cursors.Arrow;
                     }
@@ -969,8 +866,7 @@ namespace Shoko.Desktop.UserControls
             {
                 if (obj.GetType() == typeof(VM_CrossRef_AniDB_TvDBV2))
                 {
-                    VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
-                    if (anime == null) return;
+                    if (!(DataContext is VM_AniDB_Anime anime)) return;
 
                     Cursor = Cursors.Wait;
 
@@ -1006,8 +902,7 @@ namespace Shoko.Desktop.UserControls
         {
             try
             {
-                VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
-                if (anime == null) return;
+                if (!(DataContext is VM_AniDB_Anime anime)) return;
 
                 Window wdw = Window.GetWindow(this);
 
@@ -1016,11 +911,7 @@ namespace Shoko.Desktop.UserControls
                 frm.Owner = wdw;
                 frm.Init(anime.AnimeID, anime.FormattedTitle);
                 bool? result = frm.ShowDialog();
-                if (result.Value)
-                {
-                    // update info
-                    RefreshData();
-                }
+                if (result != null && result.Value) RefreshData();
 
                 Cursor = Cursors.Arrow;
             }
@@ -1044,20 +935,16 @@ namespace Shoko.Desktop.UserControls
         {
             try
             {
-                VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
-                if (anime == null) return;
+                if (!(DataContext is VM_AniDB_Anime)) return;
 
                 Window wdw = Window.GetWindow(this);
 
                 Cursor = Cursors.Wait;
                 string res = VM_ShokoServer.Instance.ShokoServices.UpdateMovieDBData(AniDB_AnimeCrossRefs.MovieDBMovie.MovieId);
                 if (res.Length > 0)
-                    MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(res, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 else
-                {
-                    // update info
                     RefreshData();
-                }
 
                 Cursor = Cursors.Arrow;
             }
@@ -1075,25 +962,21 @@ namespace Shoko.Desktop.UserControls
         {
             try
             {
-                VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
-                if (anime == null) return;
+                if (!(DataContext is VM_AniDB_Anime anime)) return;
 
                 Window wdw = Window.GetWindow(this);
 
-                string msg = string.Format(Shoko.Commons.Properties.Resources.CommunityLinks_DeleteLink);
-                MessageBoxResult result = MessageBox.Show(msg, Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                string msg = string.Format(Commons.Properties.Resources.CommunityLinks_DeleteLink);
+                MessageBoxResult result = MessageBox.Show(msg, Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 if (result == MessageBoxResult.Yes)
                 {
                     Cursor = Cursors.Wait;
                     string res = VM_ShokoServer.Instance.ShokoServices.RemoveLinkAniDBOther(anime.AnimeID, (int)CrossRefType.MovieDB);
                     if (res.Length > 0)
-                        MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(res, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     else
-                    {
-                        // update info
                         RefreshData();
-                    }
 
                     Cursor = Cursors.Arrow;
                 }
@@ -1132,19 +1015,18 @@ namespace Shoko.Desktop.UserControls
             {
                 if (VM_ShokoServer.Instance.ShowCommunity)
                 {
-                    VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
-                    if (anime == null) return;
+                    if (!(DataContext is VM_AniDB_Anime anime)) return;
 
                     CommunityTVDBLinks.Clear();
                     CommunityTraktLinks.Clear();
 
                     btnTvDBCommLinks1.IsEnabled = false;
                     btnTvDBCommLinks2.IsEnabled = false;
-                    CommTvDBButtonText = Shoko.Commons.Properties.Resources.CommunityLinks_CheckingOnline;
+                    CommTvDBButtonText = Commons.Properties.Resources.CommunityLinks_CheckingOnline;
 
                     btnTraktCommLinks1.IsEnabled = false;
                     btnTraktCommLinks2.IsEnabled = false;
-                    CommTraktButtonText = Shoko.Commons.Properties.Resources.CommunityLinks_CheckingOnline;
+                    CommTraktButtonText = Commons.Properties.Resources.CommunityLinks_CheckingOnline;
 
                     if (!communityWorker.IsBusy)
                         communityWorker.RunWorkerAsync(anime);
@@ -1162,8 +1044,7 @@ namespace Shoko.Desktop.UserControls
             {
                 AniDB_AnimeCrossRefs = null;
 
-                VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
-                if (anime == null) return;
+                if (!(DataContext is VM_AniDB_Anime anime)) return;
 
                 AniDB_AnimeCrossRefs = (VM_AniDB_AnimeCrossRefs)VM_ShokoServer.Instance.ShokoServices.GetCrossRefDetails(anime.AnimeID);
                 if (AniDB_AnimeCrossRefs == null) return;
@@ -1217,10 +1098,5 @@ namespace Shoko.Desktop.UserControls
 
         public List<VM_CrossRef_AniDB_TraktV2> TraktLinks { get; set; }
         public string ExtraInfo { get; set; }
-
-        public SearchCommunityResults()
-        {
-
-        }
     }
 }

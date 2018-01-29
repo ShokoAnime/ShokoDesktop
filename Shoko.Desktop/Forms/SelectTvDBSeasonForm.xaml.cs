@@ -24,6 +24,7 @@ namespace Shoko.Desktop.Forms
         private List<VM_AniDB_Episode> AniDBEpisodes;
         private bool FirstLoad = true;
         private VM_TvDBDetails TvDetails;
+        private bool IsAdditive;
 
         public static readonly DependencyProperty AnimeIDProperty = DependencyProperty.Register("AnimeID",
             typeof(int), typeof(SelectTvDBSeasonForm), new UIPropertyMetadata(0, null));
@@ -151,16 +152,14 @@ namespace Shoko.Desktop.Forms
                     return;
                 }
 
-                VM_AniDB_Episode aniEp = cboAniDBEpisodeNumber.SelectedItem as VM_AniDB_Episode;
-                if (aniEp == null)
+                if (!(cboAniDBEpisodeNumber.SelectedItem is VM_AniDB_Episode aniEp))
                 {
                     MessageBox.Show(Commons.Properties.Resources.TvDB_NoAniDB, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 AnimeEpisodeNumber = aniEp.EpisodeNumber;
 
-                VM_TvDB_Episode tvep = cboEpisodeNumber.SelectedItem as VM_TvDB_Episode;
-                if (tvep == null)
+                if (!(cboEpisodeNumber.SelectedItem is VM_TvDB_Episode tvep))
                 {
                     MessageBox.Show(Commons.Properties.Resources.TvDB_NoTvDB, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
@@ -184,7 +183,8 @@ namespace Shoko.Desktop.Forms
                     TvDBSeasonNumber = TvDBSeason,
                     TvDBStartEpisodeNumber = TvDBEpisodeNumber,
                     CrossRef_AniDB_TvDBV2ID = 0,
-                    CrossRefSource = (int) CrossrefSource.User
+                    CrossRefSource = (int) CrossrefSource.User,
+                    IsAdditive = IsAdditive
                 };
                 string res = VM_ShokoServer.Instance.ShokoServices.LinkAniDBTvDB(xref);
                 if (res.Length > 0)
@@ -212,7 +212,7 @@ namespace Shoko.Desktop.Forms
         }
 
         public void Init(int animeID, string animeName, EpisodeType aniEpType, int aniEpNumber, int tvDBID, int tvSeason, int tvEpNumber, string tvSeriesName,
-            VM_AniDB_Anime anime)
+            VM_AniDB_Anime anime, bool isAdditive)
         {
             AnimeID = animeID;
             AnimeName = animeName;
@@ -222,6 +222,7 @@ namespace Shoko.Desktop.Forms
             TvDBSeason = tvSeason;
             TvDBEpisodeNumber = tvEpNumber;
             TvDBSeriesName = tvSeriesName;
+            IsAdditive = isAdditive;
 
             AnimeURL = string.Format(Constants.URLS.AniDB_Series, AnimeID);
             TvDBURL = string.Format(Constants.URLS.TvDB_Series, TvDBID);
@@ -239,8 +240,6 @@ namespace Shoko.Desktop.Forms
             if (hasSpecials) cboEpisodeType.Items.Add(Commons.Properties.Resources.Anime_Specials);
 
             cboEpisodeType.SelectedIndex = aniEpType == EpisodeType.Episode ? 0 : 1;
-
-
 
             // get the seasons
 

@@ -29,6 +29,9 @@ namespace Shoko.Desktop.Forms
         public static readonly DependencyProperty IsExistingProperty = DependencyProperty.Register("IsExisting",
             typeof(bool), typeof(SearchTvDBForm), new UIPropertyMetadata(false, null));
 
+        public static readonly DependencyProperty ReplaceAllProperty = DependencyProperty.Register("ReplaceAll",
+            typeof(bool), typeof(SearchTvDBForm), new UIPropertyMetadata(true, null));
+
         public static readonly DependencyProperty HasWebCacheRecProperty = DependencyProperty.Register("HasWebCacheRec",
             typeof(bool), typeof(SearchTvDBForm), new UIPropertyMetadata(false, null));
 
@@ -48,6 +51,12 @@ namespace Shoko.Desktop.Forms
         {
             get => (bool)GetValue(IsExistingProperty);
             set => SetValue(IsExistingProperty, value);
+        }
+
+        public bool ReplaceAll
+        {
+            get => (bool)GetValue(ReplaceAllProperty);
+            set => SetValue(ReplaceAllProperty, value);
         }
 
         public bool HasWebCacheRec
@@ -112,6 +121,7 @@ namespace Shoko.Desktop.Forms
 
         void btnUseThisExisting_Click(object sender, RoutedEventArgs e)
         {
+            SelectTvDBSeasonForm frm = new SelectTvDBSeasonForm();
             try
             {
                 int id;
@@ -129,9 +139,8 @@ namespace Shoko.Desktop.Forms
                 Window wdw = GetWindow(this);
 
                 Cursor = Cursors.Wait;
-                SelectTvDBSeasonForm frm = new SelectTvDBSeasonForm();
                 frm.Owner = wdw;
-                frm.Init(AnimeID, AnimeName, EpisodeType.Episode, 1, id, 1, 1, AnimeName, Anime);
+                frm.Init(AnimeID, AnimeName, EpisodeType.Episode, 1, id, 1, 1, AnimeName, Anime, !ReplaceAll);
                 bool? result = frm.ShowDialog();
                 if (result != null && result.Value)
                 {
@@ -157,9 +166,19 @@ namespace Shoko.Desktop.Forms
             {
                 Cursor = Cursors.Wait;
                 // add links
+                bool first = true;
                 foreach (VM_CrossRef_AniDB_TvDBV2 xref in CrossRef_AniDB_TvDBResult)
                 {
                     xref.CrossRef_AniDB_TvDBV2ID = 0;
+                    if (first)
+                    {
+                        xref.IsAdditive = false;
+                        first = false;
+                    }
+                    else
+                    {
+                        xref.IsAdditive = true;
+                    }
                     string res = VM_ShokoServer.Instance.ShokoServices.LinkAniDBTvDB(xref);
                     if (res.Length > 0)
                     {
@@ -207,9 +226,9 @@ namespace Shoko.Desktop.Forms
                     Window wdw = GetWindow(this);
 
                     Cursor = Cursors.Wait;
-                    SelectTvDBSeasonForm frm = new SelectTvDBSeasonForm();
-                    frm.Owner = wdw;
-                    frm.Init(AnimeID, AnimeName, EpisodeType.Episode, 1, searchResult.SeriesID, 1, 1, searchResult.SeriesName, Anime);
+                    SelectTvDBSeasonForm frm = new SelectTvDBSeasonForm {Owner = wdw};
+                    frm.Init(AnimeID, AnimeName, EpisodeType.Episode, 1, searchResult.SeriesID, 1, 1,
+                        searchResult.SeriesName, Anime, !ReplaceAll);
                     bool? result = frm.ShowDialog();
                     if (result != null && result.Value)
                     {
