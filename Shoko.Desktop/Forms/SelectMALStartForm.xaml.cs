@@ -107,7 +107,8 @@ namespace Shoko.Desktop.Forms
                 string res = "";
 
                 if (OldEpType.HasValue && OldEpNumber.HasValue)
-                    res = VM_ShokoServer.Instance.ShokoServices.LinkAniDBMALUpdated(AnimeID, MALID, MALTitle, OldEpType.Value, OldEpNumber.Value, epType, epNumber);
+                    res = VM_ShokoServer.Instance.ShokoServices.LinkAniDBMALUpdated(AnimeID, MALID,
+                        MALTitle, OldEpType.Value, OldEpNumber.Value, epType, epNumber);
                 else
                     res = VM_ShokoServer.Instance.ShokoServices.LinkAniDBMAL(AnimeID, MALID, MALTitle, epType, epNumber);
                 if (res.Length > 0)

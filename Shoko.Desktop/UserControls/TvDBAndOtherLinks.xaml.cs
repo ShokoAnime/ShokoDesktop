@@ -443,7 +443,7 @@ namespace Shoko.Desktop.UserControls
                 if (obj is CrossRef_AniDB_MAL)
                 {
                     Cursor = Cursors.Wait;
-                    CrossRef_AniDB_MAL malLink = obj as CrossRef_AniDB_MAL;
+                    VM_CrossRef_AniDB_MAL malLink = obj as VM_CrossRef_AniDB_MAL;
 
                     // prompt to select details
                     Window wdw = Window.GetWindow(this);

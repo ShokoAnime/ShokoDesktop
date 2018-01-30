@@ -14,6 +14,7 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string StartEpisodeTypeString => this.GetStartEpisodeTypeString();
 
-
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        public new string MALTitle => string.IsNullOrWhiteSpace(base.MALTitle) ? $"({MALID})" : base.MALTitle;
     }
 }
