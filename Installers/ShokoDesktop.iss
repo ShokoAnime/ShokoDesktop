@@ -10,7 +10,7 @@
 
 AppId={{EFA49A76-085F-4E64-AEC4-6ACA707A5D91}
 AppName=Shoko Desktop
-AppVersion=3.8.2.0
+AppVersion=3.8.3.0
 AppVerName=Shoko Desktop
 AppPublisher=Shoko Team
 AppPublisherURL=https://ShokoAnime.com/
@@ -31,6 +31,14 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1
 
 [Files]
+Source: "..\Shoko.Desktop\bin\Release\System.Security.Cryptography.Primitives.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Shoko.Desktop\bin\Release\System.Security.Cryptography.X509Certificates.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Shoko.Desktop\bin\Release\System.Spatial.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Shoko.Desktop\bin\Release\System.Spatial.xml"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Shoko.Desktop\bin\Release\System.Windows.Interactivity.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Shoko.Desktop\bin\Release\Xceed.Wpf.AvalonDock.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Shoko.Desktop\bin\Release\Xceed.Wpf.AvalonDock.Themes.Aero.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Shoko.Desktop\bin\Release\Xceed.Wpf.AvalonDock.Themes.Metro.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Shoko.Desktop\bin\Release\Xceed.Wpf.AvalonDock.Themes.VS2010.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Shoko.Desktop\bin\Release\Xceed.Wpf.DataGrid.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Shoko.Desktop\bin\Release\Xceed.Wpf.Toolkit.dll"; DestDir: "{app}"; Flags: ignoreversion
@@ -62,6 +70,15 @@ Source: "..\Shoko.Desktop\bin\Release\Microsoft.Data.OData.xml"; DestDir: "{app}
 Source: "..\Shoko.Desktop\bin\Release\Microsoft.Data.Services.Client.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Shoko.Desktop\bin\Release\Microsoft.Data.Services.Client.xml"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Shoko.Desktop\bin\Release\Microsoft.Win32.Primitives.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Shoko.Desktop\bin\Release\Microsoft.WindowsAPICodePack.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Shoko.Desktop\bin\Release\Microsoft.WindowsAPICodePack.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Shoko.Desktop\bin\Release\Microsoft.WindowsAPICodePack.Shell.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Shoko.Desktop\bin\Release\Microsoft.WindowsAPICodePack.Shell.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Shoko.Desktop\bin\Release\Microsoft.WindowsAPICodePack.Shell.xml"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Shoko.Desktop\bin\Release\Microsoft.WindowsAPICodePack.ShellExtensions.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Shoko.Desktop\bin\Release\Microsoft.WindowsAPICodePack.ShellExtensions.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Shoko.Desktop\bin\Release\Microsoft.WindowsAPICodePack.ShellExtensions.xml"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Shoko.Desktop\bin\Release\Microsoft.WindowsAPICodePack.xml"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Shoko.Desktop\bin\Release\Nancy.Rest.Annotations.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Shoko.Desktop\bin\Release\Nancy.Rest.Annotations.pdb"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Shoko.Desktop\bin\Release\Nancy.Rest.Client.dll"; DestDir: "{app}"; Flags: ignoreversion
@@ -90,14 +107,6 @@ Source: "..\Shoko.Desktop\bin\Release\System.Net.Http.dll"; DestDir: "{app}"; Fl
 Source: "..\Shoko.Desktop\bin\Release\System.Runtime.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Shoko.Desktop\bin\Release\System.Security.Cryptography.Algorithms.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Shoko.Desktop\bin\Release\System.Security.Cryptography.Encoding.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\Shoko.Desktop\bin\Release\System.Security.Cryptography.Primitives.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\Shoko.Desktop\bin\Release\System.Security.Cryptography.X509Certificates.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\Shoko.Desktop\bin\Release\System.Spatial.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\Shoko.Desktop\bin\Release\System.Spatial.xml"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\Shoko.Desktop\bin\Release\System.Windows.Interactivity.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\Shoko.Desktop\bin\Release\Xceed.Wpf.AvalonDock.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\Shoko.Desktop\bin\Release\Xceed.Wpf.AvalonDock.Themes.Aero.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\Shoko.Desktop\bin\Release\Xceed.Wpf.AvalonDock.Themes.Metro.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Shoko.Desktop\bin\Release\de\*"; DestDir: "{app}\de"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "..\Shoko.Desktop\bin\Release\en-gb\*"; DestDir: "{app}\en-gb"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "..\Shoko.Desktop\bin\Release\es\*"; DestDir: "{app}\es"; Flags: ignoreversion recursesubdirs createallsubdirs
@@ -122,7 +131,7 @@ Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\Shoko Desktop"; Fi
 [Run]
 Filename: "{app}\FixPermissions.bat";
 Filename: "{app}\ShokoDesktop.exe"; Flags: nowait postinstall skipifsilent shellexec; Description: "{cm:LaunchProgram,Shoko Desktop}"
-Filename: "https://shokoanime.com/shoko-version-3-8-2-released/"; Flags: shellexec runasoriginaluser postinstall; Description: "View 3.8.2 Release Notes"
+Filename: "https://shokoanime.com/shoko-version-3-8-3-released/"; Flags: shellexec runasoriginaluser postinstall; Description: "View 3.8.3 Release Notes"
 
 [Dirs]
 Name: "{app}"; Permissions: users-full
