@@ -255,16 +255,8 @@ namespace Shoko.Desktop.Forms
                 }
                 else
                 {
-                    VM_ShokoServer.Instance.ShokoServices.UpdateTvDBData(tvDBID);
                     TvDetails = new VM_TvDBDetails(tvDBID);
-                    if (TvDetails.TvDBEpisodes == null || TvDetails.TvDBEpisodes.Count <= 0)
-                    {
-                        Utils.ShowErrorMessage("The series data is being downloaded, try again when the queue has cleared.");
-                        DialogResult = false;
-                        Close();
-                    }
                     seasons = TvDetails.DictTvDBSeasons.Keys.ToList();
-                    //seasons = VM_ShokoServer.Instance.clientBinaryHTTP.GetSeasonNumbersForSeries(tvDBID);
                 }
 
                 int i = 0;

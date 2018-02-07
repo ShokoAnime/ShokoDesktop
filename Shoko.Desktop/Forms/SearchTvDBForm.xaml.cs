@@ -91,6 +91,22 @@ namespace Shoko.Desktop.Forms
         public int? SelectedTvDBID;
         private VM_AniDB_Anime Anime;
 
+        private bool tvDbDataReady(int id)
+        {
+
+            VM_ShokoServer.Instance.ShokoServices.UpdateTvDBData(id);
+            VM_TvDBDetails TvDetails = new VM_TvDBDetails(id);
+            if (TvDetails.TvDBEpisodes == null || TvDetails.TvDBEpisodes.Count <= 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
+        }
+
         public SearchTvDBForm()
         {
             InitializeComponent();
@@ -140,15 +156,24 @@ namespace Shoko.Desktop.Forms
 
                 Cursor = Cursors.Wait;
                 frm.Owner = wdw;
-                frm.Init(AnimeID, AnimeName, EpisodeType.Episode, 1, id, 1, 1, AnimeName, Anime, !ReplaceAll);
-                bool? result = frm.ShowDialog();
-                if (result != null && result.Value)
+
+                if (!tvDbDataReady(id))
                 {
-                    SelectedTvDBID = id;
-                    DialogResult = true;
-                    Cursor = Cursors.Arrow;
-                    Close();
+                    Utils.ShowErrorMessage("The series data is being downloaded, try again when the queue has cleared.");
+                    return;
                 }
+                else
+                {
+                    frm.Init(AnimeID, AnimeName, EpisodeType.Episode, 1, id, 1, 1, AnimeName, Anime, !ReplaceAll);
+                    bool? result = frm.ShowDialog();
+                    if (result != null && result.Value)
+                    {
+                        SelectedTvDBID = id;
+                        DialogResult = true;
+                        Cursor = Cursors.Arrow;
+                        Close();
+                    }
+                }                    
             }
             catch (Exception ex)
             {
@@ -227,16 +252,28 @@ namespace Shoko.Desktop.Forms
 
                     Cursor = Cursors.Wait;
                     SelectTvDBSeasonForm frm = new SelectTvDBSeasonForm {Owner = wdw};
-                    frm.Init(AnimeID, AnimeName, EpisodeType.Episode, 1, searchResult.SeriesID, 1, 1,
-                        searchResult.SeriesName, Anime, !ReplaceAll);
-                    bool? result = frm.ShowDialog();
-                    if (result != null && result.Value)
+                                        
+                    if (!tvDbDataReady(searchResult.SeriesID))
                     {
-                        SelectedTvDBID = searchResult.SeriesID;
-                        DialogResult = true;
-                        Cursor = Cursors.Arrow;
-                        Close();
+                        Utils.ShowErrorMessage("The series data is being downloaded, try again when the queue has cleared.");
+                        return;
                     }
+                    else
+                    {
+                        frm.Init(AnimeID, AnimeName, EpisodeType.Episode, 1, searchResult.SeriesID, 1, 1,
+                           searchResult.SeriesName, Anime, !ReplaceAll);
+                        bool? result = frm.ShowDialog();
+                        if (result != null && result.Value)
+                        {
+                            SelectedTvDBID = searchResult.SeriesID;
+                            DialogResult = true;
+                            Cursor = Cursors.Arrow;
+                            Close();
+                        }
+
+                    }
+                    
+                    
                 }
             }
             catch (Exception ex)
