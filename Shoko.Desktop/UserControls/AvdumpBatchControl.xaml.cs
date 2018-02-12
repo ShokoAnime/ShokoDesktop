@@ -182,14 +182,13 @@ namespace Shoko.Desktop.UserControls
                 {
                     VM_AVDump vid = lbVideos.SelectedItem as VM_AVDump;
                     ccDetail.Content = vid;
-                }
-
-                // if only one video selected
-                if (MultipleVideosSelected)
+                }else if (MultipleVideosSelected)
                 {
-                    MultipleAvdumps mv = new MultipleAvdumps();
-                    mv.SelectedCount = lbVideos.SelectedItems.Count;
-                    mv.AVDumps = new List<VM_AVDump>();
+                    MultipleAvdumps mv = new MultipleAvdumps()
+                    {
+                        SelectedCount = lbVideos.SelectedItems.Count,
+                        AVDumps = new List<VM_AVDump>()
+                    };
 
                     foreach (object obj in lbVideos.SelectedItems)
                     {
@@ -197,8 +196,12 @@ namespace Shoko.Desktop.UserControls
                         mv.AVDumps.Add(vid);
                     }
 
-                    ccDetailMultiple.Content = mv;
+                    ccDetail.Content = mv;
                 }
+
+                var control = Utils.FindElementByName<AvdumpFileControl>(ccDetail, "FileDetails");
+                control.DumpSingle = OneVideoSelected;
+                control.DumpMultiple = MultipleVideosSelected;
 
 
                 //SetConfirmDetails();

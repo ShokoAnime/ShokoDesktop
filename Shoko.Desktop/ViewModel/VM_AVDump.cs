@@ -113,23 +113,13 @@ namespace Shoko.Desktop.ViewModel
         {
         }
 
-        /*public AVDumpVM(VideoDetailedVM vid)
-		{
-			this.FullPath = vid.FullPath;
-			this.FileSize = vid.VideoLocal_FileSize;
-			this.ED2KDump = "";
-			this.AVDumpFullResult = "";
-			this.HasBeenDumped = false;
-			this.IsBeingDumped = false;
-			this.DumpStatus = "To be processed";
-		}*/
-
         public VM_AVDump(VM_VideoLocal vid)
         {
             FullPath = vid.GetLocalFileSystemFullPath();
             FileSize = vid.FileSize;
             ED2KDump = "";
-            AVDumpFullResult = "";HasBeenDumped = false;
+            AVDumpFullResult = "";
+            HasBeenDumped = false;
             IsBeingDumped = false;
             DumpStatus = "To be processed";
             VideoLocal = vid;

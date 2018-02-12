@@ -116,6 +116,16 @@ namespace Shoko.Desktop.UserControls
             set => SetValue(AvDumpTextProperty, value);
         }
 
+        public static readonly DependencyProperty OutputTextProperty = DependencyProperty.Register("OutputText",
+            typeof(string), typeof(AvdumpFileControl), new UIPropertyMetadata("", null));
+
+
+        public string OutputText
+        {
+            get => (string)GetValue(OutputTextProperty);
+            set => SetValue(OutputTextProperty, value);
+        }
+
         public string SelectedCount
         {
             get
@@ -179,14 +189,15 @@ namespace Shoko.Desktop.UserControls
                         if (string.IsNullOrEmpty(dump.AVDumpFullResult))
                         {
                             string ed2kDump = "Pre-calculated ED2K Dump string" + Environment.NewLine;
-                            ed2kDump += "---------------------------" + Environment.NewLine;
+                            ed2kDump += "----------------------------------------------------------" + Environment.NewLine;
                             ed2kDump += "This does not mean the data has been uploaded to AniDB yet" + Environment.NewLine;
-                            ed2kDump += "---------------------------" + Environment.NewLine;
+                            ed2kDump += "----------------------------------------------------------" + Environment.NewLine;
                             ed2kDump += $@"ed2k://|file|{dump.FileName}|{dump.FileSize}|{dump.VideoLocal.Hash}|/" + Environment.NewLine;
 
                             dump.AVDumpFullResult = ed2kDump;
                         }
 
+                        OutputText = dump.AVDumpFullResult;
                         dump.ED2KDump = Utils.GetED2KDump(dump.AVDumpFullResult);
                         SetED2KDump(dump.ED2KDump);
                     }
@@ -202,20 +213,41 @@ namespace Shoko.Desktop.UserControls
                     {
                         SearchAnime(dumpList.AVDumps[0]);
 
-                        foreach (VM_AVDump dump in dumpList.AVDumps)
+                        bool areDumped = !dumpList.AVDumps.Any(a => string.IsNullOrEmpty(a.AVDumpFullResult));
+                        if (areDumped)
                         {
-                            if (string.IsNullOrEmpty(dump.AVDumpFullResult))
+                            string intersect = null;
+                            foreach (VM_AVDump dump in dumpList.AVDumps)
                             {
-                                string ed2kDump = "Pre-calculated ED2K Dump string" + Environment.NewLine;
-                                ed2kDump += "---------------------------" + Environment.NewLine;
-                                ed2kDump += "This does not mean the data has been uploaded to AniDB yet" + Environment.NewLine;
-                                ed2kDump += "---------------------------" + Environment.NewLine;
-                                ed2kDump += $@"ed2k://|file|{dump.FileName}|{dump.FileSize}|{dump.VideoLocal.Hash}|/" + Environment.NewLine;
-
-                                dump.AVDumpFullResult = ed2kDump;
+                                dump.ED2KDump = Utils.GetED2KDump(dump.AVDumpFullResult);
+                                massAvDump += dump.ED2KDump + Environment.NewLine;
+                                if (intersect == null) intersect = dump.AVDumpFullResult;
+                                else
+                                {
+                                    string[] lines = intersect.Split(Environment.NewLine.ToCharArray(),
+                                        StringSplitOptions.RemoveEmptyEntries);
+                                    string[] avdumpLines = dump.AVDumpFullResult.Split(
+                                        Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                                    intersect = string.Join(Environment.NewLine, lines.Intersect(avdumpLines));
+                                }
                             }
-                            dump.ED2KDump = Utils.GetED2KDump(dump.AVDumpFullResult);
-                            massAvDump += dump.ED2KDump + Environment.NewLine;
+
+                            OutputText = intersect + Environment.NewLine + Environment.NewLine + massAvDump;
+                        }
+                        else
+                        {
+                            string ed2kDump = "Pre-calculated ED2K Dump strings" + Environment.NewLine;
+                            ed2kDump += "----------------------------------------------------------" + Environment.NewLine;
+                            ed2kDump += "This does not mean the data has been uploaded to AniDB yet" + Environment.NewLine;
+                            ed2kDump += "----------------------------------------------------------" + Environment.NewLine;
+                            foreach (VM_AVDump dump in dumpList.AVDumps)
+                            {
+                                dump.ED2KDump = $@"ed2k://|file|{dump.FileName}|{dump.FileSize}|{dump.VideoLocal.Hash}|/";
+                                massAvDump += dump.ED2KDump + Environment.NewLine;
+                            }
+
+                            ed2kDump += massAvDump;
+                            OutputText = ed2kDump;
                         }
                     }
                     SetED2KDump(massAvDump);

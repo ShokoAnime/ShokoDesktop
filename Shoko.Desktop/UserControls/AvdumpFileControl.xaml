@@ -116,42 +116,40 @@
                     <StackPanel Orientation="Vertical" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"  Margin="5,0,2,2"
                                 Visibility="{Binding Path=DumpSingle, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AvdumpFileControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-                        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
+                        <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Utilities_FileName}" Margin="3" FontWeight="DemiBold" />
                             <TextBlock Text="{Binding Path=VideoLocal.FileName}" Margin="3" />
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3">
+                        <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Utilities_Folder}" Margin="3" FontWeight="DemiBold" />
                             <TextBlock Text="{Binding Path=VideoLocal.FileDirectory}" Margin="3" />
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3">
+                        <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Utilities_Size}" Margin="3" FontWeight="DemiBold" />
                             <TextBlock Text="{Binding Path=VideoLocal.FormattedFileSize}" Margin="3" />
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3">
+                        <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Hash" Margin="3" FontWeight="DemiBold" />
                             <TextBox Text="{Binding Path=VideoLocal.Hash}" Margin="3" Background="Transparent" BorderThickness="0" IsReadOnly="True" />
                         </StackPanel>
-                        <StackPanel Name="StackPanelCRC32"  Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3">
+                        <StackPanel Name="StackPanelCRC32"  Orientation="Horizontal">
                             <TextBlock Text="CRC32" Margin="3" FontWeight="DemiBold" />
                             <TextBox Name="txtCRC32" Text="{Binding Path=VideoLocal.CRC32}" Margin="3" Background="Transparent" BorderThickness="0" IsReadOnly="True" />
                         </StackPanel>
-                        <StackPanel Name="StackPanelSHA1"  Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3">
+                        <StackPanel Name="StackPanelSHA1"  Orientation="Horizontal">
                             <TextBlock Text="SHA1" Margin="3" FontWeight="DemiBold" />
                             <TextBox Name="txtSHA1"  Text="{Binding Path=VideoLocal.SHA1}" Margin="3" Background="Transparent" BorderThickness="0" IsReadOnly="True" />
                         </StackPanel>
-                        <StackPanel  Name="StackPanelMD5" Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3">
+                        <StackPanel  Name="StackPanelMD5" Orientation="Horizontal">
                             <TextBlock Text="MD5" Margin="3" FontWeight="DemiBold" />
                             <TextBox Name="txtMD5" Text="{Binding Path=VideoLocal.MD5}" Margin="3" Background="Transparent" BorderThickness="0" IsReadOnly="True" />
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3">
-                            <TextBox Name="txtOutput" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" Height="100" Margin="0" Text="{Binding Path=AVDumpFullResult}"
-                         BorderThickness="1" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="WrapWithOverflow"
-                         HorizontalAlignment="Stretch"/>
-                        </StackPanel >
+                        <TextBox Name="txtOutput" Height="100" Margin="0"
+                                 Text="{Binding Path=OutputText, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AvdumpFileControl}}}"
+                                 BorderThickness="1" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="WrapWithOverflow" HorizontalAlignment="Stretch" />
                         
                     </StackPanel >
 
@@ -171,7 +169,7 @@
                             <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Files}" Margin="5,0,0,0" VerticalAlignment="Center" FontWeight="Bold"/>
                         </StackPanel>
 
-                        <TextBox Text="{Binding Path=AvDumpText, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AvdumpFileControl}}}" 
+                        <TextBox Text="{Binding Path=OutputText, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AvdumpFileControl}}}" 
                                     Grid.Column="0" Grid.Row="1" Margin="0,5,0,0" Height="130" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"
                                     HorizontalAlignment="Stretch"/>
                     </Grid>

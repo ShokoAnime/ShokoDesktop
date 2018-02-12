@@ -13,6 +13,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using System.Windows.Media;
 using Microsoft.Win32;
 using NLog;
 using Shoko.Desktop.Forms;
@@ -888,6 +889,29 @@ namespace Shoko.Desktop.Utilities
                 if (throwIfFails) throw;
                 return false;
             }
+        }
+
+        public static T FindElementByName<T>(FrameworkElement element, string sChildName) where T : FrameworkElement
+        {
+            T childElement = null;
+            var nChildCount = VisualTreeHelper.GetChildrenCount(element);
+            for (int i = 0; i < nChildCount; i++)
+            {
+                if (!(VisualTreeHelper.GetChild(element, i) is FrameworkElement child))
+                    continue;
+
+                if (child is T typedChild && child.Name.Equals(sChildName))
+                {
+                    childElement = typedChild;
+                    break;
+                }
+
+                childElement = FindElementByName<T>(child, sChildName);
+
+                if (childElement != null)
+                    break;
+            }
+            return childElement;
         }
     }
 }
