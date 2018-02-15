@@ -391,8 +391,11 @@ namespace Shoko.Desktop.UserControls
                         // make sure the last episode number is within the valid range
                         VM_AnimeSeries_User series = lbSeries.SelectedItem as VM_AnimeSeries_User;
                         logger.Info($"[Unrecognizedfiles] Selected series group: {series?.GroupName}");
+                        logger.Info($"[Unrecognizedfiles] Selected start episode number: {startEpNum}");
+                        logger.Info($"[Unrecognizedfiles] Selected end episode number: {endEpNum}");
+                        logger.Info($"[Unrecognizedfiles] Series last regular episode number: {series?.LatestRegularEpisodeNumber}");
 
-                        if (series.LatestRegularEpisodeNumber < endEpNum ||
+                        if (series?.LatestRegularEpisodeNumber < endEpNum ||
                             startEpNum <= 0 && endEpNum <= 0 && endEpNum <= startEpNum)
                         {
                             // otherwise allow the user to refresh it from anidb
@@ -431,10 +434,14 @@ namespace Shoko.Desktop.UserControls
                             }
                         }
 
+                        logger.Info($"[Unrecognizedfiles] linking single video: {vid.FullPath} [{vid.VideoLocalID}] to series => {series.GroupName} [{series.AnimeSeriesID}] with episode range {startEpNum} - {endEpNum}");
                         result = VM_ShokoServer.Instance.ShokoServices.AssociateSingleFileWithMultipleEpisodes(
                             vid.VideoLocalID, series.AnimeSeriesID, startEpNum, endEpNum);
+
                         if (result.Length > 0)
                         {
+                            logger.Error($"[Unrecognizedfiles] error occured during single file linking to multiple episodes: {result}");
+
                             MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK,
                                 MessageBoxImage.Error);
                         }
