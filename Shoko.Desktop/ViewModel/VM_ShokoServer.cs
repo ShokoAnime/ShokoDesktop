@@ -1872,8 +1872,6 @@ namespace Shoko.Desktop.ViewModel
 
             try
             {
-                //SetupClient();
-                //SetupTCPClient();
                 SetupClient();
             }
             catch

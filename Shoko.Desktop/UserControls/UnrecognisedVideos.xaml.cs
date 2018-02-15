@@ -14,6 +14,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using NLog;
 using Shoko.Commons.Extensions;
 using Shoko.Commons.Utils;
 using Shoko.Desktop.Enums;
@@ -31,6 +32,8 @@ namespace Shoko.Desktop.UserControls
     /// </summary>
     public partial class UnrecognisedVideos : UserControl
     {
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         private readonly List<CancellationTokenSource> runningTasks = new List<CancellationTokenSource>();
 
         public ICollectionView ViewFiles { get; set; }
@@ -221,25 +224,7 @@ namespace Shoko.Desktop.UserControls
 
         void btnRefreshSeriesList_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                if (!VM_ShokoServer.Instance.ServerOnline) return;
-
-                Cursor = Cursors.Wait;
-                RefreshSeries();
-                Cursor = Cursors.Arrow;
-
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-            finally
-            {
-                Cursor = Cursors.Arrow;
-            }
-
-
+            RefreshSeriesList();
         }
 
         void btnLogs_Click(object sender, RoutedEventArgs e)
@@ -382,12 +367,15 @@ namespace Shoko.Desktop.UserControls
                 Window parentWindow = Window.GetWindow(this);
 
                 // if only one video selected
+                logger.Info($"[Unrecognizedfiles] Selected one video for linking = {OneVideoSelected}");
+                logger.Info($"[Unrecognizedfiles] Multplie videos selected for linking = {MultipleVideosSelected}");
+
                 if (OneVideoSelected)
                 {
                     EnableDisableControls(false);
 
                     VM_VideoLocal vid = dgVideos.SelectedItem as VM_VideoLocal;
-
+                    logger.Info($"[Unrecognizedfiles] Multiple type selected index = {cboMultiType.SelectedIndex}");
                     if (cboMultiType.SelectedIndex == 0)
                     {
                         // single file to multiple episodes
@@ -402,16 +390,23 @@ namespace Shoko.Desktop.UserControls
                         // make sure the episode range is valid
                         // make sure the last episode number is within the valid range
                         VM_AnimeSeries_User series = lbSeries.SelectedItem as VM_AnimeSeries_User;
-                        if (series.LatestRegularEpisodeNumber < endEpNum || startEpNum <= 0 && endEpNum <= 0 && endEpNum <= startEpNum)
+                        logger.Info($"[Unrecognizedfiles] Selected series group: {series?.GroupName}");
+
+                        if (series.LatestRegularEpisodeNumber < endEpNum ||
+                            startEpNum <= 0 && endEpNum <= 0 && endEpNum <= startEpNum)
                         {
                             // otherwise allow the user to refresh it from anidb
-                            MessageBoxResult res = MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_InvalidEpGetAnime, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+                            MessageBoxResult res = MessageBox.Show(
+                                Shoko.Commons.Properties.Resources.MSG_ERR_InvalidEpGetAnime,
+                                Shoko.Commons.Properties.Resources.Error, MessageBoxButton.YesNo,
+                                MessageBoxImage.Exclamation);
                             if (res == MessageBoxResult.Yes)
                             {
                                 result = VM_ShokoServer.Instance.ShokoServices.UpdateAnimeData(series.AniDB_ID);
                                 if (result.Length > 0)
                                 {
-                                    MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                                    MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error,
+                                        MessageBoxButton.OK, MessageBoxImage.Error);
                                     EnableDisableControls(true);
                                     return;
                                 }
@@ -420,7 +415,9 @@ namespace Shoko.Desktop.UserControls
                                     // check again
                                     if (series.LatestRegularEpisodeNumber < endEpNum)
                                     {
-                                        MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_InvalidEp, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                                        MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_InvalidEp,
+                                            Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK,
+                                            MessageBoxImage.Exclamation);
                                         EnableDisableControls(true);
                                         return;
                                     }
@@ -434,21 +431,34 @@ namespace Shoko.Desktop.UserControls
                             }
                         }
 
-                        result = VM_ShokoServer.Instance.ShokoServices.AssociateSingleFileWithMultipleEpisodes(vid.VideoLocalID, series.AnimeSeriesID, startEpNum, endEpNum);
+                        result = VM_ShokoServer.Instance.ShokoServices.AssociateSingleFileWithMultipleEpisodes(
+                            vid.VideoLocalID, series.AnimeSeriesID, startEpNum, endEpNum);
                         if (result.Length > 0)
                         {
-                            MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK,
+                                MessageBoxImage.Error);
                         }
                     }
                     else
                     {
                         // single file to a single episode
                         VM_AnimeEpisode_User ep = cboEpisodes.SelectedItem as VM_AnimeEpisode_User;
+                        logger.Info(
+                            $"[Unrecognizedfiles] Linking single episode for anime: {ep?.AnimeName} | episodeNumbnerName {ep?.EpisodeNumberAndName} | videolocal: {vid?.VideoLocalID} | animeEpisodeID: {ep?.AnimeEpisodeID}");
 
-                        string result = VM_ShokoServer.Instance.ShokoServices.AssociateSingleFile(vid.VideoLocalID, ep.AnimeEpisodeID);
+                        string result =
+                            VM_ShokoServer.Instance.ShokoServices.AssociateSingleFile(vid.VideoLocalID,
+                                ep.AnimeEpisodeID);
                         if (result.Length > 0)
                         {
-                            MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                            logger.Error($"[Unrecognizedfiles] error occured during episode linking: {result}");
+
+                            MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+                        }
+                        else
+                        {
+                            logger.Info("[Unrecognizedfiles] episode linked successfully");
                         }
                     }
                 }
@@ -465,25 +475,33 @@ namespace Shoko.Desktop.UserControls
                     else
                         endEpNum = startEpNum;
 
+                    logger.Info(
+                        $"[Unrecognizedfiles] Selected multiple episodeds for linking, range = {startEpNum} to {endEpNum}");
                     // make sure the last episode number is within the valid range
                     VM_AnimeSeries_User series = lbSeries.SelectedItem as VM_AnimeSeries_User;
                     if (series.LatestRegularEpisodeNumber < endEpNum && startEpNum > 0)
                     {
                         // otherwise allow the user to refresh it from anidb
-                        MessageBoxResult res = MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_InvalidEpGetAnime, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+                        MessageBoxResult res = MessageBox.Show(
+                            Shoko.Commons.Properties.Resources.MSG_ERR_InvalidEpGetAnime,
+                            Shoko.Commons.Properties.Resources.Error, MessageBoxButton.YesNo,
+                            MessageBoxImage.Exclamation);
                         if (res == MessageBoxResult.Yes)
                         {
                             string result = VM_ShokoServer.Instance.ShokoServices.UpdateAnimeData(series.AniDB_ID);
                             if (result.Length > 0)
                             {
-                                MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                                MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK,
+                                    MessageBoxImage.Error);
                                 EnableDisableControls(true);
                                 return;
                             }
                             // check again
                             if (series.LatestRegularEpisodeNumber < endEpNum)
                             {
-                                MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_InvalidEp, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                                MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_InvalidEp,
+                                    Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK,
+                                    MessageBoxImage.Exclamation);
                                 EnableDisableControls(true);
                                 return;
                             }
@@ -497,26 +515,41 @@ namespace Shoko.Desktop.UserControls
                     }
 
                     // get all the selected videos
+                    logger.Info($"[Unrecognizedfiles] linking {dgVideos.SelectedItems.Count} videos");
                     List<int> vidIDs = new List<int>();
                     foreach (object obj in dgVideos.SelectedItems)
                     {
                         VM_VideoLocal vid = obj as VM_VideoLocal;
                         vidIDs.Add(vid.VideoLocalID);
+                        logger.Info(
+                            $"[Unrecognizedfiles] Gonna link {vid.FullPath} | {vid.VideoLocalID} => {series?.GroupName}");
                     }
 
-                    string msg = VM_ShokoServer.Instance.ShokoServices.AssociateMultipleFiles(vidIDs, series.AnimeSeriesID, startEpNum, MultipleTypeSingle);
-                    if (msg.Length > 0)
+                    string response = VM_ShokoServer.Instance.ShokoServices.AssociateMultipleFiles(vidIDs,
+                        series.AnimeSeriesID, startEpNum, MultipleTypeSingle);
+                    if (response.Length > 0)
                     {
-                        MessageBox.Show(msg, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
+                        logger.Error($"[Unrecognizedfiles] Error occured during multiple episodes linking: {response}");
 
+                        MessageBox.Show(response, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK,
+                            MessageBoxImage.Error);
+                    }
+                    else
+                    {
+                        logger.Info("[Unrecognizedfiles] Multiple episodes linked successfully");
+                    }
                 }
+
             }
             catch (Exception ex)
             {
                 Utils.ShowErrorMessage(ex);
             }
-            EnableDisableControls(true);
+            finally
+            {
+                EnableDisableControls(true);
+                RefreshSeriesList();
+            }
         }
 
         void txtStartEpNum_TextChanged(object sender, TextChangedEventArgs e)
@@ -1083,5 +1116,25 @@ namespace Shoko.Desktop.UserControls
             return false;
         }
 
+        void RefreshSeriesList()
+        {
+            try
+            {
+                if (!VM_ShokoServer.Instance.ServerOnline) return;
+
+                Cursor = Cursors.Wait;
+                RefreshSeries();
+                Cursor = Cursors.Arrow;
+
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+                Cursor = Cursors.Arrow;
+            }
+        }
     }
 }

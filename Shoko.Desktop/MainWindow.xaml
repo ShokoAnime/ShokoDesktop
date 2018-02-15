@@ -1449,7 +1449,7 @@
             <TabItem Name="tabHelp" Style="{DynamicResource tabMainItem}">
                 <TabItem.Header>
                     <Hyperlink Cursor="Arrow" TextDecorations="{x:Null}" NavigateUri="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_Help}" RequestNavigate="Hyperlink_RequestNavigate">
-                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_Help}" Margin="0,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold" />
+                      <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_Help}" Margin="0,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold" />
                     </Hyperlink>
                 </TabItem.Header>
             </TabItem>
