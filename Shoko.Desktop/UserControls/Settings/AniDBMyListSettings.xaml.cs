@@ -21,6 +21,7 @@ namespace Shoko.Desktop.UserControls.Settings
             cboStorageState.Items.Clear();
             cboStorageState.Items.Add(Shoko.Commons.Properties.Resources.AniDBMyListUnknown);
             cboStorageState.Items.Add(Shoko.Commons.Properties.Resources.AniDBMyListHDD);
+            cboStorageState.Items.Add(Shoko.Commons.Properties.Resources.AniDBMyListRemote);
             cboStorageState.Items.Add(Shoko.Commons.Properties.Resources.AniDBMyListDVD);
             cboStorageState.SelectedIndex = 0;
 
@@ -30,6 +31,7 @@ namespace Shoko.Desktop.UserControls.Settings
             cboDeleteAction.Items.Add(Shoko.Commons.Properties.Resources.AniDBMyListMarkDeleted);
             cboDeleteAction.Items.Add(Shoko.Commons.Properties.Resources.AniDBMyListMarkExternal);
             cboDeleteAction.Items.Add(Shoko.Commons.Properties.Resources.AniDBMyListMarkUnknown);
+            cboDeleteAction.Items.Add(Shoko.Commons.Properties.Resources.AniDBMyListMarkDisk);
             cboDeleteAction.SelectedIndex = 0;
 
             Loaded += new RoutedEventHandler(AniDBMyListSettings_Loaded);
