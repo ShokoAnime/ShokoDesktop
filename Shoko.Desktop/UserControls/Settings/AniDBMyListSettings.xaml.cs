@@ -15,7 +15,7 @@ namespace Shoko.Desktop.UserControls.Settings
     public partial class AniDBMyListSettings : UserControl
     {
         public static readonly Dictionary<AniDBFileDeleteType, string> DeleteSettings = new Dictionary<AniDBFileDeleteType, string>();
-        public static readonly Dictionary<AniDBFileStorageState, string> StorageSettings = new Dictionary<AniDBFileStorageState, string>();
+        public static readonly Dictionary<AniDBFile_State, string> StorageSettings = new Dictionary<AniDBFile_State, string>();
 
         static AniDBMyListSettings()
         {
@@ -26,10 +26,10 @@ namespace Shoko.Desktop.UserControls.Settings
             DeleteSettings.Add(AniDBFileDeleteType.MarkDisk, Commons.Properties.Resources.AniDBMyListMarkDisk);
             DeleteSettings.Add(AniDBFileDeleteType.MarkUnknown, Commons.Properties.Resources.AniDBMyListMarkUnknown);
 
-            StorageSettings.Add(AniDBFileStorageState.Unknown, Commons.Properties.Resources.AniDBMyListUnknown);
-            StorageSettings.Add(AniDBFileStorageState.HDD, Commons.Properties.Resources.AniDBMyListHDD);
-            StorageSettings.Add(AniDBFileStorageState.Disk, Commons.Properties.Resources.AniDBMyListDVD);
-            StorageSettings.Add(AniDBFileStorageState.Remote, Commons.Properties.Resources.AniDBMyListRemote);
+            StorageSettings.Add(AniDBFile_State.Unknown, Commons.Properties.Resources.AniDBMyListUnknown);
+            StorageSettings.Add(AniDBFile_State.HDD, Commons.Properties.Resources.AniDBMyListHDD);
+            StorageSettings.Add(AniDBFile_State.Disk, Commons.Properties.Resources.AniDBMyListDVD);
+            StorageSettings.Add(AniDBFile_State.Remote, Commons.Properties.Resources.AniDBMyListRemote);
         }
 
         public AniDBMyListSettings()
@@ -87,7 +87,7 @@ namespace Shoko.Desktop.UserControls.Settings
 
         void AniDBMyListSettings_Loaded(object sender, RoutedEventArgs e)
         {
-            cboStorageState.SelectedIndex = cboStorageState.Items.IndexOf(StorageSettings[(AniDBFileStorageState) VM_ShokoServer.Instance.AniDB_MyList_StorageState]);
+            cboStorageState.SelectedIndex = cboStorageState.Items.IndexOf(StorageSettings[(AniDBFile_State) VM_ShokoServer.Instance.AniDB_MyList_StorageState]);
             cboDeleteAction.SelectedIndex = cboDeleteAction.Items.IndexOf(DeleteSettings[VM_ShokoServer.Instance.AniDB_MyList_DeleteType]);
         }
     }
