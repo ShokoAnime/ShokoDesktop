@@ -552,8 +552,10 @@ namespace Shoko.Desktop
                 switch (tab.SelectedIndex)
                 {
                     case (int) TAB_UTILITY.Unrecognised:
-                        if (unRecVids.UnrecognisedFiles.Count == 0) unRecVids.RefreshUnrecognisedFiles();
-                        if (unRecVids.AllSeries.Count == 0) unRecVids.RefreshSeries();
+                        if (unRecVids.UnrecognisedFiles.Count == 0)
+                            unRecVids.RefreshUnrecognisedFiles();
+                        if (0==unRecVids.AllSeries.Count && string.IsNullOrEmpty(unRecVids.txtSeriesSearch.Text))
+                            unRecVids.RefreshSeries(true); //inital all load
                         lastFileManagerTab = (int) TAB_UTILITY.Unrecognised;
                         break;
                     case (int) TAB_UTILITY.Ignored:

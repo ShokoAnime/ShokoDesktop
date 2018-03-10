@@ -165,13 +165,14 @@ namespace Shoko.Desktop.UserControls
 
             OneVideoSelected = dgVideos.SelectedItems.Count == 1;
             MultipleVideosSelected = dgVideos.SelectedItems.Count > 1;
-            RefreshSeries();
+            //window showed up and dashboard is visible, but every page is loading..
         }
 
         private void DgVideos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
+                bool isShiftOrCtrlDown = 0 != (Keyboard.Modifiers & (ModifierKeys.Shift | ModifierKeys.Control));
                 ccDetail.Content = null;
                 ccDetailMultiple.Content = null;
 
@@ -214,7 +215,10 @@ namespace Shoko.Desktop.UserControls
                 }
                 SetConfirmDetails();
                 Confirm1.Visibility = Confirm2.Visibility = visible;
-                if (string.IsNullOrEmpty(txtSeriesSearch.Text)) RefreshSeries();
+                if (string.IsNullOrEmpty(txtSeriesSearch.Text) && !isShiftOrCtrlDown) {
+                    //no user search and ignore shift- and control-clicks
+                    RefreshSeries();
+                }
             }
             catch (Exception ex)
             {
@@ -321,11 +325,10 @@ namespace Shoko.Desktop.UserControls
                 bool? result = frm.ShowDialog();
                 if (result.HasValue && result.Value)
                 {
+                    //ok, now its safe to use textbox, search wont mess with it
                     RefreshSeries();
-
                     VM_AnimeSeries_User ser = frm.AnimeSeries;
-                    txtSeriesSearch.Text =
-                        ser?.AniDBAnime?.AniDBAnime?.FormattedTitle ?? ser?.SeriesName ?? string.Empty;
+                    txtSeriesSearch.Text = ser?.AniDBAnime?.AniDBAnime?.FormattedTitle ?? ser?.SeriesName ?? string.Empty;
                 }
             }
             catch (Exception ex)
@@ -555,7 +558,6 @@ namespace Shoko.Desktop.UserControls
             finally
             {
                 EnableDisableControls(true);
-                RefreshSeriesList();
             }
         }
 
@@ -924,7 +926,6 @@ namespace Shoko.Desktop.UserControls
                 {
                     UnrecognisedFiles.Add(vid);
                 }
-                RefreshSeries();
             }
             catch (Exception ex)
             {
@@ -932,7 +933,11 @@ namespace Shoko.Desktop.UserControls
             }
         }
 
-        public void RefreshSeries()
+        //use cases:
+        //1. load what is selected if files grid
+        //2. initial fetch to fill AllSeries list
+        //3. load series that was just added
+        public void RefreshSeries(bool all=false)
         {
             try
             {
@@ -943,7 +948,7 @@ namespace Shoko.Desktop.UserControls
                 {
                     SearchAnime(dgVideos.SelectedItems);
                 }
-                else
+                else if (all)
                 {
                     SearchAnime(null);
                 }
@@ -973,7 +978,6 @@ namespace Shoko.Desktop.UserControls
 
             Progress<List<VM_AnimeSeries_User>> progress = new Progress<List<VM_AnimeSeries_User>>(ReportProgress);
 
-            AllSeries.Clear();
             await Task.Run(() =>
             {
                 SearchAnime(token, argument, progress);
@@ -1075,13 +1079,13 @@ namespace Shoko.Desktop.UserControls
         {
             if (series == null || series.Count <= 0)
             {
-                txtSeriesSearch.Text = string.Intern("Loading...");
+                //dont mess with user input
                 txtSeriesSearch.IsEnabled = false;
-                txtSeriesSearch.IsReadOnly = true;
-                txtSeriesSearch.Focusable = false;
-
                 lbSeries.IsEnabled = false;
-                AllSeries.Clear();
+                //use listbox with dummy instead
+                VM_AnimeSeries_User dummy = new VM_AnimeSeries_User();
+                dummy.SeriesNameOverride = "Loading...";
+                AllSeries.Add(dummy);
             }
             else
             {
@@ -1090,11 +1094,8 @@ namespace Shoko.Desktop.UserControls
 
                 if (AllSeries.Count >= 1)
                     lbSeries.SelectedIndex = 0;
-                txtSeriesSearch.IsReadOnly = false;
-                txtSeriesSearch.Focusable = true;
-                txtSeriesSearch.Text = string.Empty;
-                txtSeriesSearch.IsEnabled = true;
 
+                txtSeriesSearch.IsEnabled = true;
                 lbSeries.IsEnabled = true;
             }
         }
