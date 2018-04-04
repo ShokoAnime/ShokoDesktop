@@ -567,22 +567,17 @@ namespace Shoko.Desktop.ViewModel
 
         }
 
-        public void AuthorizeTraktPIN(string pin)
+        public CL_TraktDeviceCode GetTraktDeviceCode()
         {
             try
             {
-                SaveServerSettings();
-
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
-
-                string response = ShokoServices.EnterTraktPIN(pin);
-                MessageBox.Show(response, Shoko.Commons.Properties.Resources.ShokoServer_TraktAuth, MessageBoxButton.OK, MessageBoxImage.Information);
-
+                return ShokoServices.GetTraktDeviceCode();
             }
             catch (Exception ex)
             {
                 Utils.ShowErrorMessage(ex);
             }
+            return new CL_TraktDeviceCode();
         }
 
         public void TestMALLogin()

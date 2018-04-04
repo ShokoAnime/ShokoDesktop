@@ -59,8 +59,12 @@ namespace Shoko.Desktop.UserControls.Settings
 
         void btnTest_Click(object sender, RoutedEventArgs e)
         {
-            VM_ShokoServer.Instance.AuthorizeTraktPIN(txtTraktPIN.Text.Trim());
-            VM_ShokoServer.Instance.GetServerSettings();
+            var deviceCode = VM_ShokoServer.Instance.GetTraktDeviceCode();
+
+            tbUserCode.Text = deviceCode.UserCode;
+            ucAuthorizeLink.URL = deviceCode.VerificationUrl;
+            ucAuthorizeLink.DisplayText = deviceCode.VerificationUrl;
+
             EvaluateVisibility();
         }
 
@@ -69,9 +73,8 @@ namespace Shoko.Desktop.UserControls.Settings
             Visibility vis = Visibility.Collapsed;
             if (VM_ShokoServer.Instance.Trakt_IsEnabled) vis = Visibility.Visible;
 
-            spPINLabel.Visibility = vis;
-            spPINData.Visibility = vis;
-            spPINLink.Visibility = vis;
+            spUserCode.Visibility = vis;
+            spAuthorizeLink.Visibility = vis;
 
             btnTest.Visibility = vis;
             spValidity.Visibility = vis;

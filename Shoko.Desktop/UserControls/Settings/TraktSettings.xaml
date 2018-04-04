@@ -37,50 +37,49 @@
         </StackPanel>
 
         <!-- Trakt PIN-->
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Margin="0,5,15,0" x:Name="spPINLabel">
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Trakt_PIN}"  VerticalAlignment="Center"></TextBlock>
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" x:Name="spPINData">
-            <TextBox Name="txtTraktPIN" Width="150" Margin="0,5,5,0" VerticalAlignment="Center" Text=""/>
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="1" x:Name="spPINLink">
-            <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Trakt_GetPIN}" URL="https://trakt.tv/pin/5309" Margin="0,0,0,0"/>
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Margin="0,5,15,0" x:Name="spDeviceCodeLabel">
+            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Trakt_DeviceCode}"  VerticalAlignment="Center"></TextBlock>
         </StackPanel>
         
-
-        <Button Name="btnTest" Margin="0,8,2,2" Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Left" >
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                <Image Height="16" Width="16" Source="/Images/16_save.png" Margin="0,0,5,0"/>
-                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Trakt_Authorize}" Margin="0,0,5,0"/>
-            </StackPanel>
-        </Button>
-
         <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="2" Margin="0,5,15,0" x:Name="spValidity">
             <TextBlock x:Name="tbValidity" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Trakt_CurrentToken}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
+        <Button Name="btnTest" Margin="0,8,2,2" Grid.Column="0" Grid.Row="3"  HorizontalAlignment="Left" >
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <Image Height="16" Width="16" Source="/Images/16_save.png" Margin="0,0,5,0"/>
+                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Trakt_GetCode}" Margin="0,0,5,0"/>
+            </StackPanel>
+        </Button>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Margin="0,5,15,0" x:Name="spUserCode">
+            <TextBlock x:Name="tbUserCode" Text="" FontWeight="Bold" FontSize="16pt"  VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="3" x:Name="spAuthorizeLink">
+            <usercontrols:HyperLinkStandard x:Name="ucAuthorizeLink" VerticalAlignment="Center" DisplayText="" URL="" Margin="0,0,0,0"/>
+        </StackPanel>
+
         <!-- Schedule Updates-->
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Margin="0,5,15,0" x:Name="spUpdatesLabel">
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4" Margin="0,5,15,0" x:Name="spUpdatesLabel">
             <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=UpdateFrequency}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Margin="0,5,5,0" x:Name="spUpdatesData">
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" Margin="0,5,5,0" x:Name="spUpdatesData">
             <ComboBox Grid.Row="0" Name="cboUpdateFrequency" VerticalAlignment="Center"></ComboBox>
         </StackPanel>
 
         <!-- Episode Auto Download-->
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4" Margin="0,5,15,0" x:Name="spEpisodeLabel">
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="5" Margin="0,5,15,0" x:Name="spEpisodeLabel">
             <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Trakt_AutoEpisodeImages}"  VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Margin="0,5,5,0" x:Name="spEpisodeData">
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" Margin="0,5,5,0" x:Name="spEpisodeData">
             <CheckBox Name="chkTrakt_EpisodeAutoDownload" IsChecked="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=Trakt_DownloadEpisodes}" VerticalAlignment="Center"/>
         </StackPanel>
 
         <!-- Visit Website -->
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="5" Margin="0,10,15,0">
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="6" Margin="0,10,15,0">
             <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VisitWebsite}" URL="http://trakt.tv" Margin="0,0,0,0"/>
         </StackPanel>
         
