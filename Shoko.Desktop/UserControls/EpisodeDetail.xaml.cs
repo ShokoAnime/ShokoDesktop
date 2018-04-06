@@ -135,36 +135,6 @@ namespace Shoko.Desktop.UserControls
 
             btnTvDBLinkAdd.Click += new RoutedEventHandler(btnTvDBLinkAdd_Click);
             btnTvDBLinkRemove.Click += new RoutedEventHandler(btnTvDBLinkRemove_Click);
-            btnUpdateEpisode.Click += new RoutedEventHandler(btnUpdateEpisode_Click);
-        }
-
-        void btnUpdateEpisode_Click(object sender, RoutedEventArgs e)
-        {
-            VM_AnimeEpisode_User ep = DataContext as VM_AnimeEpisode_User;
-
-            Window wdw = Window.GetWindow(this);
-
-            Cursor = Cursors.Wait;
-
-            try
-            {
-                string res = VM_ShokoServer.Instance.ShokoServices.UpdateEpisodeData(ep.AniDB_EpisodeID);
-                if (res.Length > 0)
-                {
-                    Cursor = Cursors.Arrow;
-                    Utils.ShowErrorMessage(res);
-                    return;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-            finally
-            {
-                Cursor = Cursors.Arrow;
-            }
         }
 
         void btnTvDBLinkRemove_Click(object sender, RoutedEventArgs e)

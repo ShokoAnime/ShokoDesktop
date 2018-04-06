@@ -176,7 +176,7 @@ namespace Shoko.Desktop.ViewModel
                 mappings.Add(typeof(CL_AniDB_AnimeCrossRefs), typeof(VM_AniDB_AnimeCrossRefs));
                 mappings.Add(typeof(CL_AniDB_AnimeDetailed), typeof(VM_AniDB_AnimeDetailed));
                 mappings.Add(typeof(CL_AniDB_Character), typeof(VM_AniDB_Character));
-                mappings.Add(typeof(AniDB_Episode), typeof(VM_AniDB_Episode));
+                mappings.Add(typeof(CL_AniDB_Episode), typeof(VM_AniDB_Episode));
                 mappings.Add(typeof(AniDB_Recommendation), typeof(VM_AniDB_Recommendation));
                 mappings.Add(typeof(AniDB_Seiyuu), typeof(VM_AniDB_Seiyuu));
                 mappings.Add(typeof(CL_AnimeTag), typeof(VM_AnimeTag));
