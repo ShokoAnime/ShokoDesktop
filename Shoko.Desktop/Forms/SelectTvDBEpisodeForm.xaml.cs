@@ -85,7 +85,7 @@ namespace Shoko.Desktop.Forms
                     Cursor = Cursors.Wait;
                     VM_TvDB_Episode tvEp = obj as VM_TvDB_Episode;
 
-                    string res = VM_ShokoServer.Instance.ShokoServices.LinkAniDBTvDBEpisode(AnimeEpisode.AniDB_EpisodeID, tvEp.Id, AnimeID);
+                    string res = VM_ShokoServer.Instance.ShokoServices.LinkAniDBTvDBEpisode(AnimeEpisode.AniDB_EpisodeID, tvEp.Id);
                     Cursor = Cursors.Arrow;
 
                     if (res.Length > 0)

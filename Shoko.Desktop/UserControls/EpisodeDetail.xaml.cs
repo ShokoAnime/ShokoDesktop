@@ -148,7 +148,9 @@ namespace Shoko.Desktop.UserControls
 
                 Cursor = Cursors.Wait;
 
-                string res = VM_ShokoServer.Instance.ShokoServices.RemoveLinkAniDBTvDBEpisode(ep.AniDB_EpisodeID);
+                string res =
+                    VM_ShokoServer.Instance.ShokoServices.RemoveLinkAniDBTvDBEpisode(ep.AniDB_EpisodeID,
+                        ep.GetTvDBEpisodeID());
                 if (res.Length > 0)
                 {
                     Cursor = Cursors.Arrow;

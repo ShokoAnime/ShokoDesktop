@@ -183,7 +183,7 @@ namespace Shoko.Desktop.Forms
                     TvDBSeasonNumber = TvDBSeason,
                     TvDBStartEpisodeNumber = TvDBEpisodeNumber,
                     CrossRef_AniDB_TvDBV2ID = 0,
-                    CrossRefSource = (int) CrossrefSource.User,
+                    CrossRefSource = (int) CrossRefSource.User,
                     IsAdditive = IsAdditive
                 };
                 string res = VM_ShokoServer.Instance.ShokoServices.LinkAniDBTvDB(xref);

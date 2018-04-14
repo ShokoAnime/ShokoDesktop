@@ -520,7 +520,7 @@ namespace Shoko.Desktop.ViewModel.Server
                     // find the xref that is right
                     // relies on the xref's being sorted by season number and then episode number (desc)
                     List<VM_CrossRef_AniDB_TvDBV2> tvDBCrossRef = tvSummary.CrossRefTvDBV2.OrderByDescending(a=>a.AniDBStartEpisodeNumber).ToList();
-                    
+
                     //logger.Trace("SetTvDBInfo: looking for starting points");
 
                     bool foundStartingPoint = false;
@@ -606,7 +606,7 @@ namespace Shoko.Desktop.ViewModel.Server
                 // find the xref that is right
                 // relies on the xref's being sorted by season number and then episode number (desc)
                 List<VM_CrossRef_AniDB_TvDBV2> tvDBCrossRef = tvSummary.CrossRefTvDBV2?.OrderByDescending(a=>a.AniDBStartEpisodeNumber).ToList() ?? new List<VM_CrossRef_AniDB_TvDBV2>();
-                
+
                 bool foundStartingPoint = false;
                 VM_CrossRef_AniDB_TvDBV2 xrefBase = null;
                 foreach (VM_CrossRef_AniDB_TvDBV2 xrefTV in tvDBCrossRef)
@@ -672,6 +672,63 @@ namespace Shoko.Desktop.ViewModel.Server
 
         }
 
+        public int GetTvDBEpisodeID()
+        {
+            VM_TvDBSummary tvSummary = AniDBAnime.TvSummary;
+            if (tvSummary.DictTvDBCrossRefEpisodes.ContainsKey(AniDB_EpisodeID))
+                return tvSummary.DictTvDBCrossRefEpisodes[AniDB_EpisodeID];
+
+            switch (EpisodeTypeEnum)
+            {
+                case Models.Enums.EpisodeType.Episode:
+                    return GetTvDBEpisodeIDByType(tvSummary, Models.Enums.EpisodeType.Episode);
+                case Models.Enums.EpisodeType.Special:
+                    return GetTvDBEpisodeIDByType(tvSummary, Models.Enums.EpisodeType.Special);
+            }
+
+            return 0;
+        }
+
+        private int GetTvDBEpisodeIDByType(VM_TvDBSummary tvSummary, EpisodeType type)
+        {
+            if (tvSummary.CrossRefTvDBV2 == null || tvSummary.CrossRefTvDBV2.Count <= 0) return 0;
+
+            List<VM_CrossRef_AniDB_TvDBV2> tvDBCrossRef = tvSummary.CrossRefTvDBV2
+                .OrderByDescending(a => a.AniDBStartEpisodeNumber).ToList();
+
+            bool foundStartingPoint = false;
+            VM_CrossRef_AniDB_TvDBV2 xrefBase = null;
+            foreach (VM_CrossRef_AniDB_TvDBV2 xrefTV in tvDBCrossRef)
+            {
+                if (xrefTV.AniDBStartEpisodeType != (int) type) continue;
+                if (EpisodeNumber < xrefTV.AniDBStartEpisodeNumber) continue;
+                foundStartingPoint = true;
+                xrefBase = xrefTV;
+                break;
+            }
+
+            if (!foundStartingPoint) return 0;
+
+            Dictionary<int, int> dictTvDBSeasons = null;
+            Dictionary<int, VM_TvDB_Episode> dictTvDBEpisodes = null;
+            foreach (VM_TvDBDetails det in tvSummary.TvDetails.Values)
+            {
+                if (det.TvDBID != xrefBase.TvDBID) continue;
+                dictTvDBSeasons = det.DictTvDBSeasons;
+                dictTvDBEpisodes = det.DictTvDBEpisodes;
+                break;
+            }
+
+            if (dictTvDBSeasons == null || !dictTvDBSeasons.ContainsKey(xrefBase.TvDBSeasonNumber)) return 0;
+
+            int episodeNumber = dictTvDBSeasons[xrefBase.TvDBSeasonNumber] +
+                                (EpisodeNumber + xrefBase.TvDBStartEpisodeNumber - 2) -
+                                (xrefBase.AniDBStartEpisodeNumber - 1);
+            if (!dictTvDBEpisodes.ContainsKey(episodeNumber)) return 0;
+
+            VM_TvDB_Episode tvep = dictTvDBEpisodes[episodeNumber];
+            return tvep.Id;
+        }
 
 
         public void SetTraktInfo()
@@ -735,7 +792,7 @@ namespace Shoko.Desktop.ViewModel.Server
                     // find the xref that is right
                     // relies on the xref's being sorted by season number and then episode number (desc)
                     List<VM_CrossRef_AniDB_TraktV2> traktCrossRefs = traktSummary.CrossRefTraktV2.OrderByDescending(a=>a.AniDBStartEpisodeNumber).ToList();
-                    
+
                     //logger.Trace("SetTvDBInfo: looking for starting points");
 
                     bool foundStartingPoint = false;
@@ -807,7 +864,7 @@ namespace Shoko.Desktop.ViewModel.Server
                 if (traktSummary != null)
                 {
                     List<VM_CrossRef_AniDB_TraktV2> traktCrossRef = traktSummary.CrossRefTraktV2?.OrderByDescending(a=>a.AniDBStartEpisodeNumber).ToList() ?? new List<VM_CrossRef_AniDB_TraktV2>();
-                
+
                     bool foundStartingPoint = false;
                     VM_CrossRef_AniDB_TraktV2 xrefBase = null;
                     foreach (VM_CrossRef_AniDB_TraktV2 xrefTrakt in traktCrossRef)
@@ -1054,7 +1111,7 @@ namespace Shoko.Desktop.ViewModel.Server
         {
             try
             {
-               
+
                 filesForEpisode=VM_ShokoServer.Instance.ShokoServices.GetFilesForEpisode(AnimeEpisodeID,
                     VM_ShokoServer.Instance.CurrentUser.JMMUserID).Cast<VM_VideoDetailed>().OrderByDescending(a => a.GetOverallVideoSourceRanking()).ToList();
 

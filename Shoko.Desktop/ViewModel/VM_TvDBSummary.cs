@@ -43,8 +43,8 @@ namespace Shoko.Desktop.ViewModel
         }
 
         // All the episode overrides for this anime
-        private List<CrossRef_AniDB_TvDB_Episode> crossRefTvDBEpisodes;
-        public List<CrossRef_AniDB_TvDB_Episode> CrossRefTvDBEpisodes
+        private List<CrossRef_AniDB_TvDB_Episode_Override> crossRefTvDBEpisodes;
+        public List<CrossRef_AniDB_TvDB_Episode_Override> CrossRefTvDBEpisodes
         {
             get
             {
@@ -64,7 +64,7 @@ namespace Shoko.Desktop.ViewModel
                 if (dictTvDBCrossRefEpisodes == null)
                 {
                     dictTvDBCrossRefEpisodes = new Dictionary<int, int>();
-                    foreach (CrossRef_AniDB_TvDB_Episode xrefEp in CrossRefTvDBEpisodes)
+                    foreach (CrossRef_AniDB_TvDB_Episode_Override xrefEp in CrossRefTvDBEpisodes)
                         dictTvDBCrossRefEpisodes[xrefEp.AniDBEpisodeID] = xrefEp.TvDBEpisodeID;
                 }
                 return dictTvDBCrossRefEpisodes;
