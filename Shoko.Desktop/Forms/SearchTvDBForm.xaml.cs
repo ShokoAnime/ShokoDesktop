@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
+using DevExpress.Data.PLinq.Helpers;
 using NLog;
 using Shoko.Commons.Extensions;
 using Shoko.Desktop.Utilities;
@@ -13,6 +15,7 @@ using Shoko.Desktop.ViewModel.Server;
 using Shoko.Models;
 using Shoko.Models.Azure;
 using Shoko.Models.Enums;
+using Shoko.Models.Server;
 
 namespace Shoko.Desktop.Forms
 {
@@ -191,27 +194,15 @@ namespace Shoko.Desktop.Forms
             {
                 Cursor = Cursors.Wait;
                 // add links
-                bool first = true;
-                foreach (VM_CrossRef_AniDB_TvDBV2 xref in CrossRef_AniDB_TvDBResult)
+                string res =
+                    VM_ShokoServer.Instance.ShokoServices.LinkTvDBUsingWebCacheLinks(CrossRef_AniDB_TvDBResult
+                        .Cast<CrossRef_AniDB_TvDBV2>().ToList());
+                if (res.Length > 0)
                 {
-                    xref.CrossRef_AniDB_TvDBV2ID = 0;
-                    if (first)
-                    {
-                        xref.IsAdditive = false;
-                        first = false;
-                    }
-                    else
-                    {
-                        xref.IsAdditive = true;
-                    }
-                    string res = VM_ShokoServer.Instance.ShokoServices.LinkAniDBTvDB(xref);
-                    if (res.Length > 0)
-                    {
-                        MessageBox.Show(res, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-                        Cursor = Cursors.Arrow;
-                        return;
-                    }
-
+                    MessageBox.Show(res, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    Cursor = Cursors.Arrow;
+                    Close();
+                    return;
                 }
 
                 DialogResult = true;

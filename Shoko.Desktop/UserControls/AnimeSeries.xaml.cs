@@ -1181,14 +1181,14 @@ namespace Shoko.Desktop.UserControls
             ser.AniDBAnime?.AniDBAnime.ClearTvDBData();
             ser.AniDBAnime?.AniDBAnime.ClearTraktData();
 
+            ser.RefreshEpisodes();
+
             FullDescription = false;
             TruncatedDescription = true;
 
             ShowFileSummary();
             ShowTvDBLinks();
             ShowNextEpisode();
-
-
 
             ser.PopulateIsFave();
 

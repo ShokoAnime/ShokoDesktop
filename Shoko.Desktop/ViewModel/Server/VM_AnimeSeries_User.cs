@@ -482,7 +482,6 @@ namespace Shoko.Desktop.ViewModel.Server
                 foreach (VM_AnimeEpisode_User epvm in eps)
                 {
                     epvm.SetTvDBInfo(tvSummary);
-                    
                 }
 
                 ts = DateTime.Now - start;
