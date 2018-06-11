@@ -43,7 +43,6 @@ namespace Shoko.Desktop.UserControls
             set { SetValue(AniDB_AnimeCrossRefsProperty, value); }
         }
 
-
         public static readonly DependencyProperty CommTvDBButtonTextProperty = DependencyProperty.Register("CommTvDBButtonText",
             typeof(string), typeof(TvDBAndOtherLinks), new UIPropertyMetadata("", null));
 
@@ -68,6 +67,15 @@ namespace Shoko.Desktop.UserControls
 
         public ObservableCollection<VM_CrossRef_AniDB_TraktV2> CommunityTraktLinks { get; set; }
         public ICollectionView ViewCommunityTraktLinks { get; set; }
+
+        public static readonly DependencyProperty DistinctTvDbLinksProperty = DependencyProperty.Register("DistinctTvDbLinks",
+            typeof(List<VM_CrossRef_AniDB_TvDBV2>), typeof(TvDBAndOtherLinks), new UIPropertyMetadata(null, null));
+
+        public List<VM_CrossRef_AniDB_TvDBV2> DistinctTvDbLinks
+        {
+            get => (List<VM_CrossRef_AniDB_TvDBV2>) GetValue(DistinctTvDbLinksProperty);
+            set => SetValue(DistinctTvDbLinksProperty, value);
+        }
 
         public TvDBAndOtherLinks()
         {
@@ -104,9 +112,6 @@ namespace Shoko.Desktop.UserControls
 
             btnSearchExistingTrakt.Click += btnSearchExistingTrakt_Click;
             btnSearchTrakt.Click += btnSearchTrakt_Click;
-
-            btnSearchExistingMAL.Click += btnSearchExistingMAL_Click;
-            btnSearchMAL.Click += btnSearchMAL_Click;
 
             communityWorker.WorkerSupportsCancellation = false;
             communityWorker.WorkerReportsProgress = true;
@@ -279,9 +284,6 @@ namespace Shoko.Desktop.UserControls
 
         void communityWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-
-
-
             SearchCommunityResults res = new SearchCommunityResults
             {
                 ErrorMessage = string.Empty,
@@ -396,119 +398,6 @@ namespace Shoko.Desktop.UserControls
             }
         }
 
-
-        #region MAL
-
-        void btnSearchMAL_Click(object sender, RoutedEventArgs e)
-        {
-            SearchMAL();
-        }
-
-        void btnSearchExistingMAL_Click(object sender, RoutedEventArgs e)
-        {
-            SearchMAL();
-        }
-
-        private void SearchMAL()
-        {
-            try
-            {
-                if (!(DataContext is VM_AniDB_Anime anime)) return;
-
-                Window wdw = Window.GetWindow(this);
-
-                Cursor = Cursors.Wait;
-                SearchMALForm frm = new SearchMALForm {Owner = wdw};
-                frm.Init(anime.AnimeID, anime.FormattedTitle, anime.MainTitle);
-                bool? result = frm.ShowDialog();
-                if (result != null && result.Value) RefreshData();
-
-                Cursor = Cursors.Arrow;
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-        }
-
-        private void CommandBinding_EditMALLink(object sender, ExecutedRoutedEventArgs e)
-        {
-            object obj = e.Parameter;
-            if (obj == null) return;
-
-            try
-            {
-                if (!(DataContext is VM_AniDB_Anime anime)) return;
-
-                if (obj is CrossRef_AniDB_MAL)
-                {
-                    Cursor = Cursors.Wait;
-                    VM_CrossRef_AniDB_MAL malLink = obj as VM_CrossRef_AniDB_MAL;
-
-                    // prompt to select details
-                    Window wdw = Window.GetWindow(this);
-
-                    SelectMALStartForm frm = new SelectMALStartForm();
-                    frm.Owner = wdw;
-                    frm.Init(malLink.AnimeID, anime.FormattedTitle, malLink.MALTitle, malLink.MALID, malLink.StartEpisodeType, malLink.StartEpisodeNumber);
-                    bool? result = frm.ShowDialog();
-                    if (result != null && result.Value) RefreshData();
-                }
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-            finally
-            {
-                Cursor = Cursors.Arrow;
-            }
-        }
-
-        private void CommandBinding_DeleteMALLink(object sender, ExecutedRoutedEventArgs e)
-        {
-            object obj = e.Parameter;
-            if (obj == null) return;
-
-            try
-            {
-                if (!(DataContext is VM_AniDB_Anime anime)) return;
-
-                if (obj is CrossRef_AniDB_MAL)
-                {
-                    Cursor = Cursors.Wait;
-                    CrossRef_AniDB_MAL malLink = obj as CrossRef_AniDB_MAL;
-
-                    // prompt to select details
-                    string msg = string.Format(Commons.Properties.Resources.CommunityLinks_DeleteLink);
-                    MessageBoxResult result = MessageBox.Show(msg, Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
-
-                    if (result == MessageBoxResult.Yes)
-                    {
-                        Cursor = Cursors.Wait;
-
-                        string res = VM_ShokoServer.Instance.ShokoServices.RemoveLinkAniDBMAL(anime.AnimeID,
-                            malLink.MALID, malLink.StartEpisodeType, malLink.StartEpisodeNumber);
-                        if (res.Length > 0)
-                            MessageBox.Show(res, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-                        else
-                            RefreshData();
-
-                        Cursor = Cursors.Arrow;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-            finally
-            {
-                Cursor = Cursors.Arrow;
-            }
-        }
-
-        #endregion
 
         #region Trakt
 
@@ -1000,8 +889,6 @@ namespace Shoko.Desktop.UserControls
                 }
 
                 RefreshData();
-
-
             }
             catch (Exception ex)
             {
@@ -1052,6 +939,8 @@ namespace Shoko.Desktop.UserControls
                 VM_MainListHelper.Instance.UpdateAnime(anime.AnimeID);
 
                 RefreshAdminData();
+
+                DistinctTvDbLinks = AniDB_AnimeCrossRefs.Obs_CrossRef_AniDB_TvDB.DistinctBy(a => a.TvDBID).ToList();
             }
             catch (Exception ex)
             {

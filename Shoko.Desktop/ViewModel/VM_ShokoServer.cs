@@ -1944,7 +1944,6 @@ namespace Shoko.Desktop.ViewModel
                     HasherQueuePaused = queueState.queueState == QueueStateEnum.Paused;
                     HasherQueueRunning = queueState.queueState != QueueStateEnum.Paused;
 
-                    
                     queueState.queueState = (QueueStateEnum)status.GeneralQueueStateId;
                     queueState.extraParams = status.GeneralQueueStateParams.ToArray();
                     GeneralQueueState = queueState.formatMessage();

@@ -242,8 +242,8 @@ namespace Shoko.Desktop.Forms
                     Window wdw = GetWindow(this);
 
                     Cursor = Cursors.Wait;
-                    SelectTvDBSeasonForm frm = new SelectTvDBSeasonForm {Owner = wdw};
-                                        
+                    TvDBMatchPreview frm = new TvDBMatchPreview {Owner = wdw};
+
                     if (!tvDbDataReady(searchResult.SeriesID))
                     {
                         Utils.ShowErrorMessage("The series data is being downloaded, try again when the queue has cleared.");
@@ -251,8 +251,8 @@ namespace Shoko.Desktop.Forms
                     }
                     else
                     {
-                        frm.Init(AnimeID, AnimeName, EpisodeType.Episode, 1, searchResult.SeriesID, 1, 1,
-                           searchResult.SeriesName, Anime, !ReplaceAll);
+                        frm.Init(AnimeID, AnimeName, searchResult.SeriesID, searchResult.SeriesName, Anime,
+                            !ReplaceAll);
                         bool? result = frm.ShowDialog();
                         if (result != null && result.Value)
                         {
@@ -261,10 +261,7 @@ namespace Shoko.Desktop.Forms
                             Cursor = Cursors.Arrow;
                             Close();
                         }
-
                     }
-                    
-                    
                 }
             }
             catch (Exception ex)

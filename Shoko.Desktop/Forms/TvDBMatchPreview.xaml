@@ -1,0 +1,118 @@
+﻿<Window x:Class="Shoko.Desktop.Forms.TvDBMatchPreview"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:forms="clr-namespace:Shoko.Desktop.Forms"
+        xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
+        xmlns:wpfHelpers="clr-namespace:Shoko.Desktop.WPFHelpers"
+        Title="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Select_TvDBSeason}" Width="700" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/ShokoDesktop;component/Images/16_switch.png"
+        WindowStartupLocation="CenterOwner" Topmost="False" SizeToContent="Height">
+    <Grid>
+        <Grid.Resources>
+
+            <ResourceDictionary>
+
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/ShokoDesktop;component/Resources/Styles.xaml" />
+                    <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListStyles.xaml" />
+                    <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListContent.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+
+                <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+                <wpfHelpers:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter"/>
+
+                <!-- AniDBTemplate -->
+                <DataTemplate x:Key="AniDBTemplate" DataType="forms:VM_CrossRef_AniDB_TvDB_Episode">
+                    <StackPanel Orientation="Horizontal" Background="{Binding Color}">
+                        <TextBlock VerticalAlignment="Center" FontSize="14" Text="{Binding Path=AniDB_Type}" Margin="5,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="14" FontWeight="Bold" Text="|" Margin="8,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="14" Text="{Binding Path=AniDB_Number}" Margin="8,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="14" Text="{Binding Path=AniDB_Name}" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </DataTemplate>
+
+                <!-- TvDBTemplate -->
+                <DataTemplate x:Key="TvDBTemplate" DataType="forms:VM_CrossRef_AniDB_TvDB_Episode">
+                    <StackPanel Orientation="Horizontal" Background="{Binding Color}">
+                        <TextBlock VerticalAlignment="Center" FontSize="14" Text="{Binding Path=TvDB_Season}" Margin="5,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="14" FontWeight="Bold" Text="|" Margin="8,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="14" Text="{Binding Path=TvDB_Number}" Margin="8,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="14" Text="{Binding Path=TvDB_Name}" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ResourceDictionary>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="5*" />
+        </Grid.ColumnDefinitions>
+
+
+        <!-- anime details -->
+        <Border Grid.Row="0" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1">
+            <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
+                <Image Margin="5,0,0,0" Height="16" Width="16" Source="/Images/32_anidb.png" VerticalAlignment="Center"/>
+                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDB}" Margin="5,0,0,0"/>
+
+                <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=AnimeName, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:TvDBMatchPreview}}}" Margin="5,0,0,0"/>
+
+                <usercontrols:HyperLinkStandard DisplayText="{Binding Path=AnimeID, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:TvDBMatchPreview}}}"
+                    VerticalAlignment="Center" URL="{Binding Path=AnimeURL, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:TvDBMatchPreview}}}" Margin="10,0,0,0"/>
+
+            </StackPanel>
+        </Border>
+
+        <!-- tvdb details -->
+        <Border Grid.Row="0" Grid.Column="1" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1">
+            <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
+                <Image Margin="5,0,0,0" Height="16" Width="16" Source="/Images/32_tvdb.png" VerticalAlignment="Center"/>
+                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TheTvDB}" Margin="5,0,0,0"/>
+                <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=TvDBSeriesName, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:TvDBMatchPreview}}}" Margin="15,0,0,0"/>
+                <usercontrols:HyperLinkStandard DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TvDB_Show}"
+                 VerticalAlignment="Center" URL="{Binding Path=TvDBURL, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:TvDBMatchPreview}}}" Margin="10,0,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- anidb items -->
+        <Border Grid.Row="1" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1" MaxHeight="500">
+            <ListBox Name="lbAniDB" BorderThickness="1" BorderBrush="LightGray" Background="White" Margin="1,1,1,1"
+                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                     ItemTemplate="{StaticResource AniDBTemplate}"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                     ScrollViewer.ScrollChanged="anidb_ScrollChanged"
+                     ItemsSource="{Binding Path=Matches, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:TvDBMatchPreview}}, Mode=TwoWay}"
+                     MinHeight="100" />
+        </Border>
+
+        <!-- tvdb items -->
+        <Border Grid.Row="1" Grid.Column="1" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1" MaxHeight="500">
+            <ListBox Name="lbTvDB" BorderThickness="1" BorderBrush="LightGray" Background="White" Margin="1,1,1,1"
+                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                     ItemTemplate="{StaticResource TvDBTemplate}"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                     ScrollViewer.ScrollChanged="tvdb_ScrollChanged"
+                     ItemsSource="{Binding Path=Matches, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:TvDBMatchPreview}}, Mode=TwoWay}"
+                     MinHeight="100"/>
+        </Border>
+
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"  Orientation="Horizontal" HorizontalAlignment="Right" Margin="5,5,0,10">
+            <Button Name="btnUpdate" Margin="0,0,0,0" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Update}" Margin="0,0,5,0"/>
+                </StackPanel>
+            </Button>
+            <Button HorizontalAlignment="Left" x:Name="btnClose" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                    <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx Key=Close, ResxName=Shoko.Commons.Properties.Resources}" Margin="0,0,5,0"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -294,6 +294,9 @@
     <Compile Include="Forms\LinkPlexForm.xaml.cs">
       <DependentUpon>LinkPlexForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\TvDBMatchPreview.xaml.cs">
+      <DependentUpon>TvDBMatchPreview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Settings\PlexSettings.xaml.cs">
       <DependentUpon>PlexSettings.xaml</DependentUpon>
     </Compile>
@@ -448,9 +451,6 @@
     <Compile Include="Forms\RateSeriesForm.xaml.cs">
       <DependentUpon>RateSeriesForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SearchMALForm.xaml.cs">
-      <DependentUpon>SearchMALForm.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Forms\SearchMovieDBForm.xaml.cs">
       <DependentUpon>SearchMovieDBForm.xaml</DependentUpon>
     </Compile>
@@ -468,9 +468,6 @@
     </Compile>
     <Compile Include="Forms\SelectGroupSeriesForm.xaml.cs">
       <DependentUpon>SelectGroupSeriesForm.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\SelectMALStartForm.xaml.cs">
-      <DependentUpon>SelectMALStartForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\SelectTraktSeasonForm.xaml.cs">
       <DependentUpon>SelectTraktSeasonForm.xaml</DependentUpon>
@@ -654,9 +651,6 @@
     </Compile>
     <Compile Include="UserControls\Settings\LanguagePreferenceSettings.xaml.cs">
       <DependentUpon>LanguagePreferenceSettings.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Settings\MALSettings.xaml.cs">
-      <DependentUpon>MALSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Settings\MovieDBSettings.xaml.cs">
       <DependentUpon>MovieDBSettings.xaml</DependentUpon>
@@ -881,10 +875,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Forms\SearchMALForm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Forms\SearchMovieDBForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -909,10 +899,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Forms\SelectMALStartForm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Forms\SelectTraktSeasonForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -926,6 +912,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\SelectTvDBSeasonForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\TvDBMatchPreview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1198,10 +1188,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Settings\LanguagePreferenceSettings.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\Settings\MALSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

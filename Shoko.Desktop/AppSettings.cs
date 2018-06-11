@@ -10,21 +10,17 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Forms;
 using System.Xml;
-using Microsoft.Win32;
 using Newtonsoft.Json;
 using NLog;
 using NLog.Targets;
 using NutzCode.MPVPlayer.WPF.Wrapper.Models;
-using Shoko.Commons.Properties;
 using Shoko.Desktop.Enums;
-using Shoko.Desktop.UserControls.Settings;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel;
 using Shoko.Models.Enums;
 using Application = System.Windows.Application;
 using Formatting = Newtonsoft.Json.Formatting;
 using MessageBox = System.Windows.MessageBox;
-using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 
 namespace Shoko.Desktop
 {
@@ -103,325 +99,111 @@ namespace Shoko.Desktop
                 try
                 {
                     //Reconfigure log file to applicationpath
-                    var target = (FileTarget) LogManager.Configuration.FindTargetByName("file");
+                    var target = LogManager.Configuration?.FindTargetByName("file") as FileTarget;
+                    if (target == null) throw new NullReferenceException("LogManager Configuration was null");
                     target.FileName = ApplicationPath + "/logs/${shortdate}.txt";
-                    LogManager.ReconfigExistingLoggers();
-
-                    bool startedWithFreshConfig = false;
-
-                    disabledSave = true;
-                    string programlocation =
-                        Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                    List<MigrationDirectory> migrationdirs = new List<MigrationDirectory>();
-
-                    if (!string.IsNullOrEmpty(programlocation) && !string.IsNullOrEmpty(ApplicationPath))
-                        migrationdirs.Add(new MigrationDirectory
-                        {
-                            From = Path.Combine(programlocation, "logs"),
-                            To = Path.Combine(ApplicationPath, "logs")
-                        });
-
-                    string jmmDesktopInstallLocation = "";
-                    try
-                    {
-                        // Check and see if we have old JMM Desktop installation and add to migration if needed
-                        jmmDesktopInstallLocation = (string) Registry.GetValue(
-                            @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{AD24689F-020C-4C53-B649-99BB49ED6238}_is1",
-                            "InstallLocation", null);
-                    }
-                    catch (Exception ex)
-                    {
-                        logger.Log(LogLevel.Error,
-                            "Error occured in LoadSettings() during jmmDesktopInstallLocation readout: " + ex.Message);
-                    }
-
-                    if (!string.IsNullOrEmpty(ApplicationPath))
-                    {
-                        // Check if programdata is write-able
-                        if (Directory.Exists(ApplicationPath))
-                            if (!Utils.IsDirectoryWritable(ApplicationPath))
-                                try
-                                {
-                                    Utils.GrantAccess(ApplicationPath);
-                                }
-                                catch (Exception)
-                                {
-                                    logger.Error("Unable to grant permissions for program data");
-                                }
-
-                        if (!string.IsNullOrEmpty(jmmDesktopInstallLocation) && !string.IsNullOrEmpty(ApplicationPath))
-                            migrationdirs.Add(new MigrationDirectory
-                            {
-                                From = Path.Combine(jmmDesktopInstallLocation, "logs"),
-                                To = Path.Combine(ApplicationPath, "logs")
-                            });
-                    }
-
-                    string path = Path.Combine(ApplicationPath, "settings.json");
-                    if (File.Exists(path))
-                    {
-                        appSettings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(path));
-                    }
-                    else
-                    {
-                        startedWithFreshConfig = true;
-                        LoadLegacySettingsFromFile(true);
-                    }
-
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Culture);
-                    if (BaseImagesPathIsDefault || !Directory.Exists(BaseImagesPath))
-                    {
-                        if (!string.IsNullOrEmpty(programlocation))
-                            migrationdirs.Add(new MigrationDirectory
-                            {
-                                From = Path.Combine(programlocation, "images"),
-                                To = DefaultImagePath
-                            });
-
-                        if (!string.IsNullOrEmpty(jmmDesktopInstallLocation))
-                            migrationdirs.Add(new MigrationDirectory
-                            {
-                                From = Path.Combine(jmmDesktopInstallLocation, "images"),
-                                To = DefaultImagePath
-                            });
-                    }
-                    else if (Directory.Exists(BaseImagesPath))
-                    {
-                        ImagesPath = BaseImagesPath;
-                    }
-
-                    bool migrate = false;
-
-                    if (!string.IsNullOrEmpty(ApplicationPath) && !string.IsNullOrEmpty(programlocation))
-                        migrate = !Directory.Exists(ApplicationPath) ||
-                                  File.Exists(Path.Combine(programlocation, "AnimeEpisodes.txt"));
-
-                    foreach (MigrationDirectory m in migrationdirs)
-                        if (m.ShouldMigrate)
-                        {
-                            migrate = true;
-                            break;
-                        }
-
-                    if (migrate)
-                    {
-                        if (!Utils.IsAdministrator())
-                        {
-                            logger.Info("Needed to migrate but user wasn't admin, restarting as admin.");
-                            //MessageBox.Show(Shoko.Commons.Properties.Resources.Migration_AdminFail, Shoko.Commons.Properties.Resources.Migration_Header,
-                            //    MessageBoxButton.OK, MessageBoxImage.Information);
-
-                            Utils.RestartAsAdmin();
-                            return;
-                        }
-                        logger.Info("User is admin so starting migration.");
-
-                        Migration m = null;
-
-                        try
-                        {
-                            m =
-                                new Migration(
-                                    $"{Resources.Migration_AdminPass1} {ApplicationPath}, {Resources.Migration_AdminPass2}");
-                            m.Show();
-                            if (!Directory.Exists(ApplicationPath))
-                                Directory.CreateDirectory(ApplicationPath);
-
-                            // Grant access is causing errors during migration so use workaround script for now
-                            logger.Info("Setting up programdata permissions.");
-                            Utils.GrantAccess(ApplicationPath);
-                            logger.Info("Completed setup of programdata permissions.");
-
-                            disabledSave = false;
-                            SaveSettings();
-
-                            foreach (MigrationDirectory md in migrationdirs)
-                                if (!md.SafeMigrate())
-                                    break;
-
-                            if (!string.IsNullOrEmpty(programlocation))
-                                if (File.Exists(Path.Combine(programlocation, "AnimeEpisodes.txt")))
-                                    File.Move(Path.Combine(programlocation, "AnimeEpisodes.txt"), AnimeEpisodesText);
-                        }
-                        catch (Exception e)
-                        {
-                            logger.Error(e, $"Error occured during LoadSettings: {e}");
-                            MessageBox.Show(Resources.Migration_Error + " ", e.Message);
-                        }
-
-                        m?.Close();
-                        Thread.Sleep(5000);
-                        Application.Current.Shutdown();
-                        return;
-                    }
-                    disabledSave = false;
-
-                    if (Directory.Exists(BaseImagesPath) && string.IsNullOrEmpty(ImagesPath))
-                        ImagesPath = BaseImagesPath;
-                    if (string.IsNullOrEmpty(ImagesPath))
-                        ImagesPath = string.IsNullOrEmpty(JMMServerImagePath) ? DefaultImagePath : JMMServerImagePath;
-                    SaveSettings();
-
-                    // Just in case start once for new configurations as admin to set permissions if needed
-                    if (startedWithFreshConfig && !Utils.IsAdministrator())
-                    {
-                        logger.Info("User has fresh config, restarting once as admin.");
-                        Utils.RestartAsAdmin();
-                    }
                 }
-                catch (UnauthorizedAccessException ex)
+                catch
                 {
-                    logger.Error(ex, $"Error occured during LoadSettings (UnauthorizedAccessException): {ex}");
-                    var message = "Failed to set folder permissions, do you want to automatically retry as admin?";
+                    // ignore
+                }
+                try
+                {
+                    LogManager.ReconfigExistingLoggers();
+                }
+                catch
+                {
+                    // ignore
+                }
 
-                    if (!Utils.IsAdministrator())
-                        message = "Failed to set folder permissions, do you want to try and reset folder permissions?";
+                bool startedWithFreshConfig = false;
 
-                    DialogResult dr =
-                        FlexibleMessageBox.Show(message, "Failed to set folder permissions",
-                            MessageBoxButtons.YesNo);
+                disabledSave = true;
 
-                    switch (dr)
-                    {
-                        case DialogResult.Yes:
-                            // gonna try grant access again in advance
+                if (!string.IsNullOrEmpty(ApplicationPath))
+                {
+                    // Check if programdata is write-able
+                    if (Directory.Exists(ApplicationPath))
+                        if (!Utils.IsDirectoryWritable(ApplicationPath))
                             try
                             {
                                 Utils.GrantAccess(ApplicationPath);
                             }
                             catch (Exception)
                             {
-                                logger.Error("Unable to set permissions for program data");
+                                logger.Error("Unable to grant permissions for program data");
                             }
-                            Utils.RestartAsAdmin();
-                            break;
-                        case DialogResult.No:
-                            Application.Current.Shutdown();
-                            Environment.Exit(0);
-                            break;
-                    }
+                }
+
+                string path = Path.Combine(ApplicationPath, "settings.json");
+                if (File.Exists(path))
+                    appSettings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(path));
+                else
+                    startedWithFreshConfig = true;
+
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Culture);
+                if (!BaseImagesPathIsDefault && Directory.Exists(BaseImagesPath) && Directory.Exists(BaseImagesPath))
+                    ImagesPath = BaseImagesPath;
+
+                disabledSave = false;
+
+                if (string.IsNullOrEmpty(BaseImagesPath)) BaseImagesPath = Utils.GetBaseImagesPath();
+
+                if (Directory.Exists(BaseImagesPath) && string.IsNullOrEmpty(ImagesPath))
+                    ImagesPath = BaseImagesPath;
+
+                if (string.IsNullOrEmpty(ImagesPath))
+                    ImagesPath = string.IsNullOrEmpty(JMMServerImagePath) ? DefaultImagePath : JMMServerImagePath;
+
+                SaveSettings();
+
+                // Just in case start once for new configurations as admin to set permissions if needed
+                if (startedWithFreshConfig && !Utils.IsAdministrator())
+                {
+                    logger.Info("User has fresh config, restarting once as admin.");
+                    Utils.RestartAsAdmin();
+                }
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                logger.Error(ex, $"Error occured during LoadSettings (UnauthorizedAccessException): {ex}");
+                var message = "Failed to set folder permissions, do you want to automatically retry as admin?";
+
+                if (!Utils.IsAdministrator())
+                    message = "Failed to set folder permissions, do you want to try and reset folder permissions?";
+
+                DialogResult dr =
+                    FlexibleMessageBox.Show(message, "Failed to set folder permissions",
+                        MessageBoxButtons.YesNo);
+
+                switch (dr)
+                {
+                    case DialogResult.Yes:
+                        // gonna try grant access again in advance
+                        try
+                        {
+                            Utils.GrantAccess(ApplicationPath);
+                        }
+                        catch (Exception)
+                        {
+                            logger.Error("Unable to set permissions for program data");
+                        }
+                        Utils.RestartAsAdmin();
+                        break;
+                    case DialogResult.No:
+                        Application.Current.Shutdown();
+                        Environment.Exit(0);
+                        break;
                 }
             }
             catch (Exception ex)
             {
                 logger.Error(ex, $"Error occured during LoadSettings: {ex}");
-                MessageBox.Show(Resources.Migration_LoadError + " " + ex,
-                    Resources.Migration_LoadError);
+                MessageBox.Show("Settings Load Error:" + " " + ex,
+                    "Settings Load Error!");
                 Application.Current.Shutdown();
+                Environment.Exit(0);
             }
-        }
-
-        public static void LoadLegacySettingsFromFile(bool locateAutomatically)
-        {
-            try
-            {
-                string configFile = string.Empty;
-                if (locateAutomatically)
-                {
-                    // First try to locate it from old JMM Desktop installer entry
-                    string jmmDesktopInstallLocation = (string) Registry.GetValue(
-                        @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{AD24689F-020C-4C53-B649-99BB49ED6238}_is1",
-                        "InstallLocation", null);
-
-                    if (!string.IsNullOrEmpty(jmmDesktopInstallLocation))
-                        configFile = Path.Combine(jmmDesktopInstallLocation, "JMMDesktop.exe.config");
-
-                    // Try to locate old config if we don't have new format one (JSON) in several locations
-                    if (!File.Exists(configFile))
-                        configFile = @"C:\Program Files (x86)\JMM\JMM Desktop\JMMDesktop.exe.config";
-
-                    if (!File.Exists(configFile))
-                        configFile = @"C:\Program Files (x86)\JMM Desktop\JMMDesktop.exe.config";
-                    if (!File.Exists(configFile))
-                        configFile = "JMMDesktop.exe.config";
-                    if (!File.Exists(configFile))
-                        configFile = "old.config";
-                }
-
-                // Ask user if they want to find config manually
-                if (!File.Exists(configFile))
-                    configFile = LocateLegacyConfigFile();
-
-                if (!File.Exists(configFile))
-                {
-                    // first run or cancelled file selection
-                    // Load default settings as otherwise will fail to start entirely
-                    var col = ConfigurationManager.AppSettings;
-                    appSettings = col.AllKeys.ToDictionary(a => a, a => col[a]);
-                    logger.Log(LogLevel.Error, "Settings file was not selected, using default.");
-                    return;
-                }
-
-                if (configFile.ToLower().Contains("settings.json"))
-                {
-                    appSettings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(configFile));
-                }
-                else
-                {
-                    // Store default settings for later use
-                    var colDefault = ConfigurationManager.AppSettings;
-                    var appSettingDefault = colDefault.AllKeys.ToDictionary(a => a, a => colDefault[a]);
-
-                    var col = GetNameValueCollectionSection("appSettings", configFile);
-
-                    // if old settings found store and replace with new ShokoServer naming if needed
-                    // else fallback on current one we have
-                    if (col.Count > 0)
-                    {
-                        appSettings.Clear();
-                        Dictionary<string, string> appSettingsBeforeRename = col.AllKeys.ToDictionary(a => a,
-                            a => col[a]);
-                        foreach (var setting in appSettingsBeforeRename)
-                            if (!string.IsNullOrEmpty(setting.Value))
-                            {
-                                string newKey = setting.Key.Replace("JMMServer", "ShokoServer");
-                                appSettings.Add(newKey, setting.Value);
-                            }
-
-                        // Check if we missed any setting keys and re-add from stock one
-                        foreach (var setting in appSettingDefault)
-                            if (!string.IsNullOrEmpty(setting.Value))
-                                if (!appSettings.ContainsKey(setting.Key))
-                                {
-                                    string newKey = setting.Key.Replace("JMMServer", "ShokoServer");
-                                    appSettings.Add(newKey, setting.Value);
-                                }
-                    }
-                    else
-                    {
-                        col = ConfigurationManager.AppSettings;
-                        appSettings = col.AllKeys.ToDictionary(a => a, a => col[a]);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                logger.Error($"Error occured during LoadSettingsManuallyFromFile: {e}");
-                // Load default settings as otherwise will fail to start entirely
-                var col = ConfigurationManager.AppSettings;
-                appSettings = col.AllKeys.ToDictionary(a => a, a => col[a]);
-            }
-        }
-
-        public static string LocateLegacyConfigFile()
-        {
-            string configPath = "";
-            MessageBoxResult dr = MessageBox.Show(Resources.LocateSettingsFileQuestion,
-                Resources.LocateSettingsFile, MessageBoxButton.YesNo);
-            switch (dr)
-            {
-                case MessageBoxResult.Yes:
-                    OpenFileDialog openFileDialog = new OpenFileDialog();
-                    openFileDialog.Filter = @"JMM config|JMMDesktop.exe.config;settings.json";
-
-                    DialogResult browseFile = openFileDialog.ShowDialog();
-                    if (browseFile == DialogResult.OK && !string.IsNullOrEmpty(openFileDialog.FileName.Trim()))
-                        configPath = openFileDialog.FileName;
-
-                    break;
-            }
-
-            return configPath;
         }
 
         public static string AnimeEpisodesText
@@ -524,7 +306,7 @@ namespace Shoko.Desktop
 
         private static string BaseImagesPath
         {
-            get => Get("BaseImagesPath");
+            get => Get("BaseImagesPath") ?? Utils.GetBaseImagesPath();
             // ReSharper disable once UnusedMember.Local
             set
             {
@@ -578,7 +360,7 @@ namespace Shoko.Desktop
                 string val = Get("ShokoServer_FilePort");
                 if (!string.IsNullOrEmpty(val)) return val;
                 // default value
-                val = "8112";
+                val = "8111";
                 Set("ShokoServer_FilePort", val);
                 return val;
             }
