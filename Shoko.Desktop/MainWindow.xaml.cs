@@ -2688,34 +2688,6 @@ namespace Shoko.Desktop
             }
         }
 
-        public void CommandBinding_SyncMALUp(object sender, ExecutedRoutedEventArgs e)
-        {
-            try
-            {
-                VM_ShokoServer.Instance.ShokoServices.SyncMALUpload();
-                MessageBox.Show(Commons.Properties.Resources.Process_Queued, Commons.Properties.Resources.Success,
-                    MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-        }
-
-        public void CommandBinding_SyncMALDown(object sender, ExecutedRoutedEventArgs e)
-        {
-            try
-            {
-                VM_ShokoServer.Instance.ShokoServices.SyncMALDownload();
-                MessageBox.Show(Commons.Properties.Resources.Process_Queued, Commons.Properties.Resources.Success,
-                    MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-        }
-
         public void CommandBinding_RevokeVote(object sender, ExecutedRoutedEventArgs e)
         {
             if (!(e.Parameter is VM_AnimeSeries_User ser)) return;
