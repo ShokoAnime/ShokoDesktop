@@ -46,7 +46,7 @@ namespace Shoko.Desktop.Forms
         {
             try
             {
-                return VM_ShokoServer.Instance.ShokoServices.DirectoriesFromImportFolderPath(account.CloudID, path);
+                return VM_ShokoServer.Instance.ShokoServices.DirectoriesFromImportFolderPath((int)account.CloudID, path);
             }
             catch (Exception e)
             {

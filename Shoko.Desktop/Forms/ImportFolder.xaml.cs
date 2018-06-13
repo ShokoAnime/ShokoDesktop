@@ -146,7 +146,7 @@ namespace Shoko.Desktop.Forms
                 else
                     importFldr.LocalPathTemp = txtLocalPath.Text.Trim();
                 VM_CloudAccount cl = (VM_CloudAccount)comboProvider.SelectedItem;
-                importFldr.CloudID = cl.CloudID;
+                importFldr.CloudID = cl.CloudID == 0 ? null : cl.CloudID;
                 importFldr.ImportFolderName = "NA";
                 importFldr.ImportFolderLocation = txtImportFolderLocation.Text.Trim();
                 importFldr.IsDropDestination = chkDropDestination.IsChecked ?? false ? 1 : 0;

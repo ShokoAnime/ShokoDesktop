@@ -229,7 +229,7 @@ namespace Shoko.Desktop.Forms
             try
             {
                 VM_ShokoServer.Instance.RefreshCloudAccounts();
-                dict = VM_ShokoServer.Instance.FolderProviders.ToDictionary(a => a.CloudID, a=>new Tuple<string,BitmapImage>(a.Provider,a.Bitmap));
+                dict = VM_ShokoServer.Instance.FolderProviders.ToDictionary(a => (int)a.CloudID, a=>new Tuple<string,BitmapImage>(a.Provider,a.Bitmap));
                 chks = new Dictionary<string, bool>();
                 Dictionary<string, BitmapImage> types=new Dictionary<string, BitmapImage>();
 
@@ -276,7 +276,7 @@ namespace Shoko.Desktop.Forms
             try
             {
                 VM_ShokoServer.Instance.RefreshCloudAccounts();
-                dict = VM_ShokoServer.Instance.FolderProviders.ToDictionary(a => a.CloudID, a => new Tuple<string, BitmapImage>(a.Provider, a.Bitmap));
+                dict = VM_ShokoServer.Instance.FolderProviders.ToDictionary(a => (int)a.CloudID, a => new Tuple<string, BitmapImage>(a.Provider, a.Bitmap));
                 chks = new Dictionary<string, bool>();
                 Dictionary<string, BitmapImage> types = new Dictionary<string, BitmapImage>();
 
@@ -322,7 +322,7 @@ namespace Shoko.Desktop.Forms
             try
             {
                 VM_ShokoServer.Instance.RefreshCloudAccounts();
-                dict = VM_ShokoServer.Instance.FolderProviders.ToDictionary(a => a.CloudID, a => new Tuple<string, BitmapImage>(a.Provider, a.Bitmap));
+                dict = VM_ShokoServer.Instance.FolderProviders.ToDictionary(a => (int)a.CloudID, a => new Tuple<string, BitmapImage>(a.Provider, a.Bitmap));
                 chks = new Dictionary<string, bool>();
                 Dictionary<string, BitmapImage> types = new Dictionary<string, BitmapImage>();
 

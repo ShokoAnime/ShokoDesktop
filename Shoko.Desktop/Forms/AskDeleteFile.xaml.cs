@@ -28,7 +28,7 @@ namespace Shoko.Desktop.Forms
             btnCancel.Click += BtnCancel_Click;
             if (VM_ShokoServer.Instance.FolderProviders.Count == 0)
                 VM_ShokoServer.Instance.RefreshCloudAccounts();
-            dict = VM_ShokoServer.Instance.FolderProviders.ToDictionary(a => a.CloudID,
+            dict = VM_ShokoServer.Instance.FolderProviders.ToDictionary(a => (int)a.CloudID,
                 a => new Tuple<string, BitmapImage>(a.Provider, a.Bitmap));
             chks = new Dictionary<string, bool>();
 
