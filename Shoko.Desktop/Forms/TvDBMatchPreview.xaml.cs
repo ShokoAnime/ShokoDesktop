@@ -42,6 +42,15 @@ namespace Shoko.Desktop.Forms
             set => SetValue(AnimeIDProperty, value);
         }
 
+        public static readonly DependencyProperty IsPreviewProperty = DependencyProperty.Register("IsPreview",
+            typeof(bool), typeof(TvDBMatchPreview), new UIPropertyMetadata(false, null));
+
+        public bool IsPreview
+        {
+            get => (bool) GetValue(IsPreviewProperty);
+            set => SetValue(IsPreviewProperty, value);
+        }
+
         public static readonly DependencyProperty AnimeNameProperty = DependencyProperty.Register("AnimeName",
             typeof(string), typeof(TvDBMatchPreview), new UIPropertyMetadata("", null));
 
@@ -139,13 +148,14 @@ namespace Shoko.Desktop.Forms
             Close();
         }
 
-        public void Init(int animeID, string animeName, int tvDBID, string tvSeriesName, VM_AniDB_Anime anime, bool isAdditive)
+        public void Init(int animeID, string animeName, int tvDBID, string tvSeriesName, VM_AniDB_Anime anime, bool isAdditive, bool preview = false)
         {
             AnimeID = animeID;
             AnimeName = animeName;
             TvDBID = tvDBID;
             TvDBSeriesName = tvSeriesName;
             IsAdditive = isAdditive;
+            IsPreview = preview;
 
             AnimeURL = string.Format(Constants.URLS.AniDB_Series, AnimeID);
             TvDBURL = string.Format(Constants.URLS.TvDB_Series, TvDBID);

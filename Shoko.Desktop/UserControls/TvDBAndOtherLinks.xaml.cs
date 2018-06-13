@@ -666,7 +666,7 @@ namespace Shoko.Desktop.UserControls
             }
         }
 
-        private void CommandBinding_EditTvDBLink(object sender, ExecutedRoutedEventArgs e)
+        private void CommandBinding_PreviewTvDB_Matches(object sender, ExecutedRoutedEventArgs e)
         {
             object obj = e.Parameter;
             if (obj == null) return;
@@ -678,14 +678,13 @@ namespace Shoko.Desktop.UserControls
                     VM_CrossRef_AniDB_TvDBV2 link = obj as VM_CrossRef_AniDB_TvDBV2;
 
                     if (!(DataContext is VM_AniDB_Anime anime)) return;
+                    if (link == null) return;
 
                     Window wdw = Window.GetWindow(this);
 
                     Cursor = Cursors.Wait;
-                    SelectTvDBSeasonForm frm = new SelectTvDBSeasonForm {Owner = wdw};
-                    //TODO
-                    frm.Init(anime.AnimeID, anime.FormattedTitle, (EpisodeType)link.AniDBStartEpisodeType, link.AniDBStartEpisodeNumber, link.TvDBID,
-                        link.TvDBSeasonNumber, link.TvDBStartEpisodeNumber, link.TvDBTitle, anime, true);
+                    TvDBMatchPreview frm = new TvDBMatchPreview {Owner = wdw};
+                    frm.Init(link.AnimeID, link.AnimeName, link.TvDBID, link.TvDBTitle, anime, false, true);
                     bool? result = frm.ShowDialog();
                     if (result != null && result.Value) RefreshData();
                 }

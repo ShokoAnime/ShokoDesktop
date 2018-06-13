@@ -140,7 +140,6 @@ namespace Shoko.Desktop.Forms
 
         void btnUseThisExisting_Click(object sender, RoutedEventArgs e)
         {
-            SelectTvDBSeasonForm frm = new SelectTvDBSeasonForm();
             try
             {
                 int id;
@@ -158,7 +157,6 @@ namespace Shoko.Desktop.Forms
                 Window wdw = GetWindow(this);
 
                 Cursor = Cursors.Wait;
-                frm.Owner = wdw;
 
                 if (!tvDbDataReady(id))
                 {
@@ -167,7 +165,9 @@ namespace Shoko.Desktop.Forms
                 }
                 else
                 {
-                    frm.Init(AnimeID, AnimeName, EpisodeType.Episode, 1, id, 1, 1, AnimeName, Anime, !ReplaceAll);
+                    TvDBMatchPreview frm = new TvDBMatchPreview {Owner = wdw};
+                    frm.Init(AnimeID, AnimeName, id, AnimeName, Anime,
+                        !ReplaceAll);
                     bool? result = frm.ShowDialog();
                     if (result != null && result.Value)
                     {
@@ -242,7 +242,7 @@ namespace Shoko.Desktop.Forms
                     Window wdw = GetWindow(this);
 
                     Cursor = Cursors.Wait;
-                    TvDBMatchPreview frm = new TvDBMatchPreview {Owner = wdw};
+                    
 
                     if (!tvDbDataReady(searchResult.SeriesID))
                     {
@@ -251,6 +251,7 @@ namespace Shoko.Desktop.Forms
                     }
                     else
                     {
+                        TvDBMatchPreview frm = new TvDBMatchPreview {Owner = wdw};
                         frm.Init(AnimeID, AnimeName, searchResult.SeriesID, searchResult.SeriesName, Anime,
                             !ReplaceAll);
                         bool? result = frm.ShowDialog();

@@ -25,7 +25,7 @@
 
             <RoutedUICommand x:Key="ReportTvDBLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ReportTvDBLinkCommand}" />
             <RoutedUICommand x:Key="DeleteTvDBLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteTvDBLinkCommand}" />
-            <RoutedUICommand x:Key="EditTvDBLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=EditTvDBLinkCommand}" />
+            <RoutedUICommand x:Key="PreviewTvDBMatchesCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=PreviewTvDBMatchesCommand}" />
             <RoutedUICommand x:Key="UpdateTvDBLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=UpdateTvDBLinkCommand}" />
 
             <RoutedUICommand x:Key="ReportTraktLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ReportTraktLinkCommand}" />
@@ -69,13 +69,13 @@
                             </StackPanel>
                         </Button>
 
-                        <!-- Edit TvDB Details button -->
+                        <!-- Preview TvDB Matches button -->
                         <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                                Command="{StaticResource EditTvDBLinkCommand}" CommandParameter="{Binding}"
+                                Command="{StaticResource PreviewTvDBMatchesCommand}" CommandParameter="{Binding}"
                                 ToolTip="{usercontrols:Info Title=Tooltip_EditTitle, 
                                 Body=Tooltip_EditInfo}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <Image Height="16" Width="16" Source="/Images/16_link_edit.png" Margin="0,0,0,0"/>
+                                <Image Height="16" Width="16" Source="/Images/32_search.png" Margin="0,0,0,0"/>
                             </StackPanel>
                         </Button>
 
@@ -179,7 +179,7 @@
     <UserControl.CommandBindings>
         <CommandBinding Command="{StaticResource ReportTvDBLinkCommand}" Executed="CommandBinding_ReportTvDBLink" />
         <CommandBinding Command="{StaticResource DeleteTvDBLinkCommand}" Executed="CommandBinding_DeleteTvDBLink" />
-        <CommandBinding Command="{StaticResource EditTvDBLinkCommand}" Executed="CommandBinding_EditTvDBLink" />
+        <CommandBinding Command="{StaticResource PreviewTvDBMatchesCommand}" Executed="CommandBinding_PreviewTvDB_Matches" />
         <CommandBinding Command="{StaticResource UpdateTvDBLinkCommand}" Executed="CommandBinding_UpdateTvDBLink" />
 
         <CommandBinding Command="{StaticResource ReportTraktLinkCommand}" Executed="CommandBinding_ReportTraktLink" />
@@ -219,7 +219,6 @@
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
                     <Image Height="24" Width="24" Source="/Images/32_tvdb.png" Margin="0,0,10,2" VerticalAlignment="Center"/>
-                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TheTvDB}" Width="120" VerticalAlignment="Center"/>
                     <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
 
                     <!-- search button -->
@@ -256,7 +255,6 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,0,0,0" VerticalAlignment="Center" 
                     Visibility="{Binding Path=AniDB_AnimeCrossRefs.TvDBCrossRefMissing, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Image Height="24" Width="24" Source="/Images/32_tvdb.png" Margin="0,0,10,2" VerticalAlignment="Center"/>
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TheTvDB}" Width="120" VerticalAlignment="Center"/>
             <Image Height="16" Width="16" Source="/Images/16_warning.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
 
             <!-- search button -->
