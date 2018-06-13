@@ -38,8 +38,8 @@ namespace Shoko.Desktop.Forms
         {
             if (comboProvider.SelectedItem != null)
             {
-                VM_CloudAccount account = (VM_CloudAccount)comboProvider.SelectedItem;
-                switch (account.CloudID)
+                VM_CloudAccount account = comboProvider.SelectedItem as VM_CloudAccount;
+                switch (account?.CloudID ?? 0)
                 {
                     case 0:
                         GridLocalMapping.Visibility = Visibility.Visible;
@@ -58,7 +58,7 @@ namespace Shoko.Desktop.Forms
         {
             if (comboProvider.SelectedItem == null)
                 return;
-            VM_CloudAccount cl = (VM_CloudAccount)comboProvider.SelectedItem;
+            VM_CloudAccount cl = comboProvider.SelectedItem as VM_CloudAccount;
             FolderBrowser fld = new FolderBrowser();
             fld.Init(cl, txtImportFolderLocation.Text);
             fld.Owner = this;
@@ -145,8 +145,8 @@ namespace Shoko.Desktop.Forms
                     importFldr.LocalPathTemp = txtImportFolderLocation.Text.Trim();
                 else
                     importFldr.LocalPathTemp = txtLocalPath.Text.Trim();
-                VM_CloudAccount cl = (VM_CloudAccount)comboProvider.SelectedItem;
-                importFldr.CloudID = cl.CloudID == 0 ? null : cl.CloudID;
+                VM_CloudAccount cl = comboProvider.SelectedItem as VM_CloudAccount;
+                importFldr.CloudID = cl?.CloudID ?? 0;
                 importFldr.ImportFolderName = "NA";
                 importFldr.ImportFolderLocation = txtImportFolderLocation.Text.Trim();
                 importFldr.IsDropDestination = chkDropDestination.IsChecked ?? false ? 1 : 0;

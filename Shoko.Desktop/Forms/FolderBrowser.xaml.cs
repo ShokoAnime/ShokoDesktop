@@ -95,7 +95,7 @@ namespace Shoko.Desktop.Forms
             while (initialpath.StartsWith("\\"))
                 initialpath = initialpath.Substring(1);
             string[] pars = initialpath.Split(new char[] { '\\' }, StringSplitOptions.RemoveEmptyEntries);
-            RecursiveAddFromDirectory(TrView.Items, initialpath, pars, (account.CloudID)==0 ? 0 : 1);
+            RecursiveAddFromDirectory(TrView.Items, initialpath, pars, (account?.CloudID ?? 0) == 0 ? 0 : 1);
             Cursor = Cursors.Arrow;
         }
 
