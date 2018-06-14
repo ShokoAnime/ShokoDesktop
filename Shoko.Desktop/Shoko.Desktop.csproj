@@ -1486,6 +1486,8 @@
     <Resource Include="Images\16_switch.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\16_link_match.png" />
+    <Resource Include="Images\32_link_match.png" />
     <Content Include="Images\EpisodeThumb_NotFound.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

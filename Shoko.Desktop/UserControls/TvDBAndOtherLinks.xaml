@@ -70,10 +70,10 @@
                         <!-- Preview TvDB Matches button -->
                         <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                                 Command="{StaticResource PreviewTvDBMatchesCommand}" CommandParameter="{Binding}"
-                                ToolTip="{usercontrols:Info Title=Tooltip_EditTitle, 
-                                Body=Tooltip_EditInfo}">
+                                ToolTip="{usercontrols:Info Title=Tooltip_PreviewTvDB, 
+                                Body=Tooltip_PreviewTvDBInfo}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <Image Height="16" Width="16" Source="/Images/32_search.png" Margin="0,0,0,0"/>
+                                <Image Height="16" Width="16" Source="/Images/32_link_match.png" Margin="0,0,0,0"/>
                             </StackPanel>
                         </Button>
 
