@@ -79,6 +79,7 @@ namespace Shoko.Desktop.UserControls.Settings
             btnTest.Visibility = vis;
             spValidity.Visibility = vis;
 
+            spDeviceCodeLabel.Visibility = vis;
             spUpdatesLabel.Visibility = vis;
             spUpdatesData.Visibility = vis;
 

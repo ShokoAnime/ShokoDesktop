@@ -51,7 +51,7 @@ namespace Shoko.Desktop.AutoUpdates
             try
             {
                 // get the latest version as according to the release
-                string uri = "http://shokoanime.com/files/versions.xml";
+                string uri = "https://shokoanime.com/files/versions.xml";
                 string xml = Misc.DownloadWebPage(uri);
 
                 XmlDocument xmldoc = new XmlDocument();

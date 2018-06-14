@@ -45,7 +45,7 @@ namespace Shoko.Desktop.Forms
                     txtDate.Text = anidb.GetRecommendationTypeText();
                     txtComment.Text = anidb.GetComment();
                     
-                    urlWebsite.URL = $"http://anidb.net/perl-bin/animedb.pl?show=threads&do=anime&id={anidb.AnimeID}";
+                    urlWebsite.URL = $"https://anidb.net/perl-bin/animedb.pl?show=threads&do=anime&id={anidb.AnimeID}";
 
 
                 }

@@ -79,7 +79,7 @@
 
                 <TextBlock Grid.Row="3" Grid.Column="0" Margin="5,6"  Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=About_MediaPortal}"  VerticalAlignment="Center"/>
                 <usercontrols:HyperLinkStandard Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="5,5,5,6" DisplayText="MyAnime 3"
-                                                                        URL="http://forum.team-mediaportal.com/threads/my-anime-3.107475/"/>
+                                                                        URL="https://forum.team-mediaportal.com/threads/my-anime-3.107475/"/>
 
 
 
