@@ -388,7 +388,6 @@
     <Compile Include="ViewModel\Server\VM_AniDB_Recommendation.cs" />
     <Compile Include="ViewModel\Server\VM_AnimeTitle.cs" />
     <Compile Include="ViewModel\Server\VM_CrossRef_AniDB_MAL.cs" />
-    <Compile Include="ViewModel\Server\VM_CrossRef_AniDB_MAL_Response.cs" />
     <Compile Include="ViewModel\Server\VM_DuplicateFile.cs" />
     <Compile Include="ViewModel\Server\VM_GroupFileSummary.cs" />
     <Compile Include="ViewModel\Server\VM_MovieDBMovieSearch_Response.cs" />
@@ -747,7 +746,6 @@
     <Compile Include="Utilities\ExtensionMethods.cs" />
     <Compile Include="ViewModel\Server\VM_ImportFolder.cs" />
     <Compile Include="ViewModel\VM_ShokoServer.cs" />
-    <Compile Include="ViewModel\Server\VM_MALAnime_Response.cs" />
     <Compile Include="ViewModel\Server\VM_MissingEpisode.cs" />
     <Compile Include="ViewModel\Server\VM_MissingFile.cs" />
     <Compile Include="ViewModel\Server\VM_MovieDB_Fanart.cs" />

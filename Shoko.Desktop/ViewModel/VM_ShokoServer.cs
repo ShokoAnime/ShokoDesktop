@@ -190,7 +190,6 @@ namespace Shoko.Desktop.ViewModel
                 mappings.Add(typeof(CL_BookmarkedAnime), typeof(VM_BookmarkedAnime));
                 mappings.Add(typeof(CL_CloudAccount), typeof(VM_CloudAccount));
                 mappings.Add(typeof(CrossRef_AniDB_MAL), typeof(VM_CrossRef_AniDB_MAL));
-                mappings.Add(typeof(CL_CrossRef_AniDB_MAL_Response), typeof(VM_CrossRef_AniDB_MAL_Response));
                 mappings.Add(typeof(Azure_CrossRef_AniDB_Trakt), typeof(VM_CrossRef_AniDB_TraktV2));
                 mappings.Add(typeof(Azure_CrossRef_AniDB_TvDB), typeof(VM_CrossRef_AniDB_TvDBV2));
                 mappings.Add(typeof(CL_DuplicateFile), typeof(VM_DuplicateFile));
@@ -200,7 +199,6 @@ namespace Shoko.Desktop.ViewModel
                 mappings.Add(typeof(CL_IgnoreAnime), typeof(VM_IgnoreAnime));
                 mappings.Add(typeof(ImportFolder), typeof(VM_ImportFolder));
                 mappings.Add(typeof(JMMUser), typeof(VM_JMMUser));
-                mappings.Add(typeof(CL_MALAnime_Response), typeof(VM_MALAnime_Response));
                 mappings.Add(typeof(CL_MissingEpisode), typeof(VM_MissingEpisode));
                 mappings.Add(typeof(CL_MissingFile), typeof(VM_MissingFile));
                 mappings.Add(typeof(MovieDB_Fanart), typeof(VM_MovieDB_Fanart));
@@ -347,8 +345,6 @@ namespace Shoko.Desktop.ViewModel
             WebCache_TvDB_Send = contract.WebCache_TvDB_Send;
             WebCache_Trakt_Get = contract.WebCache_Trakt_Get;
             WebCache_Trakt_Send = contract.WebCache_Trakt_Send;
-            WebCache_MAL_Get = contract.WebCache_MAL_Get;
-            WebCache_MAL_Send = contract.WebCache_MAL_Send;
             WebCache_XRefFileEpisode_Get = contract.WebCache_XRefFileEpisode_Get;
             WebCache_XRefFileEpisode_Send = contract.WebCache_XRefFileEpisode_Send;
             WebCache_UserInfo = contract.WebCache_UserInfo;
@@ -398,13 +394,6 @@ namespace Shoko.Desktop.ViewModel
             Trakt_TokenExpirationDate = contract.Trakt_TokenExpirationDate;
             Trakt_UpdateFrequency = (ScheduledUpdateFrequency)contract.Trakt_UpdateFrequency;
             Trakt_SyncFrequency = (ScheduledUpdateFrequency)contract.Trakt_SyncFrequency;
-
-            // MAL
-            MAL_AutoLink = contract.MAL_AutoLink;
-            MAL_Username = contract.MAL_Username;
-            MAL_Password = contract.MAL_Password;
-            MAL_UpdateFrequency = (ScheduledUpdateFrequency)contract.MAL_UpdateFrequency;
-            MAL_NeverDecreaseWatchedNums = contract.MAL_NeverDecreaseWatchedNums;
 
             Plex_ServerHost = contract.Plex_ServerHost ?? "";
             Plex_Sections = string.IsNullOrEmpty(contract.Plex_Sections) ? new ObservableCollection<int>() : new ObservableCollection<int>(contract.Plex_Sections.Split(',').Select(int.Parse).ToList());
@@ -471,8 +460,6 @@ namespace Shoko.Desktop.ViewModel
                 contract.WebCache_TvDB_Send = WebCache_TvDB_Send;
                 contract.WebCache_Trakt_Get = WebCache_Trakt_Get;
                 contract.WebCache_Trakt_Send = WebCache_Trakt_Send;
-                contract.WebCache_MAL_Get = WebCache_MAL_Get;
-                contract.WebCache_MAL_Send = WebCache_MAL_Send;
                 contract.WebCache_XRefFileEpisode_Get = WebCache_XRefFileEpisode_Get;
                 contract.WebCache_XRefFileEpisode_Send = WebCache_XRefFileEpisode_Send;
                 contract.WebCache_UserInfo = WebCache_UserInfo;
@@ -523,13 +510,6 @@ namespace Shoko.Desktop.ViewModel
                 contract.Trakt_UpdateFrequency = (int)Trakt_UpdateFrequency;
                 contract.Trakt_SyncFrequency = (int)Trakt_SyncFrequency;
 
-                // MAL
-                contract.MAL_AutoLink = MAL_AutoLink;
-                contract.MAL_Username = MAL_Username;
-                contract.MAL_Password = MAL_Password;
-                contract.MAL_UpdateFrequency = (int)MAL_UpdateFrequency;
-                contract.MAL_NeverDecreaseWatchedNums = MAL_NeverDecreaseWatchedNums;
-                
                 //plex
                 contract.Plex_ServerHost = Plex_ServerHost;
                 contract.Plex_Sections = string.Join(",", Plex_Sections);
@@ -578,24 +558,6 @@ namespace Shoko.Desktop.ViewModel
                 Utils.ShowErrorMessage(ex);
             }
             return new CL_TraktDeviceCode();
-        }
-
-        public void TestMALLogin()
-        {
-            try
-            {
-                SaveServerSettings();
-
-                string response = ShokoServices.TestMALLogin();
-                if (string.IsNullOrEmpty(response))
-                    MessageBox.Show(Resources.MAL_LoginCorrect, Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
-                else
-                    MessageBox.Show(response, Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
         }
 
         #region Observable Properties
@@ -1225,27 +1187,6 @@ namespace Shoko.Desktop.ViewModel
             }
         }
 
-
-        private bool webCache_MAL_Get;
-        public bool WebCache_MAL_Get
-        {
-            get => webCache_MAL_Get;
-            set
-            {
-                this.SetField(()=>webCache_MAL_Get,value);
-            }
-        }
-
-        private bool webCache_MAL_Send;
-        public bool WebCache_MAL_Send
-        {
-            get => webCache_MAL_Send;
-            set
-            {
-                this.SetField(()=>webCache_MAL_Send,value);
-            }
-        }
-
         private bool webCache_UserInfo;
         public bool WebCache_UserInfo
         {
@@ -1407,17 +1348,17 @@ namespace Shoko.Desktop.ViewModel
             }
         }
 
-	    private bool autoGroupSeriesUseScoreAlgorithm;
-	    public bool AutoGroupSeriesUseScoreAlgorithm
-	    {
-		    get => autoGroupSeriesUseScoreAlgorithm;
-	        set
-		    {
-			    this.SetField(()=>autoGroupSeriesUseScoreAlgorithm,value);
-		    }
-	    }
+        private bool autoGroupSeriesUseScoreAlgorithm;
+        public bool AutoGroupSeriesUseScoreAlgorithm
+        {
+            get => autoGroupSeriesUseScoreAlgorithm;
+            set
+            {
+                this.SetField(()=>autoGroupSeriesUseScoreAlgorithm,value);
+            }
+        }
 
-	    // The actual server setting
+        // The actual server setting
         private string autoGroupSeriesRelationExclusions = "";
         private string AutoGroupSeriesRelationExclusions
         {
@@ -1482,17 +1423,17 @@ namespace Shoko.Desktop.ViewModel
             }
         }
 
-	    public bool RelationAllowDissimilarTitleExclusion
-	    {
-		    get => isRelationInExclusion("AllowDissimilarTitleExclusion");
-	        set => setRelationinExclusion("AllowDissimilarTitleExclusion", value);
-	    }
+        public bool RelationAllowDissimilarTitleExclusion
+        {
+            get => isRelationInExclusion("AllowDissimilarTitleExclusion");
+            set => setRelationinExclusion("AllowDissimilarTitleExclusion", value);
+        }
 
-	    public bool RelationExcludeOVA
+        public bool RelationExcludeOVA
         {
             get => isRelationInExclusion("ova");
-	        set => setRelationinExclusion("ova", value);
-	    }
+            set => setRelationinExclusion("ova", value);
+        }
 
         public bool RelationExcludeMovie
         {
@@ -1733,56 +1674,6 @@ namespace Shoko.Desktop.ViewModel
             set
             {
                 this.SetField(()=>trakt_DownloadEpisodes,value);
-            }
-        }
-
-        private bool mal_AutoLink;
-        public bool MAL_AutoLink
-        {
-            get => mal_AutoLink;
-            set
-            {
-                this.SetField(()=>mal_AutoLink,value);
-            }
-        }
-
-        private string mAL_Username = "";
-        public string MAL_Username
-        {
-            get => mAL_Username;
-            set
-            {
-                this.SetField(()=>mAL_Username,value);
-            }
-        }
-
-        private string mAL_Password = "";
-        public string MAL_Password
-        {
-            get => mAL_Password;
-            set
-            {
-                this.SetField(()=>mAL_Password,value);
-            }
-        }
-
-        private ScheduledUpdateFrequency mAL_UpdateFrequency = ScheduledUpdateFrequency.Daily;
-        public ScheduledUpdateFrequency MAL_UpdateFrequency
-        {
-            get => mAL_UpdateFrequency;
-            set
-            {
-                this.SetField(()=>mAL_UpdateFrequency,value);
-            }
-        }
-
-        private bool mAL_NeverDecreaseWatchedNums;
-        public bool MAL_NeverDecreaseWatchedNums
-        {
-            get => mAL_NeverDecreaseWatchedNums;
-            set
-            {
-                this.SetField(()=>mAL_NeverDecreaseWatchedNums,value);
             }
         }
 

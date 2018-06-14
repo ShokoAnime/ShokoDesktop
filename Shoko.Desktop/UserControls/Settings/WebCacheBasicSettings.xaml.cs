@@ -19,8 +19,6 @@ namespace Shoko.Desktop.UserControls.Settings
             chkWebCache_FileEpisodes_Send.Click += new RoutedEventHandler(settingChanged);
             chkWebCache_TvDBAssociations_Get.Click += new RoutedEventHandler(settingChanged);
             chkWebCache_TvDBAssociations_Send.Click += new RoutedEventHandler(settingChanged);
-            chkWebCache_MALAssociations_Get.Click += new RoutedEventHandler(settingChanged);
-            chkWebCache_MALAssociations_Send.Click += new RoutedEventHandler(settingChanged);
             chkWebCache_TraktAssociations_Get.Click += new RoutedEventHandler(settingChanged);
             chkWebCache_TraktAssociations_Send.Click += new RoutedEventHandler(settingChanged);
             chkWebCache_UserInfo.Click += new RoutedEventHandler(settingChanged);
