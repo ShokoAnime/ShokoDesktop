@@ -176,7 +176,7 @@ namespace Shoko.Desktop.Forms
                         Cursor = Cursors.Arrow;
                         Close();
                     }
-                }                    
+                }
             }
             catch (Exception ex)
             {
@@ -242,7 +242,6 @@ namespace Shoko.Desktop.Forms
                     Window wdw = GetWindow(this);
 
                     Cursor = Cursors.Wait;
-                    
 
                     if (!tvDbDataReady(searchResult.SeriesID))
                     {

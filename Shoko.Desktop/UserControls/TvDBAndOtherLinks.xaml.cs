@@ -684,7 +684,7 @@ namespace Shoko.Desktop.UserControls
 
                     Cursor = Cursors.Wait;
                     TvDBMatchPreview frm = new TvDBMatchPreview {Owner = wdw};
-                    frm.Init(link.AnimeID, link.AnimeName, link.TvDBID, link.TvDBTitle, anime, false, true);
+                    frm.Init(link.AnimeID, anime.FormattedTitle, link.TvDBID, link.TvDBTitle, anime, false, true);
                     bool? result = frm.ShowDialog();
                     if (result != null && result.Value) RefreshData();
                 }

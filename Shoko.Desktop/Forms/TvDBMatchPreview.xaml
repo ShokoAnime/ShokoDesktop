@@ -24,9 +24,9 @@
                 <DataTemplate x:Key="AniDBTemplate" DataType="forms:VM_CrossRef_AniDB_TvDB_Episode">
                     <StackPanel Orientation="Horizontal" Background="{Binding Color}">
                         <TextBlock VerticalAlignment="Center" FontSize="14" Text="{Binding Path=AniDB_Type}" Margin="5,0,0,0"/>
-                        <TextBlock VerticalAlignment="Center" FontSize="14" FontWeight="Bold" Text="|" Margin="8,0,0,0"/>
-                        <TextBlock VerticalAlignment="Center" FontSize="14" Text="{Binding Path=AniDB_Number}" Margin="8,0,0,0"/>
-                        <TextBlock VerticalAlignment="Center" FontSize="14" Text="{Binding Path=AniDB_Name}" Margin="5,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="14" FontWeight="Bold" Text="|" Margin="5,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="14" Text="{Binding Path=AniDB_Number}" Margin="5,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="14" Text="{Binding Path=AniDB_Name}" Margin="9,0,0,0"/>
                     </StackPanel>
                 </DataTemplate>
 
@@ -34,9 +34,9 @@
                 <DataTemplate x:Key="TvDBTemplate" DataType="forms:VM_CrossRef_AniDB_TvDB_Episode">
                     <StackPanel Orientation="Horizontal" Background="{Binding Color}">
                         <TextBlock VerticalAlignment="Center" FontSize="14" Text="{Binding Path=TvDB_Season}" Margin="5,0,0,0"/>
-                        <TextBlock VerticalAlignment="Center" FontSize="14" FontWeight="Bold" Text="|" Margin="8,0,0,0"/>
-                        <TextBlock VerticalAlignment="Center" FontSize="14" Text="{Binding Path=TvDB_Number}" Margin="8,0,0,0"/>
-                        <TextBlock VerticalAlignment="Center" FontSize="14" Text="{Binding Path=TvDB_Name}" Margin="5,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="14" FontWeight="Bold" Text="|" Margin="5,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="14" Text="{Binding Path=TvDB_Number}" Margin="5,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="14" Text="{Binding Path=TvDB_Name}" Margin="9,0,0,0"/>
                     </StackPanel>
                 </DataTemplate>
             </ResourceDictionary>
@@ -101,7 +101,7 @@
         </Border>
 
         <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"  Orientation="Horizontal" HorizontalAlignment="Right" Margin="5,5,0,10">
-            <Button Name="btnUpdate" Margin="0,0,0,0" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=forms:TvDBMatchPreview}, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+            <Button Name="btnUpdate" Margin="0,0,0,0" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" Visibility="{Binding Path=IsPreview, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:TvDBMatchPreview}}, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Update}" Margin="0,0,5,0"/>
