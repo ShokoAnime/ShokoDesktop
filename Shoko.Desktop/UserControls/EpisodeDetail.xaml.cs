@@ -159,7 +159,7 @@ namespace Shoko.Desktop.UserControls
                 }
 
                 // update info
-                VM_AnimeEpisode_User contract = (VM_AnimeEpisode_User)VM_ShokoServer.Instance.ShokoServices.GetEpisode(
+                VM_AnimeEpisode_User contract = (VM_AnimeEpisode_User) VM_ShokoServer.Instance.ShokoServices.GetEpisode(
                     ep.AnimeEpisodeID, VM_ShokoServer.Instance.CurrentUser.JMMUserID);
                 if (contract != null)
                 {
@@ -175,6 +175,10 @@ namespace Shoko.Desktop.UserControls
             catch (Exception ex)
             {
                 Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+                Cursor = Cursors.Arrow;
             }
         }
 
@@ -213,6 +217,7 @@ namespace Shoko.Desktop.UserControls
 
                 }
 
+                this.DataContext = ep;
                 Cursor = Cursors.Arrow;
 
             }

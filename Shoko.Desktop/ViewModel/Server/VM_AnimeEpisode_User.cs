@@ -674,6 +674,8 @@ namespace Shoko.Desktop.ViewModel.Server
 
         public int GetTvDBEpisodeID()
         {
+            if (AniDBAnime == null) RefreshAnime();
+
             VM_TvDBSummary tvSummary = AniDBAnime.TvSummary;
             if (tvSummary.DictTvDBCrossRefEpisodes.ContainsKey(AniDB_EpisodeID))
                 return tvSummary.DictTvDBCrossRefEpisodes[AniDB_EpisodeID];
