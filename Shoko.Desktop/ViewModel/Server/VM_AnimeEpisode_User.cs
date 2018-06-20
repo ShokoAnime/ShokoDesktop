@@ -468,9 +468,6 @@ namespace Shoko.Desktop.ViewModel.Server
 
         public void SetTvDBInfo(VM_TvDBSummary tvSummary)
         {
-            TvDBLinkExists = false;
-            TvDBLinkMissing = true;
-
             // TODO Titles and Overviews not stupid.
 
             #region episode override
@@ -479,30 +476,28 @@ namespace Shoko.Desktop.ViewModel.Server
             {
                 foreach (VM_TvDB_Episode tvep in tvSummary.DictTvDBEpisodes.Values)
                 {
-                    if (tvSummary.DictTvDBCrossRefEpisodes[AniDB_EpisodeID] == tvep.Id)
+                    if (tvSummary.DictTvDBCrossRefEpisodes[AniDB_EpisodeID] != tvep.Id) continue;
+                    if(!string.IsNullOrEmpty(tvep.Overview))
+                        EpisodeOverviewLoading = tvep.Overview;
+                    if (string.IsNullOrEmpty(EpisodeOverviewLoading))
+                        EpisodeOverviewLoading = Commons.Properties.Resources.AnimeEpisode_NoOverview;
+
+                    if (string.IsNullOrEmpty(tvep.FullImagePathPlain) || !File.Exists(tvep.FullImagePath))
                     {
-                        if(!string.IsNullOrEmpty(tvep.Overview))
-                            EpisodeOverviewLoading = tvep.Overview;
-                        if (string.IsNullOrEmpty(EpisodeOverviewLoading))
-                            EpisodeOverviewLoading = Commons.Properties.Resources.AnimeEpisode_NoOverview;
-
-                        if (string.IsNullOrEmpty(tvep.FullImagePathPlain) || !File.Exists(tvep.FullImagePath))
-                        {
-                            EpisodeImageLoading = @"/Images/EpisodeThumb_NotFound.png";
-                            // if there is no proper image to show, we will hide it on the dashboard
-                            ShowEpisodeImageInDashboard = false;
-                        }
-                        else
-                            EpisodeImageLoading = tvep.FullImagePath;
-
-                        if (VM_ShokoServer.Instance.EpisodeTitleSource == DataSourceType.TheTvDB && !string.IsNullOrEmpty(tvep.EpisodeName))
-                            EpisodeName = tvep.EpisodeName;
-
-                        TvDBLinkExists = true;
-                        TvDBLinkMissing = false;
-
-                        return;
+                        EpisodeImageLoading = @"/Images/EpisodeThumb_NotFound.png";
+                        // if there is no proper image to show, we will hide it on the dashboard
+                        ShowEpisodeImageInDashboard = false;
                     }
+                    else
+                        EpisodeImageLoading = tvep.FullImagePath;
+
+                    if (VM_ShokoServer.Instance.EpisodeTitleSource == DataSourceType.TheTvDB && !string.IsNullOrEmpty(tvep.EpisodeName))
+                        EpisodeName = tvep.EpisodeName;
+
+                    TvDBLinkExists = true;
+                    TvDBLinkMissing = false;
+
+                    return;
                 }
             }
             #endregion
@@ -528,12 +523,10 @@ namespace Shoko.Desktop.ViewModel.Server
                     foreach (VM_CrossRef_AniDB_TvDBV2 xrefTV in tvDBCrossRef)
                     {
                         if (xrefTV.AniDBStartEpisodeType != (int)Models.Enums.EpisodeType.Episode) continue;
-                        if (EpisodeNumber >= xrefTV.AniDBStartEpisodeNumber)
-                        {
-                            foundStartingPoint = true;
-                            xrefBase = xrefTV;
-                            break;
-                        }
+                        if (EpisodeNumber < xrefTV.AniDBStartEpisodeNumber) continue;
+                        foundStartingPoint = true;
+                        xrefBase = xrefTV;
+                        break;
                     }
 
                     //logger.Trace("SetTvDBInfo: looking for starting points - done");
@@ -549,12 +542,10 @@ namespace Shoko.Desktop.ViewModel.Server
                         Dictionary<int, VM_TvDB_Episode> dictTvDBEpisodes = null;
                         foreach (VM_TvDBDetails det in tvSummary.TvDetails.Values)
                         {
-                            if (det.TvDBID == xrefBase.TvDBID)
-                            {
-                                dictTvDBSeasons = det.DictTvDBSeasons;
-                                dictTvDBEpisodes = det.DictTvDBEpisodes;
-                                break;
-                            }
+                            if (det.TvDBID != xrefBase.TvDBID) continue;
+                            dictTvDBSeasons = det.DictTvDBSeasons;
+                            dictTvDBEpisodes = det.DictTvDBEpisodes;
+                            break;
                         }
 
                         //logger.Trace("SetTvDBInfo: creating dictionary - done");
@@ -590,10 +581,6 @@ namespace Shoko.Desktop.ViewModel.Server
                             }
                         }
                     }
-
-
-
-
                 }
             }
             #endregion
@@ -668,6 +655,8 @@ namespace Shoko.Desktop.ViewModel.Server
             }
             #endregion
 
+            TvDBLinkExists = false;
+            TvDBLinkMissing = true;
             if (EpisodeImageLoading == @"/Images/EpisodeThumb_NotFound.png") ShowEpisodeImageInDashboard = false;
 
         }

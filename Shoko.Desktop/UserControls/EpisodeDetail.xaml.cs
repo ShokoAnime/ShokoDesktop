@@ -9,22 +9,23 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
+using MahApps.Metro.Controls;
 using Shoko.Commons.Extensions;
 using Shoko.Desktop.Enums;
 using Shoko.Desktop.Forms;
-using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel;
 using Shoko.Desktop.ViewModel.Server;
 using Shoko.Models.Client;
+using Utils = Shoko.Desktop.Utilities.Utils;
 
 namespace Shoko.Desktop.UserControls
 {
     /// <summary>
     /// Interaction logic for EpisodeDetail.xaml
     /// </summary>
-    public partial class EpisodeDetail : UserControl
+    public partial class EpisodeDetail
     {
-        private ContextMenu playlistMenu;
+        private readonly ContextMenu playlistMenu;
 
         public static readonly DependencyProperty IsExpandedProperty = DependencyProperty.Register("IsExpanded",
             typeof(bool), typeof(EpisodeDetail), new UIPropertyMetadata(false, isExpandedCallback));
@@ -32,7 +33,7 @@ namespace Shoko.Desktop.UserControls
 
         public bool IsExpanded
         {
-            get { return (bool)GetValue(IsExpandedProperty); }
+            get => (bool)GetValue(IsExpandedProperty);
             set
             {
                 SetValue(IsExpandedProperty, value);
@@ -46,7 +47,7 @@ namespace Shoko.Desktop.UserControls
 
         public bool IsCollapsed
         {
-            get { return (bool)GetValue(IsCollapsedProperty); }
+            get => (bool)GetValue(IsCollapsedProperty);
             set
             {
                 SetValue(IsCollapsedProperty, value);
@@ -60,8 +61,8 @@ namespace Shoko.Desktop.UserControls
 
         public bool ShowEpisodeImageInSummary
         {
-            get { return (bool)GetValue(ShowEpisodeImageInSummaryProperty); }
-            set { SetValue(ShowEpisodeImageInSummaryProperty, value); }
+            get => (bool)GetValue(ShowEpisodeImageInSummaryProperty);
+            set => SetValue(ShowEpisodeImageInSummaryProperty, value);
         }
 
         public static readonly DependencyProperty ShowEpisodeOverviewInSummaryProperty = DependencyProperty.Register("ShowEpisodeOverviewInSummary",
@@ -70,8 +71,8 @@ namespace Shoko.Desktop.UserControls
 
         public bool ShowEpisodeOverviewInSummary
         {
-            get { return (bool)GetValue(ShowEpisodeOverviewInSummaryProperty); }
-            set { SetValue(ShowEpisodeOverviewInSummaryProperty, value); }
+            get => (bool)GetValue(ShowEpisodeOverviewInSummaryProperty);
+            set => SetValue(ShowEpisodeOverviewInSummaryProperty, value);
         }
 
         public static readonly DependencyProperty ShowEpisodeImageInExpandedProperty = DependencyProperty.Register("ShowEpisodeImageInExpanded",
@@ -80,8 +81,8 @@ namespace Shoko.Desktop.UserControls
 
         public bool ShowEpisodeImageInExpanded
         {
-            get { return (bool)GetValue(ShowEpisodeImageInExpandedProperty); }
-            set { SetValue(ShowEpisodeImageInExpandedProperty, value); }
+            get => (bool)GetValue(ShowEpisodeImageInExpandedProperty);
+            set => SetValue(ShowEpisodeImageInExpandedProperty, value);
         }
 
         public static readonly DependencyProperty ShowEpisodeOverviewInExpandedProperty = DependencyProperty.Register("ShowEpisodeOverviewInExpanded",
@@ -90,32 +91,25 @@ namespace Shoko.Desktop.UserControls
 
         public bool ShowEpisodeOverviewInExpanded
         {
-            get { return (bool)GetValue(ShowEpisodeOverviewInExpandedProperty); }
-            set { SetValue(ShowEpisodeOverviewInExpandedProperty, value); }
+            get => (bool)GetValue(ShowEpisodeOverviewInExpandedProperty);
+            set => SetValue(ShowEpisodeOverviewInExpandedProperty, value);
         }
         private static void isExpandedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            EpisodeDetail input = (EpisodeDetail)d;
-            //input.tbTest.Text = e.NewValue as string;
         }
 
         private static void isCollapsedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            EpisodeDetail input = (EpisodeDetail)d;
-            //input.tbTest.Text = e.NewValue as string;
         }
 
         private void SetVisibility()
         {
-            VM_AnimeEpisode_User ep = DataContext as VM_AnimeEpisode_User;
-            if (ep != null)
-            {
-                ShowEpisodeImageInSummary = IsCollapsed && ep.ShowEpisodeImageInSummary;
-                ShowEpisodeOverviewInSummary = IsCollapsed && ep.ShowEpisodeOverviewInSummary;
+            if (!(DataContext is VM_AnimeEpisode_User ep)) return;
+            ShowEpisodeImageInSummary = IsCollapsed && ep.ShowEpisodeImageInSummary;
+            ShowEpisodeOverviewInSummary = IsCollapsed && ep.ShowEpisodeOverviewInSummary;
 
-                ShowEpisodeImageInExpanded = IsExpanded && ep.ShowEpisodeImageInExpanded;
-                ShowEpisodeOverviewInExpanded = IsExpanded && ep.ShowEpisodeOverviewInExpanded;
-            }
+            ShowEpisodeImageInExpanded = IsExpanded && ep.ShowEpisodeImageInExpanded;
+            ShowEpisodeOverviewInExpanded = IsExpanded && ep.ShowEpisodeOverviewInExpanded;
         }
 
         public EpisodeDetail()
@@ -126,15 +120,15 @@ namespace Shoko.Desktop.UserControls
 
             playlistMenu = new ContextMenu();
 
-            btnToggleExpander.Click += new RoutedEventHandler(btnToggleExpander_Click);
-            DataContextChanged += new DependencyPropertyChangedEventHandler(EpisodeDetail_DataContextChanged);
-            Loaded += new RoutedEventHandler(EpisodeDetail_Loaded);
+            btnToggleExpander.Click += btnToggleExpander_Click;
+            DataContextChanged += EpisodeDetail_DataContextChanged;
+            Loaded += EpisodeDetail_Loaded;
 
             btnPlaylistAdd.ContextMenu = playlistMenu;
-            btnPlaylistAdd.Click += new RoutedEventHandler(btnPlaylistAdd_Click);
+            btnPlaylistAdd.Click += btnPlaylistAdd_Click;
 
-            btnTvDBLinkAdd.Click += new RoutedEventHandler(btnTvDBLinkAdd_Click);
-            btnTvDBLinkRemove.Click += new RoutedEventHandler(btnTvDBLinkRemove_Click);
+            btnTvDBLinkAdd.Click += btnTvDBLinkAdd_Click;
+            btnTvDBLinkRemove.Click += btnTvDBLinkRemove_Click;
         }
 
         void btnTvDBLinkRemove_Click(object sender, RoutedEventArgs e)
@@ -142,9 +136,12 @@ namespace Shoko.Desktop.UserControls
             try
             {
                 // get the current tvdb link
-                VM_AnimeEpisode_User ep = DataContext as VM_AnimeEpisode_User;
-
-                Window wdw = Window.GetWindow(this);
+                if (!(DataContext is VM_AnimeEpisode_User ep))
+                {
+                    Utils.ShowErrorMessage("DataContext is null");
+                    return;
+                }
+                ep.RefreshAnime();
 
                 Cursor = Cursors.Wait;
 
@@ -159,18 +156,36 @@ namespace Shoko.Desktop.UserControls
                 }
 
                 // update info
-                VM_AnimeEpisode_User contract = (VM_AnimeEpisode_User) VM_ShokoServer.Instance.ShokoServices.GetEpisode(
+                CL_AnimeEpisode_User contract = VM_ShokoServer.Instance.ShokoServices.GetEpisode(
                     ep.AnimeEpisodeID, VM_ShokoServer.Instance.CurrentUser.JMMUserID);
-                if (contract != null)
+                if (contract == null) return;
+
+                ep.Populate(contract);
+                ep.RefreshAnime(true);
+                ep.SetTvDBInfo();
+
+                var p = this.GetParentObject();
+                AnimeSeries s = null;
+                while (true)
                 {
-                    ep.RefreshAnime(true);
-                    ep.Populate(contract);
-                    ep.SetTvDBInfo();
+                    if (p == null) break;
+                    if (p is AnimeSeries series)
+                    {
+                        s = series;
+                        break;
+                    }
+
+                    p = p.GetParentObject();
                 }
 
-
-                Cursor = Cursors.Arrow;
-
+                if (s != null)
+                {
+                    Dispatcher.InvokeAsync(() =>
+                    {
+                        s.LoadSeries();
+                        s.tabEpisodes.IsSelected = true;
+                    });
+                }
             }
             catch (Exception ex)
             {
@@ -187,43 +202,41 @@ namespace Shoko.Desktop.UserControls
             try
             {
                 // get the current tvdb link
-                VM_AnimeEpisode_User ep = DataContext as VM_AnimeEpisode_User;
-                ep.RefreshAnime();
-                if (ep.AniDBAnime == null || ep.AniDBAnime.TvSummary == null || ep.AniDBAnime.TvSummary.CrossRefTvDBV2 == null ||
-                    ep.AniDBAnime.TvSummary.CrossRefTvDBV2.Count == 0)
+                if (!(DataContext is VM_AnimeEpisode_User ep))
                 {
-                    Utils.ShowErrorMessage(Shoko.Commons.Properties.Resources.EpisodeDetail_TvDBLink);
+                    Utils.ShowErrorMessage("DataContext is null");
+                    return;
+                }
+                ep.RefreshAnime();
+                if (ep.AniDBAnime?.TvSummary?.CrossRefTvDBV2 == null || ep.AniDBAnime.TvSummary.CrossRefTvDBV2.Count == 0)
+                {
+                    Utils.ShowErrorMessage(Commons.Properties.Resources.EpisodeDetail_TvDBLink);
                     return;
                 }
 
                 Window wdw = Window.GetWindow(this);
 
                 Cursor = Cursors.Wait;
-                SelectTvDBEpisodeForm frm = new SelectTvDBEpisodeForm();
-                frm.Owner = wdw;
+                SelectTvDBEpisodeForm frm = new SelectTvDBEpisodeForm {Owner = wdw};
                 frm.Init(ep, ep.AniDBAnime);
                 bool? result = frm.ShowDialog();
-                if (result.Value)
-                {
-                    // update info
-                    CL_AnimeEpisode_User contract = VM_ShokoServer.Instance.ShokoServices.GetEpisode(
-                        ep.AnimeEpisodeID, VM_ShokoServer.Instance.CurrentUser.JMMUserID);
-                    if (contract != null)
-                    {
-                        ep.RefreshAnime(true);
-                        ep.Populate(contract);
-                        ep.SetTvDBInfo();
-                    }
+                if (result == null || !result.Value) return;
+                // update info
+                CL_AnimeEpisode_User contract = VM_ShokoServer.Instance.ShokoServices.GetEpisode(
+                    ep.AnimeEpisodeID, VM_ShokoServer.Instance.CurrentUser.JMMUserID);
+                if (contract == null) return;
 
-                }
-
-                this.DataContext = ep;
-                Cursor = Cursors.Arrow;
-
+                ep.Populate(contract);
+                ep.RefreshAnime(true);
+                ep.SetTvDBInfo();
             }
             catch (Exception ex)
             {
                 Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+                Cursor = Cursors.Arrow;
             }
         }
 
@@ -233,25 +246,22 @@ namespace Shoko.Desktop.UserControls
             {
                 // get all playlists
                 List<VM_Playlist> rawPlaylists = VM_ShokoServer.Instance.ShokoServices.GetAllPlaylists().CastList<VM_Playlist>();
-                PlaylistMenuCommand cmd = null;
 
                 playlistMenu.Items.Clear();
 
                 Separator sep = new Separator();
 
-                MenuItem itemNew = new MenuItem();
-                itemNew.Header = Shoko.Commons.Properties.Resources.EpisodeDetail_NewPlaylist;
-                itemNew.Click += new RoutedEventHandler(playlistMenuItem_Click);
-                cmd = new PlaylistMenuCommand(PlaylistItemType.SingleEpisode, -1); // new playlist
+                MenuItem itemNew = new MenuItem {Header = Commons.Properties.Resources.EpisodeDetail_NewPlaylist};
+                itemNew.Click += playlistMenuItem_Click;
+                var cmd = new PlaylistMenuCommand(PlaylistItemType.SingleEpisode, -1);
                 itemNew.CommandParameter = cmd;
                 playlistMenu.Items.Add(itemNew);
                 playlistMenu.Items.Add(sep);
 
                 foreach (VM_Playlist contract in rawPlaylists)
                 {
-                    MenuItem itemSeriesPL = new MenuItem();
-                    itemSeriesPL.Header = contract.PlaylistName;
-                    itemSeriesPL.Click += new RoutedEventHandler(playlistMenuItem_Click);
+                    MenuItem itemSeriesPL = new MenuItem {Header = contract.PlaylistName};
+                    itemSeriesPL.Click += playlistMenuItem_Click;
                     cmd = new PlaylistMenuCommand(PlaylistItemType.SingleEpisode, contract.PlaylistID);
                     itemSeriesPL.CommandParameter = cmd;
                     playlistMenu.Items.Add(itemSeriesPL);
@@ -276,16 +286,16 @@ namespace Shoko.Desktop.UserControls
                 if (item == null || itemSender == null) return;
                 if (!item.Header.ToString().Equals(itemSender.Header.ToString())) return;
 
-                if (item != null && item.CommandParameter != null)
+                if (item.CommandParameter != null)
                 {
                     PlaylistMenuCommand cmd = item.CommandParameter as PlaylistMenuCommand;
-                    Debug.Write(Shoko.Commons.Properties.Resources.EpisodeDetail_PlaylistMenu + cmd.ToString() + Environment.NewLine);
+                    if (cmd == null) return;
+                    Debug.Write(Commons.Properties.Resources.EpisodeDetail_PlaylistMenu + cmd + Environment.NewLine);
 
-                    VM_AnimeEpisode_User ep = DataContext as VM_AnimeEpisode_User;
-                    if (ep == null) return;
+                    if (!(DataContext is VM_AnimeEpisode_User ep)) return;
 
                     // get the playlist
-                    VM_Playlist pl = null;
+                    VM_Playlist pl;
                     if (cmd.PlaylistID < 0)
                     {
                         pl = VM_PlaylistHelper.CreatePlaylist(Window.GetWindow(this));
@@ -296,7 +306,7 @@ namespace Shoko.Desktop.UserControls
                         pl = (VM_Playlist)VM_ShokoServer.Instance.ShokoServices.GetPlaylist(cmd.PlaylistID);
                         if (pl == null)
                         {
-                            MessageBox.Show(Shoko.Commons.Properties.Resources.EpisodeDetail_PlaylistMissing, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(Commons.Properties.Resources.EpisodeDetail_PlaylistMissing, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
                         }
                     }
@@ -324,8 +334,7 @@ namespace Shoko.Desktop.UserControls
             while (parentObject != null)
             {
                 parentObject = VisualTreeHelper.GetParent(parentObject);
-                AnimeSeries seriesControl = parentObject as AnimeSeries;
-                if (seriesControl != null)
+                if (parentObject is AnimeSeries seriesControl)
                 {
                     SetBinding(WidthProperty, new Binding("ActualWidth") { Source = seriesControl, Converter = ArithmeticConverter.Instance, ConverterParameter = 40, IsAsync = true });
                     return;
@@ -345,19 +354,13 @@ namespace Shoko.Desktop.UserControls
 
             try
             {
-                if (obj.GetType() == typeof(VM_VideoDetailed))
-                {
-                    VM_VideoDetailed vid = obj as VM_VideoDetailed;
+                if (obj.GetType() != typeof(VM_VideoDetailed)) return;
+                VM_VideoDetailed vid = obj as VM_VideoDetailed;
 
-                    if (File.Exists(vid.GetFullPath()))
-                    {
-                        Utils.OpenFolderAndSelectFile(vid.GetFullPath());
-                    }
-                    else
-                    {
-                        MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_FileNotFound, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                }
+                if (File.Exists(vid.GetFullPath()))
+                    Utils.OpenFolderAndSelectFile(vid.GetFullPath());
+                else
+                    MessageBox.Show(Commons.Properties.Resources.MSG_ERR_FileNotFound, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (Exception ex)
             {
@@ -367,32 +370,26 @@ namespace Shoko.Desktop.UserControls
 
         private void CommandBinding_DeleteLink(object sender, ExecutedRoutedEventArgs e)
         {
-            Window parentWindow = Window.GetWindow(this);
-
             object obj = e.Parameter;
             if (obj == null) return;
 
             try
             {
-                if (obj.GetType() == typeof(VM_VideoDetailed))
-                {
-                    VM_VideoDetailed vid = obj as VM_VideoDetailed;
-                    VM_AnimeEpisode_User ep = DataContext as VM_AnimeEpisode_User;
-                    //VM_AnimeEpisode_User ep = VM_MainListHelper.Instance.GetEpisodeForVideo(vid, ((MainWindow)parentWindow).epListMain);
+                if (obj.GetType() != typeof(VM_VideoDetailed)) return;
+                VM_VideoDetailed vid = obj as VM_VideoDetailed;
+                VM_AnimeEpisode_User ep = DataContext as VM_AnimeEpisode_User;
+                //VM_AnimeEpisode_User ep = VM_MainListHelper.Instance.GetEpisodeForVideo(vid, ((MainWindow)parentWindow).epListMain);
 
-                    string res = VM_ShokoServer.Instance.ShokoServices.RemoveAssociationOnFile(vid.VideoLocalID, ep.AniDB_EpisodeID);
-                    if (res.Length > 0)
-                    {
-                        MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                    else
-                    {
-                        if (ep != null)
-                        {
-                            VM_MainListHelper.Instance.RefreshHeirarchy(ep);
-                            DisplayFiles();
-                        }
-                    }
+                if (vid == null || ep == null) return;
+                string res = VM_ShokoServer.Instance.ShokoServices.RemoveAssociationOnFile(vid.VideoLocalID, ep.AniDB_EpisodeID);
+                if (res.Length > 0)
+                {
+                    MessageBox.Show(res, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    VM_MainListHelper.Instance.RefreshHeirarchy(ep);
+                    DisplayFiles();
                 }
             }
             catch (Exception ex)
@@ -403,40 +400,35 @@ namespace Shoko.Desktop.UserControls
 
         private void CommandBinding_DeleteFile(object sender, ExecutedRoutedEventArgs e)
         {
-            Window parentWindow = Window.GetWindow(this);
-
             object obj = e.Parameter;
             if (obj == null) return;
 
             try
             {
-                if (obj.GetType() == typeof(VM_VideoDetailed))
+                if (obj.GetType() != typeof(VM_VideoDetailed)) return;
+                VM_VideoDetailed vid = obj as VM_VideoDetailed;
+                VM_AnimeEpisode_User ep = DataContext as VM_AnimeEpisode_User;
+                if (vid == null) return;
+                AskDeleteFile dlg = new AskDeleteFile(
+                    string.Format(Commons.Properties.Resources.DeleteFile_Title, vid.GetFileName()),
+                    Commons.Properties.Resources.EpisodeDetail_ConfirmDelete + "\r\n\r\n" +
+                    Commons.Properties.Resources.DeleteFile_Confirm, vid.Places) {Owner = Window.GetWindow(this)};
+                bool? res=dlg.ShowDialog();
+                if (!res.HasValue || !res.Value) return;
+                string tresult = string.Empty;
+                Cursor = Cursors.Wait;
+                foreach (CL_VideoLocal_Place lv in dlg.Selected)
                 {
-                    VM_VideoDetailed vid = obj as VM_VideoDetailed;
-                    VM_AnimeEpisode_User ep = DataContext as VM_AnimeEpisode_User;
-                    AskDeleteFile dlg=new AskDeleteFile(string.Format(Shoko.Commons.Properties.Resources.DeleteFile_Title,vid.GetFileName()), Shoko.Commons.Properties.Resources.EpisodeDetail_ConfirmDelete+"\r\n\r\n"+ Shoko.Commons.Properties.Resources.DeleteFile_Confirm,vid.Places);
-                    dlg.Owner = Window.GetWindow(this);
-                    bool? res=dlg.ShowDialog();
-                    if (res.HasValue && res.Value)
-                    {
-                        string tresult = string.Empty;
-                        Cursor = Cursors.Wait;
-                        foreach (CL_VideoLocal_Place lv in dlg.Selected)
-                        {
-                            string result = VM_ShokoServer.Instance.ShokoServices.DeleteVideoLocalPlaceAndFile(lv.VideoLocal_Place_ID);
-                            if (result.Length > 0)
-                                tresult += result + "\r\n";
-                        }
-                        if (!string.IsNullOrEmpty(tresult))
-                            MessageBox.Show(tresult, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-                        if (ep != null)
-                        {
-                            VM_MainListHelper.Instance.RefreshHeirarchy(ep);
-                            DisplayFiles();
-                        }
-
-                    }                    
+                    string result = VM_ShokoServer.Instance.ShokoServices.DeleteVideoLocalPlaceAndFile(lv.VideoLocal_Place_ID);
+                    if (result.Length > 0)
+                        tresult += result + "\r\n";
                 }
+                if (!string.IsNullOrEmpty(tresult))
+                    MessageBox.Show(tresult, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+
+                if (ep == null) return;
+                VM_MainListHelper.Instance.RefreshHeirarchy(ep);
+                DisplayFiles();
             }
             catch (Exception ex)
             {
@@ -450,31 +442,27 @@ namespace Shoko.Desktop.UserControls
 
         private void CommandBinding_PlayVideo(object sender, ExecutedRoutedEventArgs e)
         {
-            Window parentWindow = Window.GetWindow(this);
-
             object obj = e.Parameter;
             if (obj == null) return;
 
             try
             {
-                if (obj.GetType() == typeof(VM_VideoDetailed))
-                {
-                    VM_VideoDetailed vid = obj as VM_VideoDetailed;
-                    //VM_AnimeEpisode_User ep = this.DataContext as VM_AnimeEpisode_User;
-                    bool force = true;
-                    if (MainWindow.videoHandler.DefaultPlayer.Player.ToString() !=
-                        Enum.GetName(typeof(VideoPlayer), VideoPlayer.WindowsDefault))
+                if (obj.GetType() != typeof(VM_VideoDetailed)) return;
+                VM_VideoDetailed vid = obj as VM_VideoDetailed;
+                //VM_AnimeEpisode_User ep = this.DataContext as VM_AnimeEpisode_User;
+                bool force = true;
+                if (vid == null) return;
+                if (MainWindow.videoHandler.DefaultPlayer.Player.ToString() !=
+                    Enum.GetName(typeof(VideoPlayer), VideoPlayer.WindowsDefault))
+                    if (vid.VideoLocal_ResumePosition > 0)
                     {
-                        if (vid.VideoLocal_ResumePosition > 0)
-                        {
-                            AskResumeVideo ask = new AskResumeVideo(vid.VideoLocal_ResumePosition);
-                            ask.Owner = Window.GetWindow(this);
-                            if (ask.ShowDialog() == true)
-                                force = false;
-                        }
+                        AskResumeVideo ask =
+                            new AskResumeVideo(vid.VideoLocal_ResumePosition) {Owner = Window.GetWindow(this)};
+                        if (ask.ShowDialog() == true)
+                            force = false;
                     }
-                    MainWindow.videoHandler.PlayVideo(vid, force);
-                }
+
+                MainWindow.videoHandler.PlayVideo(vid, force);
             }
             catch (Exception ex)
             {
@@ -484,30 +472,29 @@ namespace Shoko.Desktop.UserControls
 
         private void CommandBinding_PlayEpisode(object sender, ExecutedRoutedEventArgs e)
         {
-            Window parentWindow = Window.GetWindow(this);
-
             try
             {
                 VM_AnimeEpisode_User ep = DataContext as VM_AnimeEpisode_User;
+                if (ep == null) return;
                 ep.RefreshFilesForEpisode();
 
 
-                if (ep.FilesForEpisode.Count > 0)
-                {
-                    bool force = true;
-                    if (MainWindow.videoHandler.DefaultPlayer.Player.ToString() !=
-                        Enum.GetName(typeof(VideoPlayer), VideoPlayer.WindowsDefault))
+                if (ep.FilesForEpisode.Count <= 0) return;
+                bool force = true;
+                if (MainWindow.videoHandler.DefaultPlayer.Player.ToString() !=
+                    Enum.GetName(typeof(VideoPlayer), VideoPlayer.WindowsDefault))
+                    if (ep.FilesForEpisode[0].VideoLocal_ResumePosition > 0)
                     {
-                        if (ep.FilesForEpisode[0].VideoLocal_ResumePosition > 0)
-                        {
-                            AskResumeVideo ask = new AskResumeVideo(ep.FilesForEpisode[0].VideoLocal_ResumePosition);
-                            ask.Owner = Window.GetWindow(this);
-                            if (ask.ShowDialog() == true)
-                                force = false;
-                        }
+                        AskResumeVideo ask =
+                            new AskResumeVideo(ep.FilesForEpisode[0].VideoLocal_ResumePosition)
+                            {
+                                Owner = Window.GetWindow(this)
+                            };
+                        if (ask.ShowDialog() == true)
+                            force = false;
                     }
-                    MainWindow.videoHandler.PlayVideo(ep.FilesForEpisode[0], force);
-                }
+
+                MainWindow.videoHandler.PlayVideo(ep.FilesForEpisode[0], force);
             }
             catch (Exception ex)
             {
@@ -517,19 +504,13 @@ namespace Shoko.Desktop.UserControls
 
         private void CommandBinding_ToggleFileDetails(object sender, ExecutedRoutedEventArgs e)
         {
-            Window parentWindow = Window.GetWindow(this);
-
             object obj = e.Parameter;
             if (obj == null) return;
 
             try
             {
-                if (obj.GetType() == typeof(VM_VideoDetailed))
-                {
-                    VM_VideoDetailed vid = obj as VM_VideoDetailed;
-                    vid.ShowMoreDetails = !vid.ShowMoreDetails;
-                }
-
+                if (obj.GetType() != typeof(VM_VideoDetailed)) return;
+                if (obj is VM_VideoDetailed vid) vid.ShowMoreDetails = !vid.ShowMoreDetails;
             }
             catch (Exception ex)
             {
@@ -545,19 +526,17 @@ namespace Shoko.Desktop.UserControls
         {
             try
             {
-                Window parentWindow = Window.GetWindow(this);
-
                 object obj = e.Parameter;
                 if (obj == null) return;
 
                 if (obj.GetType() == typeof(VM_VideoDetailed))
                 {
-                    VM_VideoDetailed vid = obj as VM_VideoDetailed;
+                    if (!(obj is VM_VideoDetailed vid)) return;
                     VM_ShokoServer.Instance.ShokoServices.RehashFile(vid.VideoLocalID);
                 }
 
 
-                MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_INFO_AddedQueueCmds, Shoko.Commons.Properties.Resources.Done, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Commons.Properties.Resources.MSG_INFO_AddedQueueCmds, Commons.Properties.Resources.Done, MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
@@ -567,23 +546,17 @@ namespace Shoko.Desktop.UserControls
 
         private void CommandBinding_ForceAddMyList(object sender, ExecutedRoutedEventArgs e)
         {
-            Window parentWindow = Window.GetWindow(this);
-
             object obj = e.Parameter;
             if (obj == null) return;
 
             try
             {
-                if (obj.GetType() == typeof(VM_VideoDetailed))
-                {
-                    VM_VideoDetailed vid = obj as VM_VideoDetailed;
+                if (obj.GetType() != typeof(VM_VideoDetailed)) return;
+                if (!(obj is VM_VideoDetailed vid)) return;
 
-                    VM_ShokoServer.Instance.ShokoServices.ForceAddFileToMyList(vid.VideoLocal_Hash);
+                VM_ShokoServer.Instance.ShokoServices.ForceAddFileToMyList(vid.VideoLocal_Hash);
 
-                    MessageBox.Show(Shoko.Commons.Properties.Resources.EpisodeDetail_CommandQueued, Shoko.Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
-
-                }
-
+                MessageBox.Show(Commons.Properties.Resources.EpisodeDetail_CommandQueued, Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
@@ -596,26 +569,20 @@ namespace Shoko.Desktop.UserControls
         }
 
 
-
         private void CommandBinding_ForceUpdate(object sender, ExecutedRoutedEventArgs e)
         {
-            Window parentWindow = Window.GetWindow(this);
-
             object obj = e.Parameter;
             if (obj == null) return;
 
             try
             {
-                if (obj.GetType() == typeof(VM_VideoDetailed))
-                {
-                    VM_VideoDetailed vid = obj as VM_VideoDetailed;
+                if (obj.GetType() != typeof(VM_VideoDetailed)) return;
+                if (!(obj is VM_VideoDetailed vid)) return;
 
-                    VM_ShokoServer.Instance.ShokoServices.UpdateFileData(vid.VideoLocalID);
+                VM_ShokoServer.Instance.ShokoServices.UpdateFileData(vid.VideoLocalID);
 
-                    MessageBox.Show(Shoko.Commons.Properties.Resources.EpisodeDetail_CommandQueued, Shoko.Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
-
-                }
-
+                MessageBox.Show(Commons.Properties.Resources.EpisodeDetail_CommandQueued,
+                    Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
@@ -629,23 +596,21 @@ namespace Shoko.Desktop.UserControls
 
         private void CommandBinding_ToggleVariation(object sender, ExecutedRoutedEventArgs e)
         {
-            Window parentWindow = Window.GetWindow(this);
-
             object obj = e.Parameter;
             if (obj == null) return;
 
             try
             {
-                if (obj.GetType() == typeof(VM_VideoDetailed))
-                {
-                    VM_VideoDetailed vid = obj as VM_VideoDetailed;
+                if (obj.GetType() != typeof(VM_VideoDetailed)) return;
+                if (!(obj is VM_VideoDetailed vid)) return;
 
-                    vid.VideoLocal_IsVariation = vid.Variation ? 0 : 1;
+                vid.VideoLocal_IsVariation = vid.Variation ? 0 : 1;
 
-                    string result = VM_ShokoServer.Instance.ShokoServices.SetVariationStatusOnFile(vid.VideoLocalID, vid.Variation);
-                    if (result.Length > 0)
-                        MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                string result =
+                    VM_ShokoServer.Instance.ShokoServices.SetVariationStatusOnFile(vid.VideoLocalID, vid.Variation);
+                if (result.Length > 0)
+                    MessageBox.Show(result, Commons.Properties.Resources.Error, MessageBoxButton.OK,
+                        MessageBoxImage.Error);
             }
             catch (Exception ex)
             {
@@ -661,28 +626,22 @@ namespace Shoko.Desktop.UserControls
         {
             try
             {
-                VM_AnimeEpisode_User ep = DataContext as VM_AnimeEpisode_User;
-                if (ep != null)
-                {
-                    ep.RefreshFilesForEpisode();
-                    lbFiles.ItemsSource = ep.FilesForEpisode;
+                if (!(DataContext is VM_AnimeEpisode_User ep)) return;
+                ep.RefreshFilesForEpisode();
+                lbFiles.ItemsSource = ep.FilesForEpisode;
 
-                    if (!ep.HasFiles)
-                    {
-                        List<CL_AniDB_GroupStatus> relGroups = ep.ReleaseGroups;
-                        if (relGroups.Count > 0)
-                        {
-                            string grpList = "";
-                            foreach (CL_AniDB_GroupStatus rg in relGroups)
-                            {
-                                if (grpList.Length > 0)
-                                    grpList += ", ";
-                                grpList += rg.GroupName;
-                            }
-                            tbFileDetailsGroups.Text = Shoko.Commons.Properties.Resources.GroupsAvailableFrom + " " + grpList;
-                        }
-                    }
+                if (ep.HasFiles) return;
+                List<CL_AniDB_GroupStatus> relGroups = ep.ReleaseGroups;
+                if (relGroups.Count <= 0) return;
+                string grpList = "";
+                foreach (CL_AniDB_GroupStatus rg in relGroups)
+                {
+                    if (grpList.Length > 0)
+                        grpList += ", ";
+                    grpList += rg.GroupName;
                 }
+
+                tbFileDetailsGroups.Text = Commons.Properties.Resources.GroupsAvailableFrom + " " + grpList;
             }
             catch (Exception ex)
             {
@@ -695,20 +654,16 @@ namespace Shoko.Desktop.UserControls
             IsExpanded = !IsExpanded;
             IsCollapsed = !IsCollapsed;
 
-            if (IsExpanded)
-            {
-                DisplayFiles();
-            }
+            if (IsExpanded) DisplayFiles();
         }
     }
 
     public class ArithmeticConverter : IValueConverter
     {
-        private double _parsedParameter = 0;
-        private bool _isParsedParameter = false;
-        private static ArithmeticConverter _instance = new ArithmeticConverter();
+        private double _parsedParameter;
+        private bool _isParsedParameter;
 
-        public static ArithmeticConverter Instance => _instance;
+        public static ArithmeticConverter Instance { get; } = new ArithmeticConverter();
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -717,16 +672,17 @@ namespace Shoko.Desktop.UserControls
 
             try
             {
-                var doubleValue = (double)value;
-
-                if (_isParsedParameter == false)
+                if (value != null)
                 {
+                    var doubleValue = (double)value;
+
+                    if (_isParsedParameter) return doubleValue - _parsedParameter;
                     _isParsedParameter = true;
                     var strParameter = System.Convert.ToString(parameter);
                     double.TryParse(strParameter, out _parsedParameter);
-                }
 
-                return doubleValue - _parsedParameter;
+                    return doubleValue - _parsedParameter;
+                }
             }
             catch (Exception)
             {

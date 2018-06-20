@@ -42,23 +42,8 @@ namespace Shoko.Desktop.UserControls
 
             btnRandomSeries.Click += btnRandomSeries_Click;
             btnRandomEpisode.Click += btnRandomEpisode_Click;
-
-            lbGroups.PreviewMouseWheel += LbGroups_PreviewMouseWheel;
-
         }
 
-        private void LbGroups_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            try
-            {
-                foreach (ScrollViewer sv in Utils.GetScrollViewers(this))
-                    sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta / 3D);
-            }
-            catch
-            {
-                // ignore
-            }
-        }
         void btnRandomEpisode_Click(object sender, RoutedEventArgs e)
         {
             if (!(DataContext is VM_GroupFilter gf)) return;
