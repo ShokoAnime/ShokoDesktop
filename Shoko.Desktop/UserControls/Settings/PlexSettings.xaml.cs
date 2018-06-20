@@ -34,6 +34,8 @@ namespace Shoko.Desktop.UserControls.Settings
             
             cbServer.SelectionChanged += (sender, args) =>
             {
+                if (cbServer.SelectedItem == null) return;
+
                 VM_ShokoServer.Instance.ShokoPlex.UseDevice(VM_ShokoServer.Instance.CurrentUser.JMMUserID, cbServer.SelectedItem as MediaDevice);
                 _settings.UpdateDirectories();
             };
@@ -46,13 +48,24 @@ namespace Shoko.Desktop.UserControls.Settings
 
             this.DataContext = _settings = new VM_PlexSettings();
             worker = new BackgroundWorker();
-            worker.DoWork += (o, e) =>
+            worker.DoWork += async (o, e) =>
             {
-                do
-                {
-                    Thread.Sleep(TimeSpan.FromSeconds(10));
-                } while (VM_ShokoServer.Instance.CurrentUser == null);
+                do Thread.Sleep(TimeSpan.FromSeconds(10));
+                while (VM_ShokoServer.Instance.CurrentUser == null);
 
+                await RefreshAsync();
+            };
+            worker.RunWorkerAsync();
+
+            btnRefresh.Click += RefreshClick;
+        }
+
+        private async void RefreshClick(object sender, RoutedEventArgs e) => await RefreshAsync();
+
+        private async Task RefreshAsync()
+        {
+            await Task.Run(() =>
+            {
                 Application.Current.Dispatcher.Invoke(() => _settings.UpdateServers());
                 var currentServer = VM_ShokoServer.Instance.ShokoPlex.CurrentDevice(VM_ShokoServer.Instance.CurrentUser.JMMUserID);
                 if (currentServer == null) return;
@@ -67,12 +80,10 @@ namespace Shoko.Desktop.UserControls.Settings
 
                     lstPlexIDs.SelectedItems.Clear();
                     foreach (var itm in lstPlexIDs.Items)
-                        if (VM_ShokoServer.Instance.Plex_Sections.Contains(((Directory) itm).Key))
+                        if (VM_ShokoServer.Instance.Plex_Sections.Contains(((Directory)itm).Key))
                             lstPlexIDs.SelectedItems.Add(itm);
                 });
-                
-            };
-            worker.RunWorkerAsync();
+            });
         }
     }
 }
