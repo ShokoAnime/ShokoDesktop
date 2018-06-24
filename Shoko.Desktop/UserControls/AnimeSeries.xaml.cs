@@ -1171,7 +1171,7 @@ namespace Shoko.Desktop.UserControls
             LoadSeries();
         }
 
-        private void LoadSeries()
+        public void LoadSeries()
         {
             Cursor = Cursors.Wait;
 

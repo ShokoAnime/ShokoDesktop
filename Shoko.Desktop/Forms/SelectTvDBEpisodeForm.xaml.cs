@@ -1,10 +1,10 @@
-﻿using NLog;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using NLog;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel;
 using Shoko.Desktop.ViewModel.Server;
@@ -17,22 +17,12 @@ namespace Shoko.Desktop.Forms
     public partial class SelectTvDBEpisodeForm : Window
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private int AnimeID = 0;
-        private VM_AniDB_Anime Anime = null;
-        private VM_AnimeEpisode_User AnimeEpisode = null;
-        private VM_TvDBDetails TvDetails = null;
+        private VM_AniDB_Anime Anime;
+        private VM_AnimeEpisode_User AnimeEpisode;
+        private VM_TvDBDetails TvDetails;
 
         public ObservableCollectionEx<VM_TvDB_Episode> CurrentEpisodes { get; set; }
 
-
-        /*public static readonly DependencyProperty CurrentEpisodesProperty = DependencyProperty.Register("CurrentEpisodes",
-			typeof(List<TvDB_EpisodeVM>), typeof(SelectTvDBEpisodeForm), new UIPropertyMetadata(null, null));
-
-		public List<TvDB_EpisodeVM> CurrentEpisodes
-		{
-			get { return (List<TvDB_EpisodeVM>)GetValue(CurrentEpisodesProperty); }
-			set { SetValue(CurrentEpisodesProperty, value); }
-		}*/
 
         public SelectTvDBEpisodeForm()
         {
@@ -41,8 +31,8 @@ namespace Shoko.Desktop.Forms
             CurrentEpisodes = new ObservableCollectionEx<VM_TvDB_Episode>();
 
 
-            btnClose.Click += new RoutedEventHandler(btnClose_Click);
-            cboSeason.SelectionChanged += new SelectionChangedEventHandler(cboSeason_SelectionChanged);
+            btnClose.Click += btnClose_Click;
+            cboSeason.SelectionChanged += cboSeason_SelectionChanged;
         }
 
 
@@ -110,7 +100,6 @@ namespace Shoko.Desktop.Forms
 
         public void Init(VM_AnimeEpisode_User ep, VM_AniDB_Anime anime)
         {
-            AnimeID = anime.AnimeID;
             Anime = anime;
             AnimeEpisode = ep;
 
@@ -124,7 +113,7 @@ namespace Shoko.Desktop.Forms
                 uids.Add(xref.TvDBID);
             }
 
-            cboSeries.SelectionChanged += new SelectionChangedEventHandler(cboSeries_SelectionChanged);
+            cboSeries.SelectionChanged += cboSeries_SelectionChanged;
 
             if (cboSeries.Items.Count > 0)
                 cboSeries.SelectedIndex = 0;
@@ -132,7 +121,7 @@ namespace Shoko.Desktop.Forms
 
         private void PopulateSeasons(VM_CrossRef_AniDB_TvDBV2 xref)
         {
-            cboSeason.SelectionChanged -= new SelectionChangedEventHandler(cboSeason_SelectionChanged);
+            cboSeason.SelectionChanged -= cboSeason_SelectionChanged;
 
 
             cboSeason.Items.Clear();
@@ -145,7 +134,7 @@ namespace Shoko.Desktop.Forms
             foreach (int season in TvDetails.DictTvDBSeasons.Keys)
                 cboSeason.Items.Add(season);
 
-            cboSeason.SelectionChanged += new SelectionChangedEventHandler(cboSeason_SelectionChanged);
+            cboSeason.SelectionChanged += cboSeason_SelectionChanged;
 
             if (cboSeason.Items.Count > 0)
                 cboSeason.SelectedIndex = 0;

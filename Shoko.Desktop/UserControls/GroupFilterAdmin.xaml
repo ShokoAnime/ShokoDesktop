@@ -88,10 +88,7 @@
 
             </ResourceDictionary>
         </Grid.Resources>
-        
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -272,7 +269,7 @@
                 <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=PreviewFilter}" Margin="10,10,0,10" FontWeight="DemiBold"></TextBlock>
 
                 <ListBox BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="10,0,0,10"
-                         VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
+                         VirtualizingStackPanel.IsVirtualizing="False" ScrollViewer.CanContentScroll="False"
                          ItemTemplate="{DynamicResource MainList_AnimeGroupSimpleTemplate}" 
                          ItemContainerStyle="{DynamicResource ListBoxItemStyleFolders}"
                          ItemsSource="{Binding Source={x:Static local:VM_MainListHelper.Instance},Path=ViewGroupsForms}"
