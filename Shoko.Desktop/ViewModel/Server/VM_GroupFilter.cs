@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Web.Script.Serialization;
 using System.Windows;
+using System.Windows.Threading;
 using System.Xml.Serialization;
 using ImpromptuInterface;
 using Newtonsoft.Json;
@@ -140,7 +141,8 @@ namespace Shoko.Desktop.ViewModel.Server
                         }
                     }
                 }
-                _sortingCriteriaList.ReplaceRange(ls);
+                
+                Dispatcher.CurrentDispatcher.Invoke(() => _sortingCriteriaList.ReplaceRange(ls));
                 this.OnPropertyChanged(() => SortCriteriaList);
                 base.SortingCriteria = value;
             }
