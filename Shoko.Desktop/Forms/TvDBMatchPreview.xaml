@@ -135,7 +135,7 @@
                         <Border Width="20" Height="20" Background="{Binding Path=Green, RelativeSource={RelativeSource FindAncestor, AncestorType=forms:TvDBMatchPreview}}" BorderBrush="LightGray" BorderThickness="1" />
                         <TextBlock VerticalAlignment="Center" Text="Dates and Titles Match" Margin="5,0,20,0"/>
                         <Border Width="20" Height="20" Background="{Binding Path=Orange, RelativeSource={RelativeSource FindAncestor, AncestorType=forms:TvDBMatchPreview}}" BorderBrush="LightGray" BorderThickness="1" />
-                        <TextBlock VerticalAlignment="Center" Text="Titles Match" Margin="5,0,20,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="Dates or Titles Match" Margin="5,0,20,0"/>
                         <Border Width="20" Height="20" Background="{Binding Path=Red, RelativeSource={RelativeSource FindAncestor, AncestorType=forms:TvDBMatchPreview}}" BorderBrush="LightGray" BorderThickness="1" />
                         <TextBlock VerticalAlignment="Center" Text="Best Guess from the Remaining Episodes" Margin="5,0,0,0"/>
                     </StackPanel>
