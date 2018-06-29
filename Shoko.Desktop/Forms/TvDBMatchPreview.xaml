@@ -4,8 +4,8 @@
         xmlns:forms="clr-namespace:Shoko.Desktop.Forms"
         xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
         xmlns:wpfHelpers="clr-namespace:Shoko.Desktop.WPFHelpers"
-        Title="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_PreviewTvDB}" Width="750" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/ShokoDesktop;component/Images/16_switch.png"
-        WindowStartupLocation="CenterOwner" Topmost="False" SizeToContent="Height">
+        Title="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_PreviewTvDB}" Width="768" ShowInTaskbar="False" WindowStyle="SingleBorderWindow" Icon="/ShokoDesktop;component/Images/16_switch.png"
+        WindowStartupLocation="CenterOwner" Topmost="False" VerticalAlignment="Stretch">
     <Grid>
         <Grid.Resources>
 
@@ -69,7 +69,7 @@
         
                 <!-- anidb items -->
                 
-                <DataGrid Name="dgAniDB" Grid.Row="1" Grid.Column="0" Margin="5,5,5,5" MaxHeight="500" BorderThickness="1" BorderBrush="LightGray" Background="White"
+                <DataGrid Name="dgAniDB" Grid.Row="1" Grid.Column="0" Margin="5,5,5,5" BorderThickness="1" BorderBrush="LightGray" Background="White"
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"
                         ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
                         ScrollViewer.ScrollChanged="anidb_ScrollChanged"
@@ -99,7 +99,7 @@
                 
                 <!-- tvdb items -->
         
-                <DataGrid Name="dgTvDB" Grid.Row="1" Grid.Column="1" Margin="5,5,5,5" MaxHeight="500" BorderThickness="1" BorderBrush="LightGray" Background="White"
+                <DataGrid Name="dgTvDB" Grid.Row="1" Grid.Column="1" Margin="5,5,5,5" BorderThickness="1" BorderBrush="LightGray" Background="White"
                           HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"
                           ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
                           ScrollViewer.ScrollChanged="tvdb_ScrollChanged"
