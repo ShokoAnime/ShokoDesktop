@@ -290,8 +290,8 @@ namespace Shoko.Desktop.Forms
                     case MatchRating.Good:
                         return TvDBMatchPreview.Green;
                     case MatchRating.Mkay:
-                        return TvDBMatchPreview.Orange;
                     case MatchRating.Bad:
+                        return TvDBMatchPreview.Orange;
                     case MatchRating.Ugly:
                     case MatchRating.SarahJessicaParker:
                         return TvDBMatchPreview.Red;
