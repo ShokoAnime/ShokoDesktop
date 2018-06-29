@@ -922,10 +922,11 @@ namespace Shoko.Desktop.UserControls
             try
             {
                 Cursor = Cursors.Wait;
-                VM_ShokoServer.Instance.ShokoServices.UpdateAnimeData(ser.AniDB_ID);
+                var newAnimeData = VM_ShokoServer.Instance.ShokoServices.GetUpdatedAnimeData(ser.AniDB_ID) as VM_AniDB_AnimeDetailed;
 
                 // refresh the data
-                VM_MainListHelper.Instance.UpdateHeirarchy(ser);
+                ser.AniDBAnime = newAnimeData;
+                ser.Refresh();
             }
             catch (Exception ex)
             {

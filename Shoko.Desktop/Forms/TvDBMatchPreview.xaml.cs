@@ -214,19 +214,25 @@ namespace Shoko.Desktop.Forms
 
         private void anidb_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-            ScrollViewer _listboxScrollViewer1 = GetDescendantByType(lbAniDB, typeof(ScrollViewer)) as ScrollViewer;
-            ScrollViewer _listboxScrollViewer2 = GetDescendantByType(lbTvDB, typeof(ScrollViewer)) as ScrollViewer;
+            ScrollViewer _listboxScrollViewer1 = GetDescendantByType(dgAniDB, typeof(ScrollViewer)) as ScrollViewer;
+            ScrollViewer _listboxScrollViewer2 = GetDescendantByType(dgTvDB, typeof(ScrollViewer)) as ScrollViewer;
             if (_listboxScrollViewer1 != null && _listboxScrollViewer2 != null)
                 _listboxScrollViewer2.ScrollToVerticalOffset(_listboxScrollViewer1.VerticalOffset);
         }
 
         private void tvdb_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-            ScrollViewer _listboxScrollViewer1 = GetDescendantByType(lbAniDB, typeof(ScrollViewer)) as ScrollViewer;
-            ScrollViewer _listboxScrollViewer2 = GetDescendantByType(lbTvDB, typeof(ScrollViewer)) as ScrollViewer;
+            ScrollViewer _listboxScrollViewer1 = GetDescendantByType(dgAniDB, typeof(ScrollViewer)) as ScrollViewer;
+            ScrollViewer _listboxScrollViewer2 = GetDescendantByType(dgTvDB, typeof(ScrollViewer)) as ScrollViewer;
             if (_listboxScrollViewer1 != null && _listboxScrollViewer2 != null)
                 _listboxScrollViewer1.ScrollToVerticalOffset(_listboxScrollViewer2.VerticalOffset);
         }
+
+        public static Brush Green { get; } = new SolidColorBrush(System.Windows.Media.Color.FromRgb(178, 255, 186));
+        public static Brush Lavender { get; } = new SolidColorBrush(System.Windows.Media.Color.FromRgb(236, 188, 255));
+        public static Brush Red { get; } = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 198, 198));
+        public static Brush Orange { get; } = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 223, 178));
+        public static Brush White { get; } = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
     }
 
     public class VM_CrossRef_AniDB_TvDB_Episode : CrossRef_AniDB_TvDB_Episode
@@ -250,7 +256,22 @@ namespace Shoko.Desktop.Forms
 
         public bool GoodRating => MatchRating == MatchRating.Good;
 
-        public string AniDB_Type => aniep.EpisodeType.ToString();
+        public string AniDB_Type
+        {
+            get
+            {
+                switch (aniep.EpisodeType)
+                {
+                    case 1: return @"EP";
+                    case 2: return @"C";
+                    case 3: return @"S";
+                    case 4: return @"T";
+                    case 5: return @"P";
+                    default: return @"O";
+                }
+            }
+        }
+
         public string AniDB_Number => aniep.EpisodeNumber.ToString();
         public string AniDB_Name => aniep.EpisodeName;
 
@@ -265,21 +286,20 @@ namespace Shoko.Desktop.Forms
                 switch (MatchRating)
                 {
                     case MatchRating.UserVerified:
+                        return TvDBMatchPreview.Lavender;
                     case MatchRating.Good:
-                        return Green;
+                        return TvDBMatchPreview.Green;
+                    case MatchRating.Mkay:
+                        return TvDBMatchPreview.Orange;
                     case MatchRating.Bad:
                     case MatchRating.Ugly:
                     case MatchRating.SarahJessicaParker:
-                        return Red;
+                        return TvDBMatchPreview.Red;
                 }
 
-                return White;
+                return TvDBMatchPreview.White;
             }
         }
-
-        private static readonly Brush Green = new SolidColorBrush(System.Windows.Media.Color.FromRgb(178, 255, 186));
-        private static readonly Brush Red = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 198, 198));
-        private static readonly Brush White = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
     }
 }
 
