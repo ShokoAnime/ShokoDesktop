@@ -277,10 +277,10 @@
                                 <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=LatestEp_Anime}" Foreground="Black"
                                            VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="0"/>
                                 <TextBlock Text="{Binding Path=AniDBAnime.AniDBAnime.LatestEpisodeNumber}" Foreground="Black" FontWeight="Bold"
-                                           VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="0" Margin="8,0,0,0"/>
+                                           VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="0" Margin="16,0,0,0"/>
                                 <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MissingEpisodeCount}" Foreground="Black"
                                            VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1"/>
-                                <TextBlock Text="{Binding Path=MissingEpisodeCountGroups}" Foreground="Black" FontWeight="Bold" Margin="8,0,0,0"
+                                <TextBlock Text="{Binding Path=MissingEpisodeCountGroups}" Foreground="Black" FontWeight="Bold" Margin="16,0,0,0"
                                            VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="1"/>
                             </Grid>
                         </StackPanel>

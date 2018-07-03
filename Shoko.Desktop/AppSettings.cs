@@ -510,7 +510,7 @@ namespace Shoko.Desktop
             get
             {
                 string val = Get("DisplayHeight_DashImage");
-                if (!int.TryParse(val, out var ival)) return 150; // default value
+                if (!int.TryParse(val, out var ival)) return 200; // default value
                 if (ival < 30)
                     return 30;
 
@@ -979,7 +979,7 @@ namespace Shoko.Desktop
             get
             {
                 string val = Get("Dash_WatchNext_Height");
-                if (!int.TryParse(val, out var ival)) return 150; // default value
+                if (!int.TryParse(val, out var ival)) return 200; // default value
                 if (ival < 30)
                     return 30;
 
@@ -997,7 +997,7 @@ namespace Shoko.Desktop
             get
             {
                 string val = Get("Dash_RecentAdditions_Height");
-                if (!int.TryParse(val, out var ival)) return 150; // default value
+                if (!int.TryParse(val, out var ival)) return 200; // default value
                 if (ival < 30)
                     return 30;
 
@@ -1041,7 +1041,7 @@ namespace Shoko.Desktop
             get
             {
                 string val = Get("Dash_RecentlyWatchedEp_Height");
-                if (!int.TryParse(val, out var ival)) return 150; // default value
+                if (!int.TryParse(val, out var ival)) return 200; // default value
                 if (ival < 30)
                     return 30;
 
@@ -1074,7 +1074,7 @@ namespace Shoko.Desktop
             get
             {
                 string val = Get("Dash_MissingEps_Height");
-                if (!int.TryParse(val, out var ival)) return 150; // default value
+                if (!int.TryParse(val, out var ival)) return 200; // default value
                 if (ival < 30)
                     return 30;
 
@@ -1119,7 +1119,7 @@ namespace Shoko.Desktop
             get
             {
                 string val = Get("Dash_MiniCalendar_Height");
-                if (!int.TryParse(val, out var ival)) return 150; // default value
+                if (!int.TryParse(val, out var ival)) return 200; // default value
                 if (ival < 30)
                     return 30;
 
@@ -1137,7 +1137,7 @@ namespace Shoko.Desktop
             get
             {
                 string val = Get("Dash_RecWatch_Height");
-                if (!int.TryParse(val, out var ival)) return 150; // default value
+                if (!int.TryParse(val, out var ival)) return 200; // default value
                 if (ival < 30)
                     return 30;
 
@@ -1169,7 +1169,7 @@ namespace Shoko.Desktop
             get
             {
                 string val = Get("Dash_RecDownload_Height");
-                if (!int.TryParse(val, out var ival)) return 150; // default value
+                if (!int.TryParse(val, out var ival)) return 200; // default value
                 if (ival < 30)
                     return 30;
 
@@ -1201,7 +1201,7 @@ namespace Shoko.Desktop
             get
             {
                 string val = Get("Dash_TraktFriends_Height");
-                if (!int.TryParse(val, out var ival)) return 150; // default value
+                if (!int.TryParse(val, out var ival)) return 200; // default value
                 if (ival < 30)
                     return 30;
 
@@ -1255,7 +1255,7 @@ namespace Shoko.Desktop
             get
             {
                 string val = Get("SeriesGroup_Image_Height");
-                if (!int.TryParse(val, out var ival)) return 150; // default value
+                if (!int.TryParse(val, out var ival)) return 200; // default value
                 if (ival < 80)
                     return 80;
 
