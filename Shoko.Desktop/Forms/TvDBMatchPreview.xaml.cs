@@ -144,7 +144,6 @@ namespace Shoko.Desktop.Forms
 
         void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = false;
             Close();
         }
 
