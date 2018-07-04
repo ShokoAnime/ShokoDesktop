@@ -10,7 +10,18 @@
         <viewModel:VM_PlexSettings/>
     </UserControl.DataContext>
     <Grid>
-        <Grid>
+        <Grid Grid.Column="0" Grid.Row="0" Visibility="{Binding Path=IsAuthenticated, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=LinkPlex}" Padding="5,5,5,5"/>
+        </Grid>
+        <Grid Visibility="{Binding Path=IsAuthenticated, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
@@ -23,10 +34,10 @@
             </Grid.RowDefinitions>
 
 
-            <TextBlock Grid.Column="0" VerticalAlignment="Center" Grid.Row="0" Text="Plex Host" Margin="5,0,0,5"/>
+            <TextBlock Grid.Column="0" VerticalAlignment="Center" Grid.Row="0" Text="Plex Host" Margin="5,0,0,5" />
             <!--<TextBox Grid.Column="1" MinWidth="200" Grid.Row="0" Text="{Binding Source={x:Static viewModel:VM_ShokoServer.Instance},Path=Plex_ServerHost}" Margin="10,0,0,5" x:Name="txtPlexHost"/>-->
 
-            <ComboBox x:Name="cbServer" Grid.Column="1" MinWidth="200" Grid.Row="0" ItemsSource="{Binding Path=PlexDevices}" Margin="10,0,0,5">
+            <ComboBox x:Name="cbServer" Grid.Column="1" MinWidth="200" Grid.Row="0" ItemsSource="{Binding Path=PlexDevices}" Margin="10,0,0,5" >
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <DockPanel>
