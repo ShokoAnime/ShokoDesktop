@@ -6,6 +6,7 @@ using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Shoko.Commons.Utils;
+using Shoko.Desktop.WPFHelpers;
 using Shoko.Models.Client;
 using Shoko.Models.Enums;
 
@@ -27,7 +28,7 @@ namespace Shoko.Desktop.ViewModel.Server
                 {
                     if (Icon == null || Misc.GetImageFormat(Icon) == ImageFormatEnum.unknown)
                     {
-                        return new BitmapImage(new Uri("/Images/LoadingError.png"));
+                        return new BitmapImage(ImageSourceHelper.UriLoadingError);
                     }
 
                     MemoryStream ms = new MemoryStream(Icon);

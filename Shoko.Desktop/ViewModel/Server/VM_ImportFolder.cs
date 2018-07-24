@@ -7,6 +7,7 @@ using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Shoko.Commons;
 using Shoko.Desktop.Utilities;
+using Shoko.Desktop.WPFHelpers;
 using Shoko.Models.Client;
 using Shoko.Models.Server;
 
@@ -46,7 +47,7 @@ namespace Shoko.Desktop.ViewModel.Server
                 VM_CloudAccount v = VM_ShokoServer.Instance.FolderProviders.FirstOrDefault(a => a.CloudID == (CloudID ?? 0));
                 if (v != null)
                     return v.Bitmap;
-                return new BitmapImage(new Uri("/Images/LoadingError.png", UriKind.Relative));
+                return new BitmapImage(ImageSourceHelper.UriLoadingError);
             }
         }
 
