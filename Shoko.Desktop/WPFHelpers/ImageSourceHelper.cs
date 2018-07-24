@@ -11,6 +11,8 @@ namespace Shoko.Desktop.WPFHelpers
 {
     public static class ImageSourceHelper
     {
+        public static readonly Uri UriLoadingError = new Uri("/Images/LoadingError.png", UriKind.Relative);
+
         public static ImageSource GetImageSource(Uri uri, Dispatcher dispatcher)
         {
             if (uri == null) return null;
@@ -23,7 +25,7 @@ namespace Shoko.Desktop.WPFHelpers
                 }
                 catch
                 {
-                    bi = new BitmapImage(new Uri("/Images/LoadingError.png", UriKind.Relative));
+                    bi = new BitmapImage(UriLoadingError);
                 }
             });
             return bi;
@@ -45,7 +47,7 @@ namespace Shoko.Desktop.WPFHelpers
                 }
                 catch
                 {
-                    bi = new BitmapImage(new Uri("/Images/LoadingError.png", UriKind.Relative));
+                    bi = new BitmapImage(UriLoadingError);
                 }
 
             });
@@ -56,7 +58,7 @@ namespace Shoko.Desktop.WPFHelpers
         {
             if (data != null && Misc.GetImageFormat(data) != ImageFormatEnum.unknown)
                 return GetImageSource(new MemoryStream(data), dispatcher);
-            var bi = new BitmapImage(new Uri("/Images/LoadingError.png", UriKind.Relative));
+            var bi = new BitmapImage(UriLoadingError);
             return bi;
         }
     }

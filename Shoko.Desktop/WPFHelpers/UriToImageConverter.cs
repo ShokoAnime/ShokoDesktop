@@ -21,7 +21,7 @@ namespace Shoko.Desktop.WPFHelpers
             {
                 if (value == null)
                 {
-                    bi = new BitmapImage(new Uri("/Images/LoadingError.png", UriKind.Relative));
+                    bi = new BitmapImage(ImageSourceHelper.UriLoadingError);
                     logger.Error($"Unable to load image - A null or empty path was used");
                     return bi;
                 }
@@ -31,7 +31,7 @@ namespace Shoko.Desktop.WPFHelpers
             {
                 try
                 {
-                    bi = new BitmapImage(new Uri("/Images/LoadingError.png", UriKind.Relative));
+                    bi = new BitmapImage(ImageSourceHelper.UriLoadingError);
                     logger.Error($"Unable to load {value} - It is not a valid image.");
                 }
                 catch
