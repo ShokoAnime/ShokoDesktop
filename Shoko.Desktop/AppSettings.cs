@@ -584,7 +584,7 @@ namespace Shoko.Desktop
                 string val = Get("DisplaySeriesSimple");
                 if (bool.TryParse(val, out var bval))
                     return bval;
-                return true; // default value
+                return false; // default value
             }
             set => Set("DisplaySeriesSimple", value.ToString());
         }
@@ -1587,7 +1587,7 @@ namespace Shoko.Desktop
         }
 
         public static int DashMetro_RandomSeries_Items
-        {
+        {o
             get
             {
                 string val = Get("DashMetro_RandomSeries_Items");
