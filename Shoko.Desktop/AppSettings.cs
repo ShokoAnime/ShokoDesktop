@@ -1587,7 +1587,7 @@ namespace Shoko.Desktop
         }
 
         public static int DashMetro_RandomSeries_Items
-        {o
+        {
             get
             {
                 string val = Get("DashMetro_RandomSeries_Items");
