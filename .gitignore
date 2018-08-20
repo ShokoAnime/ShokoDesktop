@@ -183,7 +183,7 @@ UpgradeLog*.htm
 FakesAssemblies/
 *.user
 JMMClient/Images/Unused/
-Installers/Output/
+Installer/Output/
 /.vs
 
 # Jetbrains Files
