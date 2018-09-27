@@ -11,6 +11,7 @@ namespace Shoko.Desktop.ViewModel.Helpers
 {
     public class GroupSearchFilterHelper
     {
+
         public static bool EvaluateGroupTextSearch(VM_AnimeGroup_User grp, string filterText)
         {
             if (string.IsNullOrEmpty(filterText)) return true;
@@ -36,11 +37,23 @@ namespace Shoko.Desktop.ViewModel.Helpers
             return false;
         }
 
+        /// <summary>
+        /// checks if a given string is actually just a number. optimized version provided by cazzar
+        /// </summary>
+        /// <param name="str">potential number to check</param>
+        /// <returns></returns>
+        private static bool IsDigitsOnly(string s) => long.TryParse(s, out long _);
+
         public static bool EvaluateSeriesTextSearch(VM_AnimeSeries_User series, string filterText, SeriesSearchType searchType = SeriesSearchType.Everything)
         {
             if (string.IsNullOrEmpty(filterText)) return true;
             
             if (series == null) return false;
+
+            if (IsDigitsOnly((filterText)))
+            {
+                return (Convert.ToInt32(filterText) == series.AniDBAnime.AniDBAnime.AnimeID);
+            }
 
             if (!string.IsNullOrEmpty(series.SeriesNameOverride) && series.SeriesNameOverride.FuzzyMatches(filterText))
                 return true;
