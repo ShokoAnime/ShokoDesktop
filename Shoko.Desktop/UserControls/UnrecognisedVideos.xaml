@@ -30,7 +30,7 @@
 
             <!-- SimpleAnimeSeriesTemplate -->
             <DataTemplate x:Key="SimpleAnimeSeriesTemplate">
-                <TextBlock Text="{Binding Path=SeriesName}" Margin="3" />
+                <TextBlock Text="{Binding Path=SeriesName_with_aID}" Margin="3" />
             </DataTemplate>
 
             <!-- SimpleAnimeEpisodeTemplate -->
