@@ -139,6 +139,7 @@ namespace Shoko.Desktop.UserControls
 
 
             lbSeries.SelectionChanged += new SelectionChangedEventHandler(lbSeries_SelectionChanged);
+            lbSeries.MouseDoubleClick += new MouseButtonEventHandler(lbSeries_MouseDoubleClick);
             cboEpisodes.SelectionChanged += new SelectionChangedEventHandler(cboEpisodes_SelectionChanged);
             dgVideos.SelectionChanged += DgVideos_SelectionChanged;
             txtStartEpNum.TextChanged += new TextChangedEventHandler(txtStartEpNum_TextChanged);
@@ -836,6 +837,13 @@ namespace Shoko.Desktop.UserControls
             {
                 Utils.ShowErrorMessage(ex);
             }
+        }
+
+        void lbSeries_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            VM_AnimeSeries_User item = (VM_AnimeSeries_User)lbSeries.SelectedItems[0];
+            Process.Start(item.AniDBAnime.AniDBAnime.AniDB_SiteURL);
+
         }
 
         private void SetConfirmDetails()
