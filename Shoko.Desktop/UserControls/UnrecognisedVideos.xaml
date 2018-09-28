@@ -451,9 +451,9 @@
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=NewSeries}" Margin="0,0,0,0"/>
                             </StackPanel>
                         </Button>
+                        <!-- ToDo: localize via commons -->
+                        <Label Name="lblDoubleClickHint" VerticalAlignment="Center" Content="Note: Double click on any item opens their AniDB page" Margin="2,0,0,0"/>
                     </StackPanel>
-
-
 
                 </StackPanel>
 
