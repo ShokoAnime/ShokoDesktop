@@ -14,6 +14,7 @@ namespace Shoko.Desktop.ViewModel.Helpers
 
         public static bool EvaluateGroupTextSearch(VM_AnimeGroup_User grp, string filterText)
         {
+            filterText = filterText.Trim();
             if (string.IsNullOrEmpty(filterText)) return true;
 
             if (grp == null)
@@ -39,18 +40,20 @@ namespace Shoko.Desktop.ViewModel.Helpers
 
         /// <summary>
         /// checks if a given string is actually just a number. optimized version provided by cazzar
+        /// even faster version from da3dsoul
         /// </summary>
-        /// <param name="str">potential number to check</param>
+        /// <param name="s">potential number to check</param>
         /// <returns></returns>
-        private static bool IsDigitsOnly(string s) => long.TryParse(s, out long _);
+        private static bool IsDigitsOnly(string s) => s.All(c => c <= '9' && c >= '0');
 
-        public static bool EvaluateSeriesTextSearch(VM_AnimeSeries_User series, string filterText, SeriesSearchType searchType = SeriesSearchType.Everything)
+        public static bool EvaluateSeriesTextSearch(VM_AnimeSeries_User series, string filterText, SeriesSearchType searchType = SeriesSearchType.TitleOnly)
         {
+            filterText = filterText.Trim();
             if (string.IsNullOrEmpty(filterText)) return true;
             
             if (series == null) return false;
 
-            if (IsDigitsOnly((filterText)))
+            if (IsDigitsOnly(filterText))
             {
                 return (Convert.ToInt32(filterText) == series.AniDBAnime.AniDBAnime.AnimeID);
             }
@@ -61,8 +64,9 @@ namespace Shoko.Desktop.ViewModel.Helpers
             return EvaluateAnimeTextSearch(series.AniDBAnime, filterText, searchType);
         }
 
-        public static bool EvaluateAnimeTextSearch(CL_AniDB_AnimeDetailed anime, string filterText, SeriesSearchType searchType)
+        public static bool EvaluateAnimeTextSearch(CL_AniDB_AnimeDetailed anime, string filterText, SeriesSearchType searchType = SeriesSearchType.TitleOnly)
         {
+            filterText = filterText.Trim();
             if (string.IsNullOrEmpty(filterText)) return true;
 
             if (anime == null) return false;
@@ -82,13 +86,9 @@ namespace Shoko.Desktop.ViewModel.Helpers
             return false;
         }
 
-        public static bool EvaluateAnimeTextSearch(CL_AniDB_AnimeDetailed anime, string filterText)
+        public static bool EvaluateAnimeTextSearch(VM_AniDB_Anime anime, string filterText, SeriesSearchType searchType = SeriesSearchType.TitleOnly)
         {
-            return EvaluateAnimeTextSearch(anime, filterText, SeriesSearchType.Everything);
-        }
-
-        public static bool EvaluateAnimeTextSearch(VM_AniDB_Anime anime, string filterText, SeriesSearchType searchType = SeriesSearchType.Everything)
-        {
+            filterText = filterText.Trim();
             if (string.IsNullOrEmpty(filterText)) return true;
             if (anime == null) return false;
 

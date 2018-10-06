@@ -317,7 +317,7 @@ namespace Shoko.Desktop.ViewModel
 
             if (SearchResultCount > 100) return false;
 
-            var passed = GroupSearchFilterHelper.EvaluateSeriesTextSearch(ser, SeriesSearchTextBox.Text.Replace("'", "`"), SerSearchType);
+            var passed = GroupSearchFilterHelper.EvaluateSeriesTextSearch(ser, SeriesSearchTextBox.Text, SerSearchType);
 
             if (passed)
                 SearchResultCount++;
