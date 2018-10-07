@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Controls;
 using NLog;
 using Shoko.Desktop.Enums;
@@ -68,9 +69,33 @@ namespace Shoko.Desktop.UserControls.Settings
             }
 
             cboDefaultPlayer.SelectionChanged += new SelectionChangedEventHandler(cboDefaultPlayer_SelectionChanged);
+            
+            cmbPreferredMPC.Items.Clear();
+            cmbPreferredMPC.Items.Add("MPC");
+            cmbPreferredMPC.Items.Add("MPC-HC");
+            cmbPreferredMPC.Items.Add("MPC-BE");
+
+            switch (AppSettings.PreferredMPC)
+            {
+                case "MPC":
+                    cmbPreferredMPC.SelectedIndex = 0;
+                    break;
+                case "MPC-HC":
+                    cmbPreferredMPC.SelectedIndex = 1;
+                    break;
+                case "MPC-BE":
+                    cmbPreferredMPC.SelectedIndex = 2;
+                    break;
+            }
+            cmbPreferredMPC.SelectionChanged += CmbPreferredMpcOnSelectionChanged;
             MainWindow.videoHandler.Init();
             RefreshConfigured();
 
+        }
+
+        private void CmbPreferredMpcOnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            AppSettings.PreferredMPC = cmbPreferredMPC.Text;
         }
 
         public Visibility DefaultConfigured
@@ -114,15 +139,16 @@ namespace Shoko.Desktop.UserControls.Settings
         private void RefreshConfigured()
         {
             TextDefaultConfigured.Visibility = DefaultConfigured;
-            TextDefaultConfigured.Text = Shoko.Commons.Properties.Resources.VideoPlayer_Configured + " (" + ActivePlayer + ")";
+            TextDefaultConfigured.Text = Commons.Properties.Resources.VideoPlayer_Configured + " (" + ActivePlayer + ")";
             TextDefaultNotConfigured.Visibility = DefaultNotConfigured;
+            
         }
 
         void chkAutoSetWatched_Click(object sender, RoutedEventArgs e)
         {
             VM_UserSettings.Instance.VideoAutoSetWatched = chkAutoSetWatched.IsChecked.Value;
             MainWindow.videoHandler.Init();
-        }      
+        }
 
         void chkMpcWebUiIntegration_Click(object sender, RoutedEventArgs e)
         {

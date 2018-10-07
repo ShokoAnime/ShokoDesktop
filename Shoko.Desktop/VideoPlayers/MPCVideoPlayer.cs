@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Microsoft.Win32;
 using Shoko.Desktop.Enums;
+using Shoko.Desktop.UserControls.Settings;
 using Shoko.Desktop.Utilities;
 
 namespace Shoko.Desktop.VideoPlayers
@@ -97,6 +100,9 @@ namespace Shoko.Desktop.VideoPlayers
                 "MPC-BE",
             };
             PlayerPath = Utils.CheckSysPath(playersexenames);
+            List<string> available = new List<string>();
+            string preferred = AppSettings.PreferredMPC;
+            string preferred64 = preferred + "64";
             if (string.IsNullOrEmpty(PlayerPath))
             {
                 for (int x = 0; x < registryplaces.Length; x += 2)
@@ -106,16 +112,25 @@ namespace Shoko.Desktop.VideoPlayers
                     {
                         foreach (string subdir in subdirs)
                         {
-                            string subdirpath = (!string.IsNullOrEmpty(subdir)) ? Path.Combine(path, subdir) : path;
+                            string subdirpath = !string.IsNullOrEmpty(subdir) ? Path.Combine(path, subdir) : path;
                             foreach (string pname in playersexenames)
                             {
                                 string npath = Path.Combine(subdirpath, pname);
                                 if (File.Exists(npath))
                                 {
-                                    PlayerPath = npath;
-                                    break;
+                                    
+                                    if (preferred.Equals(subdir) ||
+                                        preferred64.Equals(subdir))
+                                    {
+                                        PlayerPath = npath;
+                                        break;
+                                    }
+                                    available.Add(npath);
                                 }
+
+                                goto Label;
                             }
+                            Label:
                             if (!string.IsNullOrEmpty(PlayerPath))
                                 break;
                         }
@@ -123,6 +138,8 @@ namespace Shoko.Desktop.VideoPlayers
                     if (!string.IsNullOrEmpty(PlayerPath))
                         break;
                 }
+
+                if (string.IsNullOrEmpty(PlayerPath)) PlayerPath = available.FirstOrDefault();
             }
             if (string.IsNullOrEmpty(PlayerPath))
             {

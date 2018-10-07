@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
+             xmlns:settings="clr-namespace:Shoko.Desktop.UserControls.Settings"
              xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
              xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
@@ -190,10 +191,10 @@
                 <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center"
                            Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_MPC}"
                            Grid.ColumnSpan="3" FontSize="14" FontWeight="Bold" Height="19" />
-                <TextBlock Grid.Column="3" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=IsMPCInstalled}" 
+                <TextBlock Grid.Row="0" Grid.Column="2" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=IsMPCInstalled}" 
                            Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_Installed}" Foreground="Green" 
                            Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
-                <TextBlock Grid.Column="3" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=IsMPCNotInstalled}" 
+                <TextBlock Grid.Row="0" Grid.Column="2" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=IsMPCNotInstalled}" 
                            Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_NotInstalled}" Foreground="Red" 
                            Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
                 <Image Height="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" Grid.Row="1"
@@ -212,18 +213,20 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <TextBox HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Column="1" Grid.Row="2"
+                <TextBox HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Column="1" Grid.Row="0"
                          TextWrapping="Wrap" Text="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=MPCWebUIPort}"
                          VerticalAlignment="Top" Width="50"/>
                 <CheckBox x:Name="chkMpcWebUiIntegration"
                           Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_MPCWebUIPort}"
-                          HorizontalAlignment="Left" Margin="5,1,0,0" Grid.Column="0" Grid.Row="2" VerticalAlignment="Top"/>
+                          HorizontalAlignment="Left" Margin="5,1,0,0" Grid.Column="0" Grid.Row="0" VerticalAlignment="Top"/>
+                <ComboBox Name="cmbPreferredMPC" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,1,0,0" Grid.Row="0" Grid.Column="2" />
             </Grid>
 
         </Border>
