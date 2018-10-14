@@ -175,8 +175,9 @@
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,0,5,5">
-                        <CheckBox Name="chkApplyToSeries" IsChecked="{Binding Path=IsApplyToSeries}" VerticalAlignment="Center" IsEnabled="False" />
-                        <TextBlock Margin="10,0,0,0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilter_ApplyToSeries}" Name="lblApplyToSeries" />
+                        <CheckBox Name="chkApplyToSeries" IsChecked="{Binding Path=IsApplyToSeries}" VerticalAlignment="Center" IsEnabled="False" >
+                            <TextBlock Margin="10,0,0,0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilter_ApplyToSeries}" Name="lblApplyToSeries" />
+                        </CheckBox>
                     </StackPanel>
                 </StackPanel>
 
@@ -197,8 +198,9 @@
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,0,5,5">
-                        <CheckBox Name="chkApplyToSeriesEditing" IsChecked="{Binding Path=IsApplyToSeries}" VerticalAlignment="Center"/>
-                        <TextBlock Margin="10,0,0,0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilter_ApplyToSeries}" Name="lblApplyToSeriesEditing" />
+                        <CheckBox Name="chkApplyToSeriesEditing" IsChecked="{Binding Path=IsApplyToSeries}" VerticalAlignment="Center" >
+                            <TextBlock Margin="10,0,0,0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilter_ApplyToSeries}" Name="lblApplyToSeriesEditing" />
+                        </CheckBox>
                     </StackPanel>
                 </StackPanel>
 

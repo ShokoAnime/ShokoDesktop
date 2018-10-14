@@ -23,6 +23,19 @@
         <Setter Property = "HasDropShadow" Value="false"/>
         <Setter Property = "Margin" Value="0,0,0,0"/>
     </Style>
+    
+    <Style x:Key="RightAlignedCheckbox" TargetType="CheckBox">
+        <Style.Resources>
+            <Style TargetType="Path">
+                <Setter Property="FlowDirection" Value="LeftToRight" />
+            </Style>
+            <Style TargetType="TextBlock">
+                <Setter Property="FlowDirection" Value="LeftToRight" />
+            </Style>
+        </Style.Resources>
+
+        <Setter Property="FlowDirection" Value="RightToLeft" />
+    </Style>
 
     <Style x:Key="BorderControlStyle" TargetType="{x:Type Border}">
         <Setter Property="BorderBrush" Value="#FF000000" />
