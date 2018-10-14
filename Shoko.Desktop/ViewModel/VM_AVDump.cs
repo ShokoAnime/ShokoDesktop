@@ -103,9 +103,9 @@ namespace Shoko.Desktop.ViewModel
 
         public string FileName => Path.GetFileName(FullPath);
 
-        public bool FileIsAvailable => File.Exists(FullPath);
+        public bool FileIsAvailable => VideoLocal.IsAccessibleFromServer;
 
-        public bool FileIsNotAvailable => !File.Exists(FullPath);
+        public bool FileIsNotAvailable => !VideoLocal.IsAccessibleFromServer;
 
         public string FormattedFileSize => Formatting.FormatFileSize(FileSize);
 
@@ -115,7 +115,7 @@ namespace Shoko.Desktop.ViewModel
 
         public VM_AVDump(VM_VideoLocal vid)
         {
-            FullPath = vid.GetLocalFileSystemFullPath();
+            FullPath = vid.ServerPath;
             FileSize = vid.FileSize;
             ED2KDump = "";
             AVDumpFullResult = "";
