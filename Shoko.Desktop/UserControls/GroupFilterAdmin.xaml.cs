@@ -37,6 +37,7 @@ namespace Shoko.Desktop.UserControls
             cboBaseCondition.SelectedIndex = 0;
 
             chkApplyToSeriesEditing.Click += chkApplyToSeriesEditing_Click;
+            chkHiddenInAPIEditing.Click += chkHiddenInAPIEditing_Click;
 
             lbFilterConditions_Editing.MouseDoubleClick += lbFilterConditions_Editing_MouseDoubleClick;
 
@@ -100,6 +101,15 @@ namespace Shoko.Desktop.UserControls
             if (!(DataContext is VM_GroupFilter gf)) return;
 
             gf.ApplyToSeries = chkApplyToSeriesEditing.IsChecked != null && chkApplyToSeriesEditing.IsChecked.Value ? 1 : 0;
+        }
+        
+        void chkHiddenInAPIEditing_Click(object sender, RoutedEventArgs e)
+        {
+            chkHiddenInAPIEditing.IsChecked = chkHiddenInAPIEditing.IsChecked;
+
+            if (!(DataContext is VM_GroupFilter gf)) return;
+
+            gf.InvisibleInClients = chkHiddenInAPIEditing.IsChecked != null && chkHiddenInAPIEditing.IsChecked.Value ? 1 : 0;
         }
 
         void cboBaseConditionEditing_SelectionChanged(object sender, SelectionChangedEventArgs e)

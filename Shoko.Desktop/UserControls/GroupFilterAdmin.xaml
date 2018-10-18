@@ -178,6 +178,10 @@
                         <CheckBox Name="chkApplyToSeries" IsChecked="{Binding Path=IsApplyToSeries}" VerticalAlignment="Center" IsEnabled="False" >
                             <TextBlock Margin="10,0,0,0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilter_ApplyToSeries}" Name="lblApplyToSeries" />
                         </CheckBox>
+                        <CheckBox Margin="30,0,0,0" Name="chkHiddenInAPI" IsChecked="{Binding Path=IsInvisibleInClients}" VerticalAlignment="Center" IsEnabled="False">
+                            <!-- I stopped caring about localization for a dead project -->
+                            <TextBlock Margin="10,0,0,0" Text="Hide in API" Name="lblHiddenInAPI" />
+                        </CheckBox>
                     </StackPanel>
                 </StackPanel>
 
@@ -200,6 +204,10 @@
                     <StackPanel Orientation="Horizontal" Margin="0,0,5,5">
                         <CheckBox Name="chkApplyToSeriesEditing" IsChecked="{Binding Path=IsApplyToSeries}" VerticalAlignment="Center" >
                             <TextBlock Margin="10,0,0,0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilter_ApplyToSeries}" Name="lblApplyToSeriesEditing" />
+                        </CheckBox>
+                        <CheckBox Margin="30,0,0,0" Name="chkHiddenInAPIEditing" IsChecked="{Binding Path=IsInvisibleInClients}" VerticalAlignment="Center" >
+                            <!-- I stopped caring about localization for a dead project -->
+                            <TextBlock Margin="10,0,0,0" Text="Hide in API" Name="lblHiddenInAPIEditing" />
                         </CheckBox>
                     </StackPanel>
                 </StackPanel>
