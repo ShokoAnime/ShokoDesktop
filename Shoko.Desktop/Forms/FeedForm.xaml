@@ -13,6 +13,22 @@
     </Window.Resources>
     
     <Grid>
+        <Grid.Resources>
+
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/ShokoDesktop;component/Resources/Styles.xaml" />
+                    <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListStyles.xaml" />
+                    <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListContent.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+
+                <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+            </ResourceDictionary>
+
+
+
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
