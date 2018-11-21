@@ -24,13 +24,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-
-
-
-
-
-        
+        </Grid.RowDefinitions>        
 
         <!-- Row 1 -->
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="0,0,0,10">
@@ -40,14 +34,16 @@
 
         <!-- Row 2 -->
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1">
-            <CheckBox Name="chkDeleteGroups" Margin="0,0,6,0" VerticalAlignment="Center" IsChecked="True"/>
-            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteSeriesConfirm_Groups}" Margin="0,0,0,0"/>
+            <CheckBox Name="chkDeleteGroups"  VerticalAlignment="Center" IsChecked="True">
+                <TextBlock Margin="6,0,0,0" VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteSeriesConfirm_Groups}"/>
+            </CheckBox>
         </StackPanel>
         
         <!-- Row 3 -->
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2" Margin="0,10,0,0">
-            <CheckBox Name="chkDeleteFiles" Margin="0,0,6,0" VerticalAlignment="Center"/>
-            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteSeriesConfirm_Files}" Margin="0,0,0,0"/>
+            <CheckBox Name="chkDeleteFiles" VerticalAlignment="Center">
+                <TextBlock Margin="6,0,0,0" VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteSeriesConfirm_Files}" />
+            </CheckBox>
         </StackPanel>
 
         <DockPanel Grid.Row="3" Grid.Column="0"  Margin="5,5,5,5">

@@ -86,14 +86,18 @@
                     </StackPanel>
                 </Button>
 
-                <TextBlock Grid.Column="0" Grid.Row="4" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx Key=DropSource, ResxName=Shoko.Commons.Properties.Resources}"/>
-                <CheckBox x:Name="chkDropSource" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"/>
+                
+                <CheckBox x:Name="chkDropSource" Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" Style="{StaticResource RightAlignedCheckbox}">
+                    <TextBlock Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx Key=DropSource, ResxName=Shoko.Commons.Properties.Resources}"/>
+                 </CheckBox>
 
-                <TextBlock Grid.Column="0" Grid.Row="5" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx Key=DropDestination, ResxName=Shoko.Commons.Properties.Resources}"/>
-                <CheckBox x:Name="chkDropDestination" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"/>
+                <CheckBox x:Name="chkDropDestination" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" Style="{StaticResource RightAlignedCheckbox}">
+                    <TextBlock Grid.Column="0" Grid.Row="5" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx Key=DropDestination, ResxName=Shoko.Commons.Properties.Resources}"/>
+                </CheckBox>
 
-                <TextBlock Grid.Column="0" Grid.Row="6" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx Key=ImportSettings_WatchFiles, ResxName=Shoko.Commons.Properties.Resources}"/>
-                <CheckBox x:Name="chkIsWatched" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center"/>
+                <CheckBox x:Name="chkIsWatched" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" Style="{StaticResource RightAlignedCheckbox}">
+                    <TextBlock Grid.Column="0" Grid.Row="6" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx Key=ImportSettings_WatchFiles, ResxName=Shoko.Commons.Properties.Resources}"/>
+                </CheckBox>
 
             </Grid>
 

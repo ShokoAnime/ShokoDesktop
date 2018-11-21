@@ -581,9 +581,9 @@
                                     <StackPanel Orientation="Horizontal">
                                         <TextBox Margin="6,0,0,0" FontSize="16" Padding="5" MinWidth="200" FontWeight="Bold" x:Name="txtSeriesName" 
                                                     VerticalAlignment="Center"/>
-                                        <CheckBox x:Name="chkSerNameOverride" VerticalAlignment="Center" Margin="5,0,0,0" />
-                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Override}" Margin="5,0,0,0" 
-                                                   ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_NameOverride}"/>
+                                        <CheckBox x:Name="chkSerNameOverride" VerticalAlignment="Center" Margin="5,0,0,0" ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_NameOverride}">
+                                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Override}" Margin="5,0,0,0" />
+                                        </CheckBox>
 
                                         <!-- Select Override Name -->
                                         <Button Margin="5,0,2,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" x:Name="btnSelectOverrideName" >

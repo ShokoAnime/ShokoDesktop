@@ -1181,7 +1181,7 @@ namespace Shoko.Desktop
         {
             try
             {
-                if (VM_MainListHelper.Instance.AVDumpFiles.Any(dumpTemp => dumpTemp.FullPath == vid.GetLocalFileSystemFullPath()))
+                if (VM_MainListHelper.Instance.AVDumpFiles.Any(dumpTemp => dumpTemp.FullPath == vid.ServerPath))
                     return;
 
                 VM_AVDump dump = new VM_AVDump(vid);
@@ -1437,9 +1437,9 @@ namespace Shoko.Desktop
                 if (obj.GetType() == typeof(VM_VideoLocal))
                 {
                     VM_VideoLocal vid = obj as VM_VideoLocal;
-
+                    if (vid == null) return;
                     if (VM_MainListHelper.Instance.AVDumpFiles.Any(dumpTemp =>
-                        dumpTemp.FullPath == vid.GetLocalFileSystemFullPath()))
+                        dumpTemp.FullPath == vid.ServerPath))
                         return;
 
                     VM_AVDump dump = new VM_AVDump(vid);
@@ -1452,8 +1452,9 @@ namespace Shoko.Desktop
                     if (obj is MultipleVideos mv)
                         foreach (VM_VideoLocal vid in mv.VideoLocals)
                         {
+                            if (vid == null) continue;
                             bool alreadyExists = VM_MainListHelper.Instance.AVDumpFiles.Any(dumpTemp =>
-                                dumpTemp.FullPath == vid.GetLocalFileSystemFullPath());
+                                dumpTemp.FullPath == vid.ServerPath);
 
                             if (alreadyExists) continue;
 

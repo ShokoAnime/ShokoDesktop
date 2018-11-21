@@ -9,33 +9,39 @@
         Title="Shoko Desktop" MinHeight="250" MinWidth="500" Name="feedWindow" Icon="/Images/db.ico" ResizeMode="NoResize" Width="500" Height="250" SizeToContent="Height">
     <Window.Resources>
         <forms:HTMLEscapedCharactersConverter x:Key="HTMLEscapedCharactersConverter" />
-        <XmlDataProvider x:Key="rssData" XPath="//item" Source="https://shokoanime.com/blog/feed/" />
         <!--<XmlDataProvider x:Key="rssData" XPath="//item" Source="http://www.asp.net/rss/content" />-->
     </Window.Resources>
     
     <Grid>
+        <Grid.Resources>
+
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/ShokoDesktop;component/Resources/Styles.xaml" />
+                    <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListStyles.xaml" />
+                    <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListContent.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+
+                <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+            </ResourceDictionary>
+
+
+
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <ListBox x:Name="lstItems" Margin="3" ItemsSource="{Binding Source={StaticResource rssData}}"
-			 SelectedIndex="0" Grid.Row="0">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Margin="3" VerticalAlignment="Center" Text="{Binding XPath=title}" FontWeight="Bold" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <ListBox x:Name="lstItems" Margin="3" ItemsSource="{Binding ParsedNews}" DisplayMemberPath="Title" Height="200" />
 
         <StackPanel Grid.Row="1" Orientation="Vertical" DataContext="{Binding ElementName=lstItems, Path=SelectedItem}">
-            <TextBlock Margin="3" FontSize="13" FontWeight="Bold" Text="{Binding XPath=title, Path=InnerText}" />
-            <TextBlock Margin="3" Opacity="0.72" Text="{Binding XPath=pubDate}" />
-            <TextBlock Margin="3" FontStyle="Italic" Text="{Binding XPath=description, Path=InnerText, Converter={StaticResource HTMLEscapedCharactersConverter}}" TextWrapping="Wrap"/>
+            <TextBlock Margin="3" FontSize="13" FontWeight="Bold" Text="{Binding Path=Title}" />
+            <TextBlock Margin="3" Opacity="0.72" Text="{Binding Path=pubDate}" />
+            <TextBlock Margin="3" FontStyle="Italic" Text="{Binding Path=ContentTXT, Converter={StaticResource HTMLEscapedCharactersConverter}}" TextWrapping="Wrap" Width="488" Height="32"/>
             <TextBlock Margin="3">
-			<Hyperlink Name="lnkGoToArt" Tag="{Binding XPath=link,Path=InnerText}" Click="lnkGoToArt_Click">
+			<Hyperlink Name="lnkGoToArt" Tag="{Binding Path=URL}" Click="lnkGoToArt_Click">
 				Go to Article                    
 			</Hyperlink>
             </TextBlock>

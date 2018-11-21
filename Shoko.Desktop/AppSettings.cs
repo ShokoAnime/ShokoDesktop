@@ -450,6 +450,15 @@ namespace Shoko.Desktop
             // ReSharper disable once UnusedMember.Global
             set => Set("PlaylistItems_ShowDetails", value.ToString());
         }
+        
+        public static string PreferredMPC
+        {
+            get => Get("PreferredMPC") ?? "MPC";
+            set
+            {
+                Set("PreferredMPC", value);
+            }
+        }
 
         public static int DisplayHeight_SeriesInfo
         {

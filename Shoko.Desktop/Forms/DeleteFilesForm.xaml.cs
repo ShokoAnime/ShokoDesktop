@@ -13,9 +13,6 @@ using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel;
 using Shoko.Desktop.ViewModel.Server;
 using Shoko.Models.Client;
-using CheckBox = System.Windows.Controls.CheckBox;
-using Image = System.Windows.Controls.Image;
-using Orientation = System.Windows.Controls.Orientation;
 
 namespace Shoko.Desktop.Forms
 {
@@ -38,26 +35,26 @@ namespace Shoko.Desktop.Forms
 
         public CL_GroupVideoQuality GroupVideoQuality
         {
-            get { return (CL_GroupVideoQuality)GetValue(GroupVideoQualityProperty); }
-            set { SetValue(GroupVideoQualityProperty, value); }
+            get => (CL_GroupVideoQuality)GetValue(GroupVideoQualityProperty);
+            set => SetValue(GroupVideoQualityProperty, value);
         }
 
         public int AnimeID
         {
-            get { return (int)GetValue(AnimeIDProperty); }
-            set { SetValue(AnimeIDProperty, value); }
+            get => (int)GetValue(AnimeIDProperty);
+            set => SetValue(AnimeIDProperty, value);
         }
 
         public int FileCount
         {
-            get { return (int)GetValue(FileCountProperty); }
-            set { SetValue(FileCountProperty, value); }
+            get => (int)GetValue(FileCountProperty);
+            set => SetValue(FileCountProperty, value);
         }
 
         public string DeleteStatus
         {
-            get { return (string)GetValue(DeleteStatusProperty); }
-            set { SetValue(DeleteStatusProperty, value); }
+            get => (string)GetValue(DeleteStatusProperty);
+            set => SetValue(DeleteStatusProperty, value);
         }
 
         public static readonly DependencyProperty GroupFileSummaryProperty = DependencyProperty.Register("GroupFileSummary",
@@ -65,8 +62,8 @@ namespace Shoko.Desktop.Forms
 
         public VM_GroupFileSummary GroupFileSummary
         {
-            get { return (VM_GroupFileSummary)GetValue(GroupFileSummaryProperty); }
-            set { SetValue(GroupFileSummaryProperty, value); }
+            get => (VM_GroupFileSummary)GetValue(GroupFileSummaryProperty);
+            set => SetValue(GroupFileSummaryProperty, value);
         }
 
         public static readonly DependencyProperty SummaryTextProperty = DependencyProperty.Register("SummaryText",
@@ -74,8 +71,8 @@ namespace Shoko.Desktop.Forms
 
         public string SummaryText
         {
-            get { return (string)GetValue(SummaryTextProperty); }
-            set { SetValue(SummaryTextProperty, value); }
+            get => (string)GetValue(SummaryTextProperty);
+            set => SetValue(SummaryTextProperty, value);
         }
 
         public static readonly DependencyProperty GroupNameProperty = DependencyProperty.Register("GroupName",
@@ -83,13 +80,13 @@ namespace Shoko.Desktop.Forms
 
         public string GroupName
         {
-            get { return (string)GetValue(GroupNameProperty); }
-            set { SetValue(GroupNameProperty, value); }
+            get => (string)GetValue(GroupNameProperty);
+            set => SetValue(GroupNameProperty, value);
         }
 
         private BackgroundWorker deleteFilesWorker = new BackgroundWorker();
         public bool FilesDeleted { get; set; }
-        private bool inProgress = false;
+        private bool inProgress;
         private List<VM_VideoDetailed> vids = new List<VM_VideoDetailed>();
 
         public DeleteFilesForm()
@@ -100,12 +97,12 @@ namespace Shoko.Desktop.Forms
 
             deleteFilesWorker.WorkerReportsProgress = true;
 
-            deleteFilesWorker.DoWork += new DoWorkEventHandler(deleteFilesWorker_DoWork);
-            deleteFilesWorker.ProgressChanged += new ProgressChangedEventHandler(deleteFilesWorker_ProgressChanged);
-            deleteFilesWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(deleteFilesWorker_RunWorkerCompleted);
+            deleteFilesWorker.DoWork += deleteFilesWorker_DoWork;
+            deleteFilesWorker.ProgressChanged += deleteFilesWorker_ProgressChanged;
+            deleteFilesWorker.RunWorkerCompleted += deleteFilesWorker_RunWorkerCompleted;
 
-            btnOK.Click += new RoutedEventHandler(btnOK_Click);
-            Closing += new CancelEventHandler(DeleteFilesForm_Closing);
+            btnOK.Click += btnOK_Click;
+            Closing += DeleteFilesForm_Closing;
             FilesDeleted = false;
         }
 
@@ -114,7 +111,7 @@ namespace Shoko.Desktop.Forms
             if (inProgress)
             {
                 e.Cancel = true;
-                MessageBox.Show(Shoko.Commons.Properties.Resources.DeleteFiles_Wait, Shoko.Commons.Properties.Resources.Stop, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Commons.Properties.Resources.DeleteFiles_Wait, Commons.Properties.Resources.Stop, MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
 
@@ -123,8 +120,8 @@ namespace Shoko.Desktop.Forms
 
         void btnOK_Click(object sender, RoutedEventArgs e)
         {
-            string msg = string.Format(Shoko.Commons.Properties.Resources.DeleteFiles_Confirm, vids.Count);
-            MessageBoxResult res = MessageBox.Show(msg, Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            string msg = string.Format(Commons.Properties.Resources.DeleteFiles_Confirm, vids.Count);
+            MessageBoxResult res = MessageBox.Show(msg, Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
             if (res == MessageBoxResult.Yes)
             {
@@ -156,7 +153,7 @@ namespace Shoko.Desktop.Forms
             foreach (VM_VideoDetailed vid in vids)
             {
                 i++;
-                string msg = string.Format(Shoko.Commons.Properties.Resources.DeleteFiles_Deleting, i, vids.Count);
+                string msg = string.Format(Commons.Properties.Resources.DeleteFiles_Deleting, i, vids.Count);
                 deleteFilesWorker.ReportProgress(0, msg);
                 //Thread.Sleep(500);
                 foreach (CL_VideoLocal_Place n in vid.Places)
@@ -176,7 +173,7 @@ namespace Shoko.Desktop.Forms
 
             }
 
-            deleteFilesWorker.ReportProgress(100, Shoko.Commons.Properties.Resources.Done);
+            deleteFilesWorker.ReportProgress(100, Commons.Properties.Resources.Done);
         }
         Dictionary<string, bool> chks=new Dictionary<string, bool>();
         private Dictionary<int, Tuple<string, BitmapImage>> dict=new Dictionary<int, Tuple<string, BitmapImage>>();
@@ -211,6 +208,10 @@ namespace Shoko.Desktop.Forms
                 {
                     chks[s] = chk.IsChecked.Value;
                 };
+                chk.Unchecked += (a, b) =>
+                {
+                    chks[s] = chk.IsChecked.Value;
+                };
                 st.Children.Add(im);
                 st.Children.Add(tx);
                 st.Children.Add(chk);
@@ -229,7 +230,7 @@ namespace Shoko.Desktop.Forms
             try
             {
                 VM_ShokoServer.Instance.RefreshCloudAccounts();
-                dict = VM_ShokoServer.Instance.FolderProviders.ToDictionary(a => (int)a.CloudID, a=>new Tuple<string,BitmapImage>(a.Provider,a.Bitmap));
+                dict = VM_ShokoServer.Instance.FolderProviders.ToDictionary(a => a.CloudID, a=>new Tuple<string,BitmapImage>(a.Provider,a.Bitmap));
                 chks = new Dictionary<string, bool>();
                 Dictionary<string, BitmapImage> types=new Dictionary<string, BitmapImage>();
 
@@ -237,7 +238,7 @@ namespace Shoko.Desktop.Forms
                     GroupVideoQuality.GroupName, GroupVideoQuality.Resolution, GroupVideoQuality.VideoSource, GroupVideoQuality.VideoBitDepth, VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_VideoDetailed>();
                 foreach (VM_VideoDetailed vid in vids)
                 {
-                    foreach (CL_VideoLocal_Place vv in vid.Places.Cast<CL_VideoLocal_Place>())
+                    foreach (CL_VideoLocal_Place vv in vid.Places)
                     {
                         Tuple<string, BitmapImage> tup = dict[vv.ImportFolder.CloudID ?? 0];
                         if (!types.ContainsKey(tup.Item1))
@@ -276,7 +277,7 @@ namespace Shoko.Desktop.Forms
             try
             {
                 VM_ShokoServer.Instance.RefreshCloudAccounts();
-                dict = VM_ShokoServer.Instance.FolderProviders.ToDictionary(a => (int)a.CloudID, a => new Tuple<string, BitmapImage>(a.Provider, a.Bitmap));
+                dict = VM_ShokoServer.Instance.FolderProviders.ToDictionary(a => a.CloudID, a => new Tuple<string, BitmapImage>(a.Provider, a.Bitmap));
                 chks = new Dictionary<string, bool>();
                 Dictionary<string, BitmapImage> types = new Dictionary<string, BitmapImage>();
 
@@ -322,7 +323,7 @@ namespace Shoko.Desktop.Forms
             try
             {
                 VM_ShokoServer.Instance.RefreshCloudAccounts();
-                dict = VM_ShokoServer.Instance.FolderProviders.ToDictionary(a => (int)a.CloudID, a => new Tuple<string, BitmapImage>(a.Provider, a.Bitmap));
+                dict = VM_ShokoServer.Instance.FolderProviders.ToDictionary(a => a.CloudID, a => new Tuple<string, BitmapImage>(a.Provider, a.Bitmap));
                 chks = new Dictionary<string, bool>();
                 Dictionary<string, BitmapImage> types = new Dictionary<string, BitmapImage>();
 

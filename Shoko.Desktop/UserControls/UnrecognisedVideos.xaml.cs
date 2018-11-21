@@ -372,7 +372,7 @@ namespace Shoko.Desktop.UserControls
 
                 // if only one video selected
                 logger.Info($"[Unrecognizedfiles] Selected one video for linking = {OneVideoSelected}");
-                logger.Info($"[Unrecognizedfiles] Multplie videos selected for linking = {MultipleVideosSelected}");
+                logger.Info($"[Unrecognizedfiles] Multiple videos selected for linking = {MultipleVideosSelected}");
 
                 if (OneVideoSelected)
                 {

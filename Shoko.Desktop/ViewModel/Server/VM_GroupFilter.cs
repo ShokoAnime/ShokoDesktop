@@ -214,6 +214,13 @@ namespace Shoko.Desktop.ViewModel.Server
             get => ApplyToSeries == 1;
             set => ApplyToSeries = value ? 1 : 0;
         }
+        
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        public bool IsInvisibleInClients
+        {
+            get => InvisibleInClients == 1;
+            set => InvisibleInClients = value ? 1 : 0;
+        }
 
         public new int BaseCondition
         {
