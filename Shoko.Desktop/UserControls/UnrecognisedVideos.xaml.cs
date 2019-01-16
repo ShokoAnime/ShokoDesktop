@@ -236,8 +236,7 @@ namespace Shoko.Desktop.UserControls
         {
             try
             {
-                string appPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-                string logPath = Path.Combine(appPath, "logs");
+                string logPath = Path.Combine(AppSettings.ApplicationPath, "logs");
 
                 Process.Start(new ProcessStartInfo(logPath));
             }
