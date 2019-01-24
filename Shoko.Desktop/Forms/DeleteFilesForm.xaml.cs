@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using Shoko.Commons.Extensions;
+using Shoko.Commons.Utils;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel;
 using Shoko.Desktop.ViewModel.Server;
@@ -141,8 +142,17 @@ namespace Shoko.Desktop.Forms
         void deleteFilesWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             FilesDeleted = true;
-            string msg = e.UserState as string;
-            DeleteStatus = msg;
+            if (e.UserState is string msg)
+                DeleteStatus = msg;
+
+            if (e.ProgressPercentage == 100)
+            {
+                Cursor = Cursors.Arrow;
+                if (e.UserState is List<string> list)
+                {
+                    MessageBox.Show(string.Join("\n", list), Commons.Properties.Resources.Confirm, MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
         }
 
         void deleteFilesWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -150,30 +160,41 @@ namespace Shoko.Desktop.Forms
             if (vids == null) return;
 
             int i = 0;
+            List<string> errors = new List<string>();
             foreach (VM_VideoDetailed vid in vids)
             {
                 i++;
                 string msg = string.Format(Commons.Properties.Resources.DeleteFiles_Deleting, i, vids.Count);
                 deleteFilesWorker.ReportProgress(0, msg);
                 //Thread.Sleep(500);
+                
+                
                 foreach (CL_VideoLocal_Place n in vid.Places)
                 {
                     string g = dict[n.ImportFolder.CloudID ?? 0].Item1;
                     if (!chks.ContainsKey(g) || chks[g])
                     {
-                        string result = VM_ShokoServer.Instance.ShokoServices.DeleteVideoLocalPlaceAndFile(n.VideoLocal_Place_ID);
-                        if (result.Length > 0)
+                        try
                         {
-                            deleteFilesWorker.ReportProgress(0, result);
-                            return;
+                            string result =
+                                VM_ShokoServer.Instance.ShokoServices.DeleteVideoLocalPlaceAndFile(
+                                    n.VideoLocal_Place_ID);
+                            if (result.Length > 0)
+                            {
+                                deleteFilesWorker.ReportProgress(0, result);
+                                errors.Add("Unable to delete file: " + n.GetFullPath() + " Error: " + result);
+                            }
+                        }
+                        catch
+                        {
+                            // ignore
                         }
                     }
                 }
-
-
             }
 
-            deleteFilesWorker.ReportProgress(100, Commons.Properties.Resources.Done);
+            if (errors.Count > 0) deleteFilesWorker.ReportProgress(100, errors);
+            else deleteFilesWorker.ReportProgress(100, Commons.Properties.Resources.Done);
         }
         Dictionary<string, bool> chks=new Dictionary<string, bool>();
         private Dictionary<int, Tuple<string, BitmapImage>> dict=new Dictionary<int, Tuple<string, BitmapImage>>();
