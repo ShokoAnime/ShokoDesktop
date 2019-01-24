@@ -8,15 +8,13 @@
         xmlns:downloads1="clr-namespace:Shoko.Desktop.UserControls.Downloads"
         xmlns:dataTemplateSelectors="clr-namespace:Shoko.Desktop.DataTemplateSelectors"
         xmlns:System="clr-namespace:System;assembly=mscorlib"
+        xmlns:wpfhelpers="clr-namespace:Shoko.Desktop.WPFHelpers"
         WindowStartupLocation="CenterScreen" UseLayoutRounding="True"
         Title="Shoko Desktop" Height="700" Width="1350" x:Name="mainWindow" Icon="/ShokoDesktop;component/Images/db.ico" >
 
-
-
     <Window.Resources>
         <ResourceDictionary>
-
-
+            <wpfhelpers:LongToFileSizeConverter x:Key="LongToFileSizeConverter"/>
             <dataTemplateSelectors:MainListTemplateSelector x:Key="MainListTemplateSelector"/>
             <dataTemplateSelectors:BreadCrumbTemplateSelector x:Key="BreadCrumbTemplateSelector"/>
             <dataTemplateSelectors:GroupsSeriesDataTemplateSelector x:Key="myDataTemplateSelector"/>
