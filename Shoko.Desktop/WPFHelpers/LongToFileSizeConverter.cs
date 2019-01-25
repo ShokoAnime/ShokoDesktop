@@ -31,7 +31,7 @@ namespace Shoko.Desktop.WPFHelpers
             long bytes = Math.Abs(byteCount);
             int place = System.Convert.ToInt32(Math.Floor(Math.Log(bytes, 1024)));
             double num = Math.Round(bytes / Math.Pow(1024, place), 2);
-            return num + " " + suf[place];
+            return num.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + " " + suf[place];
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
