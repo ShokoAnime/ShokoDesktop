@@ -60,15 +60,26 @@ namespace Shoko.Desktop
 
         public static string DefaultImagePath => Path.Combine(ApplicationPath, "images");
 
+        public static string SettingsFileName {
+            get {
+                string[] args = Environment.GetCommandLineArgs();
+                foreach (var arg in args){
+                    if (null != arg && arg.StartsWith("-settings=")) {
+                        return arg.Substring(10);
+                    }
+                }
+                return "settings.json";
+            }
+        }
         public static string JMMServerImagePath
         {
             get
             {
-                if (!Directory.Exists(JMMServerPath) || !File.Exists(Path.Combine(JMMServerPath, "settings.json")))
+                if (!Directory.Exists(JMMServerPath) || !File.Exists(Path.Combine(JMMServerPath, SettingsFileName)))
                     return null;
                 Dictionary<string, string> serverSettings =
                     JsonConvert.DeserializeObject<Dictionary<string, string>>(
-                        File.ReadAllText(Path.Combine(JMMServerPath, "settings.json")));
+                        File.ReadAllText(Path.Combine(JMMServerPath, SettingsFileName)));
                 if (serverSettings.ContainsKey("ImagesPath"))
                     return serverSettings["ImagesPath"];
                 return null;
@@ -87,7 +98,7 @@ namespace Shoko.Desktop
                 if (appSettings.Count <= 1)
                     return; //Somehow debugging may fuck up the settings so this shit will eject
 
-                string path = Path.Combine(ApplicationPath, "settings.json");
+                string path = Path.Combine(ApplicationPath, SettingsFileName);
                 File.WriteAllText(path, JsonConvert.SerializeObject(appSettings, Formatting.Indented));
             }
         }
@@ -135,7 +146,7 @@ namespace Shoko.Desktop
                             }
                 }
 
-                string path = Path.Combine(ApplicationPath, "settings.json");
+                string path = Path.Combine(ApplicationPath, SettingsFileName);
                 if (File.Exists(path))
                     appSettings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(path));
                 else
