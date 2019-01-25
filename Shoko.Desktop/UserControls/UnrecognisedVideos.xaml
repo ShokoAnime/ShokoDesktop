@@ -478,7 +478,7 @@
                     <Image Source="/Images/16_videofile.png" Width="16" Height="16" Margin="5,0,0,0" VerticalAlignment="Center" ></Image>
                     <ComboBox Name="cboMultiType" Margin="10,0,0,0" Height="24" VerticalAlignment="Center"/>
                     <StackPanel Orientation="Horizontal" Visibility="{Binding Path=MultipleTypeSingle, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:UnrecognisedVideos}}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <ComboBox Name="cboEpisodes" Margin="10,0,0,0" Height="24" VerticalAlignment="Center" ItemTemplate="{DynamicResource SimpleAnimeEpisodeTemplate}" />
+                        <ComboBox Name="cboEpisodes" Margin="10,0,0,0" Height="24" VerticalAlignment="Center" ItemTemplate="{DynamicResource SimpleAnimeEpisodeTemplate}" IsTextSearchEnabled="True" TextSearch.TextPath="EpisodeNumberAndNameWithType" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal"
                                 Visibility="{Binding Path=MultipleTypeRange, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:UnrecognisedVideos}}, Converter={StaticResource BooleanToVisibilityConverter}}">
