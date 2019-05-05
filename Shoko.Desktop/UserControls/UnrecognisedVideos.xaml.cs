@@ -34,7 +34,7 @@ namespace Shoko.Desktop.UserControls
     {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        private readonly List<CancellationTokenSource> runningTasks = new List<CancellationTokenSource>();
+        private CancellationTokenSource runningTask;
 
         public ICollectionView ViewFiles { get; set; }
         public ObservableCollection<VM_VideoLocal> UnrecognisedFiles { get; set; }
@@ -969,42 +969,62 @@ namespace Shoko.Desktop.UserControls
 
         public async void SearchAnime(object argument)
         {
-            lock (runningTasks)
+            try
             {
-                if (runningTasks.Count > 0)
-                {
-                    foreach (CancellationTokenSource runningTask in runningTasks)
-                        runningTask.Cancel();
-                }
+                runningTask?.Cancel();
             }
+            catch {}
             CancellationTokenSource tokenSource = new CancellationTokenSource();
-            var token = tokenSource.Token;
-            lock (runningTasks)
+            runningTask = tokenSource;
+            
+            //use listbox with dummy instead
+            VM_AnimeSeries_User dummy = new VM_AnimeSeries_User();
+            dummy.SeriesNameOverride = "Loading...";
+            AllSeries.Add(dummy);
+            btnAddSeries.IsEnabled = false;
+            cboEpisodes.IsEnabled = false;
+            cboMultiType.IsEnabled = false;
+            txtSeriesSearch.IsEnabled = false;
+            lbSeries.IsEnabled = false;
+            List<VM_AnimeSeries_User> series = null;
+
+            try
             {
-                runningTasks.Add(tokenSource);
+                series = await Task.Run(() => SearchAnime(tokenSource, argument));
+            }
+            catch (TaskCanceledException)
+            {
+                // ignored
             }
 
-            Progress<List<VM_AnimeSeries_User>> progress = new Progress<List<VM_AnimeSeries_User>>(ReportProgress);
+            bool cancelled = runningTask.IsCancellationRequested;
+            runningTask = null;
+            
+            if (cancelled) return;
 
-            await Task.Run(() =>
+            // update
+            if (series != null)
             {
-                SearchAnime(token, argument, progress);
-                lock (runningTasks)
-                {
-                    runningTasks.Remove(tokenSource);
-                }
-            }, token);
+                AllSeries.Clear();
+                series.ForEach(a => AllSeries.Add(a));
+
+                if (AllSeries.Count >= 1)
+                    lbSeries.SelectedIndex = 0;
+            }
+
+            txtSeriesSearch.IsEnabled = true;
+            btnAddSeries.IsEnabled = true;
+            cboEpisodes.IsEnabled = true;
+            cboMultiType.IsEnabled = true;
+            lbSeries.IsEnabled = true;
         }
 
-        private void SearchAnime(CancellationToken token, object argument, IProgress<List<VM_AnimeSeries_User>> progress)
+        private List<VM_AnimeSeries_User> SearchAnime(CancellationTokenSource token, object argument)
         {
+            if (token.IsCancellationRequested) return null;
             List<VM_AnimeSeries_User> tempAnime = new List<VM_AnimeSeries_User>();
-            if (token.IsCancellationRequested) return;
-            progress.Report(tempAnime);
-            if (token.IsCancellationRequested) return;
-            SearchAnime(token, argument, tempAnime);
-            if (token.IsCancellationRequested) return;
-            progress.Report(tempAnime);
+            SearchAnime(token.Token, argument, tempAnime);
+            return token.IsCancellationRequested ? null : tempAnime;
         }
 
         private void SearchAnime(CancellationToken token, object argument, List<VM_AnimeSeries_User> tempAnime)
@@ -1080,31 +1100,6 @@ namespace Shoko.Desktop.UserControls
                     return;
                 }
                 tempAnime.Add(anime);
-            }
-        }
-
-        public void ReportProgress(List<VM_AnimeSeries_User> series)
-        {
-            if (series == null || series.Count <= 0)
-            {
-                //dont mess with user input
-                txtSeriesSearch.IsEnabled = false;
-                lbSeries.IsEnabled = false;
-                //use listbox with dummy instead
-                VM_AnimeSeries_User dummy = new VM_AnimeSeries_User();
-                dummy.SeriesNameOverride = "Loading...";
-                AllSeries.Add(dummy);
-            }
-            else
-            {
-                AllSeries.Clear();
-                series.ForEach(a => AllSeries.Add(a));
-
-                if (AllSeries.Count >= 1)
-                    lbSeries.SelectedIndex = 0;
-
-                txtSeriesSearch.IsEnabled = true;
-                lbSeries.IsEnabled = true;
             }
         }
 
