@@ -338,6 +338,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
         public List<IListWrapper> GetDirectChildren()
         {
+            Childs = Childs ?? new HashSet<int>(); //Hack around ASP Nulls.
             List<IListWrapper> wrappers = new List<IListWrapper>();
 
             VM_AnimeGroup_User.SortMethod = AnimeGroupSortMethod.SortName;
