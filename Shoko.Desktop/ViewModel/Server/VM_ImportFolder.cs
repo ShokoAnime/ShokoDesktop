@@ -92,6 +92,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
         public ImportFolder ToContract()
         {
+            if (ImportFolderID == 0) ImportFolderID = -1;
             var result = new ImportFolder
             {
                 ImportFolderID = ImportFolderID,

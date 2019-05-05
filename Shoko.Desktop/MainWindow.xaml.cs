@@ -432,6 +432,9 @@ namespace Shoko.Desktop
             // validate settings
             VM_ShokoServer.Instance.Test();
 
+            // Make the queue tooltip align left
+            QueueTooltip.HorizontalOffset = QueueTooltip.Width - QueuePanel.Width;
+
             bool loggedIn = false;
             if (VM_ShokoServer.Instance.ServerOnline)
                 loggedIn = VM_ShokoServer.Instance.LoginAsLastUser();

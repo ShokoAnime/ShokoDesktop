@@ -221,19 +221,17 @@ namespace Shoko.Desktop.ViewModel.Server
         {
             get
             {
-                if (AniDBAnime != null)
-                {
-                    if (!string.IsNullOrEmpty(SeriesNameOverride))
-                        return SeriesNameOverride + " [" + AniDBAnime.AniDBAnime.AnimeID + "]";
-                    if (VM_ShokoServer.Instance.SeriesNameSource == DataSourceType.AniDB)
-                        return AniDBAnime.AniDBAnime.FormattedTitle + " [" + AniDBAnime.AniDBAnime.AnimeID + "]";
-                    if (TvDB_Series != null && TvDB_Series.Count > 0 && !string.IsNullOrEmpty(TvDB_Series[0].SeriesName) &&
-                        !TvDB_Series[0].SeriesName.ToUpper().Contains("**DUPLICATE"))
-                        return TvDB_Series[0].SeriesName + " [" + AniDBAnime.AniDBAnime.AnimeID + "]";
-                    return AniDBAnime.AniDBAnime.FormattedTitle + " [" + AniDBAnime.AniDBAnime.AnimeID + "]";
-                }
+                if (AniDBAnime == null) return !string.IsNullOrEmpty(SeriesNameOverride) ? SeriesNameOverride : "";
 
-                return "";
+                if (!string.IsNullOrEmpty(SeriesNameOverride))
+                    return SeriesNameOverride + " [" + AniDBAnime.AniDBAnime.AnimeID + "]";
+                if (VM_ShokoServer.Instance.SeriesNameSource == DataSourceType.AniDB)
+                    return AniDBAnime.AniDBAnime.FormattedTitle + " [" + AniDBAnime.AniDBAnime.AnimeID + "]";
+                if (TvDB_Series != null && TvDB_Series.Count > 0 && !string.IsNullOrEmpty(TvDB_Series[0].SeriesName) &&
+                    !TvDB_Series[0].SeriesName.ToUpper().Contains("**DUPLICATE"))
+                    return TvDB_Series[0].SeriesName + " [" + AniDBAnime.AniDBAnime.AnimeID + "]";
+                return AniDBAnime.AniDBAnime.FormattedTitle + " [" + AniDBAnime.AniDBAnime.AnimeID + "]";
+
             }
         }
 
