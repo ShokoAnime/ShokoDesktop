@@ -45,8 +45,7 @@ namespace Shoko.Desktop.UserControls
 
             DuplicateFilesCollection = new ObservableCollection<VM_DuplicateFile>();
             ViewFiles = CollectionViewSource.GetDefaultView(DuplicateFilesCollection);
-            ViewFiles.SortDescriptions.Add(new SortDescription("AnimeName", ListSortDirection.Ascending));
-            ViewFiles.SortDescriptions.Add(new SortDescription("EpisodeNumber", ListSortDirection.Ascending));
+            ViewFiles.SortDescriptions.Add(new SortDescription("LocalFileName1", ListSortDirection.Ascending));
 
             btnRefresh.Click += new RoutedEventHandler(btnRefresh_Click);
             lbDuplicateFiles.SelectionChanged += new SelectionChangedEventHandler(lbDuplicateFiles_SelectionChanged);
