@@ -327,12 +327,16 @@ namespace Shoko.Desktop.UserControls
             PreferredVideoCodecs.CollectionChanged += SaveSettings;
             PreferredAudioCodecs.CollectionChanged += SaveSettings;
 
+            txtFileSearch.TextChanged += new TextChangedEventHandler(txtFileSearch_TextChanged);
+            btnClearSearch.Click += new RoutedEventHandler(btnClearSearch_Click);
+
             IsLoading = false;
 
             CurrentEpisodes = new ObservableCollection<VM_AnimeEpisode_User>();
             ViewEpisodes = CollectionViewSource.GetDefaultView(CurrentEpisodes);
             ViewEpisodes.SortDescriptions.Add(new SortDescription("AnimeName", ListSortDirection.Ascending));
             ViewEpisodes.SortDescriptions.Add(new SortDescription("EpisodeTypeAndNumberAbsolute", ListSortDirection.Ascending));
+            ViewEpisodes.Filter = EpisodeSearchFilter;
 
             workerFiles.DoWork += new DoWorkEventHandler(workerFiles_DoWork);
             workerFiles.RunWorkerCompleted += new RunWorkerCompletedEventHandler(workerFiles_RunWorkerCompleted);
@@ -342,6 +346,26 @@ namespace Shoko.Desktop.UserControls
             chkOnlyFinished.IsChecked = AppSettings.MultipleFilesOnlyFinished;
 
             chkOnlyFinished.Checked += new RoutedEventHandler(chkOnlyFinished_Checked);
+        }
+
+        private void btnClearSearch_Click(object sender, RoutedEventArgs e)
+        {
+            txtFileSearch.Clear();
+        }
+
+        private bool EpisodeSearchFilter(object obj)
+        {
+            return (obj == null ||
+                (obj as VM_AnimeEpisode_User).EpisodeName.IndexOf(txtFileSearch.Text.Trim(), 0, StringComparison.InvariantCultureIgnoreCase) > -1 ||
+                (obj as VM_AnimeEpisode_User).EpisodeNameEnglish.IndexOf(txtFileSearch.Text.Trim(), 0, StringComparison.InvariantCultureIgnoreCase) > -1 ||
+                ((obj as VM_AnimeEpisode_User).EpisodeNameRomaji != null && (obj as VM_AnimeEpisode_User).EpisodeNameRomaji.IndexOf(txtFileSearch.Text.Trim(), 0, StringComparison.InvariantCultureIgnoreCase) > -1) ||
+                (obj as VM_AnimeEpisode_User).AnimeName.IndexOf(txtFileSearch.Text.Trim(), 0, StringComparison.InvariantCultureIgnoreCase) > -1
+                ? true : false);
+        }
+
+        private void txtFileSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ViewEpisodes.Refresh();
         }
 
         private void SaveSettings(object sender, RoutedEventArgs e)
