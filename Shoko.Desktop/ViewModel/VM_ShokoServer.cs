@@ -1369,130 +1369,104 @@ namespace Shoko.Desktop.ViewModel
             }
         }
 
-        private bool isRelationInExclusion(string relation)
+        private bool IsRelationInExclusion(string relation)
         {
             if (AutoGroupSeriesRelationExclusions == null)
                 return false;
 
-            foreach (string a in AutoGroupSeriesRelationExclusions.Split('|'))
-            {
-                // relation will always be lowercase, but a may not be yet
-                if (a.ToLowerInvariant().Equals(relation.ToLowerInvariant())) return true;
-            }
-            return false;
+            return AutoGroupSeriesRelationExclusions.Split('|')
+                .Any(a => a.Equals(relation, StringComparison.InvariantCultureIgnoreCase));
         }
 
-        private void setRelationinExclusion(string setting, bool value)
+        private void SetRelationInExclusion(string setting, bool value)
         {
             string final = AutoGroupSeriesRelationExclusions;
             if (value)
             {
-                if (!isRelationInExclusion(setting))
-                {
-                    // remove all trailing bars that may have been added
-                    do
-                    {
-                        if (final.EndsWith("|"))
-                            final = final.Substring(0, final.Length - 1);
-                        else
-                            break;
-                    } while (true);
-                    // if not empty, add a single bar to separate
-                    if (final.Length > 0) final = final + "|";
-                    final = final + setting;
-                    AutoGroupSeriesRelationExclusions = final;
-                }
+                var settings = final.Split('|').ToHashSet(StringComparer.InvariantCultureIgnoreCase);
+                settings.Add(setting);
+                final = string.Join("|", settings);
             }
             else
             {
-                if (isRelationInExclusion(setting))
-                {
-                    final = "";
-                    foreach (string a in AutoGroupSeriesRelationExclusions.Split('|'))
-                    {
-                        if (a.Length == 0) continue;
-                        // add all except value and fix any uppercase
-                        if (!a.ToLowerInvariant().Equals(setting.ToLowerInvariant())) final += a.ToLowerInvariant() + "|";
-                    }
-                    // this will be "" if all are unchecked
-                    // remove last '|' added in previous loop
-                    if (final.EndsWith("|"))
-                        final = final.Substring(0, final.Length - 1);
-                    AutoGroupSeriesRelationExclusions = final;
-                }
+                var settings = final.Split('|').ToHashSet(StringComparer.InvariantCultureIgnoreCase);
+                settings.Remove(setting);
+                final = string.Join("|", settings);
             }
+
+            AutoGroupSeriesRelationExclusions = final;
         }
 
         public bool RelationAllowDissimilarTitleExclusion
         {
-            get => isRelationInExclusion("AllowDissimilarTitleExclusion");
-            set => setRelationinExclusion("AllowDissimilarTitleExclusion", value);
+            get => IsRelationInExclusion("AllowDissimilarTitleExclusion");
+            set => SetRelationInExclusion("AllowDissimilarTitleExclusion", value);
         }
 
         public bool RelationExcludeOVA
         {
-            get => isRelationInExclusion("ova");
-            set => setRelationinExclusion("ova", value);
+            get => IsRelationInExclusion("ova");
+            set => SetRelationInExclusion("ova", value);
         }
 
         public bool RelationExcludeMovie
         {
-            get => isRelationInExclusion("movie");
-            set => setRelationinExclusion("movie", value);
+            get => IsRelationInExclusion("movie");
+            set => SetRelationInExclusion("movie", value);
         }
 
         public bool RelationExcludeSameSetting
         {
-            get => isRelationInExclusion("same setting");
-            set => setRelationinExclusion("same setting", value);
+            get => IsRelationInExclusion("same setting");
+            set => SetRelationInExclusion("same setting", value);
         }
 
         public bool RelationExcludeAltSetting
         {
-            get => isRelationInExclusion("alternate setting");
-            set => setRelationinExclusion("alternate setting", value);
+            get => IsRelationInExclusion("alternate setting");
+            set => SetRelationInExclusion("alternate setting", value);
         }
 
         public bool RelationExcludeAltVersion
         {
-            get => isRelationInExclusion("alternate version");
-            set => setRelationinExclusion("alternate version", value);
+            get => IsRelationInExclusion("alternate version");
+            set => SetRelationInExclusion("alternate version", value);
         }
 
         public bool RelationExcludeCharacter
         {
-            get => isRelationInExclusion("character");
-            set => setRelationinExclusion("character", value);
+            get => IsRelationInExclusion("character");
+            set => SetRelationInExclusion("character", value);
         }
 
         public bool RelationExcludeSideStory
         {
-            get => isRelationInExclusion("side story");
-            set => setRelationinExclusion("side story", value);
+            get => IsRelationInExclusion("side story");
+            set => SetRelationInExclusion("side story", value);
         }
 
         public bool RelationExcludeParentStory
         {
-            get => isRelationInExclusion("parent story");
-            set => setRelationinExclusion("parent story", value);
+            get => IsRelationInExclusion("parent story");
+            set => SetRelationInExclusion("parent story", value);
         }
 
         public bool RelationExcludeSummary
         {
-            get => isRelationInExclusion("summary");
-            set => setRelationinExclusion("summary", value);
+            get => IsRelationInExclusion("summary");
+            set => SetRelationInExclusion("summary", value);
         }
 
         public bool RelationExcludeFullStory
         {
-            get => isRelationInExclusion("full story");
-            set => setRelationinExclusion("full story", value);
+            get => IsRelationInExclusion("full story");
+            set => SetRelationInExclusion("full story", value);
         }
 
         public bool RelationExcludeOther
         {
-            get => isRelationInExclusion("other");
-            set => setRelationinExclusion("other", value);
+            get => IsRelationInExclusion("other");
+            set => SetRelationInExclusion("other", value);
         }
 
         private bool _fileQualityFilterEnabled;

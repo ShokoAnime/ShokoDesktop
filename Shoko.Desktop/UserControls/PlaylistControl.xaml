@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              xmlns:debug="clr-namespace:System.Diagnostics;assembly=System"
              xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
-             xmlns:dd="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.Wpf.DragDrop"
+             xmlns:dd="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.WPF.DragDrop"
              xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
              xmlns:viewModel="clr-namespace:Shoko.Desktop.ViewModel"
              xmlns:dataTemplateSelectors="clr-namespace:Shoko.Desktop.DataTemplateSelectors"
