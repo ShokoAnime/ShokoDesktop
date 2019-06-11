@@ -410,7 +410,7 @@ namespace Shoko.Desktop.ImageDownload
 
                         try
                         {
-                            using (Stream img = VM_ShokoServer.Instance.ShokoImages.GetImage(int.Parse(entityID), (int) req.ImageType, false))
+                            using (Stream img = (Stream) VM_ShokoServer.Instance.ShokoImages.GetImage(int.Parse(entityID), (int) req.ImageType, false))
                             using (Stream wstream = File.OpenWrite(tempName))
                             {
                                 img.CopyTo(wstream);
@@ -451,7 +451,7 @@ namespace Shoko.Desktop.ImageDownload
 
                             try
                             {
-                                using (Stream img = VM_ShokoServer.Instance.ShokoImages.GetImage(int.Parse(entityID), (int)req.ImageType, false))
+                                using (Stream img = (Stream) VM_ShokoServer.Instance.ShokoImages.GetImage(int.Parse(entityID), (int)req.ImageType, false))
                                 using (Stream wstream = File.OpenWrite(tempName))
                                 {
                                     img.CopyTo(wstream);
