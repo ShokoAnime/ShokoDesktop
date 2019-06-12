@@ -1104,7 +1104,7 @@ namespace Shoko.Desktop.ViewModel.Server
             {
 
                 filesForEpisode=VM_ShokoServer.Instance.ShokoServices.GetFilesForEpisode(AnimeEpisodeID,
-                    VM_ShokoServer.Instance.CurrentUser.JMMUserID).Cast<VM_VideoDetailed>().OrderByDescending(a => a.GetOverallVideoSourceRanking()).ToList();
+                    VM_ShokoServer.Instance.CurrentUser.JMMUserID).Cast<VM_VideoDetailed>().ToList();
 
             }
             catch (Exception ex)
