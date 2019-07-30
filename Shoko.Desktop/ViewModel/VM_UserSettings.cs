@@ -113,7 +113,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.DashRecentlyWatchEpsExpanded; }
             set
             {
-                this.SetField(()=>AppSettings.DashRecentlyWatchEpsExpanded,value, ()=>DashRecentAdditionsExpanded, ()=>DashRecentAdditionsCollapsed);
+                this.SetField(()=>AppSettings.DashRecentlyWatchEpsExpanded,value, ()=>DashRecentlyWatchEpsExpanded, ()=>DashRecentlyWatchEpsCollapsed);
             }
         }
 
