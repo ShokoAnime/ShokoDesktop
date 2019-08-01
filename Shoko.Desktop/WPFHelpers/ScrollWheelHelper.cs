@@ -43,8 +43,8 @@ namespace Shoko.Desktop.WPFHelpers
             args.Handled = true;
         }
 
-        public static void SetWheelScrollsHorizontally(ItemsControl element, bool value) => element.SetValue(WheelScrollsHorizontallyProperty, value);
-        public static bool GetWheelScrollsHorizontally(ItemsControl element) => (bool)element.GetValue(WheelScrollsHorizontallyProperty);
+        public static void SetWheelScrollsHorizontally(ScrollViewer element, bool value) => element.SetValue(WheelScrollsHorizontallyProperty, value);
+        public static bool GetWheelScrollsHorizontally(ScrollViewer element) => (bool)element.GetValue(WheelScrollsHorizontallyProperty);
 
         [CanBeNull]
         private static T FindDescendant<T>([CanBeNull] this DependencyObject d) where T : DependencyObject
