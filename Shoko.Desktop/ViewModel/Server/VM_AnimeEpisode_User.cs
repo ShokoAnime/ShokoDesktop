@@ -123,7 +123,7 @@ namespace Shoko.Desktop.ViewModel.Server
             set
             {
                 base.AniDB_EnglishName = value;
-                EpisodeName = AniDB_EnglishName.Trim().Length > 0 ? AniDB_EnglishName : AniDB_RomajiName;
+                EpisodeName = AniDB_EnglishName!=null && AniDB_EnglishName.Trim().Length > 0 ? AniDB_EnglishName : AniDB_RomajiName;
             }
         }
 
