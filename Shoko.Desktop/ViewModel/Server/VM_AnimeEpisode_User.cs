@@ -8,6 +8,7 @@ using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Shoko.Commons.Extensions;
 using Shoko.Commons.Notification;
+using Shoko.Commons.Properties;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel.Helpers;
 using Shoko.Models.Client;
@@ -123,7 +124,36 @@ namespace Shoko.Desktop.ViewModel.Server
             set
             {
                 base.AniDB_EnglishName = value;
-                EpisodeName = AniDB_EnglishName!=null && AniDB_EnglishName.Trim().Length > 0 ? AniDB_EnglishName : AniDB_RomajiName;
+                if (!string.IsNullOrWhiteSpace(value)) EpisodeName = value;
+                else if (!string.IsNullOrWhiteSpace(AniDB_RomajiName)) EpisodeName = AniDB_RomajiName;
+                else EpisodeName = EpisodeFullTypeAndNumber;
+            }
+        }
+
+        public string EpisodeFullTypeAndNumber
+        {
+            get
+            {
+                string num = $" {EpisodeNumber}";
+                switch (EpisodeTypeEnum)
+                {
+                    case Models.Enums.EpisodeType.Episode:
+                        // Using this because EpisodeType_Episodes and EpisodeType_Normal are plural
+                        return Resources.Episode + num;
+                    case Models.Enums.EpisodeType.Special:
+                        // Using this because EpisodeType_Specials is plural
+                        return Resources.Anime_Special + num;
+                    case Models.Enums.EpisodeType.Credits:
+                        return Resources.EpisodeType_Credits + num;
+                    case Models.Enums.EpisodeType.Parody:
+                        return Resources.EpisodeType_Parody + num;
+                    case Models.Enums.EpisodeType.Trailer:
+                        return Resources.EpisodeType_Trailer + num;
+                    case Models.Enums.EpisodeType.Other:
+                        return Resources.EpisodeType_Other + num;
+                    default:
+                        return Resources.EpisodeType_Other + num;
+                }
             }
         }
 
