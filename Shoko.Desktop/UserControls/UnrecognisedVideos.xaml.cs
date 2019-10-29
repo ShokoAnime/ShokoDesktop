@@ -41,6 +41,8 @@ namespace Shoko.Desktop.UserControls
 
         public ICollectionView ViewSeries { get; set; }
         public ObservableCollection<VM_AnimeSeries_User> AllSeries { get; set; }
+        
+        private List<VM_AnimeSeries_User> Series { get; set; }
 
         public static readonly DependencyProperty AnyVideosSelectedProperty = DependencyProperty.Register("AnyVideosSelected",
             typeof(bool), typeof(UnrecognisedVideos), new UIPropertyMetadata(false, null));
@@ -989,7 +991,7 @@ namespace Shoko.Desktop.UserControls
 
             try
             {
-                series = await Task.Run(() => SearchAnime(tokenSource, argument));
+                series = await Task.FromResult(SearchAnime(tokenSource, argument));
             }
             catch (TaskCanceledException)
             {
@@ -1044,12 +1046,18 @@ namespace Shoko.Desktop.UserControls
 
             if (vidLocals == null)
             {
+                Series.Clear();
                 foreach (VM_AnimeSeries_User anime in VM_ShokoServer.Instance.ShokoServices
                     .GetAllSeries(VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_AnimeSeries_User>())
                 {
                     if (token.IsCancellationRequested)
+                    {
+                        Series.Clear();
+                        tempAnime.Clear();
                         return;
+                    }
                     tempAnime.Add(anime);
+                    Series.Add(anime);
                 }
             }
             else
@@ -1090,9 +1098,12 @@ namespace Shoko.Desktop.UserControls
                 return;
             }
 
-            foreach (VM_AnimeSeries_User anime in VM_ShokoServer.Instance.ShokoServices
-                .GetAllSeries(VM_ShokoServer.Instance.CurrentUser.JMMUserID)
-                .CastList<VM_AnimeSeries_User>())
+            if (Series.Count == 0)
+                VM_ShokoServer.Instance.ShokoServices
+                    .GetAllSeries(VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_AnimeSeries_User>();
+                
+
+            foreach (VM_AnimeSeries_User anime in Series)
             {
                 if (token.IsCancellationRequested)
                 {
