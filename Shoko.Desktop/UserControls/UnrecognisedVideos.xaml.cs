@@ -950,7 +950,6 @@ namespace Shoko.Desktop.UserControls
         {
             try
             {
-                VM_MainListHelper.Instance.AllAnimeDetailedDictionary = null;
                 AllSeries.Clear();
                 if (!VM_ShokoServer.Instance.ServerOnline) return;
                 if (AnyVideosSelected)
