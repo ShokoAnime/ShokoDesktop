@@ -42,7 +42,7 @@ namespace Shoko.Desktop.UserControls
         public ICollectionView ViewSeries { get; set; }
         public ObservableCollection<VM_AnimeSeries_User> AllSeries { get; set; }
         
-        private List<VM_AnimeSeries_User> Series { get; set; }
+        private List<VM_AnimeSeries_User> Series { get; set; } = new List<VM_AnimeSeries_User>();
 
         public static readonly DependencyProperty AnyVideosSelectedProperty = DependencyProperty.Register("AnyVideosSelected",
             typeof(bool), typeof(UnrecognisedVideos), new UIPropertyMetadata(false, null));
@@ -968,7 +968,7 @@ namespace Shoko.Desktop.UserControls
             }
         }
 
-        public async void SearchAnime(object argument)
+        public void SearchAnime(object argument)
         {
             try
             {
@@ -991,41 +991,71 @@ namespace Shoko.Desktop.UserControls
 
             try
             {
-                series = await Task.FromResult(SearchAnime(tokenSource, argument));
+                Task.Factory.StartNew(() => SearchAnime(tokenSource, argument));
             }
             catch (TaskCanceledException)
             {
                 // ignored
             }
-
-            bool cancelled = runningTask.IsCancellationRequested;
-            runningTask = null;
-            
-            if (cancelled) return;
-
-            // update
-            if (series != null)
-            {
-                AllSeries.Clear();
-                series.ForEach(a => AllSeries.Add(a));
-
-                if (AllSeries.Count >= 1)
-                    lbSeries.SelectedIndex = 0;
-            }
-
-            txtSeriesSearch.IsEnabled = true;
-            btnAddSeries.IsEnabled = true;
-            cboEpisodes.IsEnabled = true;
-            cboMultiType.IsEnabled = true;
-            lbSeries.IsEnabled = true;
         }
 
-        private List<VM_AnimeSeries_User> SearchAnime(CancellationTokenSource token, object argument)
+        private void EnableSeriesControls()
         {
-            if (token.IsCancellationRequested) return null;
-            List<VM_AnimeSeries_User> tempAnime = new List<VM_AnimeSeries_User>();
-            SearchAnime(token.Token, argument, tempAnime);
-            return token.IsCancellationRequested ? null : tempAnime;
+            Application.Current?.Dispatcher?.Invoke(() =>
+            {
+                txtSeriesSearch.IsEnabled = true;
+                btnAddSeries.IsEnabled = true;
+                cboEpisodes.IsEnabled = true;
+                cboMultiType.IsEnabled = true;
+                lbSeries.IsEnabled = true;
+            });
+        }
+
+        private void SearchAnime(CancellationTokenSource token, object argument)
+        {
+            try
+            {
+                if (token.IsCancellationRequested)
+                {
+                    EnableSeriesControls();
+                    runningTask = null;
+                    return;
+                }
+
+                List<VM_AnimeSeries_User> tempAnime = new List<VM_AnimeSeries_User>();
+                SearchAnime(token.Token, argument, tempAnime);
+
+                if (token.IsCancellationRequested)
+                {
+                    runningTask = null;
+                    EnableSeriesControls();
+                    return;
+                }
+
+                Application.Current?.Dispatcher?.Invoke(() =>
+                {
+                    AllSeries.Clear();
+                    tempAnime.ForEach(a => AllSeries.Add(a));
+                    
+                    if (AllSeries.Count >= 1)
+                        lbSeries.SelectedIndex = 0;
+                    
+                    // Duplicate, but doing it here to avoid multiple Dispatcher Invokes
+                    txtSeriesSearch.IsEnabled = true;
+                    btnAddSeries.IsEnabled = true;
+                    cboEpisodes.IsEnabled = true;
+                    cboMultiType.IsEnabled = true;
+                    lbSeries.IsEnabled = true;
+                });
+
+                runningTask = null;
+            }
+            catch (Exception e)
+            {
+                EnableSeriesControls();
+                runningTask = null;
+                logger.Error(e);
+            }
         }
 
         private void SearchAnime(CancellationToken token, object argument, List<VM_AnimeSeries_User> tempAnime)
@@ -1044,7 +1074,7 @@ namespace Shoko.Desktop.UserControls
                 }
             }
 
-            if (vidLocals == null)
+            if (vidLocals == null || vidLocals.Count == 0)
             {
                 Series.Clear();
                 foreach (VM_AnimeSeries_User anime in VM_ShokoServer.Instance.ShokoServices
@@ -1099,8 +1129,8 @@ namespace Shoko.Desktop.UserControls
             }
 
             if (Series.Count == 0)
-                VM_ShokoServer.Instance.ShokoServices
-                    .GetAllSeries(VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_AnimeSeries_User>();
+                Series.AddRange(VM_ShokoServer.Instance.ShokoServices
+                    .GetAllSeries(VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_AnimeSeries_User>());
                 
 
             foreach (VM_AnimeSeries_User anime in Series)
@@ -1118,7 +1148,7 @@ namespace Shoko.Desktop.UserControls
             VM_AnimeSeries_User servm = obj as VM_AnimeSeries_User;
             if (servm == null) return true;
 
-            return GroupSearchFilterHelper.EvaluateSeriesTextSearch(servm, txtSeriesSearch.Text.Replace("'", "`"));
+            return GroupSearchFilterHelper.EvaluateSeriesTextSearch(servm, txtSeriesSearch.Text);
         }
 
         private bool FileSearchFilter(object obj)
