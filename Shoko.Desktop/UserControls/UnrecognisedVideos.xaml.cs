@@ -10,10 +10,12 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using Nancy.Rest.Client.Exceptions;
 using NLog;
 using Shoko.Commons.Extensions;
 using Shoko.Commons.Utils;
@@ -1051,9 +1053,9 @@ namespace Shoko.Desktop.UserControls
             }
             catch (Exception e)
             {
-                EnableSeriesControls();
                 runningTask = null;
                 logger.Error(e);
+                EnableSeriesControls();
             }
         }
 
@@ -1075,19 +1077,7 @@ namespace Shoko.Desktop.UserControls
 
             if (vidLocals == null || vidLocals.Count == 0)
             {
-                Series.Clear();
-                foreach (VM_AnimeSeries_User anime in VM_ShokoServer.Instance.ShokoServices
-                    .GetAllSeries(VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_AnimeSeries_User>())
-                {
-                    if (token.IsCancellationRequested)
-                    {
-                        Series.Clear();
-                        tempAnime.Clear();
-                        return;
-                    }
-                    tempAnime.Add(anime);
-                    Series.Add(anime);
-                }
+                DisplayAllSeries(token, tempAnime);
             }
             else
             {
@@ -1111,37 +1101,40 @@ namespace Shoko.Desktop.UserControls
                 {
                     return;
                 }
-                foreach (VM_AnimeSeries_User anime in VM_ShokoServer.Instance.ShokoServices
-                    .SearchSeriesWithFilename(VM_ShokoServer.Instance.CurrentUser.JMMUserID,
-                        searchString).CastList<VM_AnimeSeries_User>())
+
+                try
                 {
-                    if (token.IsCancellationRequested)
-                        return;
-                    tempAnime.Add(anime);
+                    var searchResults = VM_ShokoServer.Instance.ShokoServices
+                        .SearchSeriesWithFilename(VM_ShokoServer.Instance.CurrentUser.JMMUserID,
+                            searchString).CastList<VM_AnimeSeries_User>();
+                    if (token.IsCancellationRequested) return;
+                    tempAnime.AddRange(searchResults);
+                }
+                catch (Exception e)
+                {
+                    logger.Error($"An error occurred while searching for a series in the Unrecognized Utility: {e}");
+                    DisplayAllSeries(token, tempAnime);
                 }
             }
 
             if (tempAnime.Count > 0) return;
-            if (token.IsCancellationRequested)
-            {
-                return;
-            }
+            if (token.IsCancellationRequested) return;
 
-            if (Series.Count == 0)
-                Series.AddRange(VM_ShokoServer.Instance.ShokoServices
-                    .GetAllSeries(VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_AnimeSeries_User>());
-                
-
-            foreach (VM_AnimeSeries_User anime in Series)
-            {
-                if (token.IsCancellationRequested)
-                {
-                    return;
-                }
-                tempAnime.Add(anime);
-            }
+            DisplayAllSeries(token, tempAnime);
         }
 
+        private void DisplayAllSeries(CancellationToken token, List<VM_AnimeSeries_User> tempAnime)
+        {
+            lock(Series) Series.Clear();
+            var series = VM_ShokoServer.Instance.ShokoServices
+                .GetAllSeries(VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_AnimeSeries_User>();
+            if (token.IsCancellationRequested) return;
+
+            lock(Series) Series.AddRange(series);
+            if (token.IsCancellationRequested) return;
+            tempAnime.AddRange(series);
+        }
+        
         private bool SeriesSearchFilter(object obj)
         {
             VM_AnimeSeries_User servm = obj as VM_AnimeSeries_User;
