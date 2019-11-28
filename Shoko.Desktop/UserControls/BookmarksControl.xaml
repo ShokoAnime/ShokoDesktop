@@ -41,7 +41,7 @@
                     </Grid.RowDefinitions>
 
                     <Image  Height="80"  Margin="5,3,10,5" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5"
-                               HorizontalAlignment="Left" Source="{Binding Path=AniDBAnime.AniDBAnime.PosterPathWithRandoms, Converter={StaticResource LocalUriToImageConverter}}" ToolTipService.ShowDuration="60000">
+                               HorizontalAlignment="Left" Source="{Binding Path=Anime.PosterPathWithRandoms, Converter={StaticResource LocalUriToImageConverter}}" ToolTipService.ShowDuration="60000">
                         <Image.Effect>
                             <DropShadowEffect Opacity="0.5"/>
                         </Image.Effect>
@@ -57,11 +57,11 @@
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
 
-                                    <Image Grid.Column="0" Grid.Row="0" Height="400" Source="{Binding Path=AniDBAnime.AniDBAnime.PosterPathWithRandoms, Converter={StaticResource LocalUriToImageConverter}}" 
+                                    <Image Grid.Column="0" Grid.Row="0" Height="400" Source="{Binding Path=Anime.PosterPathWithRandoms, Converter={StaticResource LocalUriToImageConverter}}" 
                                                 Margin="10,5,0,5" VerticalAlignment="Top" HorizontalAlignment="Left">
                                     </Image>
 
-                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=AniDBAnime.AniDBAnime.Description}" Foreground="Black"  HorizontalAlignment="Left" Margin="10,5,0,5" 
+                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=Anime.DescriptionFormatted}" Foreground="Black"  HorizontalAlignment="Left" Margin="10,5,0,5" 
                                                    VerticalAlignment="Top"  TextWrapping="Wrap">
                                     </TextBlock>
                                 </Grid>
@@ -80,8 +80,8 @@
 
                             </StackPanel>
                         </Button>
-                        <TextBlock Text="{Binding Path=AniDBAnime.AniDBAnime.FormattedTitle}" FontWeight="Bold" FontSize="14" VerticalAlignment="Center" />
-                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Binding Path=AnimeID}" URL="{Binding Path=AniDBAnime.AniDBAnime.AniDB_SiteURL}" Margin="5,0,0,0"/>
+                        <TextBlock Text="{Binding Path=Anime.FormattedTitle}" FontWeight="Bold" FontSize="14" VerticalAlignment="Center" />
+                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Binding Path=AnimeID}" URL="{Binding Path=Anime.AniDB_SiteURL}" Margin="5,0,0,0"/>
                        
                     </StackPanel>
 
@@ -91,14 +91,14 @@
                             Command="{DynamicResource ToggleDownloadingCommand}" CommandParameter="{Binding}"  Grid.Column="1" Grid.Row="2"
                             ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_BookmarksToggle}" VerticalAlignment="Top">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                            <Image Height="16" Width="16" Source="/Images/24_download.png" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                            <!--<Image Height="16" Width="16" source="/images/24_download.png" Margin="0,0,0,0" VerticalAlignment="Center"/>-->
                             <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Bookmarks_CurrentlyDownloading}" VerticalAlignment="Center" Margin="5,0,0,0" />
                         </StackPanel>
                     </Button>
 
                     <!-- toggle downloading button - off -->
                     <Button HorizontalAlignment="Left" Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
-                            Visibility="{Binding Path=NotDownloadingBool, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Visibility="{Binding Path=DownloadingBool, Converter={StaticResource InverseBooleanToVisibilityConverter}}"
                             Command="{DynamicResource ToggleDownloadingCommand}" CommandParameter="{Binding}"  Grid.Column="1" Grid.Row="2"
                             ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_BookmarksToggle}" VerticalAlignment="Top">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >

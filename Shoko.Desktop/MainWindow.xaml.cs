@@ -1777,9 +1777,13 @@ namespace Shoko.Desktop
 
                     if (grp.AnimeGroupID!=0)
                     {
-                        groupBeforeChanges = new VM_AnimeGroup_User();
-
-                        grp.Clone(groupBeforeChanges);
+                        groupBeforeChanges = new VM_AnimeGroup_User
+                        {
+                            GroupName = grp.GroupName,
+                            IsFave = grp.IsFave,
+                            Description = grp.Description,
+                            SortName = grp.SortName
+                        };
                     }
 
                     grp.IsReadOnly = false;
