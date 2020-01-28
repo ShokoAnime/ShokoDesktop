@@ -161,7 +161,14 @@ namespace Shoko.Desktop.UserControls
 
             btnRefreshSeriesList.Click += new RoutedEventHandler(btnRefreshSeriesList_Click);
 
+            cbEnableShowFilter.Unchecked += new RoutedEventHandler(cbEnableShowFilter_Unchecked);
+
             Loaded += Window_Loaded;
+        }
+
+        private void cbEnableShowFilter_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RefreshSeriesList(true);
         }
 
         public void Window_Loaded(object sender, RoutedEventArgs e)
@@ -177,7 +184,7 @@ namespace Shoko.Desktop.UserControls
         {
             try
             {
-                bool isShiftOrCtrlDown = 0 != (Keyboard.Modifiers & (ModifierKeys.Shift | ModifierKeys.Control));
+                bool isShiftOrCtrlDown = (0 != (Keyboard.Modifiers & (ModifierKeys.Shift | ModifierKeys.Control))) || !(bool)cbEnableShowFilter.IsChecked;
                 ccDetail.Content = null;
                 ccDetailMultiple.Content = null;
 
@@ -233,7 +240,8 @@ namespace Shoko.Desktop.UserControls
 
         void btnRefreshSeriesList_Click(object sender, RoutedEventArgs e)
         {
-            RefreshSeriesList();
+            bool isShiftOrCtrlDown = 0 != (Keyboard.Modifiers & (ModifierKeys.Shift | ModifierKeys.Control));
+            RefreshSeriesList(isShiftOrCtrlDown);
         }
 
         void btnLogs_Click(object sender, RoutedEventArgs e)
@@ -954,7 +962,7 @@ namespace Shoko.Desktop.UserControls
             {
                 AllSeries.Clear();
                 if (!VM_ShokoServer.Instance.ServerOnline) return;
-                if (AnyVideosSelected)
+                if (AnyVideosSelected && !all)
                 {
                     SearchAnime(dgVideos.SelectedItems);
                 }
@@ -1159,14 +1167,14 @@ namespace Shoko.Desktop.UserControls
             return false;
         }
 
-        void RefreshSeriesList()
+        void RefreshSeriesList(bool all = false)
         {
             try
             {
                 if (!VM_ShokoServer.Instance.ServerOnline) return;
 
                 Cursor = Cursors.Wait;
-                RefreshSeries();
+                RefreshSeries(all);
                 Cursor = Cursors.Arrow;
 
             }

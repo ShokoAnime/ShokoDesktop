@@ -439,12 +439,15 @@
                         <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SelectSeriesEp}" Margin="0,0,0,0"/>
 
                         <!-- add series -->
-                        <Button  Name="btnRefreshSeriesList" Margin="20,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                        <Button  Name="btnRefreshSeriesList" Margin="20,2,2,2" Style="{DynamicResource FlatButtonStyle}" ToolTip="Hold CTRL or SHIFT to load all shows" ToolTipService.InitialShowDelay="2000">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                 <Image Height="16" Width="16" Source="/Images/32_refresh.png" Margin="0,0,5,0"/>
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Unrecognized_RefreshSeries}" Margin="0,0,0,0"/>
                             </StackPanel>
                         </Button>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <CheckBox Name="cbEnableShowFilter" IsChecked="True" Margin="20,2,2,2" >Enable initial Show-Filter</CheckBox>
+                        </StackPanel>                        
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Images/32_search.png" Width="16" Height="16" Margin="5,0,0,0" ></Image>
