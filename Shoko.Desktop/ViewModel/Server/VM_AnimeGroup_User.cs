@@ -688,6 +688,7 @@ namespace Shoko.Desktop.ViewModel.Server
             Stat_AudioLanguages = new HashSet<string>(contract.Stat_AudioLanguages);
             Stat_SubtitleLanguages = new HashSet<string>(contract.Stat_SubtitleLanguages);
             Stat_HasTvDBLink = contract.Stat_HasTvDBLink;
+            Stat_HasTraktLink = contract.Stat_HasTraktLink;
             Stat_HasMALLink = contract.Stat_HasMALLink;
             Stat_HasMovieDBLink = contract.Stat_HasMovieDBLink;
             Stat_HasMovieDBOrTvDBLink = contract.Stat_HasMovieDBOrTvDBLink;
