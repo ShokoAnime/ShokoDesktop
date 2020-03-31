@@ -340,7 +340,7 @@ namespace Shoko.Desktop.UserControls
                     //ok, now its safe to use textbox, search wont mess with it
                     RefreshSeries();
                     VM_AnimeSeries_User ser = frm.AnimeSeries;
-                    txtSeriesSearch.Text = ser?.AniDBAnime?.AniDBAnime?.FormattedTitle ?? ser?.SeriesName ?? string.Empty;
+                    txtSeriesSearch.Text = ser?.AniDBAnime?.AniDBAnime?.AnimeID.ToString();
                 }
             }
             catch (Exception ex)

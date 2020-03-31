@@ -47,6 +47,9 @@ namespace Shoko.Desktop.AutoUpdates
 
         public static string GetLatestVersionNumber(string channel)
         {
+            if (channel.ToLower() == "alpha")
+                return "";
+
             string versionNumber = "";
             try
             {

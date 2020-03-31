@@ -53,9 +53,14 @@ namespace Shoko.Desktop.ViewModel.Helpers
             
             if (series == null) return false;
 
-            if (IsDigitsOnly(filterText))
+            if (IsDigitsOnly(filterText) && series.AniDBAnime != null)
             {
-                return (Convert.ToInt32(filterText) == series.AniDBAnime.AniDBAnime.AnimeID);
+                try
+                {
+                    return Convert.ToInt32(filterText) == series.AniDBAnime.AniDBAnime.AnimeID;
+                }
+                catch { }
+                
             }
 
             if (!string.IsNullOrEmpty(series.SeriesNameOverride) && series.SeriesNameOverride.FuzzyMatches(filterText))
