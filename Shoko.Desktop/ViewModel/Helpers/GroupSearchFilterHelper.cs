@@ -79,7 +79,7 @@ namespace Shoko.Desktop.ViewModel.Helpers
             // search the romaji name, english names etc from anidb
             if (anime.AnimeTitles.Any(a =>
                 (a.Language.Equals("en") || a.Language.Equals("x-jat") ||
-                 a.Language.Equals(VM_ShokoServer.Instance.LanguagePreference)) && a.Title.FuzzyMatches(filterText)))
+                 a.Language.Equals(VM_ShokoServer.Instance.LanguagePreference, StringComparison.InvariantCultureIgnoreCase)) && a.Title.FuzzyMatches(filterText)))
                 return true;
 
             // check the tags

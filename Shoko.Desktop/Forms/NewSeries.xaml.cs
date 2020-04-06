@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using NLog;
+using C5;
 using Shoko.Commons.Extensions;
 using Shoko.Commons.Utils;
 using Shoko.Desktop.Utilities;
@@ -194,16 +195,16 @@ namespace Shoko.Desktop.Forms
             try
             {
                 //make sure list is unique
-                SortedDictionary<string, string> sortedTitles = new SortedDictionary<string, string>();
+                HashedLinkedList<string> sortedTitles = new HashedLinkedList<string>();
                 foreach (string tit in searchResult.Titles)
                 {
                     if (!string.IsNullOrEmpty(tit))
                     {
-                        sortedTitles[tit] = tit;
+                        sortedTitles.Add(tit);
                     }
                 }
 
-                foreach (string tit in sortedTitles.Values)
+                foreach (string tit in sortedTitles)
                 {
                     txtTitles.Text += tit;
                     txtTitles.Text += Environment.NewLine;
@@ -381,7 +382,7 @@ namespace Shoko.Desktop.Forms
             VM_AnimeSearch srch = new VM_AnimeSearch();
             srch.AnimeID = anime.AnimeID;
             srch.MainTitle = anime.MainTitle;
-            srch.Titles = new HashSet<string>(anime.GetAllTitles(),StringComparer.InvariantCultureIgnoreCase);
+            srch.Titles = new System.Collections.Generic.HashSet<string>(anime.GetAllTitles(), StringComparer.InvariantCultureIgnoreCase);
 
             SetSelectedAnime(srch);
             EvaluateRadioButtons();
@@ -398,7 +399,6 @@ namespace Shoko.Desktop.Forms
                 ViewGroups.SortDescriptions.Add(new SortDescription("SortName", ListSortDirection.Ascending));
 
                 ViewSearchResults = CollectionViewSource.GetDefaultView(SearchResults);
-                ViewSearchResults.SortDescriptions.Add(new SortDescription("MainTitle", ListSortDirection.Ascending));
 
                 List<VM_AnimeGroup_User> grpsRaw = VM_ShokoServer.Instance.ShokoServices
                     .GetAllGroups(VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_AnimeGroup_User>();
@@ -436,7 +436,6 @@ namespace Shoko.Desktop.Forms
                 ViewGroups.SortDescriptions.Add(new SortDescription("SortName", ListSortDirection.Ascending));
 
                 ViewSearchResults = CollectionViewSource.GetDefaultView(SearchResults);
-                ViewSearchResults.SortDescriptions.Add(new SortDescription("MainTitle", ListSortDirection.Ascending));
 
                 List<VM_AnimeGroup_User> grpsRaw = VM_ShokoServer.Instance.ShokoServices
                     .GetAllGroups(VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_AnimeGroup_User>();
