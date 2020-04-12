@@ -73,7 +73,7 @@ namespace Shoko.Desktop.ViewModel
 
                     case ImageEntityType.TvDB_FanArt:
                         VM_TvDB_ImageFanart tvFanart = (VM_TvDB_ImageFanart) FanartObject;
-                        return tvFanart.FullThumbnailPath;
+                        return tvFanart.FullImagePath;
 
                     case ImageEntityType.MovieDB_FanArt:
                         VM_MovieDB_Fanart movieFanart = (VM_MovieDB_Fanart) FanartObject;

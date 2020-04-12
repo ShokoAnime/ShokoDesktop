@@ -414,7 +414,7 @@ namespace Shoko.Desktop.ViewModel.Server
             // check if user has specied a fanart to always be used
             if (DefaultImageFanart != null)
             {
-                allFanart.Add(DefaultImageFanart.FullThumbnailPath);
+                allFanart.Add(DefaultImageFanart.FullImagePath);
                 return allFanart;
             }
 
@@ -709,7 +709,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
                 // this should be randomised or use the default 
                 if (DefaultImageFanart != null)
-                    return DefaultImageFanart.FullThumbnailPath;
+                    return DefaultImageFanart.FullImagePath;
 
                 if (AniDB_AnimeCrossRefs == null)
                     return packUriBlank;

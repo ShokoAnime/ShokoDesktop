@@ -188,7 +188,7 @@ namespace Shoko.Desktop.ImageDownload
                 if (!req.ForceDownload)
                 {
                     // check to make sure the file actually exists
-                    if (!File.Exists(fanart.FullImagePath) || !File.Exists(fanart.FullThumbnailPath))
+                    if (!File.Exists(fanart.FullImagePath))
                     {
                         imagesToDownload.Enqueue(req);
                         OnQueueUpdateEvent(new QueueUpdateEventArgs(QueueCount));
@@ -272,7 +272,7 @@ namespace Shoko.Desktop.ImageDownload
             }
         }
 
-        private string GetFileName(ImageDownloadRequest req, bool thumbNailOnly)
+        private string GetFileName(ImageDownloadRequest req)
         {
             switch (req.ImageType)
             {
@@ -299,11 +299,7 @@ namespace Shoko.Desktop.ImageDownload
                 case ImageEntityType.TvDB_FanArt:
 
                     VM_TvDB_ImageFanart fanart = req.ImageData as VM_TvDB_ImageFanart;
-
-                    if (thumbNailOnly)
-                        return fanart?.FullThumbnailPathPlain;
-                    else
-                        return fanart?.FullImagePathPlain;
+                    return fanart?.FullImagePathPlain;
 
                 case ImageEntityType.MovieDB_Poster:
 
@@ -392,7 +388,7 @@ namespace Shoko.Desktop.ImageDownload
             {
                 lock (downloadsLock)
                 {
-                    string fileName = GetFileName(req, false);
+                    string fileName = GetFileName(req);
                     string entityID = GetEntityID(req);
                     bool downloadImage = true;
                     bool fileExists = string.IsNullOrEmpty(fileName) || File.Exists(fileName);
@@ -428,49 +424,6 @@ namespace Shoko.Desktop.ImageDownload
 
                         // move the file to it's final location
                         File.Move(tempName, fileName);
-                    }
-
-
-                    // if the file is a tvdb fanart also get the thumbnail
-                    if (req.ImageType == ImageEntityType.TvDB_FanArt)
-                    {
-                        fileName = GetFileName(req, true);
-                        entityID = GetEntityID(req);
-                        downloadImage = true;
-                        fileExists = File.Exists(fileName);
-
-                        if (fileExists && !req.ForceDownload) downloadImage = false;
-
-                        if (downloadImage)
-                        {
-                            string tempName = Path.Combine(Utils.GetImagesTempFolder(), Path.GetFileName(fileName));
-                            if (File.Exists(tempName)) File.Delete(tempName);
-
-                            OnImageDownloadEvent(new ImageDownloadEventArgs(string.Empty, req, ImageDownloadEventType.Started));
-                            if (fileExists) File.Delete(fileName);
-
-                            try
-                            {
-                                using (Stream img = (Stream) VM_ShokoServer.Instance.ShokoImages.GetImage(int.Parse(entityID), (int)req.ImageType, false))
-                                using (Stream wstream = File.OpenWrite(tempName))
-                                {
-                                    img.CopyTo(wstream);
-                                }
-                            }
-                            catch
-                            {
-                                return;
-                            }
-
-
-                            // move the file to it's final location
-                            string fullPath = Path.GetDirectoryName(fileName);
-                            if (!Directory.Exists(fullPath))
-                                Directory.CreateDirectory(fullPath);
-
-                            // move the file to it's final location
-                            File.Move(tempName, fileName);
-                        }
                     }
                 }
             }

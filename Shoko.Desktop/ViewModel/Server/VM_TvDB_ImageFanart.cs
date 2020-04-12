@@ -43,25 +43,6 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
-        public string FullThumbnailPathPlain => string.Intern(Path.Combine(Utils.GetTvDBImagePath(), ThumbnailPath.Replace("/", @"\")));
-
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
-        public string FullThumbnailPath
-        {
-            get
-            {
-                if (!File.Exists(FullThumbnailPathPlain))
-                {
-                    ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.TvDB_FanArt, this, false);
-                    MainWindow.imageHelper.DownloadImage(req);
-                    if (File.Exists(FullThumbnailPathPlain)) return FullThumbnailPathPlain;
-                }
-
-                return FullThumbnailPathPlain;
-            }
-        }
-
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool IsImageEnabled
         {
             get { return base.Enabled == 1; }
@@ -110,12 +91,6 @@ namespace Shoko.Desktop.ViewModel.Server
         {
             get => base.Language == null ? null : string.Intern(base.Language);
             set => base.Language = value == null ? null : string.Intern(value);
-        }
-
-        public new string ThumbnailPath
-        {
-            get => base.ThumbnailPath == null ? null : string.Intern(base.ThumbnailPath);
-            set => base.ThumbnailPath = value == null ? null : string.Intern(value);
         }
 
         public new string VignettePath

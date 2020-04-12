@@ -160,7 +160,7 @@ namespace Shoko.Desktop.ViewModel.Server
                         break;
 
                     case ImageEntityType.TvDB_FanArt:
-                        fileName = TVFanart.FullThumbnailPath;
+                        fileName = TVFanart.FullImagePath;
                         break;
 
                     case ImageEntityType.TvDB_Banner:
