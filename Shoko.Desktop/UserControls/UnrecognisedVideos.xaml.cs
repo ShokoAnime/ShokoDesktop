@@ -495,7 +495,6 @@ namespace Shoko.Desktop.UserControls
 
                     // make sure the last episode number is within the valid range
                     VM_AnimeSeries_User series = lbSeries.SelectedItem as VM_AnimeSeries_User;
-                    int epCount = series.LatestRegularEpisodeNumber;
 
                     // get all the selected videos
                     logger.Info($"[Unrecognizedfiles] linking {dgVideos.SelectedItems.Count} videos");
@@ -509,15 +508,16 @@ namespace Shoko.Desktop.UserControls
                     }
 
                     startEp = txtStartEpNum.Text;
+                    EpisodeType typeEnum = EpisodeType.Episode;
+                    int epCount = series.AllEpisodes.Count(a => a.EpisodeTypeEnum == typeEnum);
                     if (!int.TryParse(txtStartEpNum.Text, out startEpNum))
                     {
                         if (txtStartEpNum.Text.Length > 1)
                         {
                             char type = txtStartEpNum.Text[0];
                             string text = txtStartEpNum.Text.Substring(1);
-                            if (int.TryParse(text, out int epNum) && lbSeries.SelectedItem is VM_AnimeSeries_User anime)
+                            if (int.TryParse(text, out int epNum))
                             {
-                                EpisodeType typeEnum;
                                 switch (type)
                                 {
                                     case 'S':
@@ -539,8 +539,8 @@ namespace Shoko.Desktop.UserControls
                                         return;
                                 }
 
-                                epCount = anime.AllEpisodes
-                                    .Count(a => a.EpisodeTypeEnum == typeEnum);
+                                startEpNum = epNum;
+                                epCount = series.AllEpisodes.Count(a => a.EpisodeTypeEnum == typeEnum);
                             }
                         }
                     }
@@ -571,7 +571,8 @@ namespace Shoko.Desktop.UserControls
                                 return;
                             }
                             // check again
-                            if (series.LatestRegularEpisodeNumber < endEpNum)
+                            epCount = series.AllEpisodes.Count(a => a.EpisodeTypeEnum == typeEnum);
+                            if (epCount < endEpNum)
                             {
                                 MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_InvalidEp,
                                     Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK,
@@ -944,7 +945,7 @@ namespace Shoko.Desktop.UserControls
                         {
                             int endEpNum = startEpNum + dgVideos.SelectedItems.Count - 1;
                             txtEndEpNum.Text = endEpNum.ToString();
-                            if (lbSeries.SelectedItems[0] is VM_AnimeSeries_User anime &&
+                            if (lbSeries.SelectedItem is VM_AnimeSeries_User anime &&
                                 endEpNum <= anime.AllEpisodes.Count(a => a.EpisodeTypeEnum == EpisodeType.Episode))
                                 btnConfirm.Visibility = Visibility.Visible;
                         }
