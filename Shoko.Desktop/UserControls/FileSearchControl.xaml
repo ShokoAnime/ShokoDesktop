@@ -89,7 +89,7 @@
 
                         <!-- open folder location -->
                         <Button Name="btnOpenFolderLocation" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left"
-                                Command="{DynamicResource OpenFolderCommand}" CommandParameter="{Binding}">
+                                Command="{DynamicResource OpenFolderCommand}" CommandParameter="{Binding}" Visibility="{Binding IsLocalFile, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="0,0,5,0"/>
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=OpenFolder}" Margin="0,0,5,0"/>
@@ -216,7 +216,7 @@
 
                     <ComboBox Name="cboSearchType" Margin="3,3,0,3" Height="24" VerticalAlignment="Center"/>
                     
-                    <TextBox Name="txtFileSearch" Width="180" Margin="3,3,0,3" BorderThickness="1">
+                    <TextBox Name="txtFileSearch" Width="180" Margin="3,3,0,3" BorderThickness="1" >
 
                     </TextBox>
 
@@ -227,8 +227,6 @@
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
-                    
-
 
                     <TextBlock VerticalAlignment="Center" Text="{Binding Path=FileCount, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:FileSearchControl}}}" Margin="10,0,0,0" Foreground="DarkGray" />
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Files}" Margin="5,0,0,0" Foreground="DarkGray"/>

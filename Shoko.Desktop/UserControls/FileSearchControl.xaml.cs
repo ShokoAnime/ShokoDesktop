@@ -55,6 +55,8 @@ namespace Shoko.Desktop.UserControls
 
             btnSearch.Click += new RoutedEventHandler(btnSearch_Click);
             lbVideos.SelectionChanged += new SelectionChangedEventHandler(lbVideos_SelectionChanged);
+            
+            txtFileSearch.KeyDown += TxtFileSearchOnKeyDown;
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
@@ -68,6 +70,13 @@ namespace Shoko.Desktop.UserControls
 
             getDetailsWorker.DoWork += new DoWorkEventHandler(getDetailsWorker_DoWork);
             getDetailsWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(getDetailsWorker_RunWorkerCompleted);
+        }
+
+        private void TxtFileSearchOnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key != Key.Enter && e.Key != Key.Return) return;
+
+            btnSearch_Click(sender, null);
         }
 
         void lbVideos_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -26,6 +26,7 @@ using Shoko.Desktop.ViewModel;
 using Shoko.Desktop.ViewModel.Helpers;
 using Shoko.Desktop.ViewModel.Server;
 using Shoko.Models.Client;
+using Shoko.Models.Enums;
 
 namespace Shoko.Desktop.UserControls
 {
@@ -488,9 +489,61 @@ namespace Shoko.Desktop.UserControls
                 // if multiple videos selected
                 if (MultipleVideosSelected)
                 {
-                    int startEpNum = 0, endEpNum = 0;
+                    int startEpNum;
+                    string startEp;
+                    int endEpNum;
 
-                    int.TryParse(txtStartEpNum.Text, out startEpNum);
+                    // make sure the last episode number is within the valid range
+                    VM_AnimeSeries_User series = lbSeries.SelectedItem as VM_AnimeSeries_User;
+                    int epCount = series.LatestRegularEpisodeNumber;
+
+                    // get all the selected videos
+                    logger.Info($"[Unrecognizedfiles] linking {dgVideos.SelectedItems.Count} videos");
+                    List<int> vidIDs = new List<int>();
+                    foreach (object obj in dgVideos.SelectedItems)
+                    {
+                        VM_VideoLocal vid = obj as VM_VideoLocal;
+                        vidIDs.Add(vid.VideoLocalID);
+                        logger.Info(
+                            $"[Unrecognizedfiles] Gonna link {vid.FullPath} | {vid.VideoLocalID} => {series?.GroupName}");
+                    }
+
+                    startEp = txtStartEpNum.Text;
+                    if (!int.TryParse(txtStartEpNum.Text, out startEpNum))
+                    {
+                        if (txtStartEpNum.Text.Length > 1)
+                        {
+                            char type = txtStartEpNum.Text[0];
+                            string text = txtStartEpNum.Text.Substring(1);
+                            if (int.TryParse(text, out int epNum) && lbSeries.SelectedItem is VM_AnimeSeries_User anime)
+                            {
+                                EpisodeType typeEnum;
+                                switch (type)
+                                {
+                                    case 'S':
+                                        typeEnum = EpisodeType.Special;
+                                        break;
+                                    case 'C':
+                                        typeEnum = EpisodeType.Credits;
+                                        break;
+                                    case 'T':
+                                        typeEnum = EpisodeType.Trailer;
+                                        break;
+                                    case 'P':
+                                        typeEnum = EpisodeType.Parody;
+                                        break;
+                                    case 'O':
+                                        typeEnum = EpisodeType.Other;
+                                        break;
+                                    default:
+                                        return;
+                                }
+
+                                epCount = anime.AllEpisodes
+                                    .Count(a => a.EpisodeTypeEnum == typeEnum);
+                            }
+                        }
+                    }
 
                     if (MultipleTypeRange)
                         endEpNum = startEpNum + dgVideos.SelectedItems.Count - 1;
@@ -499,9 +552,8 @@ namespace Shoko.Desktop.UserControls
 
                     logger.Info(
                         $"[Unrecognizedfiles] Selected multiple episodeds for linking, range = {startEpNum} to {endEpNum}");
-                    // make sure the last episode number is within the valid range
-                    VM_AnimeSeries_User series = lbSeries.SelectedItem as VM_AnimeSeries_User;
-                    if (series.LatestRegularEpisodeNumber < endEpNum && startEpNum > 0)
+                    
+                    if (epCount < endEpNum && startEpNum > 0)
                     {
                         // otherwise allow the user to refresh it from anidb
                         MessageBoxResult res = MessageBox.Show(
@@ -536,19 +588,8 @@ namespace Shoko.Desktop.UserControls
 
                     }
 
-                    // get all the selected videos
-                    logger.Info($"[Unrecognizedfiles] linking {dgVideos.SelectedItems.Count} videos");
-                    List<int> vidIDs = new List<int>();
-                    foreach (object obj in dgVideos.SelectedItems)
-                    {
-                        VM_VideoLocal vid = obj as VM_VideoLocal;
-                        vidIDs.Add(vid.VideoLocalID);
-                        logger.Info(
-                            $"[Unrecognizedfiles] Gonna link {vid.FullPath} | {vid.VideoLocalID} => {series?.GroupName}");
-                    }
-
                     string response = VM_ShokoServer.Instance.ShokoServices.AssociateMultipleFiles(vidIDs,
-                        series.AnimeSeriesID, startEpNum, MultipleTypeSingle);
+                        series.AnimeSeriesID, startEp, MultipleTypeSingle);
                     if (response.Length > 0)
                     {
                         logger.Error($"[Unrecognizedfiles] Error occured during multiple episodes linking: {response}");
@@ -867,6 +908,8 @@ namespace Shoko.Desktop.UserControls
                 btnConfirm.Visibility = Visibility.Hidden;
                 cboEpisodes.Visibility = Visibility.Visible;
 
+                txtEndEpNum.Text = string.Empty;
+
                 if (dgVideos.SelectedItems.Count == 0)
                     btnConfirm.Visibility = Visibility.Hidden;
 
@@ -876,7 +919,7 @@ namespace Shoko.Desktop.UserControls
                     if (cboMultiType.SelectedIndex == 0)
                     {
                         // episode range
-                        int startEpNum = 0, endEpNum = 0;
+                        int startEpNum, endEpNum;
                         int.TryParse(txtStartEpNum.Text, out startEpNum);
                         int.TryParse(txtEndEpNumSingle.Text, out endEpNum);
 
@@ -897,13 +940,45 @@ namespace Shoko.Desktop.UserControls
                     if (cboMultiType.SelectedIndex == 0)
                     {
                         // episode range
-                        int startEpNum = 0;
-                        int.TryParse(txtStartEpNum.Text, out startEpNum);
-                        if (startEpNum > 0)
+                        if (int.TryParse(txtStartEpNum.Text, out int startEpNum) && startEpNum > 0)
                         {
-                            btnConfirm.Visibility = Visibility.Visible;
                             int endEpNum = startEpNum + dgVideos.SelectedItems.Count - 1;
                             txtEndEpNum.Text = endEpNum.ToString();
+                            if (lbSeries.SelectedItems[0] is VM_AnimeSeries_User anime &&
+                                endEpNum <= anime.AllEpisodes.Count(a => a.EpisodeTypeEnum == EpisodeType.Episode))
+                                btnConfirm.Visibility = Visibility.Visible;
+                        }
+                        else if(txtStartEpNum.Text.Length > 1)
+                        {
+                            char type = txtStartEpNum.Text[0];
+                            string text = txtStartEpNum.Text.Substring(1);
+                            if (int.TryParse(text, out int epNum) && lbSeries.SelectedItem is VM_AnimeSeries_User anime)
+                            {
+                                EpisodeType typeEnum;
+                                switch (type)
+                                {
+                                    case 'S':
+                                        typeEnum = EpisodeType.Special; break;
+                                    case 'C':
+                                        typeEnum = EpisodeType.Credits; break;
+                                    case 'T':
+                                        typeEnum = EpisodeType.Trailer; break;
+                                    case 'P':
+                                        typeEnum = EpisodeType.Parody; break;
+                                    case 'O':
+                                        typeEnum = EpisodeType.Other; break;
+                                    default:
+                                        return;
+                                }
+                                var specials = anime.AllEpisodes
+                                    .Count(a => a.EpisodeTypeEnum == typeEnum);
+                                int endEpNum = epNum + dgVideos.SelectedItems.Count - 1;
+                                if (endEpNum <= specials)
+                                {
+                                    txtEndEpNum.Text = type + endEpNum.ToString();
+                                    btnConfirm.Visibility = Visibility.Visible;
+                                }
+                            }
                         }
                     }
                     else
