@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web.Script.Serialization;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
@@ -181,7 +182,7 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string EpisodeName
         {
-            get => episodeName;
+            get => WebUtility.HtmlDecode(episodeName);
             set
             {
                 this.SetField(()=>episodeName,value);
