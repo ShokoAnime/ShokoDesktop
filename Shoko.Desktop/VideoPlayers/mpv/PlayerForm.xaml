@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:Wrapper="clr-namespace:NutzCode.MPVPlayer.WPF.Wrapper;assembly=NutzCode.MPVPlayer.WPF.Wrapper"
+        xmlns:wrapper="clr-namespace:NutzCode.MPVPlayer.WPF.Wrapper;assembly=Nutzcode.MPVPlayer.WPF.Wrapper"
         mc:Ignorable="d"
         WindowStyle="None" d:DesignWidth="640" d:DesignHeight="480" ResizeMode="NoResize" Background="Black" >
     <WindowChrome.WindowChrome>
@@ -14,6 +14,6 @@
         </WindowChrome>
     </WindowChrome.WindowChrome>
     <Grid>
-        <Wrapper:Player x:Name="Player" ResizeBorderSize="4" UseBorderlessWindow="True"/>
+        <wrapper:Player x:Name="Player" ResizeBorderSize="4" UseBorderlessWindow="True"/>
     </Grid>
 </Window>
