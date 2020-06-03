@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using System.Web.Script.Serialization;
+
 using System.Windows;
 using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
@@ -19,7 +19,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
 
         private BitmapImage _bitmap;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public BitmapImage Bitmap
         {
             get

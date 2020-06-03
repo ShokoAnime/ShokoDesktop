@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
+             xmlns:wpf="clr-namespace:Infralution.Localization.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
@@ -42,7 +43,7 @@
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                         <Image Height="16" Width="16" Source="/Images/32_pin.png" Margin="2,0,2,0">
                             <Image.ToolTip>
-                                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_PinSeries}"/>
+                                <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_PinSeries}"/>
                             </Image.ToolTip>
                         </Image>
                     </StackPanel>
@@ -90,7 +91,7 @@
                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0" Visibility="{Binding Path=HasUnwatchedFiles, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Image Height="14" Width="14" Source="/Images/32_eye2.png" Margin="5,0,0,0" VerticalAlignment="Center"/>
                     <TextBlock Margin="5,0,0,0" Text="{Binding Path=UnwatchedEpisodeCount}"  VerticalAlignment="Center" FontSize="11"/>
-                    <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Unwatched}" VerticalAlignment="Center" FontSize="11" />
+                    <TextBlock Margin="5,0,0,0" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Unwatched}" VerticalAlignment="Center" FontSize="11" />
 
                 </StackPanel>
 
@@ -98,29 +99,29 @@
                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0" Visibility="{Binding Path=AllFilesWatched, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Image Height="14" Width="14" Source="../Images/16_tick.png" Margin="5,0,0,0" VerticalAlignment="Center"/>
                     <TextBlock Margin="5,0,0,0" Text="{Binding Path=UnwatchedEpisodeCount}"  VerticalAlignment="Center" FontSize="11"/>
-                    <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Unwatched}" VerticalAlignment="Center" FontSize="11"/>
+                    <TextBlock Margin="5,0,0,0" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Unwatched}" VerticalAlignment="Center" FontSize="11"/>
                 </StackPanel>
 
                 <!-- Missing Episodes, Groups Being Collected  -->
                 <StackPanel Orientation="Horizontal" Margin="5,5,0,0" Visibility="{Binding Path=HasMissingEpisodesGroups, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Image Height="14" Width="14" Source="/Images/16_exclamation.png" Margin="0,0,0,0" VerticalAlignment="Center">
                         <Image.ToolTip>
-                            <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_MissingEpsGroups}" VerticalAlignment="Center" />
+                            <TextBlock Margin="5,0,0,0" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_MissingEpsGroups}" VerticalAlignment="Center" />
                         </Image.ToolTip>
                     </Image>
                     <TextBlock Margin="5,0,0,0" Text="{Binding Path=MissingEpisodeCountGroups}"  VerticalAlignment="Center" FontSize="11"/>
-                    <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Missing}" VerticalAlignment="Center" FontSize="11" />
+                    <TextBlock Margin="5,0,0,0" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Missing}" VerticalAlignment="Center" FontSize="11" />
                 </StackPanel>
 
                 <!-- Missing Episodes, Any Group -->
                 <StackPanel Orientation="Horizontal" Margin="5,5,0,0" Visibility="{Binding Path=HasMissingEpisodesAllDifferentToGroups, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Image Height="14" Width="14" Source="/Images/16_warning.png" Margin="0,0,0,0" VerticalAlignment="Center">
                         <Image.ToolTip>
-                            <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_MissingEps}" VerticalAlignment="Center" />
+                            <TextBlock Margin="5,0,0,0" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_MissingEps}" VerticalAlignment="Center" />
                         </Image.ToolTip>
                     </Image>
                     <TextBlock Margin="5,0,0,0" Text="{Binding Path=MissingEpisodeCount}"  VerticalAlignment="Center" FontSize="11" />
-                    <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Missing}" VerticalAlignment="Center" FontSize="11"  />
+                    <TextBlock Margin="5,0,0,0" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Missing}" VerticalAlignment="Center" FontSize="11"  />
                 </StackPanel>
 
             </StackPanel>

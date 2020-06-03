@@ -5,9 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
              xmlns:settings="clr-namespace:Shoko.Desktop.UserControls.Settings"
-             xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
-             xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
-             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:local="clr-namespace:Shoko.Desktop.ViewModel" 
+             xmlns:wpf="clr-namespace:Infralution.Localization.Wpf"
              mc:Ignorable="d"
              d:DesignWidth="800" Loaded="UserControl_Loaded">
     <Grid>
@@ -51,17 +50,17 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center"
-                           Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_Default}"
+                           Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_Default}"
                            Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
                 <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0"
                        Grid.Row="1" VerticalAlignment="Top" />
                 <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center"
-                           Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_DefaultNote}"
+                           Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_DefaultNote}"
                            TextWrapping="Wrap" />
                 <usercontrols:HyperLinkStandard Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"
                                                 Margin="0,5,0,0"
-                                                DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=LearnMore_VideoPlayer}"
-                                                URL="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_VideoPlayer}" />
+                                                DisplayText="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=LearnMore_VideoPlayer}"
+                                                URL="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_VideoPlayer}" />
             </Grid>
         </Border>
 
@@ -81,10 +80,10 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Column="3" Name="TextDefaultConfigured" Visibility="{Binding RelativeSource={RelativeSource Self}, Path=DefaultConfigured}" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_Configured}" Foreground="Green" Margin="10,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Right" />
-                <TextBlock Grid.Column="3" Name="TextDefaultNotConfigured" Visibility="{Binding RelativeSource={RelativeSource Self}, Path=DefaultNotConfigured}" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_NotConfigured}" Foreground="Red" Margin="10,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="3" Name="TextDefaultConfigured" Visibility="{Binding RelativeSource={RelativeSource Self}, Path=DefaultConfigured}" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_Configured}" Foreground="Green" Margin="10,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="3" Name="TextDefaultNotConfigured" Visibility="{Binding RelativeSource={RelativeSource Self}, Path=DefaultNotConfigured}" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_NotConfigured}" Foreground="Red" Margin="10,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Right" />
 
-                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_DefaultPlayer}"
+                <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_DefaultPlayer}"
                            VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="10,0,0,0" />
 
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="0"
@@ -113,11 +112,11 @@
                 </Grid.RowDefinitions>
 
                 <CheckBox Name="chkAutoSetWatched" Grid.Column="0" VerticalAlignment="Center" Grid.Row="0"
-                          Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_AutoMark}"
+                          Content="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_AutoMark}"
                           Margin="10,0,0,0" />
 
-                <xctk:IntegerUpDown Grid.Column="1" Grid.Row="0" Name="udWatchedPct" Minimum="1" Maximum="100"
-                                          DefaultValue="85" VerticalAlignment="Center" Margin="5,0,0,0"
+                <usercontrols:IntegerUpDown Grid.Column="1" Grid.Row="0" x:Name="udWatchedPct" Minimum="1" Maximum="100"
+                                          VerticalAlignment="Center" Margin="5,0,0,0"
                                           Value="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=VideoWatchedPct}" />
             </Grid>
 
@@ -138,12 +137,12 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center"
-        			Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_SupportedPlayers}"
+        			Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_SupportedPlayers}"
         			Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
                 <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0"
         			Grid.Row="1" VerticalAlignment="Top" />
                 <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center"
-        			Text="{Resx Key=VideoPlayer_SupportedNote, ResxName=Shoko.Commons.Properties.Resources}"
+        			Text="{wpf:Resx Key=VideoPlayer_SupportedNote, ResxName=Shoko.Commons.Properties.Resources}"
         			TextWrapping="Wrap" />
             </Grid>
         </Border>
@@ -163,12 +162,12 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center"
-        			Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_InternalMPV}"
+        			Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_InternalMPV}"
         			Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
                 <Image Height="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" Grid.Row="1"
                        VerticalAlignment="Top" />
                 <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center"
-                           Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_InternalMPVNote}"
+                           Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_InternalMPVNote}"
                            TextWrapping="Wrap" />
             </Grid>
         </Border>
@@ -189,18 +188,18 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center"
-                           Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_MPC}"
+                           Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_MPC}"
                            Grid.ColumnSpan="3" FontSize="14" FontWeight="Bold" Height="19" />
                 <TextBlock Grid.Row="0" Grid.Column="2" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=IsMPCInstalled}" 
-                           Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_Installed}" Foreground="Green" 
+                           Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_Installed}" Foreground="Green" 
                            Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
                 <TextBlock Grid.Row="0" Grid.Column="2" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=IsMPCNotInstalled}" 
-                           Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_NotInstalled}" Foreground="Red" 
+                           Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_NotInstalled}" Foreground="Red" 
                            Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
                 <Image Height="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" Grid.Row="1"
                        VerticalAlignment="Top" />
                 <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center"
-                           Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_MPCInfo}"
+                           Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_MPCInfo}"
                            TextWrapping="Wrap" Grid.ColumnSpan="2" />
             </Grid>
         </Border>
@@ -224,7 +223,7 @@
                          TextWrapping="Wrap" Text="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=MPCWebUIPort}"
                          VerticalAlignment="Top" Width="50"/>
                 <CheckBox x:Name="chkMpcWebUiIntegration"
-                          Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_MPCWebUIPort}"
+                          Content="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_MPCWebUIPort}"
                           HorizontalAlignment="Left" Margin="5,1,0,0" Grid.Column="0" Grid.Row="0" VerticalAlignment="Top"/>
                 <ComboBox Name="cmbPreferredMPC" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,1,0,0" Grid.Row="0" Grid.Column="2" />
             </Grid>
@@ -247,14 +246,14 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center"
-                           Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_VLC}"
+                           Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_VLC}"
                            Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
-                <TextBlock Grid.Column="3" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=IsVLCInstalled}" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_Installed}" Foreground="Green" Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
-                <TextBlock Grid.Column="3" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=IsVLCNotInstalled}" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_NotInstalled}" Foreground="Red" Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="3" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=IsVLCInstalled}" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_Installed}" Foreground="Green" Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="3" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=IsVLCNotInstalled}" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_NotInstalled}" Foreground="Red" Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
                 <Image Height="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" Grid.Row="1"
                        VerticalAlignment="Top" />
                 <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center"
-                           Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_VLCInfo}"
+                           Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_VLCInfo}"
                            TextWrapping="Wrap" Grid.ColumnSpan="2" />
             </Grid>
         </Border>
@@ -277,14 +276,14 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center"
-        			Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_ZoomPlayer}"
+        			Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_ZoomPlayer}"
         			Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
-                <TextBlock Grid.Column="3" Visibility="{Binding Path=IsZoomPlayerInstalled, Source={x:Static local:VM_UserSettings.Instance}}" Text="{Resx Key=VideoPlayer_Installed, ResxName=Shoko.Commons.Properties.Resources}" Foreground="Green" Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
-                <TextBlock Grid.Column="3" Visibility="{Binding Path=IsZoomPlayerNotInstalled, Source={x:Static local:VM_UserSettings.Instance}}" Text="{Resx Key=VideoPlayer_NotInstalled, ResxName=Shoko.Commons.Properties.Resources}" Foreground="Red" Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="3" Visibility="{Binding Path=IsZoomPlayerInstalled, Source={x:Static local:VM_UserSettings.Instance}}" Text="{wpf:Resx Key=VideoPlayer_Installed, ResxName=Shoko.Commons.Properties.Resources}" Foreground="Green" Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="3" Visibility="{Binding Path=IsZoomPlayerNotInstalled, Source={x:Static local:VM_UserSettings.Instance}}" Text="{wpf:Resx Key=VideoPlayer_NotInstalled, ResxName=Shoko.Commons.Properties.Resources}" Foreground="Red" Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
                 <Image Height="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" Grid.Row="1"
                        VerticalAlignment="Top" />
                 <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center"
-                           Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_ZoomPlayerInfo}"
+                           Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_ZoomPlayerInfo}"
                            TextWrapping="Wrap" Grid.ColumnSpan="2" />           
             </Grid>
         </Border>
@@ -308,12 +307,12 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center"
-        			Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_LimitedPlayers}"
+        			Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_LimitedPlayers}"
         			Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
                 <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0"
         			Grid.Row="1" VerticalAlignment="Top" />
                 <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center"
-        			Text="{Resx Key=VideoPlayer_LimitedNote, ResxName=Shoko.Commons.Properties.Resources}"
+        			Text="{wpf:Resx Key=VideoPlayer_LimitedNote, ResxName=Shoko.Commons.Properties.Resources}"
         			TextWrapping="Wrap" />
             </Grid>
         </Border>
@@ -334,19 +333,19 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center"
-                           Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_MPV}"
+                           Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_MPV}"
                            Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
-                <TextBlock Grid.Column="3" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=IsMPVInstalled}" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_Installed}" Foreground="Green" Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
-                <TextBlock Grid.Column="3" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=IsMPVNotInstalled}" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_NotInstalled}" Foreground="Red" Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="3" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=IsMPVInstalled}" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_Installed}" Foreground="Green" Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="3" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=IsMPVNotInstalled}" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_NotInstalled}" Foreground="Red" Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
                 <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0"
                        Grid.Row="1" VerticalAlignment="Top" />
                 <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center"
-                           Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_MPVNote}"
+                           Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_MPVNote}"
                            TextWrapping="Wrap" />
                 <usercontrols:HyperLinkStandard Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"
                                                 Margin="0,5,0,0"
-                                                DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_MPVInstall}"
-                                                URL="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_MPV}" />
+                                                DisplayText="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_MPVInstall}"
+                                                URL="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_MPV}" />
             </Grid>
         </Border>
 
@@ -365,14 +364,14 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center"
-                           Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_PotPlayer}"
+                           Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_PotPlayer}"
                            Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
-                <TextBlock Grid.Column="3" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=IsPotInstalled}" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_Installed}" Foreground="Green" Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
-                <TextBlock Grid.Column="3" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=IsPotNotInstalled}" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_NotInstalled}" Foreground="Red" Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="3" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=IsPotInstalled}" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_Installed}" Foreground="Green" Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="3" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=IsPotNotInstalled}" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_NotInstalled}" Foreground="Red" Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
                 <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0"
                        Grid.Row="1" VerticalAlignment="Top" />
                 <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center"
-                           Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_PotPlayerNote}"
+                           Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_PotPlayerNote}"
                            TextWrapping="Wrap" />
             </Grid>
         </Border>
@@ -392,14 +391,14 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center"
-                           Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_WindowsDefault}"
+                           Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_WindowsDefault}"
                            Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
-                <TextBlock Grid.Column="3" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=IsWindowsDefaultInstalled}" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_Installed}" Foreground="Green" Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
-                <TextBlock Grid.Column="3" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=IsWindowsDefaultNotInstalled}" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_NotInstalled}" Foreground="Red" Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="3" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=IsWindowsDefaultInstalled}" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_Installed}" Foreground="Green" Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="3" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=IsWindowsDefaultNotInstalled}" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_NotInstalled}" Foreground="Red" Margin="10,5,10,5" VerticalAlignment="Top" HorizontalAlignment="Right" />
                 <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0"
                        Grid.Row="1" VerticalAlignment="Top" />
                 <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center"
-                           Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_WindowsDefaultNote}"
+                           Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_WindowsDefaultNote}"
                            TextWrapping="Wrap" />
             </Grid>
         </Border>

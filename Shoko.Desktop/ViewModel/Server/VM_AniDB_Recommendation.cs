@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel;
-using System.Web.Script.Serialization;
+
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Shoko.Commons.Extensions;
@@ -24,14 +24,14 @@ namespace Shoko.Desktop.ViewModel.Server
             set => this.SetField(() => base.UserID, (r) => base.UserID = r, value);
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string CommentTruncated => this.GetCommentTruncated();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string Comment => this.GetComment();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public AniDBRecommendationType RecommendationTypeEnum => this.GetRecommendationTypeEnum();
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string RecommendationTypeText => this.GetRecommendationTypeText();
     }
 }

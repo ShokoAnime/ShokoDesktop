@@ -1,5 +1,5 @@
 ﻿using System.IO;
-using System.Web.Script.Serialization;
+
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Shoko.Models.Enums;
@@ -31,7 +31,7 @@ namespace Shoko.Desktop.ViewModel.Server
             set => base.Filename = value == null ? null : string.Intern(value);
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string ImagePath
         {
             get
@@ -44,10 +44,10 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string FullImagePathPlain => string.IsNullOrEmpty(Filename) ? string.Intern("") : string.Intern(Path.Combine(Utils.GetTvDBImagePath(), Filename.Replace("/", @"\")));
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string FullImagePath
         {
             get
@@ -65,7 +65,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string OnlineImagePath => string.IsNullOrEmpty(Filename) ? string.Intern("") : string.Intern(string.Format(Models.Constants.URLS.TvDB_Images, Filename));
     }
 }

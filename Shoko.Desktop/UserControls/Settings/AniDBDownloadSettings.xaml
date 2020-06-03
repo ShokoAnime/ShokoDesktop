@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
              xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
+             xmlns:wpf="clr-namespace:Infralution.Localization.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="600">
     <Grid>
@@ -21,7 +22,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBDownloadCharacters}" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBDownloadCharacters}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Margin="0,5,5,0">
@@ -31,7 +32,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBDownloadCreators}" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBDownloadCreators}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Margin="0,5,5,0">
@@ -41,7 +42,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBDownloadReviews}" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBDownloadReviews}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="0,5,5,0">
@@ -51,7 +52,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBDownloadReleaseGroups}" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBDownloadReleaseGroups}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Margin="0,5,5,0">

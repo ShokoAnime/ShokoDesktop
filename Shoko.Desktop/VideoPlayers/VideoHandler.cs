@@ -42,7 +42,7 @@ namespace Shoko.Desktop.VideoPlayers
             previousFilePositions.Clear();
 
             Players = new List<IVideoPlayer>();
-            Players.Add(new MPVVideoPlayer());
+            //Players.Add(new MPVVideoPlayer());
             Players.Add(new MPCVideoPlayer());
             Players.Add(new VLCVideoPlayer());
             Players.Add(new ZoomPlayerVideoPlayer());

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Web.Script.Serialization;
+
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Shoko.Commons.Notification;
@@ -50,10 +50,10 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsEnabledOnImportBool => IsEnabledOnImport==1;
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string ScriptNameLong
         {
             get

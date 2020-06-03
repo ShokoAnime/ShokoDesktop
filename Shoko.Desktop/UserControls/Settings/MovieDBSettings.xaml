@@ -3,10 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
              xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
              xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
-             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:wpf="clr-namespace:Infralution.Localization.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="600">
     <Grid>
@@ -27,7 +26,7 @@
 
         <!-- Fanart Auto Download-->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MovieDB_FanartAutoDownload}"  VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=MovieDB_FanartAutoDownload}"  VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Margin="0,5,5,0">
@@ -37,18 +36,17 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="0" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MovieDB_FanartCount}" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=MovieDB_FanartCount}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="0" Margin="0,5,5,0">
-            <xctk:IntegerUpDown Name="udMaxFanarts" Minimum="1" Maximum="999" DefaultValue="5" VerticalAlignment="Center" 
-                                      ToolTip="{usercontrols:Info Title=MovieDB_FanartCount, 
-                                       Body=Tooltip_MovieDB_FanartCount}" Value="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=MovieDB_AutoFanartAmount}" />
+            <usercontrols:IntegerUpDown x:Name="udMaxFanarts" Minimum="1" Maximum="999" VerticalAlignment="Center" 
+                                        ToolTip="{usercontrols:Info Title=MovieDB_FanartCount, Body=Tooltip_MovieDB_FanartCount}" Value="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=MovieDB_AutoFanartAmount}" />
         </StackPanel>
 
         <!-- Poster Auto Download-->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MovieDB_PosterAutoDownload}" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=MovieDB_PosterAutoDownload}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="0,5,5,0">
@@ -58,12 +56,12 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="2" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MovieDB_MaxPosters}" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=MovieDB_MaxPosters}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="2" Margin="0,5,5,0">
-            <xctk:IntegerUpDown Name="udMaxPosters" Minimum="1" Maximum="999" DefaultValue="5" VerticalAlignment="Center" 
-                       Value="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=MovieDB_AutoPostersAmount}" />
+            <usercontrols:IntegerUpDown x:Name="udMaxPosters" Minimum="1" Maximum="999" VerticalAlignment="Center" 
+                                        Value="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=MovieDB_AutoPostersAmount}" />
         </StackPanel>
 
     </Grid>

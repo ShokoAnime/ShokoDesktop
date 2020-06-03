@@ -3,8 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
         xmlns:forms="clr-namespace:Shoko.Desktop.Forms"
+        xmlns:wpf="clr-namespace:Infralution.Localization.Wpf"
         xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
-        Title="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Select_TraktSeason}" Width="600" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/ShokoDesktop;component/Images/16_switch.png"
+        Title="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Select_TraktSeason}" Width="600" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/ShokoDesktop;component/Images/16_switch.png"
         WindowStartupLocation="CenterOwner" Topmost="False" SizeToContent="Height">
     <Grid>
         <Grid.Resources>
@@ -84,7 +85,7 @@
 
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
                     <Image Margin="5,0,0,0" Height="16" Width="16" Source="/Images/32_anidb.png" VerticalAlignment="Center"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDB}" Margin="5,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDB}" Margin="5,0,0,0"/>
 
                     <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=AnimeName, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SelectTraktSeasonForm}}}" Margin="5,0,0,0"/>
 
@@ -95,9 +96,9 @@
 
                 <StackPanel Orientation="Horizontal"  Margin="0,5,0,0" DockPanel.Dock="Top">
 
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Select_EpisodeType}" Margin="25,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Select_EpisodeType}" Margin="25,0,0,0"/>
                     <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" Name="cboEpisodeType"></ComboBox>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Select_StartingEpisode}" Margin="5,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Select_StartingEpisode}" Margin="5,0,0,0"/>
                     <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" Name="cboAniDBEpisodeNumber"
                               ItemTemplate="{StaticResource AniDBEpisodeTemplate}"/>
                 </StackPanel>
@@ -114,20 +115,20 @@
 
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
                     <Image Margin="5,0,0,0" Height="16" Width="16" Source="/Images/32_trakt.png" VerticalAlignment="Center"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Select_TraktTV}" Margin="5,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Select_TraktTV}" Margin="5,0,0,0"/>
 
                     <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=TraktID, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SelectTraktSeasonForm}}}" Margin="15,0,0,0"/>
 
-                    <usercontrols:HyperLinkStandard DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TraktShow}" 
+                    <usercontrols:HyperLinkStandard DisplayText="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=TraktShow}" 
                      VerticalAlignment="Center" URL="{Binding Path=TraktURL, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SelectTraktSeasonForm}}}" Margin="10,0,0,0"/>
 
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal"  Margin="0,5,0,0" DockPanel.Dock="Top">
 
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeasonNumber}" Margin="25,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeasonNumber}" Margin="25,0,0,0"/>
                     <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" Name="cboSeasonNumber"></ComboBox>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Select_StartingEpisode}" Margin="5,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Select_StartingEpisode}" Margin="5,0,0,0"/>
                     <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" Name="cboEpisodeNumber"
                               ItemTemplate="{StaticResource EpisodeTemplate}"/>
 
@@ -174,13 +175,13 @@
             <Button Name="btnUpdate" Margin="0,0,0,0" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Update}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Update}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
             <Button HorizontalAlignment="Left" x:Name="btnClose" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                     <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx Key=Close, ResxName=Shoko.Commons.Properties.Resources}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx Key=Close, ResxName=Shoko.Commons.Properties.Resources}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
         </StackPanel>

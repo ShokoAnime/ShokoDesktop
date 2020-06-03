@@ -20,9 +20,8 @@ using Shoko.Desktop.Forms;
 using Shoko.Desktop.ViewModel.Server;
 using Shoko.Models.Enums;
 using Clipboard = System.Windows.Clipboard;
-using Path = Pri.LongPath.Path;
-using Directory = Pri.LongPath.Directory;
-using File = Pri.LongPath.File;
+using MessageBox = System.Windows.MessageBox;
+
 
 namespace Shoko.Desktop.Utilities
 {
@@ -233,19 +232,19 @@ namespace Shoko.Desktop.Utilities
 
         public static void ShowErrorMessage(string msg, Exception ex)
         {
-            FlexibleMessageBox.Show(msg, Shoko.Commons.Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(msg, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
             logger.Error(ex, ex.ToString());
         }
 
         public static void ShowErrorMessage(Exception ex)
         {
-            FlexibleMessageBox.Show(ex.Message, Shoko.Commons.Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(ex.Message, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
             logger.Error(ex, ex.ToString());
         }
 
         public static void ShowErrorMessage(string msg)
         {
-            FlexibleMessageBox.Show(msg, Shoko.Commons.Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(msg, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
             logger.Error(msg);
         }
 

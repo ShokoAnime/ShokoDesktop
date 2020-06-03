@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpf="clr-namespace:Infralution.Localization.Wpf"
              xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
              xmlns:local="clr-namespace:Shoko.Desktop.ViewModel.Server"
              mc:Ignorable="d" 
@@ -11,7 +12,7 @@
 
         <ResourceDictionary>
 
-            <RoutedUICommand x:Key="DeleteIgnoredAnimeCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteIgnoredAnimeCommand}" />
+            <RoutedUICommand x:Key="DeleteIgnoredAnimeCommand" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteIgnoredAnimeCommand}" />
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
@@ -36,7 +37,7 @@
                             <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,0,0"/>
                         </StackPanel>
                         <Button.ToolTip>
-                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=IgnoredAnime_Delete}"/>
+                            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=IgnoredAnime_Delete}"/>
                         </Button.ToolTip>
                     </Button>
 
@@ -78,17 +79,17 @@
                             Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:IgnoredAnimeControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                             <Image Height="16" Width="16" Source="/Images/32_refresh.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Refresh}" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Refresh}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center"
                                     Visibility="{Binding Path=IsLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:IgnoredAnimeControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Loading}" Margin="10,5,0,5" FontWeight="Bold"/>
+                        <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Loading}" Margin="10,5,0,5" FontWeight="Bold"/>
                     </StackPanel>
 
                     <TextBlock VerticalAlignment="Center" Text="{Binding Path=AnimeCount, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:IgnoredAnimeControl}}}" Margin="10,0,0,0" Foreground="DarkGray" />
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Anime}" Margin="5,0,0,0" Foreground="DarkGray"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Anime}" Margin="5,0,0,0" Foreground="DarkGray"/>
                 </StackPanel>
 
                 <Border Style="{DynamicResource ToolbarBorderControlStyle}" Background="FloralWhite" Margin="0,0,0,0" Padding="5" DockPanel.Dock="Top" BorderThickness="0,1,0,1">
@@ -104,7 +105,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,0,4,0" Grid.Column="0" VerticalAlignment="Top"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=IgnoredAnime_Note}" Margin="0,0,0,0" TextWrapping="Wrap" Grid.Column="1"/>
+                        <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=IgnoredAnime_Note}" Margin="0,0,0,0" TextWrapping="Wrap" Grid.Column="1"/>
                     </Grid>
                 </Border>
 

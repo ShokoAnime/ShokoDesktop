@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using System.Web.Script.Serialization;
+
 using System.Windows;
 using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
@@ -17,29 +17,29 @@ namespace Shoko.Desktop.ViewModel.Server
 {
     public class VM_ImportFolder : ImportFolder
     {
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string LocalPathTemp { get; set; }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string LocalPath => CloudID.HasValue ? string.Empty : (ImportFolderID != 0 ? FolderMappings.Instance.GetMapping(ImportFolderID) : LocalPathTemp);
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool LocalPathIsValid => FolderMappings.Instance.IsValid(this);
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsCloud => CloudID.HasValue;
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool FolderIsWatched => IsWatched == 1;
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool FolderIsDropSource => IsDropSource == 1;
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool FolderIsDropDestination => IsDropDestination == 1;
 
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public BitmapImage Icon
         {
             get

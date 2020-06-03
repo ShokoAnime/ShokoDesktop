@@ -4,10 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
-             xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
-             xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
-             xmlns:mwt="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
-             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:wpf="clr-namespace:Infralution.Localization.Wpf"
              xmlns:viewModel="clr-namespace:Shoko.Desktop.ViewModel"
              xmlns:customToolTips="clr-namespace:Shoko.Desktop.UserControls.Custom_ToolTips"
              xmlns:dataTemplateSelectors="clr-namespace:Shoko.Desktop.DataTemplateSelectors"
@@ -30,18 +27,18 @@
             <dataTemplateSelectors:RecDownloadTemplateSelector x:Key="RecDownloadTemplateSelector"/>
             <dataTemplateSelectors:DashRecentAdditionsTemplateSelector x:Key="DashRecentAdditionsTemplateSelector"/>
 
-            <RoutedUICommand x:Key="PlayEpisodeCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=PlayEpisodeCommand}" />
-            <RoutedUICommand x:Key="PlayAllUnwatchedEpisodeCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=PlayAllUnwatchedEpisodeCommand}" />
-            <RoutedUICommand x:Key="ToggleWatchedStatusCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ToggleWatchedStatusCommand}" />
-            <RoutedUICommand x:Key="IgnoreAnimeWatchCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=IgnoreAnimeWatchCommand}" />
-            <RoutedUICommand x:Key="IgnoreAnimeDownloadCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=IgnoreAnimeDownloadCommand}" />
+            <RoutedUICommand x:Key="PlayEpisodeCommand" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=PlayEpisodeCommand}" />
+            <RoutedUICommand x:Key="PlayAllUnwatchedEpisodeCommand" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=PlayAllUnwatchedEpisodeCommand}" />
+            <RoutedUICommand x:Key="ToggleWatchedStatusCommand" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=ToggleWatchedStatusCommand}" />
+            <RoutedUICommand x:Key="IgnoreAnimeWatchCommand" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=IgnoreAnimeWatchCommand}" />
+            <RoutedUICommand x:Key="IgnoreAnimeDownloadCommand" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=IgnoreAnimeDownloadCommand}" />
 
-            <RoutedUICommand x:Key="MoveUpWidgetCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MoveUpWidgetCommand}" />
-            <RoutedUICommand x:Key="MoveDownWidgetCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MoveDownWidgetCommand}" />
+            <RoutedUICommand x:Key="MoveUpWidgetCommand" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=MoveUpWidgetCommand}" />
+            <RoutedUICommand x:Key="MoveDownWidgetCommand" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=MoveDownWidgetCommand}" />
 
-            <RoutedUICommand x:Key="SyncVotesCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SyncVotesCommand}" />
-            <RoutedUICommand x:Key="FriendRequestApproveCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=FriendRequestApproveCommand}" />
-            <RoutedUICommand x:Key="FriendRequestDenyCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=FriendRequestDenyCommand}" />
+            <RoutedUICommand x:Key="SyncVotesCommand" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=SyncVotesCommand}" />
+            <RoutedUICommand x:Key="FriendRequestApproveCommand" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=FriendRequestApproveCommand}" />
+            <RoutedUICommand x:Key="FriendRequestDenyCommand" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=FriendRequestDenyCommand}" />
 
             <!-- WatchNextTemplate -->
             <DataTemplate x:Key="WatchNextTemplate">
@@ -76,10 +73,10 @@
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_eye.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000"
                                            Visibility="{Binding Path=Watched, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                           ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Watched}"/>
+                                           ToolTip="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Watched}"/>
                                     <Image Height="16" Width="16" Source="/Images/32_eye2.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000"
                                            Visibility="{Binding Path=Watched, Converter={StaticResource InverseBooleanToVisibilityConverter}}"
-                                           ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Unwatched}"/>
+                                           ToolTip="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Unwatched}"/>
                                 </StackPanel>
                             </Button>
 
@@ -88,7 +85,7 @@
                                     VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_resume.png" Margin="0,0,5,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Play}" Foreground="Black"  Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Play}" Foreground="Black"  Margin="0,0,5,0"/>
                                 </StackPanel>
                             </Button>
 
@@ -96,7 +93,7 @@
                             <Button Margin="5,0,0,0" Style="{StaticResource RoundButtonStyle}" VerticalAlignment="Center"
                                     Command="{DynamicResource ResourceKey=ShowPinnedSeriesCommand}" CommandParameter="{Binding}">
                                 <Image Height="16" Width="16" Source="/Images/32_pin.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000"
-                                       ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_PinSeries}"/>
+                                       ToolTip="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_PinSeries}"/>
                             </Button>
                         </StackPanel>
                     </StackPanel>
@@ -133,24 +130,24 @@
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                     <Image Height="16" Width="16" Source="/Images/32_eye.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000"
                                            Visibility="{Binding Path=Watched, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                           ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Watched}"/>
+                                           ToolTip="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Watched}"/>
                                     <Image Height="16" Width="16" Source="/Images/32_eye2.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000"
                                            Visibility="{Binding Path=Watched, Converter={StaticResource InverseBooleanToVisibilityConverter}}"
-                                           ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Unwatched}"/>
+                                           ToolTip="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Unwatched}"/>
                                 </StackPanel>
                             </Button>
 
                             <!-- Play episode button -->
                             <Button x:Name="btnPlay" Margin="5,0,0,0" Style="{StaticResource RoundButtonStyle}"
                                     Command="{StaticResource PlayEpisodeCommand}" CommandParameter="{Binding}"
-                                    VerticalAlignment="Center" ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Play}">
+                                    VerticalAlignment="Center" ToolTip="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Play}">
                                 <Image Height="16" Width="16" Source="/Images/32_resume.png" Margin="2,0,3,0"/>
                             </Button>
 
                             <!-- Play all episodes button -->
                             <Button x:Name="btnPlayAll" Margin="5,0,0,0" Style="{StaticResource RoundButtonStyle}" Command="{StaticResource PlayAllUnwatchedEpisodeCommand}" CommandParameter="{Binding}"
                                     VerticalAlignment="Center" Visibility="{Binding Path=MultipleUnwatchedEpsSeries, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                    ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_PlayAll}">
+                                    ToolTip="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_PlayAll}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_play_all.png" Margin="0,0,5,0"/>
                                     <TextBlock VerticalAlignment="Center" Text="{Binding Path=UnwatchedEpCountSeries}" Foreground="Black"  Margin="0,0,5,0"/>
@@ -169,7 +166,7 @@
                             <!-- Show pinned series button -->
                             <Button Margin="7,0,0,0" Style="{StaticResource RoundButtonStyle}" VerticalAlignment="Center"
                                     Command="{DynamicResource ResourceKey=ShowPinnedSeriesCommand}" CommandParameter="{Binding}"
-                                    ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_PinSeries}"
+                                    ToolTip="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_PinSeries}"
                                     ToolTipService.ShowDuration="60000" Grid.Row="0" Grid.Column="1">
                                 <Image Height="16" Width="16" Source="/Images/32_pin.png" Margin="2,0,2,0"/>
                             </Button>
@@ -211,10 +208,10 @@
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_eye.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000"
                                            Visibility="{Binding Path=Watched, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                           ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Watched}"/>
+                                           ToolTip="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Watched}"/>
                                     <Image Height="16" Width="16" Source="/Images/32_eye2.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000"
                                            Visibility="{Binding Path=Watched, Converter={StaticResource InverseBooleanToVisibilityConverter}}"
-                                           ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Unwatched}"/>
+                                           ToolTip="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Unwatched}"/>
                                 </StackPanel>
                             </Button>
 
@@ -223,7 +220,7 @@
                                     VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_resume.png" Margin="0,0,5,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Play}" Foreground="Black"  Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Play}" Foreground="Black"  Margin="0,0,5,0"/>
                                 </StackPanel>
                             </Button>
 
@@ -231,10 +228,10 @@
                             <Button Margin="5,0,0,0" Style="{StaticResource RoundButtonStyle}" VerticalAlignment="Center"
                                     Command="{DynamicResource ResourceKey=ShowPinnedSeriesCommand}" CommandParameter="{Binding}">
                                 <Image Height="16" Width="16" Source="/Images/32_pin.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000"
-                                       ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_PinSeries}"/>
+                                       ToolTip="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_PinSeries}"/>
                             </Button>
 
-                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=LastWatched}" Foreground="Black" FontWeight="Bold" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=LastWatched}" Foreground="Black" FontWeight="Bold" VerticalAlignment="Center" Margin="10,0,0,0"/>
                             <TextBlock Text="{Binding Path=WatchedDateAsString}" Foreground="Black" FontWeight="Bold" VerticalAlignment="Center" Margin="5,0,0,0"/>
                         </StackPanel>
                     </StackPanel>
@@ -271,14 +268,14 @@
                                         Command="{DynamicResource ResourceKey=ShowPinnedSeriesCommand}" CommandParameter="{Binding}"
                                         Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
                                     <Image Height="16" Width="16" Source="/Images/32_pin.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000"
-                                           ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_PinSeries}"/>
+                                           ToolTip="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_PinSeries}"/>
                                 </Button>
 
-                                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=LatestEp_Anime}" Foreground="Black"
+                                <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=LatestEp_Anime}" Foreground="Black"
                                            VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="0"/>
                                 <TextBlock Text="{Binding Path=AniDBAnime.AniDBAnime.LatestEpisodeNumber}" Foreground="Black" FontWeight="Bold"
                                            VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="0" Margin="16,0,0,0"/>
-                                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MissingEpisodeCount}" Foreground="Black"
+                                <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=MissingEpisodeCount}" Foreground="Black"
                                            VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1"/>
                                 <TextBlock Text="{Binding Path=MissingEpisodeCountGroups}" Foreground="Black" FontWeight="Bold" Margin="16,0,0,0"
                                            VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="1"/>
@@ -325,7 +322,7 @@
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                 <!-- Show create series from button -->
                                 <Button Style="{StaticResource RoundButtonStyle}" VerticalAlignment="Center" ToolTipService.ShowDuration="60000"
-                                        ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_CreateSeries}"
+                                        ToolTip="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_CreateSeries}"
                                         Command="{DynamicResource ResourceKey=CreateSeriesFromAnimeCommand}" CommandParameter="{Binding}">
                                     <Image Height="16" Width="16" Source="/Images/32_television.png" Margin="2,0,2,0"/>
                                 </Button>
@@ -333,7 +330,7 @@
                                 <!-- Bookmark anime button -->
                                 <Button Margin="5,0,0,0" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center"
                                         Command="{DynamicResource ResourceKey=BookmarkAnimeCommand}" CommandParameter="{Binding}"
-                                        ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dashboard_Bookmark}" ToolTipService.ShowDuration="60000">
+                                        ToolTip="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dashboard_Bookmark}" ToolTipService.ShowDuration="60000">
                                     <Image Height="16" Width="16" Source="/Images/16_bookmark.png" Margin="1,0,1,0"/>
                                 </Button>
 
@@ -380,7 +377,7 @@
                                         Command="{DynamicResource ShowPinnedSeriesCommand}" CommandParameter="{Binding}">
                                     <Image Height="16" Width="16" Source="/Images/32_pin.png" Margin="1,0,1,0" ToolTipService.ShowDuration="60000">
                                         <Image.ToolTip>
-                                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_PinSeries}"/>
+                                            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_PinSeries}"/>
                                         </Image.ToolTip>
                                     </Image>
                                 </Button>
@@ -390,14 +387,14 @@
                                         Command="{DynamicResource IgnoreAnimeWatchCommand}" CommandParameter="{Binding}">
                                     <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="1,0,1,0" ToolTipService.ShowDuration="60000">
                                         <Image.ToolTip>
-                                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_IgnoreAnimeWatch}"/>
+                                            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_IgnoreAnimeWatch}"/>
                                         </Image.ToolTip>
                                     </Image>
                                 </Button>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
-                                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Download_Approval}" Foreground="DarkGreen" FontWeight="Medium" VerticalAlignment="Center"/>
+                                <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Download_Approval}" Foreground="DarkGreen" FontWeight="Medium" VerticalAlignment="Center"/>
                                 <TextBlock Text="{Binding Path=Recommended_ApprovalRating}" Foreground="Black" VerticalAlignment="Center" Margin="5,0,0,0"/>
                             </StackPanel>
                         </StackPanel>
@@ -458,7 +455,7 @@
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
-                                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dashboard_YourVote}" Foreground="DarkGreen" FontWeight="Medium" VerticalAlignment="Center"/>
+                                <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dashboard_YourVote}" Foreground="DarkGreen" FontWeight="Medium" VerticalAlignment="Center"/>
                                 <TextBlock Text="{Binding Path=BasedOnVoteValueFormatted}" Foreground="Black" VerticalAlignment="Center" Margin="5,0,0,0"/>
                             </StackPanel>
                         </StackPanel>
@@ -539,7 +536,7 @@
                                         Command="{DynamicResource IgnoreAnimeDownloadCommand}" CommandParameter="{Binding}">
                                     <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="1,0,1,0" ToolTipService.ShowDuration="60000">
                                         <Image.ToolTip>
-                                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_IgnoreAnimeDownload}"/>
+                                            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_IgnoreAnimeDownload}"/>
                                         </Image.ToolTip>
                                     </Image>
                                 </Button>
@@ -549,14 +546,14 @@
                                         Command="{DynamicResource BookmarkAnimeCommand}" CommandParameter="{Binding}">
                                     <Image Height="16" Width="16" Source="/Images/16_bookmark.png" Margin="1,0,1,0" ToolTipService.ShowDuration="60000">
                                         <Image.ToolTip>
-                                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dashboard_Bookmark}"/>
+                                            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dashboard_Bookmark}"/>
                                         </Image.ToolTip>
                                     </Image>
                                 </Button>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
-                                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Download_Approval}" Foreground="DarkGreen" FontWeight="Medium" VerticalAlignment="Center"/>
+                                <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Download_Approval}" Foreground="DarkGreen" FontWeight="Medium" VerticalAlignment="Center"/>
                                 <TextBlock Text="{Binding Path=Recommended_ApprovalRating}" Foreground="Black" VerticalAlignment="Center" Margin="5,0,0,0"/>
                             </StackPanel>
                         </StackPanel>
@@ -614,7 +611,7 @@
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
-                                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dashboard_YourVote}" Foreground="DarkGreen" FontWeight="Medium" VerticalAlignment="Center"/>
+                                <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dashboard_YourVote}" Foreground="DarkGreen" FontWeight="Medium" VerticalAlignment="Center"/>
                                 <TextBlock Text="{Binding Path=BasedOnVoteValueFormatted}" Foreground="Black" VerticalAlignment="Center" Margin="5,0,0,0"/>
                             </StackPanel>
                         </StackPanel>
@@ -670,7 +667,7 @@
                             Background="FloralWhite">
                         <StackPanel Orientation="Horizontal" Margin="10,10,10,5">
                             <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="0,0,5,0"/>
-                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dashboard_NoRecommend}" FontWeight="Bold" VerticalAlignment="Center" Foreground="Black"/>
+                            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dashboard_NoRecommend}" FontWeight="Bold" VerticalAlignment="Center" Foreground="Black"/>
                         </StackPanel>
                     </Border>
 
@@ -678,7 +675,7 @@
                             Background="FloralWhite">
 
                         <StackPanel Orientation="Horizontal" Margin="10,10,10,5">
-                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dashboard_DownloadVotes}" VerticalAlignment="Center" Foreground="Black"/>
+                            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dashboard_DownloadVotes}" VerticalAlignment="Center" Foreground="Black"/>
                         </StackPanel>
                     </Border>
 
@@ -689,7 +686,7 @@
                                 Command="{DynamicResource SyncVotesCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                 <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dashboard_SyncVotes}" Foreground="Black"  Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dashboard_SyncVotes}" Foreground="Black"  Margin="0,0,5,0"/>
                             </StackPanel>
                         </Button>
                     </Border>
@@ -728,20 +725,20 @@
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_eye.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000"
                                            Visibility="{Binding Path=Watched, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                           ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Watched}"/>
+                                           ToolTip="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Watched}"/>
                                     <Image Height="16" Width="16" Source="/Images/32_eye2.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000"
                                            Visibility="{Binding Path=Watched, Converter={StaticResource InverseBooleanToVisibilityConverter}}"
-                                           ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Unwatched}"/>
+                                           ToolTip="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Unwatched}"/>
                                 </StackPanel>
                             </Button>
 
                             <!-- Play episode button -->
                             <Button x:Name="btnPlay" Margin="5,0,0,0" Style="{StaticResource RoundButtonStyle}"
                                     Command="{StaticResource PlayEpisodeCommand}" CommandParameter="{Binding}"
-                                    VerticalAlignment="Center" ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Play}">
+                                    VerticalAlignment="Center" ToolTip="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Play}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_resume.png" Margin="0,0,5,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Play}" Foreground="Black" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Play}" Foreground="Black" Margin="0,0,5,0"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
@@ -757,7 +754,7 @@
                             <!-- Show pinned series button -->
                             <Button Margin="7,0,0,0" Style="{StaticResource RoundButtonStyle}" VerticalAlignment="Center"
                                     Command="{DynamicResource ResourceKey=ShowPinnedSeriesCommand}" CommandParameter="{Binding}"
-                                    ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_PinSeries}"
+                                    ToolTip="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_PinSeries}"
                                     ToolTipService.ShowDuration="60000" Grid.Row="0" Grid.Column="1">
                                 <Image Height="16" Width="16" Source="/Images/32_pin.png" Margin="2,0,2,0"/>
                             </Button>
@@ -786,7 +783,7 @@
                         </Grid.RowDefinitions>
 
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,5" Grid.Row="1" Grid.Column="0">
-                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dashboard_Added}" Foreground="Black" FontWeight="Bold" VerticalAlignment="Center"/>
+                            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dashboard_Added}" Foreground="Black" FontWeight="Bold" VerticalAlignment="Center"/>
                             <TextBlock Text="{Binding Path=DateTimeCreatedAsString}" Foreground="Black" VerticalAlignment="Center" Margin="5,0,0,0"/>
                         </StackPanel>
 
@@ -821,7 +818,7 @@
                                 <!-- Show pinned series button -->
                                 <Button Margin="5,0,0,0" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center"
                                         Command="{DynamicResource ResourceKey=ShowPinnedSeriesCommand}" CommandParameter="{Binding}"
-                                        ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_PinSeries}"
+                                        ToolTip="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_PinSeries}"
                                         ToolTipService.ShowDuration="60000">
                                     <Image Height="16" Width="16" Source="/Images/32_pin.png" Margin="1,0,1,0"/>
                                 </Button>
@@ -858,7 +855,7 @@
                 <Button x:Name="btnToolbarRefresh" Margin="2,2,5,2" Style="{DynamicResource FlatButtonStyle}">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                         <Image Height="16" Width="16" Source="/Images/32_refresh.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Refresh}" Margin="0,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Refresh}" Margin="0,0,0,0"/>
                     </StackPanel>
                 </Button>
 
@@ -867,7 +864,7 @@
                         Visibility="{Binding Source={x:Static viewModel:VM_Dashboard.Instance}, Path=IsReadOnly, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                         <Image Height="16" Width="16" Source="/Images/32_edit.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Edit}" Margin="0,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Edit}" Margin="0,0,0,0"/>
                     </StackPanel>
                 </Button>
 
@@ -876,7 +873,7 @@
                                     Visibility="{Binding Source={x:Static viewModel:VM_Dashboard.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                         <Image Height="16" Width="16" Source="/Images/32_edit_accept.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=FinishEditing}" Margin="0,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=FinishEditing}" Margin="0,0,0,0"/>
                     </StackPanel>
                 </Button>
 
@@ -884,13 +881,13 @@
                 <Button Name="btnToggleDash" Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                         <Image Height="16" Width="16" Source="/Images/Metro/MetroDash2_16.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dashboard_Metro}" Margin="0,0,5,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dashboard_Metro}" Margin="0,0,5,0"/>
                     </StackPanel>
                 </Button>
 
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center"
                             Visibility="{Binding Source={x:Static viewModel:VM_Dashboard.Instance}, Path=IsLoadingData, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Loading}" Margin="10,0,0,0" FontWeight="Bold"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Loading}" Margin="10,0,0,0" FontWeight="Bold"/>
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -946,14 +943,14 @@
 
                             <!-- Number of Items -->
                             <StackPanel Orientation="Horizontal" Margin="10,2,2,2" Visibility="{Binding Source={x:Static viewModel:VM_Dashboard.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Items}" Margin="0,0,5,0"/>
-                                <xctk:IntegerUpDown Name="udItemsWatchNext" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
+                                <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Items}" Margin="0,0,5,0"/>
+                                <usercontrols:IntegerUpDown x:Name="udItemsWatchNext" Minimum="1" Maximum="100" VerticalAlignment="Center" 
                                       Value="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=Dash_WatchNext_Items}" />
                             </StackPanel>
 
                             <!-- Widget Height Buttons -->
                             <StackPanel Orientation="Horizontal" Visibility="{Binding Source={x:Static viewModel:VM_Dashboard.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImageSize}" Margin="15,0,3,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImageSize}" Margin="15,0,3,0"/>
 
                                 <Button x:Name="btnWatchNextIncrease" Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}">
                                     <Image Height="16" Width="16" Source="/Images/16_add.png" Margin="0,0,0,0"/>
@@ -972,7 +969,7 @@
                                     </Image>
                                     <Image Height="16" Width="16" Source="/Images/64_navup.png" Margin="2,0,2,0"
                                            Visibility="{Binding Source={x:Static viewModel:VM_UserSettings.Instance}, Path=DashWatchNextEpExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dash_WatchNextEp_Recent}" 
+                                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dash_WatchNextEp_Recent}" 
                                                FontWeight="Bold" Margin="0,0,0,0"/>
                                 </StackPanel>
                             </Button>
@@ -1012,14 +1009,14 @@
 
                             <!-- Number of Items -->
                             <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="0" Margin="10,2,2,2" Visibility="{Binding Source={x:Static viewModel:VM_Dashboard.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Items}" Margin="0,0,5,0"/>
-                                <xctk:IntegerUpDown Name="udItemsMissingEps" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
-                                      Value="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=Dash_MissingEps_Items}" />
+                                <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Items}" Margin="0,0,5,0"/>
+                                <usercontrols:IntegerUpDown x:Name="udItemsMissingEps" Minimum="1" Maximum="100" VerticalAlignment="Center" 
+                                                            Value="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=Dash_MissingEps_Items}" />
                             </StackPanel>
 
                             <!-- Widget Height Buttons -->
                             <StackPanel Orientation="Horizontal" Visibility="{Binding Source={x:Static viewModel:VM_Dashboard.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImageSize}" Margin="15,0,3,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImageSize}" Margin="15,0,3,0"/>
 
                                 <Button Name="btnMissingEpsIncrease" Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}">
                                     <Image Height="16" Width="16" Source="/Images/16_add.png" Margin="0,0,0,0"/>
@@ -1038,7 +1035,7 @@
                                     </Image>
                                     <Image Height="16" Width="16" Source="/Images/64_navup.png" Margin="2,0,2,0"
                                            Visibility="{Binding Source={x:Static viewModel:VM_UserSettings.Instance}, Path=DashSeriesMissingEpisodesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dash_SeriesMissingEps}" 
+                                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dash_SeriesMissingEps}" 
                                                FontWeight="Bold" Margin="0,0,0,0"/>
                                 </StackPanel>
                             </Button>
@@ -1079,9 +1076,9 @@
 
                             <!-- Number of Days -->
                             <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="0" Margin="10,2,2,2" Visibility="{Binding Source={x:Static viewModel:VM_Dashboard.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Days}" Margin="0,0,5,0"/>
-                                <xctk:IntegerUpDown Name="udDaysMiniCalendar" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
-                                      Value="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=Dash_MiniCalendarDays}" />
+                                <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Days}" Margin="0,0,5,0"/>
+                                <usercontrols:IntegerUpDown x:Name="udDaysMiniCalendar" Minimum="1" Maximum="100" VerticalAlignment="Center" 
+                                                            Value="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=Dash_MiniCalendarDays}" />
                             </StackPanel>
 
                             <!-- Other Options -->
@@ -1092,7 +1089,7 @@
                             
                             <!-- Widget Height Buttons -->
                             <StackPanel Orientation="Horizontal" Visibility="{Binding Source={x:Static viewModel:VM_Dashboard.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImageSize}" Margin="15,0,3,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImageSize}" Margin="15,0,3,0"/>
 
                                 <Button Name="btnMiniCalendarIncrease" Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}">
                                     <Image Height="16" Width="16" Source="/Images/16_add.png" Margin="0,0,0,0"/>
@@ -1111,7 +1108,7 @@
                                     </Image>
                                     <Image Height="16" Width="16" Source="/Images/64_navup.png" Margin="2,0,2,0"
                                            Visibility="{Binding Source={x:Static viewModel:VM_UserSettings.Instance}, Path=DashMiniCalendarExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dash_MiniCalendar}" 
+                                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dash_MiniCalendar}" 
                                                FontWeight="Bold" Margin="0,0,0,0"/>
                                 </StackPanel>
                             </Button>
@@ -1120,7 +1117,7 @@
                             <Button Name="btnForceCalendarRefresh" Margin="10,2,2,2" Style="{DynamicResource FlatButtonStyle}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,3,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dashboard_UpdateCalendar}" Margin="0,0,0,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dashboard_UpdateCalendar}" Margin="0,0,0,0"/>
                                 </StackPanel>
                             </Button>
                             <StackPanel />
@@ -1161,14 +1158,14 @@
 
                             <!-- Number of Items -->
                             <StackPanel Orientation="Horizontal" Margin="10,2,2,2" Visibility="{Binding Source={x:Static viewModel:VM_Dashboard.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Items}" Margin="0,0,5,0"/>
-                                <xctk:IntegerUpDown x:Name="udItemsRecWatch" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
-                                      Value="{Binding Source={x:Static viewModel:VM_UserSettings.Instance}, Path=Dash_RecWatch_Items}" />
+                                <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Items}" Margin="0,0,5,0"/>
+                                <usercontrols:IntegerUpDown x:Name="udItemsRecWatch" Minimum="1" Maximum="100"  VerticalAlignment="Center" 
+                                                            Value="{Binding Source={x:Static viewModel:VM_UserSettings.Instance}, Path=Dash_RecWatch_Items}" />
                             </StackPanel>
 
                             <!-- Widget Height Buttons -->
                             <StackPanel Orientation="Horizontal" Visibility="{Binding Source={x:Static viewModel:VM_Dashboard.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImageSize}" Margin="15,0,3,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImageSize}" Margin="15,0,3,0"/>
 
                                 <Button Name="btnRecWatchIncrease" Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}">
                                     <Image Height="16" Width="16" Source="/Images/16_add.png" Margin="0,0,0,0"/>
@@ -1187,7 +1184,7 @@
                                     </Image>
                                     <Image Height="16" Width="16" Source="/Images/64_navup.png" Margin="2,0,2,0"
                                            Visibility="{Binding Source={x:Static viewModel:VM_UserSettings.Instance}, Path=DashRecommendationsWatchExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dash_RecWatch}" 
+                                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dash_RecWatch}" 
                                                FontWeight="Bold" Margin="0,0,0,0"/>
                                 </StackPanel>
                             </Button>
@@ -1227,14 +1224,14 @@
 
                             <!-- Number of Items -->
                             <StackPanel Orientation="Horizontal" Margin="10,2,2,2" Visibility="{Binding Source={x:Static viewModel:VM_Dashboard.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Items}" Margin="0,0,5,0"/>
-                                <xctk:IntegerUpDown Name="udItemsRecDownload" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
-                                      Value="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=Dash_RecDownload_Items}" />
+                                <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Items}" Margin="0,0,5,0"/>
+                                <usercontrols:IntegerUpDown x:Name="udItemsRecDownload" Minimum="1" Maximum="100" VerticalAlignment="Center" 
+                                                            Value="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=Dash_RecDownload_Items}" />
                             </StackPanel>
 
                             <!-- Widget Height Buttons -->
                             <StackPanel Orientation="Horizontal" Visibility="{Binding Source={x:Static viewModel:VM_Dashboard.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImageSize}" Margin="15,0,3,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImageSize}" Margin="15,0,3,0"/>
 
                                 <Button Name="btnRecDownloadIncrease" Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
@@ -1257,7 +1254,7 @@
                                     </Image>
                                     <Image Height="16" Width="16" Source="/Images/64_navup.png" Margin="2,0,2,0"
                                                 Visibility="{Binding Source={x:Static viewModel:VM_UserSettings.Instance}, Path=DashRecommendationsDownloadExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dash_RecDownload}" 
+                                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dash_RecDownload}" 
                                           FontWeight="Bold" Margin="0,0,0,0"/>
                                 </StackPanel>
                             </Button>
@@ -1266,7 +1263,7 @@
                             <Button Name="btnGetRecDownloadMissingInfo" Margin="10,2,2,2" Style="{DynamicResource FlatButtonStyle}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_anidb.png" Margin="0,0,3,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GetMissingData}" Margin="0,0,0,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=GetMissingData}" Margin="0,0,0,0"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
@@ -1308,14 +1305,14 @@
 
                             <!-- Number of Items -->
                             <StackPanel Orientation="Horizontal" Margin="10,2,2,2" Visibility="{Binding Source={x:Static viewModel:VM_Dashboard.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Items}" Margin="0,0,5,0"/>
-                                <xctk:IntegerUpDown Name="udItemsRecentEpisodes" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
-                                      Value="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=Dash_RecentlyWatchedEp_Items}" />
+                                <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Items}" Margin="0,0,5,0"/>
+                                <usercontrols:IntegerUpDown x:Name="udItemsRecentEpisodes" Minimum="1" Maximum="100" VerticalAlignment="Center" 
+                                                            Value="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=Dash_RecentlyWatchedEp_Items}" />
                             </StackPanel>
 
                             <!-- Widget Height Buttons -->
                             <StackPanel Orientation="Horizontal" Visibility="{Binding Source={x:Static viewModel:VM_Dashboard.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImageSize}" Margin="15,0,3,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImageSize}" Margin="15,0,3,0"/>
 
                                 <Button Name="btnRecentEpisodesIncrease" Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
@@ -1339,7 +1336,7 @@
                                     </Image>
                                     <Image Height="16" Width="16" Source="/Images/64_navup.png" Margin="2,0,2,0"
                                                 Visibility="{Binding Source={x:Static viewModel:VM_UserSettings.Instance}, Path=DashRecentlyWatchEpsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dash_RecentEpisodes}" 
+                                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dash_RecentEpisodes}" 
                                           FontWeight="Bold" Margin="0,0,0,0"/>
                                 </StackPanel>
                             </Button>
@@ -1390,14 +1387,14 @@
 
                             <!-- Number of Items -->
                             <StackPanel Orientation="Horizontal" Margin="10,2,2,2" Visibility="{Binding Source={x:Static viewModel:VM_Dashboard.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Items}" Margin="0,0,5,0"/>
-                                <xctk:IntegerUpDown Name="udItemsRecentAdditions" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
-                                      Value="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=Dash_RecentAdditions_Items}" />
+                                <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Items}" Margin="0,0,5,0"/>
+                                <usercontrols:IntegerUpDown x:Name="udItemsRecentAdditions" Minimum="1" Maximum="100" VerticalAlignment="Center" 
+                                                            Value="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=Dash_RecentAdditions_Items}" />
                             </StackPanel>
 
                             <!-- Widget Height Buttons -->
                             <StackPanel Orientation="Horizontal" Visibility="{Binding Source={x:Static viewModel:VM_Dashboard.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImageSize}" Margin="15,0,3,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImageSize}" Margin="15,0,3,0"/>
 
                                 <Button Name="btnRecentAdditionsIncrease" Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
@@ -1420,7 +1417,7 @@
                                     </Image>
                                     <Image Height="16" Width="16" Source="/Images/64_navup.png" Margin="2,0,2,0"
                                            Visibility="{Binding Source={x:Static viewModel:VM_UserSettings.Instance}, Path=DashRecentAdditionsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dashboard_Recent}" 
+                                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dashboard_Recent}" 
                                                FontWeight="Bold" Margin="0,0,0,0"/>
                                 </StackPanel>
                             </Button>

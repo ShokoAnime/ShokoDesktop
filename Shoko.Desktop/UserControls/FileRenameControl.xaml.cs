@@ -668,7 +668,7 @@ namespace Shoko.Desktop.UserControls
                 if (LoadTypeIsRandom)
                 {
                     rawVids = VM_ShokoServer.Instance.ShokoServices
-                        .RandomFileRenamePreview(udRandomFiles.Value.Value,
+                        .RandomFileRenamePreview(udRandomFiles.Value,
                             VM_ShokoServer.Instance.CurrentUser.JMMUserID)
                         .CastList<VM_VideoLocal>();
                 }
@@ -709,7 +709,7 @@ namespace Shoko.Desktop.UserControls
                 }
                 else if (LoadTypeIsLast)
                 {
-                    int number = udRandomFiles.Value.Value;
+                    int number = udRandomFiles.Value;
                     rawVids = VM_ShokoServer.Instance.ShokoServices
                         .SearchForFiles((int) FileSearchCriteria.LastOneHundred, number.ToString(),
                             VM_ShokoServer.Instance.CurrentUser.JMMUserID)

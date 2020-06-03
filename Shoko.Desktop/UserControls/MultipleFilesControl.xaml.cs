@@ -303,9 +303,9 @@ namespace Shoko.Desktop.UserControls
                 chkRequire10bit.Unchecked += SaveSettings;
                 chkAllowDeletionOfImportingFiles.Unchecked += SaveSettings;
 
-                numMaxFilesToKeep.ValueChanged += SaveSettings;
-                numMinAudioStreamCount.ValueChanged += SaveSettings;
-                numMinSubStreamCount.ValueChanged += SaveSettings;
+                numMaxFilesToKeep.ValueChanged+= SaveSettingsD;
+                numMinAudioStreamCount.ValueChanged += SaveSettingsD;
+                numMinSubStreamCount.ValueChanged += SaveSettingsD;
 
                 cmbTypes_Available.ItemsSource = new[]
                 {
@@ -372,7 +372,10 @@ namespace Shoko.Desktop.UserControls
         {
             SaveSettings();
         }
-
+        private void SaveSettingsD(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            SaveSettings();
+        }
         private void SaveSettings(object sender, SelectionChangedEventArgs e)
         {
             SaveSettings();

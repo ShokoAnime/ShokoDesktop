@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web.Script.Serialization;
 using System.Xml.Serialization;
-using DevExpress.Xpf.Editors.Helpers;
 using Newtonsoft.Json;
 using Shoko.Commons.Extensions;
 using Shoko.Desktop.Utilities;
@@ -16,27 +14,27 @@ namespace Shoko.Desktop.ViewModel.Server
 {
     public class VM_VideoLocal : CL_VideoLocal, IListWrapper
     {
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public int ObjectType => 5;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsEditable => false;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsLocalFile => this.IsLocalFile();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsAccessibleFromServer => Places.Any(a => a.ImportFolder?.IsNotCloud() ?? false);
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string FileDirectory => string.Join(",", Places.Select(place => place.GetLocalFileSystemFullPath()));
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string ServerPath => string.Join(",",
             Places.Select(
                 place => place.ImportFolder?.ImportFolderLocation == null || place.FilePath == null
                     ? ""
                     : $"{place.ImportFolder.ImportFolderLocation}{place.FilePath}"));
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsHashed => this.IsHashed();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string FormattedFileSize => this.GetFormattedFileSize();
 
         // ReSharper disable once EmptyConstructor
@@ -44,10 +42,10 @@ namespace Shoko.Desktop.ViewModel.Server
         {
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string FullPath => Places.FirstOrDefault(a => !string.IsNullOrEmpty(a.GetFullPath())).GetFullPath();
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string ClosestAnimeMatchString
         {
             get

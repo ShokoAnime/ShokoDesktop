@@ -3,8 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
         xmlns:forms="clr-namespace:Shoko.Desktop.Forms"
+        xmlns:wpf="clr-namespace:Infralution.Localization.Wpf"
         xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
-        Title="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilter_Condition}" Icon="/ShokoDesktop;component/Images/16_filter.png" MinWidth="400" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner">
+        Title="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilter_Condition}" Icon="/ShokoDesktop;component/Images/16_filter.png" MinWidth="400" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner">
 
     <Grid>
 
@@ -57,7 +58,7 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="10,5,15,0">
-                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilterConditionType}" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilterConditionType}" VerticalAlignment="Center"></TextBlock>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Margin="0,5,5,0">
@@ -65,7 +66,7 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Margin="10,5,15,0">
-                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilterOperator}" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilterOperator}" VerticalAlignment="Center"></TextBlock>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Margin="0,5,5,5">
@@ -76,8 +77,8 @@
                     <Image Height="16" Width="16" Source="/Images/32_info.png"/>
 
 
-                    <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="5,0,0,0" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=LearnMore_GroupFilters}" Grid.Column="1"
-                                                                    URL="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_GroupFilters}"/>
+                    <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="5,0,0,0" DisplayText="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=LearnMore_GroupFilters}" Grid.Column="1"
+                                                                    URL="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_GroupFilters}"/>
                 </StackPanel>
             </Grid>
 
@@ -93,7 +94,7 @@
 
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top">
                     <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="5,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SelectGroup}" Margin="0,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=SelectGroup}" Margin="0,0,0,0"/>
                 </StackPanel>
 
                 <!-- Search bar -->
@@ -131,7 +132,7 @@
 
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top">
                     <Image Height="16" Width="16" Source="/Images/24_calendar.png" Margin="5,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SelectDate}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=SelectDate}" Margin="0,0,5,0"/>
                     <DatePicker Name="dpDate" SelectedDateFormat="Long" IsEnabled="True" />
                 </StackPanel>
 
@@ -148,7 +149,7 @@
 
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top">
                     <Image Height="16" Width="16" Source="/Images/16_windowlist.png" Margin="5,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=FilterValue}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=FilterValue}" Margin="0,0,5,0"/>
                     <TextBox Name="txtParameter" Width="180" Margin="10,2,2,0" BorderThickness="1" />
                 </StackPanel>
 
@@ -165,7 +166,7 @@
 
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top">
                     <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="5,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilterConditionType_Tag}" Margin="0,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilterConditionType_Tag}" Margin="0,0,0,0"/>
                 </StackPanel>
 
                 <!-- Search bar -->
@@ -207,7 +208,7 @@
 
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top">
                     <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="5,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilter_VideoQuality_Help}" Margin="0,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilter_VideoQuality_Help}" Margin="0,0,0,0"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical"  DockPanel.Dock="Top">
@@ -238,7 +239,7 @@
 
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top">
                     <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="5,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilter_VideoQuality_Help}" Margin="0,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilter_VideoQuality_Help}" Margin="0,0,0,0"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical"  DockPanel.Dock="Top">
@@ -264,7 +265,7 @@
 
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top">
                     <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="5,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilter_VideoQuality_Help}" Margin="0,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilter_VideoQuality_Help}" Margin="0,0,0,0"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical"  DockPanel.Dock="Top">
@@ -290,7 +291,7 @@
 
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top">
                     <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="5,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilter_VideoQuality_Help}" Margin="0,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilter_VideoQuality_Help}" Margin="0,0,0,0"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical"  DockPanel.Dock="Top">
@@ -317,7 +318,7 @@
 
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top">
                     <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="5,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilter_VideoQuality_Help}" Margin="0,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilter_VideoQuality_Help}" Margin="0,0,0,0"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical"  DockPanel.Dock="Top">
@@ -348,7 +349,7 @@
 
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top">
                     <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="5,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilter_VideoQuality_Help}" Margin="0,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilter_VideoQuality_Help}" Margin="0,0,0,0"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical"  DockPanel.Dock="Top">
@@ -379,7 +380,7 @@
 
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top">
                     <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="5,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilterConditionType_Tag}" Margin="0,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilterConditionType_Tag}" Margin="0,0,0,0"/>
                 </StackPanel>
 
                 <!-- Search bar -->
@@ -417,13 +418,13 @@
             <Button Name="btnConfirm" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Confirm}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Confirm}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
             <Button Name="btnCancel" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Cancel}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Cancel}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
         </StackPanel>

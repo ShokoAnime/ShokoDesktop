@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
              xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
+             xmlns:wpf="clr-namespace:Infralution.Localization.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="600">
     <Grid Margin="5,0,0,0">
@@ -28,12 +29,12 @@
 
         <!-- Video Extensions -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Margin="0,0,0,10">
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImportSettings_VideoExtensions}" Margin="0,5,15,0" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImportSettings_VideoExtensions}" Margin="0,5,15,0" VerticalAlignment="Center"></TextBlock>
             <TextBox Name="txtServer" Width="300" Margin="0,5,5,0" VerticalAlignment="Center" Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=VideoExtensions}"/>
             <Button Name="btnSave" Margin="0,8,2,2" Grid.Column="0" Grid.Row="4"  HorizontalAlignment="Left" >
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/16_save.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TestAndSave}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=TestAndSave}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
         </StackPanel>
@@ -45,7 +46,7 @@
 
         <!-- ImportOnStart -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImportSettings_ImportOnStart}" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImportSettings_ImportOnStart}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="0,5,5,0" Grid.ColumnSpan="1">
@@ -54,7 +55,7 @@
 
         <!-- ScanDropFoldersOnStart -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Settings_ScanOnStart}" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Settings_ScanOnStart}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Margin="0,5,5,0" Grid.ColumnSpan="1">
@@ -63,7 +64,7 @@
 
         <!-- Use status from existing files -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImportSettings_UseEpisodeStatus}" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImportSettings_UseEpisodeStatus}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" Margin="0,5,5,0" Grid.ColumnSpan="1">
@@ -71,25 +72,25 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="0,15,5,0" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="3">
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Settings_ImagePath}"  VerticalAlignment="Center"/>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Settings_ImagePath}"  VerticalAlignment="Center"/>
 
           
             <Button Name="btnSetDefaultFolder" Style="{DynamicResource RoundButtonStyle}" Margin="10,0,0,0">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                     <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Settings_SetDefault}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Settings_SetDefault}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
             <Button Name="btnSetJMMServer" Style="{DynamicResource RoundButtonStyle}" Margin="10,0,0,0">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                     <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Settings_SetShokoServer}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Settings_SetShokoServer}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
             <Button Name="btnChooseImagesFolder" Style="{DynamicResource RoundButtonStyle}" Margin="10,0,0,0">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                     <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Settings_SelectFolder}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Settings_SelectFolder}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
         </StackPanel>

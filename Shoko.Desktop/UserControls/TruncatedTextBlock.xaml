@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
              mc:Ignorable="d" 
+             xmlns:wpf="clr-namespace:Infralution.Localization.Wpf"
              d:DesignHeight="300" d:DesignWidth="300">
 
     <UserControl.Resources>

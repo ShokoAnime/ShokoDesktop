@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
         xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
+        xmlns:wpf="clr-namespace:Infralution.Localization.Wpf"
         ShowInTaskbar="False" WindowStyle="ToolWindow"
         WindowStartupLocation="CenterScreen" Topmost="False" SizeToContent="WidthAndHeight"
         mc:Ignorable="d"
-        Title="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Update_ShokoDesktop}" MinHeight="200" MinWidth="500" Icon="/Images/db.ico">
+        Title="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Update_ShokoDesktop}" MinHeight="200" MinWidth="500" Icon="/Images/db.ico">
     <Grid>
         <Grid.Resources>
 
@@ -43,7 +44,7 @@
             <StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
                 <Image Height="24" Width="24" Source="/Images/32_WebDatabase.png" Margin="5,0,5,0"/>
 
-                <TextBlock x:Name="tbUpdateAvailable" Margin="5,0,0,0" FontWeight="DemiBold" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Update_Update}" FontSize="20" VerticalAlignment="Center"/>
+                <TextBlock x:Name="tbUpdateAvailable" Margin="5,0,0,0" FontWeight="DemiBold" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Update_Update}" FontSize="20" VerticalAlignment="Center"/>
                 
             </StackPanel>
         </Border>
@@ -62,19 +63,19 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Margin="10,6"  Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Update_UpdatePage}"  VerticalAlignment="Center"/>
-                <usercontrols:HyperLinkStandard Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="10,6,10,5" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_Download}"
-                                                                        URL="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_Download}"/>
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="10,6"  Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Update_UpdatePage}"  VerticalAlignment="Center"/>
+                <usercontrols:HyperLinkStandard Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="10,6,10,5" DisplayText="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_Download}"
+                                                                        URL="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_Download}"/>
 
-                <TextBlock Grid.Row="1" Grid.Column="0" Margin="10,4.864,10,6"  Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Update_Changelog}"  VerticalAlignment="Center"/>
-                <usercontrols:HyperLinkStandard Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="10,4.864,10,5" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_Changelog}"
-                                                                        URL="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_Changelog}"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Margin="10,4.864,10,6"  Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Update_Changelog}"  VerticalAlignment="Center"/>
+                <usercontrols:HyperLinkStandard Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="10,4.864,10,5" DisplayText="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_Changelog}"
+                                                                        URL="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_Changelog}"/>
 
-                <TextBlock Grid.Row="2" Grid.Column="0" Margin="10,4.864,10,6"  Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Update_AvailableVersion}"  VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Margin="10,4.864,10,6"  Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Update_AvailableVersion}"  VerticalAlignment="Center"/>
                 <TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="10,4.864,10,5" FontWeight="DemiBold" 
                            Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=ApplicationVersionLatest}" />
 
-                <TextBlock Grid.Row="3" Grid.Column="0" Margin="10,4.864,10,6"  Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Update_YourVersion}"  VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="3" Grid.Column="0" Margin="10,4.864,10,6"  Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Update_YourVersion}"  VerticalAlignment="Center"/>
                 <TextBlock Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="10,4.864,10,5" FontWeight="DemiBold" 
                            Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=ApplicationVersion}" />
 

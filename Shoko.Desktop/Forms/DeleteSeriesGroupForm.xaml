@@ -3,8 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
         xmlns:forms="clr-namespace:Shoko.Desktop.Forms"
+        xmlns:wpf="clr-namespace:Infralution.Localization.Wpf"
         xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
-        Title="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteSeriesGroup}" ShowInTaskbar="False" WindowStyle="SingleBorderWindow" Icon="/ShokoDesktop;component/Images/32_trash.png"
+        Title="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteSeriesGroup}" ShowInTaskbar="False" WindowStyle="SingleBorderWindow" Icon="/ShokoDesktop;component/Images/32_trash.png"
         WindowStartupLocation="CenterOwner" Topmost="False" SizeToContent="WidthAndHeight">
     
     <Grid Margin="10" Height="Auto">
@@ -29,20 +30,20 @@
         <!-- Row 1 -->
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="0,0,0,10">
             <Image Height="16" Width="16" Source="/Images/16_warning.png" Margin="0,0,6,0"/>
-            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteSeriesConfirm}" Margin="0,0,0,0"/>
+            <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteSeriesConfirm}" Margin="0,0,0,0"/>
         </StackPanel>
 
         <!-- Row 2 -->
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1">
             <CheckBox Name="chkDeleteGroups"  VerticalAlignment="Center" IsChecked="True">
-                <TextBlock Margin="6,0,0,0" VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteSeriesConfirm_Groups}"/>
+                <TextBlock Margin="6,0,0,0" VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteSeriesConfirm_Groups}"/>
             </CheckBox>
         </StackPanel>
         
         <!-- Row 3 -->
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2" Margin="0,10,0,0">
             <CheckBox Name="chkDeleteFiles" VerticalAlignment="Center">
-                <TextBlock Margin="6,0,0,0" VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteSeriesConfirm_Files}" />
+                <TextBlock Margin="6,0,0,0" VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteSeriesConfirm_Files}" />
             </CheckBox>
         </StackPanel>
 
@@ -51,7 +52,7 @@
             <Button Name="btnOK"  Margin="0,0,0,0" Style="{DynamicResource FlatButtonStyle}"  DockPanel.Dock="Right" HorizontalAlignment="Right">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
                     <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Confirm}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Confirm}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
 

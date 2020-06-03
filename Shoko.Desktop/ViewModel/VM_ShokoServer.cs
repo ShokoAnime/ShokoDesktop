@@ -32,6 +32,7 @@ using Shoko.Models.Server;
 using Shoko.Models.TvDB;
 using ImportFolder = Shoko.Models.Server.ImportFolder;
 using Timer = System.Timers.Timer;
+using Shoko.Commons.Extensions;
 
 // ReSharper disable InconsistentNaming
 
@@ -1383,13 +1384,15 @@ namespace Shoko.Desktop.ViewModel
             string final = AutoGroupSeriesRelationExclusions;
             if (value)
             {
-                var settings = final.Split('|').ToHashSet(StringComparer.InvariantCultureIgnoreCase);
+                var settings=new HashSet<string>(StringComparer.InvariantCultureIgnoreCase);
+                final.Split('|').ForEach(a=>settings.Add(a));
                 settings.Add(setting);
                 final = string.Join("|", settings);
             }
             else
             {
-                var settings = final.Split('|').ToHashSet(StringComparer.InvariantCultureIgnoreCase);
+                var settings=new HashSet<string>(StringComparer.InvariantCultureIgnoreCase);
+                final.Split('|').ForEach(a=>settings.Add(a));
                 settings.Remove(setting);
                 final = string.Join("|", settings);
             }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Web.Script.Serialization;
+
 using System.Windows;
 using System.Windows.Threading;
 using System.Xml.Serialization;
@@ -28,16 +28,16 @@ namespace Shoko.Desktop.ViewModel.Server
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propname));
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsEditable => false;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public int ObjectType => 0;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool AllowEditing => !IsLocked;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool AllowDeletion => !IsLocked;
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string SortName
         {
             get
@@ -83,7 +83,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string GroupName => SortName;
 
 
@@ -149,11 +149,11 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private readonly TrulyObservableCollection<VM_GroupFilterCondition> _filterConditions;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public TrulyObservableCollection<VM_GroupFilterCondition> Obs_FilterConditions => _filterConditions;
 
         private readonly TrulyObservableCollection<VM_GroupFilterSortingCriteria> _sortingCriteriaList;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public TrulyObservableCollection<VM_GroupFilterSortingCriteria> SortCriteriaList => _sortingCriteriaList;
 
         public new int? Locked
@@ -165,11 +165,11 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsLocked => base.Locked.HasValue && base.Locked == 1;
 
         private bool isBeingEdited;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsBeingEdited
         {
             get => isBeingEdited;
@@ -208,14 +208,14 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsApplyToSeries
         {
             get => ApplyToSeries == 1;
             set => ApplyToSeries = value ? 1 : 0;
         }
         
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsInvisibleInClients
         {
             get => InvisibleInClients == 1;
@@ -249,7 +249,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string Summary
         {
             get
@@ -265,7 +265,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private int _groupsCount ;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public int GroupsCount
         {
             get => _groupsCount;
@@ -275,7 +275,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsDirectoryFilter => (FilterType & (int) GroupFilterType.Directory) ==
                                          (int) GroupFilterType.Directory;
 

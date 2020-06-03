@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
              xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
+             xmlns:wpf="clr-namespace:Infralution.Localization.Wpf"
              xmlns:viewModel="clr-namespace:Shoko.Desktop.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="500">
@@ -19,8 +20,8 @@
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
-            <RoutedUICommand x:Key="PlayVideoCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=PlayVideoCommand}" />
-            <RoutedUICommand x:Key="PlayEpisodeCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=PlayEpisodeCommand}" />
+            <RoutedUICommand x:Key="PlayVideoCommand" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=PlayVideoCommand}" />
+            <RoutedUICommand x:Key="PlayEpisodeCommand" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=PlayEpisodeCommand}" />
             
 
             <!-- PlayVideoTemplate -->
@@ -40,7 +41,7 @@
                             Command="{DynamicResource PlayVideoCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                 <Image Height="16" Width="16" Source="/Images/32_resume.png" Margin="0,0,5,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Play}" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Play}" Margin="0,0,5,0"/>
                             </StackPanel>
                         </Button>
 
@@ -50,36 +51,36 @@
                                 <Image Height="16" Width="16" Source="/Images/32_eye.png" Margin="2,0,2,0"
                                     Visibility="{Binding Path=Watched, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <Image.ToolTip>
-                                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Watched}"/>
+                                        <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Watched}"/>
                                     </Image.ToolTip>
                                 </Image>
                                 <Image Height="16" Width="16" Source="/Images/32_eye2.png" Margin="2,0,2,0"
                                     Visibility="{Binding Path=Watched, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
                                     <Image.ToolTip>
-                                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Unwatched}"/>
+                                        <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Unwatched}"/>
                                     </Image.ToolTip>
                                 </Image>
                             </StackPanel>
 
                         </Button>
 
-                        <Label Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Video_HD}" Style="{DynamicResource VideoDefStyle}" VerticalAlignment="Center" Margin="0,0,10,0"
+                        <Label Content="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Video_HD}" Style="{DynamicResource VideoDefStyle}" VerticalAlignment="Center" Margin="0,0,10,0"
                                Visibility="{Binding Path=IsHD, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <Label Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Video_FullHD}" Style="{DynamicResource VideoDefStyle}" VerticalAlignment="Center" Margin="0,0,10,0"
+                        <Label Content="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Video_FullHD}" Style="{DynamicResource VideoDefStyle}" VerticalAlignment="Center" Margin="0,0,10,0"
                                Visibility="{Binding Path=IsFullHD, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <Label Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Video_Bluray}" Style="{DynamicResource VideoDefStyle_Source}" VerticalAlignment="Center" Margin="0,0,10,0"
+                        <Label Content="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Video_Bluray}" Style="{DynamicResource VideoDefStyle_Source}" VerticalAlignment="Center" Margin="0,0,10,0"
                                Visibility="{Binding Path=IsBluRay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <Label Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Video_DVD}" Style="{DynamicResource VideoDefStyle_Source}" VerticalAlignment="Center" Margin="0,0,10,0"
+                        <Label Content="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Video_DVD}" Style="{DynamicResource VideoDefStyle_Source}" VerticalAlignment="Center" Margin="0,0,10,0"
                                Visibility="{Binding Path=IsDVD, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <Label Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Video_Hi08P}" Style="{DynamicResource VideoDefStyle_Hi08P}" VerticalAlignment="Center" Margin="0,0,10,0"
+                        <Label Content="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Video_Hi08P}" Style="{DynamicResource VideoDefStyle_Hi08P}" VerticalAlignment="Center" Margin="0,0,10,0"
                                Visibility="{Binding Path=IsHi08P, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <Label Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Video_Hi10P}" Style="{DynamicResource VideoDefStyle_Hi10P}" VerticalAlignment="Center" Margin="0,0,10,0"
+                        <Label Content="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Video_Hi10P}" Style="{DynamicResource VideoDefStyle_Hi10P}" VerticalAlignment="Center" Margin="0,0,10,0"
                                Visibility="{Binding Path=IsHi10P, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <Label Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Video_Hi12P}" Style="{DynamicResource VideoDefStyle_Hi12P}" VerticalAlignment="Center" Margin="0,0,10,0"
+                        <Label Content="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Video_Hi12P}" Style="{DynamicResource VideoDefStyle_Hi12P}" VerticalAlignment="Center" Margin="0,0,10,0"
                                Visibility="{Binding Path=IsHi12P, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <Label Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Audio_Dual}" Style="{DynamicResource VideoDefStyle}" VerticalAlignment="Center" Margin="0,0,10,0"
+                        <Label Content="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Audio_Dual}" Style="{DynamicResource VideoDefStyle}" VerticalAlignment="Center" Margin="0,0,10,0"
                                Visibility="{Binding Path=IsDualAudio, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <Label Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Audio_Multi}" Style="{DynamicResource VideoDefStyle}" VerticalAlignment="Center" Margin="0,0,10,0"
+                        <Label Content="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Audio_Multi}" Style="{DynamicResource VideoDefStyle}" VerticalAlignment="Center" Margin="0,0,10,0"
                                Visibility="{Binding Path=IsMultiAudio, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         <Border BorderThickness="1"
                                 BorderBrush="Navy"
@@ -93,7 +94,7 @@
 
                         <TextBlock Text="{Binding Path=AniDB_Anime_GroupNameShort}" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"
                                    Visibility="{Binding Path=IsAutoAssociation, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ManualLink}" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"
+                        <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=ManualLink}" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"
                                    Visibility="{Binding Path=IsAutoAssociation, Converter={StaticResource InverseBooleanToVisibilityConverter}}"/>
 
                         <TextBlock Text="{Binding Path=FormattedFileSize}" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0" />
@@ -140,7 +141,7 @@
                     Visibility="{Binding Path=EpisodeMissing, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:PlayNextEpisodeControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
 
             <Image Height="24" Width="24" Source="/Images/32_info.png" Margin="0,0,10,0" VerticalAlignment="Center"/>
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AllEpisodesWatched}" FontWeight="DemiBold" Foreground="Black" VerticalAlignment="Center" />
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=AllEpisodesWatched}" FontWeight="DemiBold" Foreground="Black" VerticalAlignment="Center" />
         </StackPanel>
 
 
@@ -148,7 +149,7 @@
                     Visibility="{Binding Path=EpisodeExists, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:PlayNextEpisodeControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <TextBlock Name="tbEpisodeNumberAndName" Text="{Binding Path=EpisodeNumberAndNameWithTypeTruncated}" FontWeight="DemiBold" Foreground="Black" FontSize="14" VerticalAlignment="Center">
                 <TextBlock.ToolTip>
-                      <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=EpisodeNumberAndNameWithType}"/>
+                      <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=EpisodeNumberAndNameWithType}"/>
                 </TextBlock.ToolTip>
             </TextBlock>
 
@@ -160,13 +161,13 @@
                     <Image Height="16" Width="16" Source="/Images/32_eye.png" Margin="2,0,2,0"
                            Visibility="{Binding Path=Watched, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Image.ToolTip>
-                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Watched}"/>
+                            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Watched}"/>
                         </Image.ToolTip>
                     </Image>
                     <Image Height="16" Width="16" Source="/Images/32_eye2.png" Margin="2,0,2,0"
                            Visibility="{Binding Path=Watched, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
                         <Image.ToolTip>
-                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Unwatched}"/>
+                            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Unwatched}"/>
                         </Image.ToolTip>
                     </Image>
                 </StackPanel>
@@ -177,7 +178,7 @@
                         VerticalAlignment="Center" Visibility="{Binding Path=OneFileOnly, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                     <Image Height="16" Width="16" Source="/Images/32_resume.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Play}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Play}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
 
@@ -187,13 +188,13 @@
                 <Image Height="16" Width="16" Source="/Images/16_exclamation.png" Margin="0,0,5,0"
                            Visibility="{Binding Path=NoFiles, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Image.ToolTip>
-                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_ZeroFiles}"/>
+                        <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_ZeroFiles}"/>
                     </Image.ToolTip>
                 </Image>
                 <Image Height="16" Width="16" Source="/Images/24_calendar.png" Margin="0,0,5,0"
                            Visibility="{Binding Path=FutureDated, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Image.ToolTip>
-                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_FutureDated}"/>
+                        <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_FutureDated}"/>
                     </Image.ToolTip>
                 </Image>
                 <TextBlock Name="tbFileDetails" Text="{Binding Path=FileDetails}" VerticalAlignment="Center"/>
@@ -227,7 +228,7 @@
                    Visibility="{Binding Path=FullOverview, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:PlayNextEpisodeControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
         </TextBlock>
 
-        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=PlayNext_Hidden}" HorizontalAlignment="Stretch" Margin="10,0,0,0" 
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=PlayNext_Hidden}" HorizontalAlignment="Stretch" Margin="10,0,0,0" 
                    VerticalAlignment="Top"  TextWrapping="Wrap"
                    Visibility="{Binding Path=HideOverview, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:PlayNextEpisodeControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
         </TextBlock>

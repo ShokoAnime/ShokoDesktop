@@ -4,6 +4,7 @@
         xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
         xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
         xmlns:forms="clr-namespace:Shoko.Desktop.Forms"
+        xmlns:wpf="clr-namespace:Infralution.Localization.Wpf"
         ShowInTaskbar="False" WindowStyle="ToolWindow"
         WindowStartupLocation="CenterScreen" Topmost="False"
         Title="Shoko Desktop" MinHeight="250" MinWidth="500" Name="feedWindow" Icon="/Images/db.ico" ResizeMode="NoResize" Width="500" Height="250" SizeToContent="Height">

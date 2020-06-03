@@ -6,16 +6,15 @@
              xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
              xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
              mc:Ignorable="d" 
-             xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
-             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:community="clr-namespace:Shoko.Desktop.UserControls.Community"
+             xmlns:wpf="clr-namespace:Infralution.Localization.Wpf"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
 
         <ResourceDictionary>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
-            <RoutedUICommand x:Key="RefreshSeriesCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=RefreshSeriesCommand}" />
+            <RoutedUICommand x:Key="RefreshSeriesCommand" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=RefreshSeriesCommand}" />
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -38,7 +37,7 @@
         <TabControl Grid.Row="0" Grid.Column="0" Margin="0" Name="tabCommMaint" TabStripPlacement="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
 
 
-            <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Trakt}">
+            <TabItem Header="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Trakt}">
 
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                     <Grid>
@@ -57,14 +56,14 @@
                         <Border DockPanel.Dock="Top" Background="FloralWhite" BorderBrush="DarkGray" BorderThickness="1" Grid.Column="0" Grid.Row="0" Padding="2"  Grid.ColumnSpan="3">
                             <StackPanel Orientation="Vertical">
 
-                                <CheckBox Name="chkTraktValid" Margin="5" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_TraktValid}" IsChecked="True"/>
-                                <CheckBox Name="chkTraktValidCleanup" Margin="25,5,5,5" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_TraktRemoveBad}" IsChecked="True"/>
-                                <CheckBox Name="chkCommRec" Margin="5" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_CommunityCheck}" IsChecked="True"/>
+                                <CheckBox Name="chkTraktValid" Margin="5" Content="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_TraktValid}" IsChecked="True"/>
+                                <CheckBox Name="chkTraktValidCleanup" Margin="25,5,5,5" Content="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_TraktRemoveBad}" IsChecked="True"/>
+                                <CheckBox Name="chkCommRec" Margin="5" Content="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_CommunityCheck}" IsChecked="True"/>
 
                                 <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="0">
 
-                                    <CheckBox Name="chkLimitSeries" Margin="5" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_ProblemStop}" IsChecked="True"/>
-                                    <xctk:IntegerUpDown Name="udLimitSeries" Minimum="1" Maximum="99999" DefaultValue="50" Value="50" VerticalAlignment="Center"/>
+                                    <CheckBox Name="chkLimitSeries" Margin="5" Content="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_ProblemStop}" IsChecked="True"/>
+                                    <usercontrols:IntegerUpDown x:Name="udLimitSeries" Minimum="1" Maximum="99999" Value="50" VerticalAlignment="Center"/>
 
 
                                 </StackPanel>
@@ -81,7 +80,7 @@
                                             AncestorType={x:Type community:CommunityMaint}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                             <Image Height="16" Width="16" Source="/Images/32_resume.png" Margin="0,0,5,0"/>
-                                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Start}" Margin="0,0,5,0"/>
+                                            <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Start}" Margin="0,0,5,0"/>
                                         </StackPanel>
                                     </Button>
 
@@ -91,7 +90,7 @@
                                             AncestorType={x:Type community:CommunityMaint}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                             <Image Height="16" Width="16" Source="/Images/16_pause.png" Margin="0,0,5,0"/>
-                                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Pause}" Margin="0,0,5,0"/>
+                                            <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Pause}" Margin="0,0,5,0"/>
                                         </StackPanel>
                                     </Button>
 
@@ -101,7 +100,7 @@
                                             AncestorType={x:Type community:CommunityMaint}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                             <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
-                                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Stop}" Margin="0,0,5,0"/>
+                                            <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Stop}" Margin="0,0,5,0"/>
                                         </StackPanel>
                                     </Button>
 
@@ -129,7 +128,7 @@
             <Border DockPanel.Dock="Top" Background="#F1F1F1" BorderBrush="DarkGray" BorderThickness="1" Padding="5">
                 <StackPanel Orientation="Horizontal">
 
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_Filter}" Margin="10,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_Filter}" Margin="10,0,0,0"/>
 
                     <ComboBox Name="cboFilterType" Margin="3,3,5,3" Height="24" VerticalAlignment="Center"/>
 
@@ -163,10 +162,10 @@
                 </DataGrid.CellStyle>
                 <DataGrid.Columns>
 
-                    <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_SeriesName}" Binding="{Binding Path=SeriesName}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_Status}" Binding="{Binding Path=Status}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_SeriesName}" Binding="{Binding Path=SeriesName}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_Status}" Binding="{Binding Path=Status}" IsReadOnly="True" />
 
-                    <DataGridTemplateColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_ValidTraktLink}" IsReadOnly="True">
+                    <DataGridTemplateColumn Header="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_ValidTraktLink}" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Image Source="{Binding Path=IsTraktLinkValidImage, Converter={StaticResource LocalUriToImageConverter}}" Width="16" Height="16" />
@@ -174,7 +173,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_HasTraktLink}" IsReadOnly="True">
+                    <DataGridTemplateColumn Header="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_HasTraktLink}" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Image Source="{Binding Path=HasTraktLinkImage, Converter={StaticResource LocalUriToImageConverter}}" Width="16" Height="16" />
@@ -182,7 +181,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_CommunityLink}" IsReadOnly="True">
+                    <DataGridTemplateColumn Header="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_CommunityLink}" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Image Source="{Binding Path=HasTraktCommLinkImage, Converter={StaticResource LocalUriToImageConverter}}" Width="16" Height="16" />
@@ -190,7 +189,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_Match}" IsReadOnly="True">
+                    <DataGridTemplateColumn Header="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_Match}" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Image Source="{Binding Path=UserTraktLinkMatchImage, Converter={StaticResource LocalUriToImageConverter}}" Width="16" Height="16" />
@@ -209,7 +208,7 @@
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                             <Image Height="16" Width="16" Source="/Images/32_pin.png" Margin="2,0,2,0">
                                                 <Image.ToolTip>
-                                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_PinSeries}"/>
+                                                    <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_PinSeries}"/>
                                                 </Image.ToolTip>
                                             </Image>
 
@@ -222,7 +221,7 @@
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                             <Image Height="16" Width="16" Source="/Images/32_refresh.png" Margin="2,0,2,0">
                                                 <Image.ToolTip>
-                                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_Refresh}"/>
+                                                    <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Community_Refresh}"/>
                                                 </Image.ToolTip>
                                             </Image>
 

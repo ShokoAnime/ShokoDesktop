@@ -29,9 +29,9 @@ namespace Shoko.Desktop.UserControls.Settings
             chkTvDB_FanartAutoDownload.Click += new RoutedEventHandler(settingChanged);
             chkTvDB_PosterAutoDownload.Click += new RoutedEventHandler(settingChanged);
             chkTvDB_WideBannerAutoDownload.Click += new RoutedEventHandler(settingChanged);
-            udMaxFanarts.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udMaxFanarts_ValueChanged);
-            udMaxPosters.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udMaxPosters_ValueChanged);
-            udMaxWideBanners.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udMaxWideBanners_ValueChanged);
+            udMaxFanarts.ValueChanged += new EventHandler<DependencyPropertyChangedEventArgs>(udMaxFanarts_ValueChanged);
+            udMaxPosters.ValueChanged += new EventHandler<DependencyPropertyChangedEventArgs>(udMaxPosters_ValueChanged);
+            udMaxWideBanners.ValueChanged += new EventHandler<DependencyPropertyChangedEventArgs>(udMaxWideBanners_ValueChanged);
 
             Utils.PopulateScheduledComboBox(cboUpdateFrequency, VM_ShokoServer.Instance.TvDB_UpdateFrequency);
             cboUpdateFrequency.SelectionChanged += new SelectionChangedEventHandler(cboUpdateFrequency_SelectionChanged);
@@ -153,21 +153,21 @@ namespace Shoko.Desktop.UserControls.Settings
             VM_ShokoServer.Instance.SaveServerSettingsAsync();
         }
 
-        void udMaxFanarts_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        void udMaxFanarts_ValueChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            VM_ShokoServer.Instance.TvDB_AutoFanartAmount = udMaxFanarts.Value.Value;
+            VM_ShokoServer.Instance.TvDB_AutoFanartAmount = udMaxFanarts.Value;
             VM_ShokoServer.Instance.SaveServerSettingsAsync();
         }
 
-        void udMaxWideBanners_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        void udMaxWideBanners_ValueChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            VM_ShokoServer.Instance.TvDB_AutoWideBannersAmount = udMaxWideBanners.Value.Value;
+            VM_ShokoServer.Instance.TvDB_AutoWideBannersAmount = udMaxWideBanners.Value;
             VM_ShokoServer.Instance.SaveServerSettingsAsync();
         }
 
-        void udMaxPosters_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        void udMaxPosters_ValueChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            VM_ShokoServer.Instance.TvDB_AutoPostersAmount = udMaxPosters.Value.Value;
+            VM_ShokoServer.Instance.TvDB_AutoPostersAmount = udMaxPosters.Value;
             VM_ShokoServer.Instance.SaveServerSettingsAsync();
         }
 

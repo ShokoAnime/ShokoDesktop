@@ -3,8 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:forms="clr-namespace:Shoko.Desktop.Forms"
         xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
+        xmlns:wpf="clr-namespace:Infralution.Localization.Wpf"
         xmlns:wpfHelpers="clr-namespace:Shoko.Desktop.WPFHelpers"
-        Title="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_PreviewTvDB}" Width="768" ShowInTaskbar="False" WindowStyle="SingleBorderWindow" Icon="/ShokoDesktop;component/Images/16_switch.png"
+        Title="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_PreviewTvDB}" Width="768" ShowInTaskbar="False" WindowStyle="SingleBorderWindow" Icon="/ShokoDesktop;component/Images/16_switch.png"
         WindowStartupLocation="CenterOwner" Topmost="False" VerticalAlignment="Stretch">
     <Grid>
         <Grid.Resources>
@@ -46,7 +47,7 @@
                 <Border Grid.Row="0" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1">
                     <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
                         <Image Margin="5,0,0,0" Height="16" Width="16" Source="/Images/32_anidb.png" VerticalAlignment="Center"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDB}" Margin="5,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDB}" Margin="5,0,0,0"/>
         
                         <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=AnimeName, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:TvDBMatchPreview}}}" Margin="5,0,0,0"/>
         
@@ -60,9 +61,9 @@
                 <Border Grid.Row="0" Grid.Column="1" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1">
                     <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
                         <Image Margin="5,0,0,0" Height="16" Width="16" Source="/Images/32_tvdb.png" VerticalAlignment="Center"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TheTvDB}" Margin="5,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=TheTvDB}" Margin="5,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=TvDBSeriesName, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:TvDBMatchPreview}}}" Margin="15,0,0,0"/>
-                        <usercontrols:HyperLinkStandard DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TvDB_Show}"
+                        <usercontrols:HyperLinkStandard DisplayText="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=TvDB_Show}"
                          VerticalAlignment="Center" URL="{Binding Path=TvDBURL, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:TvDBMatchPreview}}}" Margin="10,0,0,0"/>
                     </StackPanel>
                 </Border>
@@ -85,7 +86,7 @@
                         </Style>
                     </DataGrid.RowStyle>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Episode_Type}" Binding="{Binding AniDB_Type}" IsReadOnly="True" >
+                        <DataGridTextColumn Header="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Episode_Type}" Binding="{Binding AniDB_Type}" IsReadOnly="True" >
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="HorizontalAlignment" Value="Center" />
@@ -93,7 +94,7 @@
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
                         <DataGridTextColumn Header="#" Binding="{Binding AniDB_Number}" IsReadOnly="True" />
-                        <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CloudAccounts_Name}" Binding="{Binding AniDB_Name}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=CloudAccounts_Name}" Binding="{Binding AniDB_Name}" IsReadOnly="True" />
                     </DataGrid.Columns>
                 </DataGrid>
                 
@@ -115,7 +116,7 @@
                         </Style>
                     </DataGrid.RowStyle>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Select_Season}" Binding="{Binding TvDB_Season}" IsReadOnly="True" >
+                        <DataGridTextColumn Header="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Select_Season}" Binding="{Binding TvDB_Season}" IsReadOnly="True" >
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="HorizontalAlignment" Value="Center" />
@@ -123,7 +124,7 @@
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
                         <DataGridTextColumn Header="#" Binding="{Binding TvDB_Number}" IsReadOnly="True" />
-                        <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CloudAccounts_Name}" Binding="{Binding TvDB_Name}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=CloudAccounts_Name}" Binding="{Binding TvDB_Name}" IsReadOnly="True" />
                     </DataGrid.Columns>
                 </DataGrid>
                 
@@ -145,13 +146,13 @@
                     <Button Name="btnUpdate" Margin="0,0,0,0" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" Visibility="{Binding Path=IsPreview, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:TvDBMatchPreview}}, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Update}" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Update}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
                     <Button HorizontalAlignment="Left" x:Name="btnClose" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                             <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx Key=Close, ResxName=Shoko.Commons.Properties.Resources}" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{wpf:Resx Key=Close, ResxName=Shoko.Commons.Properties.Resources}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
                 </StackPanel>

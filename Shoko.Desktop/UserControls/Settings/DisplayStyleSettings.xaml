@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
              xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
+             xmlns:wpf="clr-namespace:Infralution.Localization.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="600">
     <Grid>
@@ -29,7 +30,7 @@
 
         <!-- Group List -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Style_GroupList}" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Style_GroupList}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Margin="0,5,5,0">
@@ -40,7 +41,7 @@
 
         <!-- Episode Image - Spoiler hide -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=HideEpisodeImageWhenUnwatched}"  VerticalAlignment="Top"></TextBlock>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=HideEpisodeImageWhenUnwatched}"  VerticalAlignment="Top"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Margin="0,5,5,0">
@@ -51,7 +52,7 @@
 
         <!-- Episode Overview - Spoiler hide -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=HideEpisodeOverviewWhenUnwatched}"  VerticalAlignment="Top"></TextBlock>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=HideEpisodeOverviewWhenUnwatched}"  VerticalAlignment="Top"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="0,5,5,0">
@@ -62,7 +63,7 @@
 
         <!-- Prompt to rate series on completion -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=PromptRateSeries}"  VerticalAlignment="Top"></TextBlock>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=PromptRateSeries}"  VerticalAlignment="Top"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" Margin="0,5,5,0">
@@ -73,7 +74,7 @@
 
         <!-- Always use the AniDB Poster -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="5" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SettingAlwaysAniDBPoster}"  VerticalAlignment="Top"></TextBlock>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=SettingAlwaysAniDBPoster}"  VerticalAlignment="Top"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="5" Margin="0,5,5,0">
@@ -84,7 +85,7 @@
 
         <!-- User fanart on series -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="6" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=UseFanartOnSeries}"  VerticalAlignment="Top"></TextBlock>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=UseFanartOnSeries}"  VerticalAlignment="Top"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="6" Margin="0,5,5,0">
@@ -97,7 +98,7 @@
 
         <!-- Group List -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="7" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=EpisodeDetailStyle}" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=EpisodeDetailStyle}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="7" Margin="0,5,5,0">
@@ -108,7 +109,7 @@
 
         <!-- Episode Title source -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="8" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=EpisodeTitleSourceStyle}" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=EpisodeTitleSourceStyle}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="8" Margin="0,5,5,0">
@@ -119,7 +120,7 @@
 
         <!-- Series Overview source -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="9" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesOverviewSourceStyle}" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesOverviewSourceStyle}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="9" Margin="0,5,5,0">
@@ -130,7 +131,7 @@
 
         <!-- Series Name source -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="10" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesNameSourceStyle}" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesNameSourceStyle}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="10" Margin="0,5,5,0">

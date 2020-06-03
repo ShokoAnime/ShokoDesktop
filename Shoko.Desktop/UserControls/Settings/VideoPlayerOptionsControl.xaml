@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
              xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
-             xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
+             xmlns:local="clr-namespace:Shoko.Desktop.ViewModel" 
+             xmlns:wpf="clr-namespace:Infralution.Localization.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="800">
     <Grid>
@@ -45,10 +46,10 @@
                 </Grid.ColumnDefinitions>
 
                 <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
-                <TextBlock Grid.Column="1" Grid.Row="0" Margin="0,1,0,2" VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_AutoFileNote1}"  TextWrapping="Wrap" />
+                <TextBlock Grid.Column="1" Grid.Row="0" Margin="0,1,0,2" VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_AutoFileNote1}"  TextWrapping="Wrap" />
                 
                 <Image Height="16" Width="16" Source="/Images/16_warning.png" Margin="5,2,4,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top"/>
-                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,1,0,0" VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_AutoFileNote2}"  TextWrapping="Wrap" />
+                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,1,0,0" VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_AutoFileNote2}"  TextWrapping="Wrap" />
 
             </Grid>
         </Border>
@@ -72,13 +73,13 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_AutoFileEnable}" Margin="5,0,0,5"/>
+                <TextBlock Grid.Row="0" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_AutoFileEnable}" Margin="5,0,0,5"/>
                 <CheckBox  Grid.Column="1" Grid.Row="0" Name="chkAutoSelectFile" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,0,0"/>
 
-                <TextBlock Grid.Column="0" VerticalAlignment="Center" Grid.Row="1" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_AutoFileFirstEpisode}" Margin="5,0,0,5"/>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" Grid.Row="1" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_AutoFileFirstEpisode}" Margin="5,0,0,5"/>
                 <ComboBox Name="cboAutoFileFirst" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="10,0,0,5"/>
 
-                <TextBlock Grid.Column="0" VerticalAlignment="Center" Grid.Row="2" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_AutoFileNextEpisode}" Margin="5,0,0,5"/>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" Grid.Row="2" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_AutoFileNextEpisode}" Margin="5,0,0,5"/>
                 <ComboBox Name="cboAutoFileSubsequent" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="10,0,0,5"/>
 
             </Grid>

@@ -3,7 +3,6 @@ using System.IO;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
-using DevExpress.Xpf.Core.MvvmSample.Helpers;
 using Shoko.Commons.Utils;
 using Shoko.Models.Enums;
 
@@ -17,7 +16,7 @@ namespace Shoko.Desktop.WPFHelpers
         {
             if (uri == null) return null;
             BitmapImage bi = null;
-            BackgroundHelper.DoWithDispatcher(dispatcher, () =>
+            dispatcher.Invoke(() =>
             {
                 try
                 {
@@ -27,7 +26,7 @@ namespace Shoko.Desktop.WPFHelpers
                 {
                     bi = new BitmapImage(UriLoadingError);
                 }
-            });
+            }, DispatcherPriority.Background);
             return bi;
         }
 
@@ -35,8 +34,7 @@ namespace Shoko.Desktop.WPFHelpers
         {
             if (stream == null) return null;
             BitmapImage bi = null;
-
-            BackgroundHelper.DoWithDispatcher(dispatcher, () =>
+            dispatcher.Invoke(() =>
             {
                 try
                 {
@@ -49,8 +47,7 @@ namespace Shoko.Desktop.WPFHelpers
                 {
                     bi = new BitmapImage(UriLoadingError);
                 }
-
-            });
+            }, DispatcherPriority.Background);
             return bi;
         }
 

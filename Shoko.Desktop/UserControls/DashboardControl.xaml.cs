@@ -235,13 +235,13 @@ namespace Shoko.Desktop.UserControls
             btnRecentAdditionsIncrease.Click += new RoutedEventHandler(btnRecentAdditionsIncrease_Click);
             btnRecentAdditionsReduce.Click += new RoutedEventHandler(btnRecentAdditionsReduce_Click);
 
-            udItemsWatchNext.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udItemsWatchNext_ValueChanged);
-            udDaysMiniCalendar.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udDaysMiniCalendar_ValueChanged);
-            udItemsMissingEps.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udItemsMissingEps_ValueChanged);
-            udItemsRecWatch.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udItemsRecWatch_ValueChanged);
-            udItemsRecDownload.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udItemsRecDownload_ValueChanged);
-            udItemsRecentEpisodes.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udItemsRecentEpisodes_ValueChanged);
-            udItemsRecentAdditions.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udItemsRecentAdditions_ValueChanged);
+            udItemsWatchNext.ValueChanged += new EventHandler<DependencyPropertyChangedEventArgs>(udItemsWatchNext_ValueChanged);
+            udDaysMiniCalendar.ValueChanged += new EventHandler<DependencyPropertyChangedEventArgs>(udDaysMiniCalendar_ValueChanged);
+            udItemsMissingEps.ValueChanged += new EventHandler<DependencyPropertyChangedEventArgs>(udItemsMissingEps_ValueChanged);
+            udItemsRecWatch.ValueChanged += new EventHandler<DependencyPropertyChangedEventArgs>(udItemsRecWatch_ValueChanged);
+            udItemsRecDownload.ValueChanged += new EventHandler<DependencyPropertyChangedEventArgs>(udItemsRecDownload_ValueChanged);
+            udItemsRecentEpisodes.ValueChanged += new EventHandler<DependencyPropertyChangedEventArgs>(udItemsRecentEpisodes_ValueChanged);
+            udItemsRecentAdditions.ValueChanged += new EventHandler<DependencyPropertyChangedEventArgs>(udItemsRecentAdditions_ValueChanged);
 
             btnGetRecDownloadMissingInfo.Click += new RoutedEventHandler(btnGetRecDownloadMissingInfo_Click);
             btnForceCalendarRefresh.Click += btnForceCalendarRefresh_Click;
@@ -302,43 +302,43 @@ namespace Shoko.Desktop.UserControls
             RefreshData(false, true, false);
         }
 
-        void udItemsRecentAdditions_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        void udItemsRecentAdditions_ValueChanged(object sender, DependencyPropertyChangedEventArgs  e)
         {
-            VM_UserSettings.Instance.Dash_RecentAdditions_Items = udItemsRecentAdditions.Value.Value;
+            VM_UserSettings.Instance.Dash_RecentAdditions_Items = udItemsRecentAdditions.Value;
         }
 
-        void udItemsMissingEps_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        void udItemsMissingEps_ValueChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            VM_UserSettings.Instance.Dash_MissingEps_Items = udItemsMissingEps.Value.Value;
+            VM_UserSettings.Instance.Dash_MissingEps_Items = udItemsMissingEps.Value;
         }
 
-        void udDaysMiniCalendar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        void udDaysMiniCalendar_ValueChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            VM_UserSettings.Instance.Dash_MiniCalendarDays = udDaysMiniCalendar.Value.Value;
+            VM_UserSettings.Instance.Dash_MiniCalendarDays = udDaysMiniCalendar.Value;
         }
 
-        void udItemsWatchNext_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        void udItemsWatchNext_ValueChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            VM_UserSettings.Instance.Dash_WatchNext_Items = udItemsWatchNext.Value.Value;
-        }
-
-
-
-        void udItemsRecentEpisodes_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            VM_UserSettings.Instance.Dash_RecentlyWatchedEp_Items = udItemsRecentEpisodes.Value.Value;
+            VM_UserSettings.Instance.Dash_WatchNext_Items = udItemsWatchNext.Value;
         }
 
 
 
-        void udItemsRecWatch_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        void udItemsRecentEpisodes_ValueChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            VM_UserSettings.Instance.Dash_RecWatch_Items = udItemsRecWatch.Value.Value;
+            VM_UserSettings.Instance.Dash_RecentlyWatchedEp_Items = udItemsRecentEpisodes.Value;
         }
 
-        void udItemsRecDownload_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+
+
+        void udItemsRecWatch_ValueChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            VM_UserSettings.Instance.Dash_RecDownload_Items = udItemsRecDownload.Value.Value;
+            VM_UserSettings.Instance.Dash_RecWatch_Items = udItemsRecWatch.Value;
+        }
+
+        void udItemsRecDownload_ValueChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            VM_UserSettings.Instance.Dash_RecDownload_Items = udItemsRecDownload.Value;
         }
 
         void btnWatchNextReduce_Click(object sender, RoutedEventArgs e)

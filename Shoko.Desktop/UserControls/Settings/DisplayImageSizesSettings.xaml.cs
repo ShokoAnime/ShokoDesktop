@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using Shoko.Desktop.ViewModel;
 
@@ -15,24 +16,24 @@ namespace Shoko.Desktop.UserControls.Settings
         {
             InitializeComponent();
 
-            udImageSize_GroupList.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udImageSize_GroupList_ValueChanged);
-            udImageSize_SeriesPoster.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udImageSize_SeriesPoster_ValueChanged);
-            udImageSize_EpisodeImage.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udImageSize_EpisodeImage_ValueChanged);
+            udImageSize_GroupList.ValueChanged += new EventHandler<DependencyPropertyChangedEventArgs>(udImageSize_GroupList_ValueChanged);
+            udImageSize_SeriesPoster.ValueChanged += new EventHandler<DependencyPropertyChangedEventArgs>(udImageSize_SeriesPoster_ValueChanged);
+            udImageSize_EpisodeImage.ValueChanged += new EventHandler<DependencyPropertyChangedEventArgs>(udImageSize_EpisodeImage_ValueChanged);
         }
 
-        void udImageSize_EpisodeImage_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        void udImageSize_EpisodeImage_ValueChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            VM_UserSettings.Instance.DisplayWidth_EpisodeImage = udImageSize_EpisodeImage.Value.Value;
+            VM_UserSettings.Instance.DisplayWidth_EpisodeImage = udImageSize_EpisodeImage.Value;
         }
 
-        void udImageSize_SeriesPoster_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        void udImageSize_SeriesPoster_ValueChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            VM_UserSettings.Instance.DisplayHeight_SeriesInfo = udImageSize_SeriesPoster.Value.Value;
+            VM_UserSettings.Instance.DisplayHeight_SeriesInfo = udImageSize_SeriesPoster.Value;
         }
 
-        void udImageSize_GroupList_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        void udImageSize_GroupList_ValueChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            VM_UserSettings.Instance.DisplayHeight_GroupList = udImageSize_GroupList.Value.Value;
+            VM_UserSettings.Instance.DisplayHeight_GroupList = udImageSize_GroupList.Value;
         }
     }
 }

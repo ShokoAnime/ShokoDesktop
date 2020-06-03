@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel;
-using System.Web.Script.Serialization;
+
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Shoko.Commons.Extensions;
@@ -19,7 +19,7 @@ namespace Shoko.Desktop.ViewModel.Server
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propname));
         }
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string IsAdminApprovedImage => IsAdminApproved == 1 ? @"/Images/16_tick.png" : @"/Images/placeholder.png";
 
         public new int IsAdminApproved
@@ -28,19 +28,19 @@ namespace Shoko.Desktop.ViewModel.Server
             set { this.SetField(()=>base.IsAdminApproved,(r)=> base.IsAdminApproved = r, value, ()=>IsAdminApproved, ()=>IsAdminApprovedBool,()=> IsAdminApprovedImage); }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsAdminApprovedBool => IsAdminApproved==1;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string SeriesURL => this.GetSeriesURL();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string AniDBURL => this.GetAniDBURL();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string AniDBStartEpisodeTypeString => this.GetAniDBStartEpisodeTypeString();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string AniDBStartEpisodeNumberString => this.GetAniDBStartEpisodeNumberString();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string TvDBSeasonNumberString => this.GetTvDBSeasonNumberString();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string TvDBStartEpisodeNumberString => this.GetTvDBStartEpisodeNumberString();
 
     }

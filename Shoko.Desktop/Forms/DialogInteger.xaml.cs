@@ -26,7 +26,7 @@ namespace Shoko.Desktop.Forms
         void btnOK_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
-            EnteredInteger = udInput.Value.Value;
+            EnteredInteger = udInput.Value;
             Close();
         }
 

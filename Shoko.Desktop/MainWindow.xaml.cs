@@ -804,10 +804,10 @@ namespace Shoko.Desktop
         {
             try
             {
-                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new MethodInvoker(delegate
+                System.Windows.Application.Current.Dispatcher.BeginInvoke(()=>
                 {
                     tbImageDownloadQueueStatus.Text = ev.queueCount.ToString();
-                }));
+                },DispatcherPriority.Normal);
             }
             catch (Exception ex)
             {
@@ -862,10 +862,10 @@ namespace Shoko.Desktop
 
                 if (isLanguageChanged)
                 {
-                    var result = FlexibleMessageBox.Show(Commons.Properties.Resources.Language_Info, Commons.Properties.Resources.Language_Switch, MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                    if (result == System.Windows.Forms.DialogResult.OK)
+                    var result = MessageBox.Show(Commons.Properties.Resources.Language_Info, Commons.Properties.Resources.Language_Switch, MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                    if (result == MessageBoxResult.OK)
                     {
-                        Application.Restart();
+                        //TODO MPIVA: Application.Restart();
                         System.Windows.Application.Current.Shutdown();
                     }
                 }
@@ -1049,15 +1049,14 @@ namespace Shoko.Desktop
                     VM_ShokoServer.Instance.ShokoServices.MoveSeries(request.UpdatedSeries.AnimeSeriesID, request.UpdatedSeries.AnimeGroupID,
                     VM_ShokoServer.Instance.CurrentUser.JMMUserID);
                 if (!string.IsNullOrEmpty(response.ErrorMessage))
-                    System.Windows.Application.Current.Dispatcher.Invoke(
-                        DispatcherPriority.Normal, (Action)
-                        delegate
-                        {
-                            Cursor = Cursors.Arrow;
-                            FlexibleMessageBox.Show(response.ErrorMessage);
-                        });
+                    System.Windows.Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        Cursor = Cursors.Arrow;
+                        MessageBox.Show(response.ErrorMessage);
+
+                    }, DispatcherPriority.Normal);
                 else
-                    request.UpdatedSeries.Populate((VM_AnimeSeries_User)response.Result);
+                    request.UpdatedSeries.Populate((VM_AnimeSeries_User) response.Result);
             }
             catch (Exception ex)
             {

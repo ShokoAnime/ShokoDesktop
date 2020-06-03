@@ -1,4 +1,4 @@
-﻿using System.Web.Script.Serialization;
+﻿
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Shoko.Models.Client;
@@ -8,7 +8,7 @@ namespace Shoko.Desktop.ViewModel.Server
 {
     public class VM_AniDB_Episode : CL_AniDB_Episode
     {
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string EpisodeName
         {
             get

@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
              xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
+             xmlns:wpf="clr-namespace:Infralution.Localization.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="600">
 
@@ -36,7 +37,7 @@
 
         <!-- Auto Group Series -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Margin="0,0,0,3">
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImportSettings_AutoGroupSeries}" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImportSettings_AutoGroupSeries}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="0" Margin="10,0,10,0">
@@ -45,7 +46,7 @@
 
         <!-- Score Algorithm -->
 	    <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Margin="0,0,0,3">
-		    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImportSettings_AutoGroupSeriesUseScoreAlgorithm}" VerticalAlignment="Center"></TextBlock>
+		    <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImportSettings_AutoGroupSeriesUseScoreAlgorithm}" VerticalAlignment="Center"></TextBlock>
 	    </StackPanel>
 
 	    <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="1" Margin="10,0,10,0">
@@ -56,19 +57,19 @@
 	    <Button HorizontalAlignment="Left" Name="btnRecreateGroups" Style="{DynamicResource RoundButtonStyle}" Width="Auto" ToolTip="{usercontrols:Info Title=Settings_RecreateGroups, Body=Tooltip_RecreateAllGroups}"  Grid.Column="4" Grid.Row="0">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                 <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
-                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Settings_RecreateGroups}" Margin="0,0,5,0"/>
+                <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Settings_RecreateGroups}" Margin="0,0,5,0"/>
             </StackPanel>
         </Button>
 
         <!-- Different Relation Settings -->
 
         <StackPanel Orientation="Horizontal"  Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Margin="0,0,0,0">
-            <TextBlock FontWeight="Bold" Text="{Resx Key=RelationSettings_Exclude, ResxName=Shoko.Commons.Properties.Resources}" VerticalAlignment="Center"/>
+            <TextBlock FontWeight="Bold" Text="{wpf:Resx Key=RelationSettings_Exclude, ResxName=Shoko.Commons.Properties.Resources}" VerticalAlignment="Center"/>
         </StackPanel>
 
 	    <!-- AllowDissimilarTitleExclusion -->
 	    <StackPanel Orientation="Horizontal"  Grid.Column="0" Grid.Row="3" Margin="0,5,0,0">
-		    <TextBlock Text="{Resx Key=RelationSetting_AllowDissimilarExclusion, ResxName=Shoko.Commons.Properties.Resources}" VerticalAlignment="Center"/>
+		    <TextBlock Text="{wpf:Resx Key=RelationSetting_AllowDissimilarExclusion, ResxName=Shoko.Commons.Properties.Resources}" VerticalAlignment="Center"/>
 	    </StackPanel>
 
 	    <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Margin="0,5,0,0">
@@ -77,7 +78,7 @@
 
 	    <!-- OVA -->
         <StackPanel Orientation="Horizontal"  Grid.Column="0" Grid.Row="4" Margin="0,5,0,0">
-            <TextBlock Text="{Resx Key=RelationSetting_OVA, ResxName=Shoko.Commons.Properties.Resources}" VerticalAlignment="Center"/>
+            <TextBlock Text="{wpf:Resx Key=RelationSetting_OVA, ResxName=Shoko.Commons.Properties.Resources}" VerticalAlignment="Center"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" Margin="0,5,0,0">
@@ -86,7 +87,7 @@
 
         <!-- Movie-->
         <StackPanel Orientation="Horizontal"  Grid.Column="0" Grid.Row="5" Margin="0,5,0,0">
-            <TextBlock Text="{Resx Key=RelationSetting_Movie, ResxName=Shoko.Commons.Properties.Resources}" VerticalAlignment="Center"/>
+            <TextBlock Text="{wpf:Resx Key=RelationSetting_Movie, ResxName=Shoko.Commons.Properties.Resources}" VerticalAlignment="Center"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="5" Margin="0,5,0,0">
@@ -95,7 +96,7 @@
 
         <!-- Same Setting -->
         <StackPanel Orientation="Horizontal"  Grid.Column="0" Grid.Row="6" Margin="0,5,0,0">
-            <TextBlock Text="{Resx Key=RelationSetting_SameSetting, ResxName=Shoko.Commons.Properties.Resources}" VerticalAlignment="Center"/>
+            <TextBlock Text="{wpf:Resx Key=RelationSetting_SameSetting, ResxName=Shoko.Commons.Properties.Resources}" VerticalAlignment="Center"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="6" Margin="0,5,0,0">
@@ -104,7 +105,7 @@
 
         <!-- Alternative Setting -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="7" Margin="0,5,0,0">
-            <TextBlock Text="{Resx Key=RelationSetting_AltSetting, ResxName=Shoko.Commons.Properties.Resources}" VerticalAlignment="Center"/>
+            <TextBlock Text="{wpf:Resx Key=RelationSetting_AltSetting, ResxName=Shoko.Commons.Properties.Resources}" VerticalAlignment="Center"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="7" Margin="0,5,0,0">
@@ -113,7 +114,7 @@
 
         <!-- Alternative Version -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="8" Margin="0,5,0,0">
-            <TextBlock Text="{Resx Key=RelationSetting_AltVersion, ResxName=Shoko.Commons.Properties.Resources}" VerticalAlignment="Center"/>
+            <TextBlock Text="{wpf:Resx Key=RelationSetting_AltVersion, ResxName=Shoko.Commons.Properties.Resources}" VerticalAlignment="Center"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="8" Margin="0,5,0,0">
@@ -122,7 +123,7 @@
 
         <!-- Parent Story -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="9" Margin="0,5,0,0">
-            <TextBlock Text="{Resx Key=RelationSetting_ParentStory, ResxName=Shoko.Commons.Properties.Resources}" VerticalAlignment="Center"/>
+            <TextBlock Text="{wpf:Resx Key=RelationSetting_ParentStory, ResxName=Shoko.Commons.Properties.Resources}" VerticalAlignment="Center"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="9" Margin="0,5,0,0">
@@ -131,7 +132,7 @@
 
         <!-- Side Story -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="10" Margin="0,5,0,0">
-            <TextBlock Text="{Resx Key=RelationSetting_SideStory, ResxName=Shoko.Commons.Properties.Resources}" VerticalAlignment="Center"/>
+            <TextBlock Text="{wpf:Resx Key=RelationSetting_SideStory, ResxName=Shoko.Commons.Properties.Resources}" VerticalAlignment="Center"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="10" Margin="0,5,0,0">
@@ -140,7 +141,7 @@
 
         <!-- Full Story -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="11" Margin="0,5,0,0">
-            <TextBlock Text="{Resx Key=RelationSetting_FullStory, ResxName=Shoko.Commons.Properties.Resources}" VerticalAlignment="Center"/>
+            <TextBlock Text="{wpf:Resx Key=RelationSetting_FullStory, ResxName=Shoko.Commons.Properties.Resources}" VerticalAlignment="Center"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="11" Margin="0,5,0,0">
@@ -149,7 +150,7 @@
 
         <!-- Summary -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="12" Margin="0,5,0,0">
-            <TextBlock Text="{Resx Key=RelationSetting_Summary, ResxName=Shoko.Commons.Properties.Resources}" VerticalAlignment="Center"/>
+            <TextBlock Text="{wpf:Resx Key=RelationSetting_Summary, ResxName=Shoko.Commons.Properties.Resources}" VerticalAlignment="Center"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="12" Margin="0,5,0,0">
@@ -158,7 +159,7 @@
 
         <!-- Character -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="13" Margin="0,5,0,0">
-            <TextBlock Text="{Resx Key=RelationSetting_Character, ResxName=Shoko.Commons.Properties.Resources}" VerticalAlignment="Center"/>
+            <TextBlock Text="{wpf:Resx Key=RelationSetting_Character, ResxName=Shoko.Commons.Properties.Resources}" VerticalAlignment="Center"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="13" Margin="0,5,0,0">
@@ -167,7 +168,7 @@
 
         <!-- Other -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="14" Margin="0,5,0,0">
-            <TextBlock Text="{Resx Key=RelationSetting_Other, ResxName=Shoko.Commons.Properties.Resources}" VerticalAlignment="Center"/>
+            <TextBlock Text="{wpf:Resx Key=RelationSetting_Other, ResxName=Shoko.Commons.Properties.Resources}" VerticalAlignment="Center"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="14" Margin="0,5,0,0">

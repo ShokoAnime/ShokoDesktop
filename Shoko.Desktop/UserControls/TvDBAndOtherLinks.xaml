@@ -8,6 +8,7 @@
              xmlns:viewModel="clr-namespace:Shoko.Desktop.ViewModel"
              xmlns:server="clr-namespace:Shoko.Models.Server;assembly=Shoko.Models"
              xmlns:server1="clr-namespace:Shoko.Desktop.ViewModel.Server"
+             xmlns:wpf="clr-namespace:Infralution.Localization.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="500">
     <UserControl.Resources>
@@ -21,21 +22,21 @@
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
-            <RoutedUICommand x:Key="DeleteAllFilesCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteAllFilesCommand}" />
+            <RoutedUICommand x:Key="DeleteAllFilesCommand" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteAllFilesCommand}" />
 
-            <RoutedUICommand x:Key="ReportTvDBLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ReportTvDBLinkCommand}" />
-            <RoutedUICommand x:Key="DeleteTvDBLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteTvDBLinkCommand}" />
-            <RoutedUICommand x:Key="PreviewTvDBMatchesCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=PreviewTvDBMatchesCommand}" />
-            <RoutedUICommand x:Key="UpdateTvDBLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=UpdateTvDBLinkCommand}" />
+            <RoutedUICommand x:Key="ReportTvDBLinkCommand" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=ReportTvDBLinkCommand}" />
+            <RoutedUICommand x:Key="DeleteTvDBLinkCommand" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteTvDBLinkCommand}" />
+            <RoutedUICommand x:Key="PreviewTvDBMatchesCommand" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=PreviewTvDBMatchesCommand}" />
+            <RoutedUICommand x:Key="UpdateTvDBLinkCommand" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=UpdateTvDBLinkCommand}" />
 
-            <RoutedUICommand x:Key="ReportTraktLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ReportTraktLinkCommand}" />
-            <RoutedUICommand x:Key="DeleteTraktLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteTraktLinkCommand}" />
-            <RoutedUICommand x:Key="EditTraktLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=EditTraktLinkCommand}" />
-            <RoutedUICommand x:Key="UpdateTraktLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=UpdateTraktLinkCommand}" />
-            <RoutedUICommand x:Key="SyncTraktLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SyncTraktLinkCommand}" />
+            <RoutedUICommand x:Key="ReportTraktLinkCommand" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=ReportTraktLinkCommand}" />
+            <RoutedUICommand x:Key="DeleteTraktLinkCommand" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteTraktLinkCommand}" />
+            <RoutedUICommand x:Key="EditTraktLinkCommand" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=EditTraktLinkCommand}" />
+            <RoutedUICommand x:Key="UpdateTraktLinkCommand" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=UpdateTraktLinkCommand}" />
+            <RoutedUICommand x:Key="SyncTraktLinkCommand" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=SyncTraktLinkCommand}" />
 
-            <RoutedUICommand x:Key="DeleteMovieDBLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteMovieDBLinkCommand}" />
-            <RoutedUICommand x:Key="UpdateMovieDBLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=UpdateMovieDBLinkCommand}" />
+            <RoutedUICommand x:Key="DeleteMovieDBLinkCommand" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteMovieDBLinkCommand}" />
+            <RoutedUICommand x:Key="UpdateMovieDBLinkCommand" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=UpdateMovieDBLinkCommand}" />
 
             <!-- MALLinkTemplate -->
             <DataTemplate x:Key="MALLinkTemplate" DataType="server1:VM_CrossRef_AniDB_MAL">
@@ -108,11 +109,11 @@
 
                         <usercontrols:HyperLinkStandard DisplayText="{Binding Path=TraktTitle}" VerticalAlignment="Center" URL="{Binding Path=ShowURL}" Margin="5,0,0,0"/>
 
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AniDBStart}" Margin="10,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AniDBStart}" Margin="10,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=AniDBStartEpisodeTypeString}" Margin="5,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=AniDBStartEpisodeNumber}" Margin="5,0,0,0"/>
 
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_Trakt}" Margin="10,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_Trakt}" Margin="10,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=TraktSeasonNumberString}" Margin="5,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" Text="/" Margin="5,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=TraktStartEpisodeNumberString}" Margin="5,0,0,0"/>
@@ -217,14 +218,14 @@
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
                     <Image Height="24" Width="24" Source="/Images/32_tvdb.png" Margin="0,0,10,2" VerticalAlignment="Center"/>
-                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TheTvDB}" Width="120" VerticalAlignment="Center"/>
+                    <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=TheTvDB}" Width="120" VerticalAlignment="Center"/>
                     <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
 
                     <!-- search button -->
                     <Button Name="btnSearchExistingTvDB" Margin="20,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/32_search.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -254,14 +255,14 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,0,0,0" VerticalAlignment="Center" 
                     Visibility="{Binding Path=AniDB_AnimeCrossRefs.TvDBCrossRefMissing, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Image Height="24" Width="24" Source="/Images/32_tvdb.png" Margin="0,0,10,2" VerticalAlignment="Center"/>
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TheTvDB}" Width="120" VerticalAlignment="Center"/>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=TheTvDB}" Width="120" VerticalAlignment="Center"/>
             <Image Height="16" Width="16" Source="/Images/16_warning.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
 
             <!-- search button -->
             <Button Name="btnSearchTvDB" Margin="20,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/32_search.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
 
@@ -286,14 +287,14 @@
                 <StackPanel Orientation="Horizontal">
 
                     <Image Height="24" Width="24" Source="/Images/32_trakt.png" Margin="0,0,10,2" VerticalAlignment="Center"/>
-                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_TraktTV}" Width="120" VerticalAlignment="Center"/>
+                    <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_TraktTV}" Width="120" VerticalAlignment="Center"/>
                     <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
 
                     <!-- search button -->
                     <Button Name="btnSearchExistingTrakt" Margin="20,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/32_search.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -323,14 +324,14 @@
         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10,10,0,0" VerticalAlignment="Center" 
                     Visibility="{Binding Path=AniDB_AnimeCrossRefs.TraktCrossRefMissing, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Image Height="24" Width="24" Source="/Images/32_trakt.png" Margin="0,0,10,2" VerticalAlignment="Center"/>
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_TraktTV}" Width="120" VerticalAlignment="Center"/>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_TraktTV}" Width="120" VerticalAlignment="Center"/>
             <Image Height="16" Width="16" Source="/Images/16_warning.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
 
             <!-- search button -->
             <Button Name="btnSearchTrakt" Margin="20,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/32_search.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
 
@@ -354,7 +355,7 @@
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
                     <Image Height="24" Width="24" Source="/Images/32_mal.png" Margin="0,0,10,2" VerticalAlignment="Center"/>
-                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_MAL}" Width="120" VerticalAlignment="Center"/>
+                    <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_MAL}" Width="120" VerticalAlignment="Center"/>
                     <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
                 </StackPanel>
 
@@ -372,7 +373,7 @@
         <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="10,10,0,0" VerticalAlignment="Center" 
                     Visibility="{Binding Path=AniDB_AnimeCrossRefs.MalCrossRefMissing, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Image Height="24" Width="24" Source="/Images/32_mal.png" Margin="0,0,10,2" VerticalAlignment="Center"/>
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_MAL}" Width="120" VerticalAlignment="Center"/>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_MAL}" Width="120" VerticalAlignment="Center"/>
             <Image Height="16" Width="16" Source="/Images/16_warning.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
         </StackPanel>
 
@@ -385,14 +386,14 @@
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
                     <Image Height="24" Width="24" Source="/Images/32_tmdb.png" Margin="0,0,10,2" VerticalAlignment="Center"/>
-                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TheMovieDB}" Width="120" VerticalAlignment="Center"/>
+                    <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=TheMovieDB}" Width="120" VerticalAlignment="Center"/>
                     <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
 
                     <!-- search button -->
                     <Button Name="btnSearchExistingMovieDB" Margin="20,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/32_search.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -407,7 +408,7 @@
 
                         <usercontrols:HyperLinkStandard DisplayText="{Binding Path=AniDB_AnimeCrossRefs.MovieDBMovie.MovieId, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" VerticalAlignment="Center" URL="{Binding Path=AniDB_AnimeCrossRefs.MovieDBMovie.SiteUrl, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" Margin="10,0,0,0"/>
 
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_Movie}" Margin="10,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_Movie}" Margin="10,0,0,0"/>
                         <TextBlock FontWeight="Medium" Margin="5,0,0,0" VerticalAlignment="Center" Text="{Binding Path=AniDB_AnimeCrossRefs.MovieDBMovie.MovieName, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" />
 
                         <!-- Delete Link Button -->
@@ -435,14 +436,14 @@
         <StackPanel Grid.Row="6" Orientation="Horizontal" Margin="10,10,0,0" VerticalAlignment="Center" 
                     Visibility="{Binding Path=AniDB_AnimeCrossRefs.MovieDBCrossRefMissing, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Image Height="24" Width="24" Source="/Images/32_tmdb.png" Margin="0,0,10,2" VerticalAlignment="Center"/>
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TheMovieDB}" Width="120" VerticalAlignment="Center"/>
+            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=TheMovieDB}" Width="120" VerticalAlignment="Center"/>
             <Image Height="16" Width="16" Source="/Images/16_warning.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
 
             <!-- search button -->
             <Button Name="btnSearchMovieDB" Margin="20,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/32_search.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
 
@@ -461,7 +462,7 @@
                     Body=Tooltip_CommunityAdminInfo}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/16_Star.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_CommunityAdminTitle}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_CommunityAdminTitle}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
         </StackPanel>

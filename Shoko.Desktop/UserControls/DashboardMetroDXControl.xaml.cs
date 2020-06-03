@@ -1,4 +1,4 @@
-﻿using DevExpress.Xpf.LayoutControl;
+﻿
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -432,7 +432,8 @@ namespace Shoko.Desktop.UserControls
 			TileLayoutControl tileLayoutControl = (TileLayoutControl)sender;
 			((ObservableCollection<SomeItem>)tileLayoutControl.ItemsSource).Add(item);*/
         }
-
+        //TODO ADD CLICKS TO MAH TITLES
+        /*
         private void tileLayoutContinueWatching_TileClick(object sender, TileClickEventArgs e)
         {
             Tile mytile = e.Tile;
@@ -456,6 +457,7 @@ namespace Shoko.Desktop.UserControls
 
             VM_DashboardMetro.Instance.NavigateForward(MetroViews.ContinueWatching, item.AnimeSeries);
         }
+        */
     }
 
     public class RefreshDashOptions

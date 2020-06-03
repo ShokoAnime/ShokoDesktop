@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using Shoko.Desktop.ViewModel;
 
@@ -15,19 +16,19 @@ namespace Shoko.Desktop.UserControls.Settings
 
             chkMovieDB_FanartAutoDownload.Click += new RoutedEventHandler(settingChanged);
             chkMovieDB_PosterAutoDownload.Click += new RoutedEventHandler(settingChanged);
-            udMaxFanarts.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udMaxFanarts_ValueChanged);
-            udMaxPosters.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udMaxPosters_ValueChanged);
+            udMaxFanarts.ValueChanged += new EventHandler<DependencyPropertyChangedEventArgs>(udMaxFanarts_ValueChanged);
+            udMaxPosters.ValueChanged += new EventHandler<DependencyPropertyChangedEventArgs>(udMaxPosters_ValueChanged);
         }
 
-        void udMaxPosters_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        void udMaxPosters_ValueChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            VM_ShokoServer.Instance.MovieDB_AutoPostersAmount = udMaxPosters.Value.Value;
+            VM_ShokoServer.Instance.MovieDB_AutoPostersAmount = udMaxPosters.Value;
             VM_ShokoServer.Instance.SaveServerSettingsAsync();
         }
 
-        void udMaxFanarts_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        void udMaxFanarts_ValueChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            VM_ShokoServer.Instance.MovieDB_AutoFanartAmount = udMaxFanarts.Value.Value;
+            VM_ShokoServer.Instance.MovieDB_AutoFanartAmount = udMaxFanarts.Value;
             VM_ShokoServer.Instance.SaveServerSettingsAsync();
         }
 

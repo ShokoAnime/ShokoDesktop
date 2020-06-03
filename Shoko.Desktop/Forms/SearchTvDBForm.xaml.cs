@@ -6,7 +6,6 @@ using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
-using DevExpress.Data.PLinq.Helpers;
 using NLog;
 using Shoko.Commons.Extensions;
 using Shoko.Desktop.Utilities;

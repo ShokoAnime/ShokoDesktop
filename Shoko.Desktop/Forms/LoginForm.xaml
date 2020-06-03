@@ -4,8 +4,9 @@
         xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
         xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
         ShowInTaskbar="True" WindowStyle="SingleBorderWindow"
+        xmlns:wpf="clr-namespace:Infralution.Localization.Wpf"
         WindowStartupLocation="CenterScreen" Topmost="False" SizeToContent="WidthAndHeight"
-        Title="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Login_UserLogin}" Name="loginWindow" Icon="/Images/db.ico">
+        Title="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Login_UserLogin}" Name="loginWindow" Icon="/Images/db.ico">
 
     <Grid Margin="10">
         <Grid.Resources>
@@ -33,11 +34,11 @@
 
         <Image Height="32" Width="32" Grid.Row="0" Grid.Column="0" Source="/Images/64_user.png" Margin="0,0,5,0"/>
 
-        <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Username}" Margin="0,0,5,0"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Username}" Margin="0,0,5,0"/>
         <ComboBox Grid.Row="0" Grid.Column="2" Name="cboUsers" VerticalAlignment="Center" Margin="5,0,2,0" Width="200" ItemTemplate="{DynamicResource UserTemplate}"></ComboBox>
 
 
-        <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Password}" Margin="0,10,5,0"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Password}" Margin="0,10,5,0"/>
         <PasswordBox Grid.Row="1" Grid.Column="2" Width="200" Margin="5,10,2,0" VerticalAlignment="Center" BorderThickness="1" x:Name="txtPassword" usercontrols:PasswordBoxAssistant.BindPassword="true" />
 
         <!-- login button -->
@@ -45,7 +46,7 @@
             <Button Name="btnLogin"  Margin="5,10,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" IsDefault="True">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Login}" Margin="0,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Login}" Margin="0,0,0,0"/>
                 </StackPanel>
             </Button>
             <TextBlock VerticalAlignment="Center" Name="txtStatus" Text="" Margin="10,8,0,0"/>

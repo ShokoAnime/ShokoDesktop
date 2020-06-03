@@ -8,12 +8,11 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Windows;
-using System.Windows.Forms;
 using System.Xml;
 using Newtonsoft.Json;
 using NLog;
 using NLog.Targets;
-using NutzCode.MPVPlayer.WPF.Wrapper.Models;
+
 using Shoko.Desktop.Enums;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel;
@@ -182,14 +181,11 @@ namespace Shoko.Desktop
 
                 if (!Utils.IsAdministrator())
                     message = "Failed to set folder permissions, do you want to try and reset folder permissions?";
-
-                DialogResult dr =
-                    FlexibleMessageBox.Show(message, "Failed to set folder permissions",
-                        MessageBoxButtons.YesNo);
+                MessageBoxResult dr=MessageBox.Show(message, "Failed to set folder permissions", MessageBoxButton.YesNo);
 
                 switch (dr)
                 {
-                    case DialogResult.Yes:
+                    case MessageBoxResult.Yes:
                         // gonna try grant access again in advance
                         try
                         {
@@ -201,7 +197,7 @@ namespace Shoko.Desktop
                         }
                         Utils.RestartAsAdmin();
                         break;
-                    case DialogResult.No:
+                    case MessageBoxResult.No:
                         Application.Current.Shutdown();
                         Environment.Exit(0);
                         break;
@@ -280,7 +276,8 @@ namespace Shoko.Desktop
             }
             set => Set("Episodes_WatchedStatus", ((int)value).ToString());
         }
-
+        //TODO mpiva: Replace with ffmpeg based player
+        /*
         public static PlayerSettings MpvPlayerSettings
         {
             get
@@ -304,7 +301,7 @@ namespace Shoko.Desktop
                 string settings = JsonConvert.SerializeObject(value);
                 Set("MpvPlayerSettings",settings);
             }
-        }
+        }*/
         public static string ImagesPath
         {
             get => Get("ImagesPath");
@@ -1774,10 +1771,11 @@ namespace Shoko.Desktop
 
             logger.Info($"Operating System: {Utils.GetOSInfo()}");
 
+            /*
             string screenSize = Screen.PrimaryScreen.Bounds.Width + "x" +
                 Screen.PrimaryScreen.Bounds.Height;
             logger.Info($"Screen Size: {screenSize}");
-
+            */
 
             logger.Info("-------------------------------------------------------");
             #endregion

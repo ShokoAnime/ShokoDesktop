@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using DevExpress.Data.PLinq.Helpers;
+
 using Shoko.Desktop.ViewModel;
 using Shoko.Models.Plex.Connections;
 using Shoko.Models.Plex.Libraries;

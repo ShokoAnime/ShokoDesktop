@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
         xmlns:forms="clr-namespace:Shoko.Desktop.Forms"
+        xmlns:wpf="clr-namespace:Infralution.Localization.Wpf"
         xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
         xmlns:wpfHelpers="clr-namespace:Shoko.Desktop.WPFHelpers"
-        Title="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MoveSeries}" Height="450" Width="700" ShowInTaskbar="True" WindowStyle="ToolWindow" Icon="/ShokoDesktop;component/Images/32_television.png"
+        Title="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=MoveSeries}" Height="450" Width="700" ShowInTaskbar="True" WindowStyle="ToolWindow" Icon="/ShokoDesktop;component/Images/32_television.png"
         WindowStartupLocation="CenterOwner" Topmost="False">
     
 
@@ -46,7 +47,7 @@
 
             <StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
                 <Image Height="16" Width="16" Source="/Images/24_cut.png" Margin="0,0,5,0"/>
-                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MoveSeries}" Margin="0,0,0,0"/>
+                <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=MoveSeries}" Margin="0,0,0,0"/>
             </StackPanel>
 
 
@@ -66,9 +67,9 @@
 
             <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top">
                 <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="0,0,5,0"/>
-                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SelectGroup}" Margin="0,0,0,0"/>
-                <RadioButton Name="rbGroupExisting" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Existing}" Margin="5,2,0,0" IsChecked="True" />
-                <RadioButton Name="rbGroupNew" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=New}" Margin="5,2,0,0"/>
+                <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=SelectGroup}" Margin="0,0,0,0"/>
+                <RadioButton Name="rbGroupExisting" Content="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Existing}" Margin="5,2,0,0" IsChecked="True" />
+                <RadioButton Name="rbGroupNew" Content="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=New}" Margin="5,2,0,0"/>
             </StackPanel>
 
             <!-- existing group -->
@@ -98,9 +99,9 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Row="0" Grid.Column="0" FontWeight="Bold" Margin="5,0,5,0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupName}"/>
+                    <TextBlock Grid.Row="0" Grid.Column="0" FontWeight="Bold" Margin="5,0,5,0" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupName}"/>
                     <TextBox Grid.Row="0" Grid.Column="1"  MinWidth="300" Margin="5,0,0,5" Text="" Name="txtGroupName"/>
-                    <TextBlock Grid.Row="1" Grid.Column="0" FontWeight="Bold" Margin="5,0,5,0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SortName}"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" FontWeight="Bold" Margin="5,0,5,0" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=SortName}"/>
                     <TextBox Grid.Row="1" Grid.Column="1"  MinWidth="300" Margin="5,0,0,5" Text="" Name="txtGroupSortName"/>
                 </Grid>
             </StackPanel>
@@ -122,7 +123,7 @@
             <Button Name="btnOK" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}" DockPanel.Dock="Right" HorizontalAlignment="Right">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
                     <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=OK}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=OK}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
         </DockPanel>

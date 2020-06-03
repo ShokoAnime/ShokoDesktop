@@ -150,8 +150,8 @@ namespace Shoko.Desktop.UserControls.Community
                 job.FixTraktLinks = chkTraktValidCleanup.IsChecked.Value;
             job.CheckCommunityLinks = chkCommRec.IsChecked.Value;
             job.MaxProblems = int.MaxValue;
-            if (chkLimitSeries.IsChecked.Value && udLimitSeries.Value.HasValue)
-                job.MaxProblems = udLimitSeries.Value.Value;
+            if (chkLimitSeries.IsChecked.Value)
+                job.MaxProblems = udLimitSeries.Value;
 
             dataWorker.RunWorkerAsync(job);
         }

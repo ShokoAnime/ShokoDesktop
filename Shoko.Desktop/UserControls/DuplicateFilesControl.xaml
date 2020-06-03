@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpf="clr-namespace:Infralution.Localization.Wpf"
              xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
              xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
              mc:Ignorable="d" 
@@ -11,13 +12,13 @@
 
         <ResourceDictionary>
 
-            <RoutedUICommand x:Key="OpenFolder1Command" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=OpenFolder1Command}" />
-            <RoutedUICommand x:Key="OpenFolder2Command" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=OpenFolder2Command}" />
-            <RoutedUICommand x:Key="DeleteFile1Command" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteFile1Command}" />
-            <RoutedUICommand x:Key="DeleteFile2Command" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteFile2Command}" />
-            <RoutedUICommand x:Key="DeleteFileDBCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteFileDBCommand}" />
-            <RoutedUICommand x:Key="PlayVideo1Command" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=PlayVideo1Command}" />
-            <RoutedUICommand x:Key="PlayVideo2Command" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=PlayVideo2Command}" />
+            <RoutedUICommand x:Key="OpenFolder1Command" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=OpenFolder1Command}" />
+            <RoutedUICommand x:Key="OpenFolder2Command" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=OpenFolder2Command}" />
+            <RoutedUICommand x:Key="DeleteFile1Command" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteFile1Command}" />
+            <RoutedUICommand x:Key="DeleteFile2Command" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteFile2Command}" />
+            <RoutedUICommand x:Key="DeleteFileDBCommand" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteFileDBCommand}" />
+            <RoutedUICommand x:Key="PlayVideo1Command" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=PlayVideo1Command}" />
+            <RoutedUICommand x:Key="PlayVideo2Command" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=PlayVideo2Command}" />
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
@@ -57,7 +58,7 @@
                     <Button Name="btnRefresh" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                             <Image Height="16" Width="16" Source="/Images/32_refresh.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Refresh}" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Refresh}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -65,15 +66,15 @@
                     <Button Name="btnReevaluate" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                             <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ReevaluateDuplicateFiles}" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=ReevaluateDuplicateFiles}" Margin="0,0,5,0"/>
                         </StackPanel>
                         <Button.ToolTip>
-                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_ReevaluateDuplicateFiles}"/>
+                            <TextBlock Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_ReevaluateDuplicateFiles}"/>
                         </Button.ToolTip>
                     </Button>
 
                     <TextBlock VerticalAlignment="Center" Text="{Binding Path=FileCount, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DuplicateFilesControl}}}" Margin="10,0,0,0" Foreground="DarkGray" />
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Anime_Episodes}" Margin="5,0,0,0" Foreground="DarkGray"/>
+                    <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Anime_Episodes}" Margin="5,0,0,0" Foreground="DarkGray"/>
                 </StackPanel>
 
                 <Border Style="{DynamicResource ToolbarBorderControlStyle}" Background="FloralWhite" Margin="0,0,0,0" Padding="5" DockPanel.Dock="Top" BorderThickness="0,1,0,1">
@@ -88,7 +89,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,0,4,0" Grid.Column="0" VerticalAlignment="Top"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Info_DuplicateFiles}" Margin="0,0,0,0" TextWrapping="Wrap" Grid.Column="1"/>
+                        <TextBlock VerticalAlignment="Center" Text="{wpf:Resx ResxName=Shoko.Commons.Properties.Resources, Key=Info_DuplicateFiles}" Margin="0,0,0,0" TextWrapping="Wrap" Grid.Column="1"/>
                     </Grid>
                 </Border>
 

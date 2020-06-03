@@ -3,10 +3,16 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using NutzCode.MPVPlayer.WPF.Wrapper.Annotations;
+
 
 namespace Shoko.Desktop.WPFHelpers
 {
+    [AttributeUsage(
+        AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
+        AttributeTargets.Delegate | AttributeTargets.Field | AttributeTargets.Event |
+        AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.GenericParameter)]
+    public sealed class CanBeNullAttribute : Attribute { }
+
     public static class ScrollWheelHelper
     {
         public static readonly DependencyProperty WheelScrollsHorizontallyProperty

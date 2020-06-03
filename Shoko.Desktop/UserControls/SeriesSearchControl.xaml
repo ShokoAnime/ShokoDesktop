@@ -6,6 +6,7 @@
              xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
              xmlns:forms="clr-namespace:Shoko.Desktop.Forms"
              xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
+             xmlns:wpf="clr-namespace:Infralution.Localization.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
