@@ -26,31 +26,16 @@ namespace Shoko.Desktop
 
         public App()
         {
-            AppSettings.LoadSettings();
-            logger.Info("App startup - Loaded settings");
-            logger.Info("App startup - Setting up culture");
-
             // Try to load culture info first, without it could fail UI startup
             try
             {
                 ResGlobal = new ResourceManager("Shoko.Commons.Properties.Resources", typeof(App).Assembly);
-
-                // Set application startup culture based on config settings
-                string culture = AppSettings.Culture;
-
-                CultureInfo ci = new CultureInfo(culture);
-                Thread.CurrentThread.CurrentCulture = ci;
-                Thread.CurrentThread.CurrentUICulture = ci;
             }
             catch (Exception ex)
             {
                 logger.Error(ex, $"Error occured during App() culture info load: {ex}");
             }
 
-            logger.Info("App startup - Culture set up");
-            FolderMappings.Instance.SetLoadAndSaveCallback(AppSettings.GetMappings,AppSettings.SetMappings);
-
-            logger.Info("App startup - Loading UI");
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
         }
