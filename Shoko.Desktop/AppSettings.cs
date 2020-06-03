@@ -32,13 +32,13 @@ namespace Shoko.Desktop
 
         private static string Get(string key)
         {
-            if (appSettings.ContainsKey(key))
-                return appSettings[key];
-            return null;
+            if (string.IsNullOrEmpty(key)) return null;
+            return appSettings.ContainsKey(key) ? appSettings[key] : null;
         }
 
         private static void Set(string key, string value)
         {
+            if (string.IsNullOrEmpty(value)) return;
             string orig = Get(key);
             if (value == orig) return;
             appSettings[key] = value;
@@ -46,17 +46,13 @@ namespace Shoko.Desktop
         }
 
 
-        public static string DefaultInstance { get; } =
-            Assembly.GetExecutingAssembly().GetName().Name;
+        public const string DefaultInstance = "ShokoDesktop";
 
-        public static string ApplicationPath
-            => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
-                DefaultInstance);
+        public static string ApplicationPath =>
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), DefaultInstance);
 
-        public static string JMMServerPath
-            =>
-                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
-                    JMMServerInstance);
+        public static string JMMServerPath =>
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), JMMServerInstance);
 
         public static string DefaultImagePath => Path.Combine(ApplicationPath, "images");
 
@@ -103,47 +99,60 @@ namespace Shoko.Desktop
             }
         }
 
-        public static void LoadSettings()
+        private static void ReconfigureLoggers()
         {
             try
             {
-                try
-                {
-                    //Reconfigure log file to applicationpath
-                    var target = LogManager.Configuration?.FindTargetByName("file") as FileTarget;
-                    if (target == null) throw new NullReferenceException("LogManager Configuration was null");
-                    target.FileName = ApplicationPath + "/logs/${shortdate}.txt";
-                }
-                catch
-                {
-                    // ignore
-                }
-                try
-                {
-                    LogManager.ReconfigExistingLoggers();
-                }
-                catch
-                {
-                    // ignore
-                }
+                //Reconfigure log file to applicationpath
+                var target = LogManager.Configuration?.FindTargetByName("file") as FileTarget;
+                if (target == null) throw new NullReferenceException("LogManager Configuration was null");
+                target.FileName = ApplicationPath + "/logs/${shortdate}.txt";
+            }
+            catch
+            {
+                // ignore
+            }
+            try
+            {
+                LogManager.ReconfigExistingLoggers();
+            }
+            catch
+            {
+                // ignore
+            }
+        }
 
+        private static bool GrantPermissions()
+        {
+            if (string.IsNullOrEmpty(ApplicationPath)) return false;
+            // Check if programdata is write-able
+            if (!Directory.Exists(ApplicationPath)) return false;
+            if (Utils.IsDirectoryWritable(ApplicationPath)) return true;
+            try
+            {
+                Utils.GrantAccess(ApplicationPath);
+                return true;
+            }
+            catch (Exception)
+            {
+                logger.Error("Unable to grant permissions for program data");
+                return false;
+            }
+        }
+
+        public static void LoadSettings()
+        {
+            ReconfigureLoggers();
+            try
+            {
                 bool startedWithFreshConfig = false;
 
                 disabledSave = true;
 
-                if (!string.IsNullOrEmpty(ApplicationPath))
+                if (!GrantPermissions() && !Utils.IsAdministrator())
                 {
-                    // Check if programdata is write-able
-                    if (Directory.Exists(ApplicationPath))
-                        if (!Utils.IsDirectoryWritable(ApplicationPath))
-                            try
-                            {
-                                Utils.GrantAccess(ApplicationPath);
-                            }
-                            catch (Exception)
-                            {
-                                logger.Error("Unable to grant permissions for program data");
-                            }
+                    Utils.RestartAsAdmin();
+                    return;
                 }
 
                 string path = Path.Combine(ApplicationPath, SettingsFileName);
@@ -156,8 +165,6 @@ namespace Shoko.Desktop
                 if (!BaseImagesPathIsDefault && Directory.Exists(BaseImagesPath) && Directory.Exists(BaseImagesPath))
                     ImagesPath = BaseImagesPath;
 
-                disabledSave = false;
-
                 if (string.IsNullOrEmpty(BaseImagesPath)) BaseImagesPath = Utils.GetBaseImagesPath();
 
                 if (Directory.Exists(BaseImagesPath) && string.IsNullOrEmpty(ImagesPath))
@@ -165,15 +172,13 @@ namespace Shoko.Desktop
 
                 if (string.IsNullOrEmpty(ImagesPath))
                     ImagesPath = string.IsNullOrEmpty(JMMServerImagePath) ? DefaultImagePath : JMMServerImagePath;
+                
+                disabledSave = false;
 
                 SaveSettings();
 
-                // Just in case start once for new configurations as admin to set permissions if needed
-                if (startedWithFreshConfig && !Utils.IsAdministrator())
-                {
-                    logger.Info("User has fresh config, restarting once as admin.");
-                    Utils.RestartAsAdmin();
-                }
+                // We made a fresh config, so reload it
+                if (startedWithFreshConfig) LoadSettings();
             }
             catch (UnauthorizedAccessException ex)
             {
@@ -191,14 +196,7 @@ namespace Shoko.Desktop
                 {
                     case DialogResult.Yes:
                         // gonna try grant access again in advance
-                        try
-                        {
-                            Utils.GrantAccess(ApplicationPath);
-                        }
-                        catch (Exception)
-                        {
-                            logger.Error("Unable to set permissions for program data");
-                        }
+                        GrantPermissions();
                         Utils.RestartAsAdmin();
                         break;
                     case DialogResult.No:

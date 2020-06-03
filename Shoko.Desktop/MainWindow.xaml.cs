@@ -19,6 +19,7 @@ using System.Windows.Navigation;
 using System.Windows.Threading;
 using Infralution.Localization.Wpf;
 using NLog;
+using Shoko.Commons;
 using Shoko.Commons.Extensions;
 using Shoko.Desktop.AutoUpdates;
 using Shoko.Desktop.Enums;
@@ -139,8 +140,22 @@ namespace Shoko.Desktop
             {
                 InitializeComponent();
 
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
-
+                AppSettings.LoadSettings();
+                logger.Info("App startup - Loaded settings");
+                FolderMappings.Instance.SetLoadAndSaveCallback(AppSettings.GetMappings,AppSettings.SetMappings);
+                // Set application startup culture based on config settings
+                logger.Info("App startup - Culture set up");
+                try
+                {
+                    string culture = AppSettings.Culture;
+                    CultureInfo ci = new CultureInfo(culture);
+                    Thread.CurrentThread.CurrentCulture = ci;
+                    Thread.CurrentThread.CurrentUICulture = ci;
+                }
+                catch (Exception cultEx)
+                {
+                    logger.Error($"Error settings application culture: {AppSettings.Culture}, {cultEx}");
+                }
             }
             catch (Exception ex)
             {
@@ -199,8 +214,6 @@ namespace Shoko.Desktop
 
                 InitCulture();
 
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
-
                 imageHelper.QueueUpdateEvent += imageHelper_QueueUpdateEvent;
 
                 cboGroupSort.Items.Clear();
@@ -226,8 +239,6 @@ namespace Shoko.Desktop
                 btnClearGeneralQueue.Click += btnClearGeneralQueue_Click;
                 btnClearServerImageQueue.Click += btnClearServerImageQueue_Click;
                 btnAdminMessages.Click += btnAdminMessages_Click;
-
-                VM_ShokoServer.Instance.BaseImagePath = Utils.GetBaseImagesPath();
 
                 // timer for automatic updates
                 postStartTimer = new Timer();
@@ -431,6 +442,7 @@ namespace Shoko.Desktop
 
             // validate settings
             VM_ShokoServer.Instance.Test();
+            VM_ShokoServer.Instance.BaseImagePath = Utils.GetBaseImagesPath();
 
             // Make the queue tooltip align left
             QueueTooltip.HorizontalOffset = QueueTooltip.Width - QueuePanel.Width;

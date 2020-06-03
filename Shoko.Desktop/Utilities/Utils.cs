@@ -839,14 +839,19 @@ namespace Shoko.Desktop.Utilities
         {
             string BatchFile = Path.Combine(System.IO.Path.GetTempPath(), "RestartAsAdmin.bat");
             var exeName = Process.GetCurrentProcess().MainModule.FileName;
-            Process proc = new Process();
+            Process proc = new Process
+            {
+                StartInfo =
+                {
+                    FileName = "cmd.exe",
+                    Arguments = $@"/c {BatchFile}",
+                    Verb = "runas",
+                    CreateNoWindow = true,
+                    WindowStyle = ProcessWindowStyle.Hidden,
+                    UseShellExecute = true
+                }
+            };
 
-            proc.StartInfo.FileName = "cmd.exe";
-            proc.StartInfo.Arguments = $@"/c {BatchFile}";
-            proc.StartInfo.Verb = "runas";
-            proc.StartInfo.CreateNoWindow = true;
-            proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            proc.StartInfo.UseShellExecute = true;
 
             try
             {
@@ -855,7 +860,8 @@ namespace Shoko.Desktop.Utilities
                 try
                 {
                     // Wait a few seconds to allow shutdown later on, use task kill just in case still running
-                    string batchline = $"timeout 5 && taskkill /F /IM {AppDomain.CurrentDomain.FriendlyName} /fi \"memusage gt 2\" && \"{exeName}\"";
+                    string batchline =
+                        $"timeout 5 && taskkill /F /IM {AppDomain.CurrentDomain.FriendlyName} /fi \"memusage gt 2\" && \"{exeName}\"";
                     logger.Log(LogLevel.Info, "RestartAsAdmin batch line: " + batchline);
                     BatchFileStream.WriteLine(batchline);
                 }
@@ -865,12 +871,15 @@ namespace Shoko.Desktop.Utilities
                 }
 
                 proc.Start();
-                System.Windows.Application.Current.Shutdown();
-                Environment.Exit(0);
             }
             catch (Exception ex)
             {
                 logger.Log(LogLevel.Error, "Error occured during RestartAsAdmin(): " + ex.Message);
+            }
+            finally
+            {
+                System.Windows.Application.Current.Shutdown();
+                Environment.Exit(0);
             }
         }
 
