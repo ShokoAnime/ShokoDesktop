@@ -73,7 +73,12 @@ namespace Shoko.Desktop.UserControls
             {
                 Uri uri = new Uri(URL);
 
-                Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = uri.AbsoluteUri,
+                    UseShellExecute = true
+                });
+
             }
             catch (Exception ex)
             {
