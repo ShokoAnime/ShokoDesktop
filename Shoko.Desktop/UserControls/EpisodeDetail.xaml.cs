@@ -9,7 +9,6 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
-using MahApps.Metro.Controls;
 using Shoko.Commons.Extensions;
 using Shoko.Desktop.Enums;
 using Shoko.Desktop.Forms;
@@ -164,7 +163,7 @@ namespace Shoko.Desktop.UserControls
                 ep.RefreshAnime(true);
                 ep.SetTvDBInfo();
 
-                var p = this.GetParentObject();
+                var p = VisualTreeHelper.GetParent(this);
                 AnimeSeries s = null;
                 while (true)
                 {
@@ -175,7 +174,7 @@ namespace Shoko.Desktop.UserControls
                         break;
                     }
 
-                    p = p.GetParentObject();
+                    p = VisualTreeHelper.GetParent(p);
                 }
 
                 if (s != null)

@@ -10,7 +10,6 @@ using Shoko.Commons.Downloads;
 using Shoko.Desktop.Enums;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel.Helpers;
-using Shoko.Desktop.ViewModel.Metro;
 using Shoko.Models.Enums;
 
 // ReSharper disable InconsistentNaming
@@ -260,47 +259,6 @@ namespace Shoko.Desktop.ViewModel
             }
         }
 
-
-
-
-        public int DashMetro_WatchNext_Items
-        {
-            get { return AppSettings.DashMetro_WatchNext_Items; }
-            set
-            {
-                this.SetField(()=>AppSettings.DashMetro_WatchNext_Items,value);
-            }
-        }
-
-        public int DashMetro_RandomSeries_Items
-        {
-            get { return AppSettings.DashMetro_RandomSeries_Items; }
-            set
-            {
-                this.SetField(()=>AppSettings.DashMetro_RandomSeries_Items,value);
-            }
-        }
-
-
-        public int DashMetro_NewEpisodes_Items
-        {
-            get { return AppSettings.DashMetro_NewEpisodes_Items; }
-            set
-            {
-                this.SetField(()=>AppSettings.DashMetro_NewEpisodes_Items,value);
-            }
-        }
-
-        public int DashMetro_Image_Height
-        {
-            get { return AppSettings.DashMetro_Image_Height; }
-            set
-            {
-                this.SetField(()=>AppSettings.DashMetro_Image_Height,value);
-                SetDashMetro_Image_Width();
-            }
-        }
-
         public bool UseStreaming
         {
             get { return AppSettings.UseStreaming;  }
@@ -310,30 +268,15 @@ namespace Shoko.Desktop.ViewModel
 
             }
         }
-        public void SetDashMetro_Image_Width()
-        {
-            if (AppSettings.DashMetroImageType == DashboardMetroImageType.Fanart)
-            {
-                DashMetro_Image_Width = (int)(DashMetro_Image_Height * 1.777777777777778);
-            }
-            else
-            {
-                DashMetro_Image_Width = (int)(DashMetro_Image_Height * 0.68);
-            }
-        }
-
-        public int DashMetro_Image_Width { get; set; } = 200;
-
 
         public int Dash_RecentAdditions_Height
         {
             get { return AppSettings.Dash_RecentAdditions_Height; }
             set
             {
-                this.SetField(()=>AppSettings.Dash_RecentAdditions_Height,value);
+                this.SetField(() => AppSettings.Dash_RecentAdditions_Height, value);
             }
         }
-
 
         public int SeriesGroup_Image_Height
         {
@@ -881,138 +824,6 @@ namespace Shoko.Desktop.ViewModel
             }
         }
 
-        public void GetDashboardMetroSectionPosition(DashboardMetroProcessType swid, ref int pos, ref Visibility vis)
-        {
-            // read the series sections order
-            string[] sections = AppSettings.DashboardMetroSectionOrder.Split(';');
-
-            int i = 1;
-            foreach (string section in sections)
-            {
-                string[] vals = section.Split(':');
-                DashboardMetroProcessType thisswid = (DashboardMetroProcessType)int.Parse(vals[0]);
-
-                if (thisswid == swid)
-                {
-                    bool v = bool.Parse(vals[1]);
-                    pos = i;
-                    vis = v ? Visibility.Visible : Visibility.Collapsed;
-                    return;
-                }
-                else
-                    i++;
-            }
-        }
-
-        public List<MetroDashSection> GetMetroDashSections()
-        {
-            List<MetroDashSection> sectionsRet = new List<MetroDashSection>();
-
-            string[] sections = AppSettings.DashboardMetroSectionOrder.Split(';');
-
-            foreach (string section in sections)
-            {
-                string[] vals = section.Split(':');
-                bool enabled = bool.Parse(vals[1]);
-
-                // skip Trakt as this has been deprecated
-                DashboardMetroProcessType sectionType = (DashboardMetroProcessType)int.Parse(vals[0]);
-                if (sectionType == DashboardMetroProcessType.TraktActivity) continue;
-
-                MetroDashSection dashSect = new MetroDashSection()
-                {
-                    SectionType = sectionType,
-                    Enabled = enabled,
-                    WinVisibility = enabled ? Visibility.Visible : Visibility.Collapsed
-                };
-
-                sectionsRet.Add(dashSect);
-            }
-
-            return sectionsRet;
-        }
-
-        public int MoveUpDashboardMetroSection(DashboardMetroProcessType swid)
-        {
-            // read the series sections order
-            string[] sections = AppSettings.DashboardMetroSectionOrder.Split(';');
-
-            string moveSectionType = ((int)swid).ToString();
-            string moveSection = "";
-
-            // find the position of the language to be moved
-            int pos = -1;
-            for (int i = 0; i < sections.Length; i++)
-            {
-                string[] vals = sections[i].Split(':');
-                if (vals[0].Trim().ToUpper() == moveSectionType.Trim().ToUpper())
-                {
-                    pos = i;
-                    moveSection = sections[i];
-                }
-            }
-
-            if (pos == -1) return -1; // not found
-            if (pos == 0) return -1; // already at top
-
-            string wid1 = sections[pos - 1];
-            sections[pos - 1] = moveSection;
-            sections[pos] = wid1;
-
-            string newSectionOrder = string.Empty;
-            foreach (string wid in sections)
-            {
-                if (!string.IsNullOrEmpty(newSectionOrder))
-                    newSectionOrder += ";";
-
-                newSectionOrder += wid;
-            }
-
-            AppSettings.DashboardMetroSectionOrder = newSectionOrder;
-
-            return pos - 1;
-        }
-
-        public int MoveDownDashboardMetroSection(DashboardMetroProcessType swid)
-        {
-            // read the series sections order
-            string[] sections = AppSettings.DashboardMetroSectionOrder.Split(';');
-            string moveSectionType = ((int)swid).ToString();
-            string moveSection = "";
-
-            // find the position of the language to be moved
-            int pos = -1;
-            for (int i = 0; i < sections.Length; i++)
-            {
-                string[] vals = sections[i].Split(':');
-                if (vals[0].Trim().ToUpper() == moveSectionType.Trim().ToUpper())
-                {
-                    pos = i;
-                    moveSection = sections[i];
-                }
-            }
-
-            if (pos == -1) return -1; // not found
-            if (pos == sections.Length - 1) return -1; // already at bottom
-
-            string lan1 = sections[pos + 1];
-            sections[pos + 1] = moveSection;
-            sections[pos] = lan1;
-
-            string newSectionOrder = string.Empty;
-            foreach (string wid in sections)
-            {
-                if (!string.IsNullOrEmpty(newSectionOrder))
-                    newSectionOrder += ";";
-
-                newSectionOrder += wid;
-            }
-
-            AppSettings.DashboardMetroSectionOrder = newSectionOrder;
-
-            return pos + 1;
-        }
-
         public Visibility IsMPCInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.MPC) ? Visibility.Visible : Visibility.Hidden;
         public Visibility IsMPCNotInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.MPC) ? Visibility.Hidden : Visibility.Visible;
         public Visibility IsMPVInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.ExternalMPV) ? Visibility.Visible : Visibility.Hidden;
@@ -1025,30 +836,5 @@ namespace Shoko.Desktop.ViewModel
         public Visibility IsZoomPlayerNotInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.ZoomPlayer) ? Visibility.Hidden : Visibility.Visible;
         public Visibility IsWindowsDefaultInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.WindowsDefault) ? Visibility.Visible : Visibility.Hidden;
         public Visibility IsWindowsDefaultNotInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.WindowsDefault) ? Visibility.Hidden : Visibility.Visible;
-
-        public void EnableDisableDashboardMetroSection(DashboardMetroProcessType swid, bool enabled)
-        {
-            // read the series sections order
-            string[] sections = AppSettings.DashboardMetroSectionOrder.Split(';');
-            string moveSectionType = ((int)swid).ToString();
-
-            string newSectionOrder = string.Empty;
-            foreach (string sect in sections)
-            {
-                string thisSect = sect;
-                string[] vals = sect.Split(':');
-                if (vals[0].Trim().Equals(moveSectionType.Trim(), StringComparison.InvariantCultureIgnoreCase))
-                {
-                    thisSect = $"{moveSectionType}:{enabled.ToString()}";
-                }
-
-                if (!string.IsNullOrEmpty(newSectionOrder))
-                    newSectionOrder += ";";
-
-                newSectionOrder += thisSect;
-            }
-
-            AppSettings.DashboardMetroSectionOrder = newSectionOrder;
-        }
     }
 }

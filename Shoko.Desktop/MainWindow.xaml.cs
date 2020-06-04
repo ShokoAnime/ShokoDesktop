@@ -237,12 +237,8 @@ namespace Shoko.Desktop
 
                 btnSwitchUser.Click += btnSwitchUser_Click;
 
-                if (AppSettings.DashboardType == DashboardType.Normal)
-                    dash.Visibility = Visibility.Visible;
-                else
-                    dashMetro.Visibility = Visibility.Visible;
+                dash.Visibility = Visibility.Visible;
 
-                VM_UserSettings.Instance.SetDashMetro_Image_Width();
                 VM_MainListHelper.Instance.Refreshed += Instance_Refreshed;
             }
             catch (Exception ex)
@@ -659,11 +655,6 @@ namespace Shoko.Desktop
                                     else
                                         logger.Error("Failed to start showDashboardWorker for TAB_MAIN.Dashboard");
                                 }
-                            }
-                            else
-                            {
-                                if (VM_DashboardMetro.Instance.ContinueWatching.Count == 0)
-                                    dashMetro.RefreshAllData();
                             }
 
                             if (VM_ShokoServer.Instance.AllCustomTags.Count == 0) VM_ShokoServer.Instance.RefreshAllCustomTags();
@@ -1199,7 +1190,7 @@ namespace Shoko.Desktop
             }
         }
 
-        public void ShowPinnedSeries(VM_AnimeSeries_User series, bool isMetroDash = false)
+        public void ShowPinnedSeries(VM_AnimeSeries_User series)
         {
             Cursor = Cursors.Wait;
 
@@ -1216,7 +1207,7 @@ namespace Shoko.Desktop
                 ContentControl ctrl = ctiTemp?.Content as AnimeSeriesContainerControl;
                 if (ctrl == null) continue;
 
-                ContentControl subControl = (ContentControl) (ctrl.DataContext as AnimeSeriesSimplifiedControl) ?? ctrl.DataContext as AnimeSeries;
+                ContentControl subControl = ctrl.DataContext as AnimeSeries;
 
                 if (subControl != null)
                     ctrl = subControl;
@@ -1236,34 +1227,17 @@ namespace Shoko.Desktop
                 tabHeader = tabHeader.Substring(0, 30) + "...";
             cti.Header = tabHeader;
 
-            if (AppSettings.DisplaySeriesSimple)
+            AnimeSeries seriesControl = new AnimeSeries {DataContext = series};
+
+            AnimeSeriesContainerControl cont = new AnimeSeriesContainerControl
             {
-                AnimeSeriesSimplifiedControl ctrl = new AnimeSeriesSimplifiedControl {DataContext = series};
+                DataContext = seriesControl
+            };
 
-                AnimeSeriesContainerControl cont = new AnimeSeriesContainerControl
-                {
-                    IsMetroDash = false,
-                    DataContext = ctrl
-                };
+            cti.Content = cont;
 
-                cti.Content = cont;
-
-                tabPinned.Items.Add(cti);
-            }
-            else
-            {
-                AnimeSeries seriesControl = new AnimeSeries {DataContext = series};
-
-                AnimeSeriesContainerControl cont = new AnimeSeriesContainerControl
-                {
-                    IsMetroDash = false,
-                    DataContext = seriesControl
-                };
-
-                cti.Content = cont;
-
-                tabPinned.Items.Add(cti);
-            }
+            tabPinned.Items.Add(cti);
+           
 
             tabControl1.SelectedIndex = (int) TAB_MAIN.Pinned;
             tabPinned.SelectedIndex = tabPinned.Items.Count - 1;
@@ -1283,7 +1257,7 @@ namespace Shoko.Desktop
                 ContentControl ctrl = ctiTemp?.Content as AnimeSeriesContainerControl;
                 if (ctrl == null) continue;
 
-                ContentControl subControl = (ContentControl) (ctrl.DataContext as AnimeSeriesSimplifiedControl) ?? ctrl.DataContext as AnimeSeries;
+                ContentControl subControl = ctrl.DataContext as AnimeSeries;
 
                 if (subControl != null)
                     ctrl = subControl;
@@ -1349,38 +1323,6 @@ namespace Shoko.Desktop
                 }
             else
                 tabControl1.Background = new SolidColorBrush(Colors.Transparent);
-        }
-
-        public void ShowDashMetroView(MetroViews viewType, object data)
-        {
-            tileContinueWatching.Visibility = Visibility.Collapsed;
-            dash.Visibility = Visibility.Collapsed;
-            dashMetro.Visibility = Visibility.Collapsed;
-
-            switch (viewType)
-            {
-                case MetroViews.MainNormal:
-                    dash.Visibility = Visibility.Visible;
-                    DisplayMainTab((int) TAB_MAIN.Dashboard);
-                    AppSettings.DashboardType = DashboardType.Normal;
-                    break;
-                case MetroViews.MainMetro:
-                    dashMetro.Visibility = Visibility.Visible;
-                    DisplayMainTab((int) TAB_MAIN.Dashboard);
-                    AppSettings.DashboardType = DashboardType.Metro;
-                    break;
-                case MetroViews.ContinueWatching:
-                    tileContinueWatching.Visibility = Visibility.Visible;
-                    tileContinueWatching.DataContext = data;
-                    break;
-            }
-
-            SetColours();
-        }
-
-        public void ShowDashMetroView(MetroViews viewType)
-        {
-            ShowDashMetroView(viewType, null);
         }
 
         public void CommandBinding_CreateSeriesFromAnime(object sender, ExecutedRoutedEventArgs e)
@@ -3101,30 +3043,14 @@ namespace Shoko.Desktop
                 if (objToBind != null && objToBind.GetType() == typeof(VM_AnimeSeries_User))
                 {
                     VM_AnimeSeries_User ser = objToBind as VM_AnimeSeries_User;
-                    if (AppSettings.DisplaySeriesSimple)
+                    AnimeSeries ctrl = new AnimeSeries {DataContext = ser};
+
+                    AnimeSeriesContainerControl cont = new AnimeSeriesContainerControl
                     {
-                        AnimeSeriesSimplifiedControl ctrl = new AnimeSeriesSimplifiedControl {DataContext = ser};
+                        DataContext = ctrl
+                    };
 
-                        AnimeSeriesContainerControl cont = new AnimeSeriesContainerControl
-                        {
-                            IsMetroDash = false,
-                            DataContext = ctrl
-                        };
-
-                        objToBind = cont;
-                    }
-                    else
-                    {
-                        AnimeSeries ctrl = new AnimeSeries {DataContext = ser};
-
-                        AnimeSeriesContainerControl cont = new AnimeSeriesContainerControl
-                        {
-                            IsMetroDash = false,
-                            DataContext = ctrl
-                        };
-
-                        objToBind = cont;
-                    }
+                    objToBind = cont;                   
                 }
 
                 Binding b = new Binding

@@ -252,18 +252,8 @@ namespace Shoko.Desktop.UserControls
 
             MainWindow.videoHandler.VideoWatchedEvent += new VideoPlayers.VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
 
-            btnToggleDash.Click += new RoutedEventHandler(btnToggleDash_Click);
         }
 
-
-
-
-
-        void btnToggleDash_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow mainwdw = (MainWindow)Window.GetWindow(this);
-            mainwdw.ShowDashMetroView(MetroViews.MainMetro);
-        }
 
         void videoHandler_VideoWatchedEvent(VideoPlayers.VideoWatchedEventArgs ev)
         {

@@ -162,8 +162,6 @@ namespace Shoko.Desktop.UserControls
             btnTvDBLinks.Click += btnTvDBLinks_Click;
             //btnPlayNextEpisode.Click += new RoutedEventHandler(btnPlayNextEpisode_Click);
 
-            btnSwitchView.Click += BtnSwitchView_Click;
-
             DataContextChanged += AnimeSeries_DataContextChanged;
 
             tabContainer.SelectionChanged += tabContainer_SelectionChanged;
@@ -195,37 +193,6 @@ namespace Shoko.Desktop.UserControls
             SetSeriesWidgetOrder();
 
             PreviewMouseWheel += AnimeSeries_PreviewMouseWheel;
-        }
-
-        private void BtnSwitchView_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                AppSettings.DisplaySeriesSimple = true;
-                // check if this control is part of the series container
-                DependencyObject parentObject = VisualTreeHelper.GetParent(this);
-                while (parentObject != null)
-                {
-                    parentObject = VisualTreeHelper.GetParent(parentObject);
-                    AnimeSeriesContainerControl containerCtrl = parentObject as AnimeSeriesContainerControl;
-                    if (containerCtrl != null)
-                    {
-                        // show the simple view
-                        VM_AnimeSeries_User ser = DataContext as VM_AnimeSeries_User;
-                        if (ser == null) return;
-
-                        AnimeSeriesSimplifiedControl seriesControl = new AnimeSeriesSimplifiedControl();
-                        seriesControl.DataContext = ser;
-
-                        containerCtrl.DataContext = seriesControl;
-                        return;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
         }
 
         private void AnimeSeries_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
