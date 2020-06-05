@@ -28,7 +28,6 @@ namespace Shoko.Desktop.UserControls.Settings
             chkMpcWebUiIntegration.Click += new RoutedEventHandler(chkMpcWebUiIntegration_Click);
 
             cboDefaultPlayer.Items.Clear();
-            cboDefaultPlayer.Items.Add("Internal MPV");
             cboDefaultPlayer.Items.Add("MPC");
             cboDefaultPlayer.Items.Add("VLC");
             cboDefaultPlayer.Items.Add("Zoom Player");
@@ -38,29 +37,26 @@ namespace Shoko.Desktop.UserControls.Settings
             cboDefaultPlayer.Items.Add("Windows Default");
             switch (AppSettings.DefaultPlayer_GroupList)
             {
-                case (int)VideoPlayer.MPV:
+                case (int)VideoPlayer.MPC:
                     cboDefaultPlayer.SelectedIndex = 0;
                     break;
-                case (int)VideoPlayer.MPC:
+                case (int)VideoPlayer.VLC:
                     cboDefaultPlayer.SelectedIndex = 1;
                     break;
-                case (int)VideoPlayer.VLC:
+                case (int)VideoPlayer.ZoomPlayer:
                     cboDefaultPlayer.SelectedIndex = 2;
                     break;
-                case (int)VideoPlayer.ZoomPlayer:
-                    cboDefaultPlayer.SelectedIndex = 3;
-                    break;
-                case 4:
+                case 3:
                     // Not handled, placeholder
                     return;
                 case (int)VideoPlayer.ExternalMPV:
-                    cboDefaultPlayer.SelectedIndex = 5;
+                    cboDefaultPlayer.SelectedIndex = 4;
                     break;
                 case (int)VideoPlayer.PotPlayer:
-                    cboDefaultPlayer.SelectedIndex = 6;
+                    cboDefaultPlayer.SelectedIndex = 5;
                     break;
                 case (int)VideoPlayer.WindowsDefault:
-                    cboDefaultPlayer.SelectedIndex = 7;
+                    cboDefaultPlayer.SelectedIndex = 6;
                     break;
                 default:
                     cboDefaultPlayer.SelectedIndex = 0;
@@ -120,17 +116,16 @@ namespace Shoko.Desktop.UserControls.Settings
         {
             switch (cboDefaultPlayer.SelectedIndex)
             {
-                case 0: VM_UserSettings.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.MPV; break;
-                case 1: VM_UserSettings.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.MPC; break;
-                case 2: VM_UserSettings.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.VLC; break;
-                case 3: VM_UserSettings.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.ZoomPlayer; break;
-                case 4:
+                case 0: VM_UserSettings.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.MPC; break;
+                case 1: VM_UserSettings.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.VLC; break;
+                case 2: VM_UserSettings.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.ZoomPlayer; break;
+                case 3:
                     cboDefaultPlayer.SelectedIndex = cboDefaultPlayer.SelectedIndex + 1;
                     return;
-                case 5: VM_UserSettings.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.ExternalMPV; break;
-                case 6: VM_UserSettings.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.PotPlayer;
+                case 4: VM_UserSettings.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.ExternalMPV; break;
+                case 5: VM_UserSettings.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.PotPlayer;
                     break;
-                case 7: VM_UserSettings.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.WindowsDefault;
+                case 6: VM_UserSettings.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.WindowsDefault;
                     break;
             }
             RefreshConfigured();

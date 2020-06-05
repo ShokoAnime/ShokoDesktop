@@ -2,12 +2,11 @@ namespace Shoko.Desktop.Enums
 {
     public enum VideoPlayer
     {
-        MPV = 0,
-        MPC = 1,
-        VLC = 2,
-        ZoomPlayer = 3,
-        ExternalMPV = 5,
-        PotPlayer = 6,
+        MPC = 0,
+        VLC = 1,
+        ZoomPlayer = 2,
+        ExternalMPV = 4,
+        PotPlayer = 5,
         WindowsDefault = 99
     }
 }

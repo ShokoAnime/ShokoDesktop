@@ -516,7 +516,7 @@ namespace Shoko.Desktop
                 string val = Get("DefaultPlayer_GroupList");
                 if (int.TryParse(val, out var ival))
                     return ival;
-                return (int) VideoPlayer.MPV;
+                return (int) VideoPlayer.MPC;
             }
             // ReSharper disable once UnusedMember.Global
             set => Set("DefaultPlayer_GroupList", value.ToString());
