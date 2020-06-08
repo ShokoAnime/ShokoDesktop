@@ -438,18 +438,20 @@ namespace Shoko.Desktop.VideoPlayers
                 plsContent += @"[playlist]" + Environment.NewLine;
                 List<string> lines=new List<string>();
 
+                string url = $"http://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/Stream/%s/%s/false/null";
+
                 for (int i = 1; i <= vids.Count; i++)
                 {
-                    if (string.IsNullOrEmpty(vids[i-1].GetFullPath()) && vids[i - 1].Media != null && vids[i - 1].Media.Parts != null &&
-                        vids[i - 1].Media.Parts.Count > 0)
-                        lines.Add($@"File{i}={vids[i - 1].Media.Parts[0].Key}" + Environment.NewLine);
+                    var vid = vids[i - 1];
+                    if (string.IsNullOrEmpty(vid.GetFullPath()))
+                        lines.Add($@"File{i}={string.Format(url, vid.VideoLocalID, VM_ShokoServer.Instance.CurrentUser.JMMUserID)}" + Environment.NewLine);
                     else if (!string.IsNullOrEmpty(vids[i-1].GetFullPath()))
                         lines.Add($@"File{i}={vids[i - 1].GetFullPath()}" + Environment.NewLine);
                 }
                 if (lines.Count == 0)
                     return string.Empty;
                 plsContent += string.Join("",lines);
-                plsContent += @"NumberOfEntries=" + lines.Count.ToString() + Environment.NewLine;
+                plsContent += @"NumberOfEntries=" + lines.Count + Environment.NewLine;
                 plsContent += @"Version=2" + Environment.NewLine;
 
                 File.WriteAllText(filePath, plsContent);
