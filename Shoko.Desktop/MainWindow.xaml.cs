@@ -138,10 +138,11 @@ namespace Shoko.Desktop
         {
             try
             {
-                InitializeComponent();
-
                 AppSettings.LoadSettings();
                 logger.Info("App startup - Loaded settings");
+
+                InitializeComponent();
+                
                 FolderMappings.Instance.SetLoadAndSaveCallback(AppSettings.GetMappings,AppSettings.SetMappings);
                 // Set application startup culture based on config settings
                 logger.Info("App startup - Culture set up");
