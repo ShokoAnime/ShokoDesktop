@@ -153,7 +153,11 @@ namespace Shoko.Desktop.UserControls
                 Tex.Flush();
                 Tex.Close();
 
-                Process.Start(logName);
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = logName,
+                    UseShellExecute = true
+                });
             }
             catch (Exception ex)
             {

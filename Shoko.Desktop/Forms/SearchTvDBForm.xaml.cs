@@ -316,7 +316,11 @@ namespace Shoko.Desktop.Forms
             if (id <= 0) return;
 
             Uri uri = new Uri(string.Format(Constants.URLS.TvDB_Series, id));
-            Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = uri.AbsoluteUri,
+                UseShellExecute = true
+            });
         }
 
         void hlURLWebCache_Click(object sender, RoutedEventArgs e)

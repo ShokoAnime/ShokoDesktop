@@ -14,7 +14,11 @@ namespace Shoko.Desktop.VideoPlayers
             Task.Factory.StartNew(() =>
             {
                 Process process;
-                process = Process.Start(video.Uri);
+                process = Process.Start(new ProcessStartInfo
+                {
+                    FileName = video.Uri,
+                    UseShellExecute = true
+                });
                 process?.WaitForExit();
                 StopWatcher();
                 IsPlaying = false;

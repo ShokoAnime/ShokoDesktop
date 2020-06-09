@@ -251,7 +251,11 @@ namespace Shoko.Desktop.UserControls
             {
                 string logPath = Path.Combine(AppSettings.ApplicationPath, "logs");
 
-                Process.Start(new ProcessStartInfo(logPath));
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = logPath,
+                    UseShellExecute = true
+                });
             }
             catch (Exception ex)
             {
@@ -895,7 +899,11 @@ namespace Shoko.Desktop.UserControls
         void lbSeries_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             VM_AnimeSeries_User item = (VM_AnimeSeries_User)lbSeries.SelectedItems[0];
-            Process.Start(item.AniDBAnime.AniDBAnime.AniDB_SiteURL);
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = item.AniDBAnime.AniDBAnime.AniDB_SiteURL,
+                UseShellExecute = true
+            });
 
         }
 

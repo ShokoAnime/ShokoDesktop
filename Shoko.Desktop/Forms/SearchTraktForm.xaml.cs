@@ -260,7 +260,11 @@ namespace Shoko.Desktop.Forms
         void hlURL_Click(object sender, RoutedEventArgs e)
         {
             Uri uri = new Uri(string.Format(Constants.URLS.Trakt_Series, txtSeriesID.Text.Trim()));
-            Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = uri.AbsoluteUri,
+                UseShellExecute = true
+            });
         }
 
         void hlURLWebCache_Click(object sender, RoutedEventArgs e)

@@ -215,13 +215,21 @@ namespace Shoko.Desktop.Forms
             if (id <= 0) return;
 
             Uri uri = new Uri(string.Format(Models.Constants.URLS.MovieDB_Series, id));
-            Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
+            Process.Start(new ProcessStartInfo
+            { 
+                FileName = uri.AbsoluteUri,
+                UseShellExecute = true
+            });
         }
 
         void hlURLWebCache_Click(object sender, RoutedEventArgs e)
         {
             Uri uri = new Uri(string.Format(Models.Constants.URLS.MovieDB_Series, CrossRef_AniDB_Other_Response.CrossRefID));
-            Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = uri.AbsoluteUri,
+                UseShellExecute = true
+            });
         }
 
         void rbSearch_Checked(object sender, RoutedEventArgs e)

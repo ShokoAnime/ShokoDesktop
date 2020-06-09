@@ -60,7 +60,12 @@ namespace Shoko.Desktop.VideoPlayers
                 string webUIParams = $" --http-host=localhost --http-port={webUIPort} --http-password={webUIPassword} ";
 
                 if (video.IsPlaylist)
-                    process = Process.Start(PlayerPath, $"\"{video.Uri}\" {webUIParams}");
+                    process = Process.Start(new ProcessStartInfo
+                    {
+                        FileName = PlayerPath,
+                        Arguments = $"\"{video.Uri}\" {webUIParams}",
+                        UseShellExecute = true
+                    });
                 else
                 {
                     string init = $"\"{video.Uri}\" {webUIParams}";
@@ -77,7 +82,12 @@ namespace Shoko.Desktop.VideoPlayers
                             init += " --sub-file=\"" + s + "\"";
                         }
                     }
-                    process = Process.Start(PlayerPath, init);
+                    process = Process.Start(new ProcessStartInfo
+                    {
+                        FileName = PlayerPath,
+                        Arguments = init,
+                        UseShellExecute = true
+                    });
                 }
                 if (process != null)
                 {

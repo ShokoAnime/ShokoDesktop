@@ -54,7 +54,12 @@ namespace Shoko.Desktop.VideoPlayers
                 string tcpControlParam = $" /TCP:{_tcpControlPort} ";
                 Process process;
                 if (video.IsPlaylist)
-                    process = Process.Start(PlayerPath, $"\"{video.Uri}\" {tcpControlParam}");
+                    process = Process.Start(new ProcessStartInfo
+                    {
+                        FileName = PlayerPath,
+                        Arguments = $"\"{video.Uri}\" {tcpControlParam}",
+                        UseShellExecute = true
+                    });
                 else
                 {
                     string init = '"' + video.Uri + '"';
@@ -80,7 +85,12 @@ namespace Shoko.Desktop.VideoPlayers
                         }
                     }*/
 
-                    process = Process.Start(PlayerPath, init);
+                    process = Process.Start(new ProcessStartInfo
+                    {
+                        FileName = PlayerPath,
+                        Arguments = init,
+                        UseShellExecute = true
+                    });
                 }
                 if (process != null)
                 {

@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Security.Policy;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -416,7 +417,11 @@ namespace Shoko.Desktop.UserControls
         void hlURL_Click(object sender, RoutedEventArgs e)
         {
             Uri uri = new Uri(string.Format(Constants.URLS.AniDB_Series_NewRelease, SelectedAnime.AnimeID));
-            Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = uri.AbsoluteUri,
+                UseShellExecute = true
+            });
         }
 
         void btnClearAnimeSearch_Click(object sender, RoutedEventArgs e)

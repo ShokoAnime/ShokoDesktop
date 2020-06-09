@@ -529,7 +529,11 @@ namespace Shoko.Desktop.Utilities
         {
             try
             {
-                Process.Start(new ProcessStartInfo(fullePath));
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = fullePath,
+                    UseShellExecute = true
+                });
             }
             catch (Exception ex)
             {
@@ -543,7 +547,11 @@ namespace Shoko.Desktop.Utilities
             {
                 if (Directory.Exists(fullPath))
                 {
-                    Process.Start(new ProcessStartInfo(fullPath));
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = fullPath,
+                        UseShellExecute = true
+                    });
                 }
             }
             catch (Exception ex)
@@ -831,7 +839,11 @@ namespace Shoko.Desktop.Utilities
             string url = $@"http://anidb.net/perl-bin/animedb.pl?show=addsimilaranime&do.vote={(isVoteUp ? "up" : "down")}&aid={animeID}&sid={similarAnimeID}&redirect=anime";
 
             Uri uri = new Uri(url);
-            Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = uri.AbsoluteUri,
+                UseShellExecute = true
+            });
         }
 
         public static void RestartAsAdmin()

@@ -65,7 +65,11 @@ namespace Shoko.Desktop.Forms
 
             if (String.IsNullOrWhiteSpace(url)) return;
 
-            System.Diagnostics.Process.Start(url);
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = url,
+                UseShellExecute = true
+            });
         }
     }
 

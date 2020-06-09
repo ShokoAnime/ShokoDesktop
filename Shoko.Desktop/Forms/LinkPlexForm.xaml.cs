@@ -60,7 +60,11 @@ namespace Shoko.Desktop.Forms
         private void BtnLinkOnClick(object sender, RoutedEventArgs routedEventArgs) => _vm.LinkUrl = VM_ShokoServer.Instance.ShokoServices.LoginUrl(_user.JMMUserID);
 
         private void BtnClose_Click(object sender, RoutedEventArgs routedEventArgs) => Close();
-        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e) => System.Diagnostics.Process.Start(e.Uri.AbsoluteUri);
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e) => System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+        {
+            FileName = e.Uri.AbsoluteUri,
+            UseShellExecute = true
+        });
     }
 
     public sealed class LinkPlexVM : INotifyPropertyChanged

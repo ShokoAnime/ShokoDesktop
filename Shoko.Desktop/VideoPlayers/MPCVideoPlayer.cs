@@ -28,7 +28,12 @@ namespace Shoko.Desktop.VideoPlayers
             {
                 Process process;
                 if (video.IsPlaylist)
-                    process = Process.Start(PlayerPath, '"' + video.Uri + '"');
+                    process = Process.Start(new ProcessStartInfo
+                    {
+                        FileName = PlayerPath,
+                        Arguments = '"' + video.Uri + '"',
+                        UseShellExecute = true
+                    });
                 else
                 {
                     string init = '"' + video.Uri + '"';
@@ -41,7 +46,12 @@ namespace Shoko.Desktop.VideoPlayers
                             init += " /sub \"" + s + "\"";
                         }
                     }
-                    process = Process.Start(PlayerPath, init);
+                    process = Process.Start(new ProcessStartInfo
+                    {
+                        FileName = PlayerPath,
+                        Arguments = init,
+                        UseShellExecute = true
+                    });
                 }
                 if (process != null)
                 {

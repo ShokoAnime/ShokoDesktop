@@ -380,7 +380,11 @@ namespace Shoko.Desktop
         {
             try
             {
-                Process.Start("https://discord.gg/0XKJW7TObKLajoKc");
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = "https://discord.gg/0XKJW7TObKLajoKc",
+                    UseShellExecute = true
+                });
             }
             catch (Exception ex)
             {
@@ -3100,7 +3104,11 @@ namespace Shoko.Desktop
 
         private void URL_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
-            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = e.Uri.AbsoluteUri,
+                UseShellExecute = true
+            });
             e.Handled = true;
         }
 
@@ -3110,7 +3118,11 @@ namespace Shoko.Desktop
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
-            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = e.Uri.AbsoluteUri,
+                UseShellExecute = true
+            });
             e.Handled = true;
         }
     }
