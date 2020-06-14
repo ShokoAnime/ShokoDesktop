@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Microsoft.Win32;
 using NLog;
 using Shoko.Commons.Extensions;
+using Shoko.Commons.Utils;
 using Shoko.Desktop.Enums;
 using Shoko.Models.Enums;
 using Shoko.Desktop.Utilities;
@@ -426,6 +428,11 @@ namespace Shoko.Desktop.VideoPlayers
             return string.Empty;
         }
 
+        private static readonly Regex UrlSafe = new Regex("[ \\$^`:<>\\[\\]\\{\\}\"“\\+%@/;=\\?\\\\\\^\\|~‘,]",
+            RegexOptions.Compiled);
+
+        private static readonly Regex UrlSafe2 = new Regex("[^0-9a-zA-Z_\\.\\s]", RegexOptions.Compiled);
+
         public string GenerateTemporaryPlayList(List<VM_VideoDetailed> vids)
         {
             try
@@ -438,13 +445,19 @@ namespace Shoko.Desktop.VideoPlayers
                 plsContent += @"[playlist]" + Environment.NewLine;
                 List<string> lines=new List<string>();
 
-                string url = $"http://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/Stream/%s/%s/false/null";
+                string url = $"http://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/Stream/%s/%s/false/%s";
 
                 for (int i = 1; i <= vids.Count; i++)
                 {
                     var vid = vids[i - 1];
                     if (string.IsNullOrEmpty(vid.GetFullPath()))
-                        lines.Add($@"File{i}={string.Format(url, vid.VideoLocalID, VM_ShokoServer.Instance.CurrentUser.JMMUserID)}" + Environment.NewLine);
+                    {
+                        string name = UrlSafe.Replace(Path.GetFileName(vid.Places.FirstOrDefault().FilePath), " ")
+                            .CompactWhitespaces().Trim();
+                        name = UrlSafe2.Replace(name, string.Empty).Trim().CompactCharacters('.').Replace(" ", "_")
+                            .CompactCharacters('_').Replace("_.", ".").TrimStart('_').TrimStart('.');
+                        lines.Add($@"File{i}={string.Format(url, vid.VideoLocalID, VM_ShokoServer.Instance.CurrentUser.JMMUserID, name)}" + Environment.NewLine);
+                    }
                     else if (!string.IsNullOrEmpty(vids[i-1].GetFullPath()))
                         lines.Add($@"File{i}={vids[i - 1].GetFullPath()}" + Environment.NewLine);
                 }

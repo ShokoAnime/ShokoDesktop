@@ -385,60 +385,47 @@ namespace Shoko.Desktop.UserControls
 
         private void SaveSettings()
         {
-            FileQualityPreferences prefs = new FileQualityPreferences();
-            prefs.AllowDeletionOfImportedFiles = AllowDeletionOfImportingFiles;
-            prefs.AudioCodecPreferences = PreferredAudioCodecs.ToList();
-            prefs.MaxNumberOfFilesToKeep = MaxNumberOfFiles;
-            prefs.Prefer8BitVideo = Prefer8Bit;
-            prefs.Require10BitVideo = Require10Bit;
+            FileQualityPreferences prefs = new FileQualityPreferences
+            {
+                AllowDeletionOfImportedFiles = AllowDeletionOfImportingFiles,
+                TypePreferences = PreferredTypes.ToList(),
+                AudioCodecPreferences = PreferredAudioCodecs.ToList(),
+                VideoCodecPreferences = PreferredVideoCodecs.ToList(),
+                Prefer8BitVideo = Prefer8Bit,
+                ResolutionPreferences = PreferredResolutions.ToList(),
+                SourcePreferences = PreferredSources.ToList(),
+                SubGroupPreferences = PreferredSubGroups.ToList(),
+                MaxNumberOfFilesToKeep = MaxNumberOfFiles,
+                RequiredTypes = RequiredTypes.ToList(),
+                RequiredResolutions = RequiredResolutions.ToList(),
+                RequiredVideoCodecs = RequiredVideoCodecs.ToList(),
+                Require10BitVideo = Require10Bit,
+                RequiredAudioCodecs = RequiredAudioCodecs.ToList(),
+                RequiredAudioStreamCount = RequiredAudioStreamCount,
+                RequiredSubGroups = RequiredSubGroups.ToList(),
+                RequiredSubStreamCount = RequiredSubStreamCount,
+                RequiredSources = RequiredSources.ToList()
+            };
 
             FileQualityFilterOperationType operatorType;
-            if (Enum.TryParse(RequiredAudioCodecsOperator, out operatorType))
-                prefs.RequiredAudioCodecOperator = operatorType;
-
-            prefs.RequiredAudioCodecs = RequiredAudioCodecs.ToList();
-            prefs.RequiredAudioStreamCount = RequiredAudioStreamCount;
-
-            if (Enum.TryParse(RequiredAudioStreamCountOperator, out operatorType))
-                prefs.RequiredAudioStreamCountOperator = operatorType;
-
             if (Enum.TryParse(RequiredResolutionsOperator, out operatorType))
                 prefs.RequiredResolutionOperator = operatorType;
-
-            prefs.RequiredResolutions = RequiredResolutions.ToList();
-
+            if (Enum.TryParse(RequiredVideoCodecsOperator, out operatorType))
+                prefs.RequiredVideoCodecOperator = operatorType;
+            if (Enum.TryParse(RequiredAudioCodecsOperator, out operatorType))
+                prefs.RequiredAudioCodecOperator = operatorType;
+            if (Enum.TryParse(RequiredAudioStreamCountOperator, out operatorType))
+                prefs.RequiredAudioStreamCountOperator = operatorType;
+            if (Enum.TryParse(RequiredSubGroupsOperator, out operatorType))
+                prefs.RequiredSubGroupOperator = operatorType;
+            if (Enum.TryParse(RequiredSubStreamCountOperator, out operatorType))
+                prefs.RequiredSubStreamCountOperator = operatorType;
             if (Enum.TryParse(RequiredSourcesOperator, out operatorType))
                 prefs.RequiredSourceOperator = operatorType;
 
-            prefs.RequiredSources = RequiredSources.ToList();
-
-            if (Enum.TryParse(RequiredSubGroupsOperator, out operatorType))
-                prefs.RequiredSubGroupOperator = operatorType;
-
-            prefs.RequiredSubGroups = RequiredSubGroups.ToList();
-
-            prefs.RequiredSubStreamCount = RequiredSubStreamCount;
-
-            if (Enum.TryParse(RequiredSubStreamCountOperator, out operatorType))
-                prefs.RequiredSubStreamCountOperator = operatorType;
-
-            prefs.RequiredTypes = RequiredTypes.ToList();
-
-            if (Enum.TryParse(RequiredVideoCodecsOperator, out operatorType))
-                prefs.RequiredVideoCodecOperator = operatorType;
-
-            prefs.RequiredVideoCodecs = RequiredVideoCodecs.ToList();
-
-            prefs.ResolutionPreferences = PreferredResolutions.ToList();
-            prefs.SourcePreferences = PreferredSources.ToList();
-            prefs.SubGroupPreferences = PreferredSubGroups.ToList();
-            prefs.TypePreferences = PreferredTypes.ToList();
-            prefs.VideoCodecPreferences = PreferredVideoCodecs.ToList();
-
-            string settings = null;
             try
             {
-                settings = JsonConvert.SerializeObject(prefs, Formatting.None, new StringEnumConverter());
+                string settings = JsonConvert.SerializeObject(prefs, Formatting.None, new StringEnumConverter());
                 VM_ShokoServer.Instance.FileQualityPreferences = settings;
                 VM_ShokoServer.Instance.SaveServerSettingsAsync();
             }

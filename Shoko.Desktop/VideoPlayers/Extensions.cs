@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using NLog;
 using Shoko.Commons.Extensions;
+using Shoko.Commons.Utils;
 using Shoko.Desktop.ViewModel;
 using Shoko.Desktop.ViewModel.Server;
 using Shoko.Models.PlexAndKodi;
@@ -76,13 +78,22 @@ namespace Shoko.Desktop.VideoPlayers
                 WasWatched =  vid.WatchedDate.HasValue
             };
         }
+        
+        private static readonly Regex UrlSafe = new Regex("[ \\$^`:<>\\[\\]\\{\\}\"“\\+%@/;=\\?\\\\\\^\\|~‘,]",
+            RegexOptions.Compiled);
+
+        private static readonly Regex UrlSafe2 = new Regex("[^0-9a-zA-Z_\\.\\s]", RegexOptions.Compiled);
 
         static Tuple<string, List<string>> GetInfo(int vlID, string path, Media m)
         {
             List<string> subs = new List<string>();
             //Only Support one part for now
+            string name = UrlSafe.Replace(Path.GetFileName(path), " ").CompactWhitespaces().Trim();
+            name = UrlSafe2.Replace(name, string.Empty).Trim().CompactCharacters('.').Replace(" ", "_")
+                .CompactCharacters('_').Replace("_.", ".").TrimStart('_').TrimStart('.');
+
             string uri =
-                $"http://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/Stream/{vlID}/{VM_ShokoServer.Instance.CurrentUser.JMMUserID}/false/null";
+                $"http://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/Stream/{vlID}/{VM_ShokoServer.Instance.CurrentUser.JMMUserID}/false/{name}";
             string fname = Path.GetFileNameWithoutExtension(path);
             var p = m?.Parts?.FirstOrDefault();
             if (p?.Streams == null) return new Tuple<string, List<string>>(uri, subs);
