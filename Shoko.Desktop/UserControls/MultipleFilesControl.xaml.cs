@@ -230,36 +230,36 @@ namespace Shoko.Desktop.UserControls
             }
             if (prefs != null)
             {
-                PreferredTypes = new ObservableCollection<FileQualityFilterType>(prefs.TypePreferences);
-                PreferredSources = new ObservableCollection<string>(prefs.SourcePreferences);
-                PreferredResolutions = new ObservableCollection<string>(prefs.ResolutionPreferences);
-                PreferredAudioCodecs = new ObservableCollection<string>(prefs.AudioCodecPreferences);
-                PreferredVideoCodecs = new ObservableCollection<string>(prefs.VideoCodecPreferences);
-                PreferredSubGroups = new ObservableCollection<string>(prefs.SubGroupPreferences);
+                PreferredTypes = new ObservableCollection<FileQualityFilterType>(prefs.PreferredTypes);
+                PreferredSources = new ObservableCollection<string>(prefs.PreferredSources);
+                PreferredResolutions = new ObservableCollection<string>(prefs.PreferredResolutions);
+                PreferredAudioCodecs = new ObservableCollection<string>(prefs.PreferredAudioCodecs);
+                PreferredVideoCodecs = new ObservableCollection<string>(prefs.PreferredVideoCodecs);
+                PreferredSubGroups = new ObservableCollection<string>(prefs.PreferredSubGroups);
 
                 RequiredTypes = new ObservableCollection<FileQualityFilterType>(prefs.RequiredTypes);
-                RequiredSources = new ObservableCollection<string>(prefs.RequiredSources);
-                RequiredResolutions = new ObservableCollection<string>(prefs.RequiredResolutions);
-                RequiredAudioCodecs = new ObservableCollection<string>(prefs.RequiredAudioCodecs);
-                RequiredVideoCodecs = new ObservableCollection<string>(prefs.RequiredVideoCodecs);
-                RequiredSubGroups = new ObservableCollection<string>(prefs.RequiredSubGroups);
+                RequiredSources = new ObservableCollection<string>(prefs.RequiredSources.Value);
+                RequiredResolutions = new ObservableCollection<string>(prefs.RequiredResolutions.Value);
+                RequiredAudioCodecs = new ObservableCollection<string>(prefs.RequiredAudioCodecs.Value);
+                RequiredVideoCodecs = new ObservableCollection<string>(prefs.RequiredVideoCodecs.Value);
+                RequiredSubGroups = new ObservableCollection<string>(prefs.RequiredSubGroups.Value);
 
-                RequiredSourcesOperator = prefs.RequiredSourceOperator.ToString();
-                RequiredResolutionsOperator = prefs.RequiredResolutionOperator.ToString();
-                RequiredAudioCodecsOperator = prefs.RequiredAudioCodecOperator.ToString();
-                RequiredVideoCodecsOperator = prefs.RequiredVideoCodecOperator.ToString();
-                RequiredSubGroupsOperator = prefs.RequiredSubGroupOperator.ToString();
+                RequiredSourcesOperator = prefs.RequiredSources.Operator.ToString();
+                RequiredResolutionsOperator = prefs.RequiredResolutions.Operator.ToString();
+                RequiredAudioCodecsOperator = prefs.RequiredAudioCodecs.Operator.ToString();
+                RequiredVideoCodecsOperator = prefs.RequiredVideoCodecs.Operator.ToString();
+                RequiredSubGroupsOperator = prefs.RequiredSubGroups.Operator.ToString();
 
-                RequiredAudioStreamCountOperator = prefs.RequiredAudioStreamCountOperator.ToString();
-                RequiredSubStreamCountOperator = prefs.RequiredSubStreamCountOperator.ToString();
+                RequiredAudioStreamCountOperator = prefs.RequiredAudioStreamCount.Operator.ToString();
+                RequiredSubStreamCountOperator = prefs.RequiredSubStreamCount.Operator.ToString();
 
                 EnableDeleteOnImport = VM_ShokoServer.Instance.FileQualityFilterEnabled;
                 AllowDeletionOfImportingFiles = prefs.AllowDeletionOfImportedFiles;
                 Prefer8Bit = prefs.Prefer8BitVideo;
                 Require10Bit = prefs.Require10BitVideo;
                 MaxNumberOfFiles = prefs.MaxNumberOfFilesToKeep;
-                RequiredAudioStreamCount = prefs.RequiredAudioStreamCount;
-                RequiredSubStreamCount = prefs.RequiredSubStreamCount;
+                RequiredAudioStreamCount = prefs.RequiredAudioStreamCount.Value;
+                RequiredSubStreamCount = prefs.RequiredSubStreamCount.Value;
 
                 lbPreferred_Types.ItemsSource = PreferredTypes;
                 lbPreferred_Sources.ItemsSource = PreferredSources;
@@ -388,40 +388,40 @@ namespace Shoko.Desktop.UserControls
             FileQualityPreferences prefs = new FileQualityPreferences
             {
                 AllowDeletionOfImportedFiles = AllowDeletionOfImportingFiles,
-                TypePreferences = PreferredTypes.ToList(),
-                AudioCodecPreferences = PreferredAudioCodecs.ToList(),
-                VideoCodecPreferences = PreferredVideoCodecs.ToList(),
+                PreferredTypes = PreferredTypes.ToList(),
+                PreferredAudioCodecs = PreferredAudioCodecs.ToList(),
+                PreferredVideoCodecs = PreferredVideoCodecs.ToList(),
                 Prefer8BitVideo = Prefer8Bit,
-                ResolutionPreferences = PreferredResolutions.ToList(),
-                SourcePreferences = PreferredSources.ToList(),
-                SubGroupPreferences = PreferredSubGroups.ToList(),
+                PreferredResolutions = PreferredResolutions.ToList(),
+                PreferredSources = PreferredSources.ToList(),
+                PreferredSubGroups = PreferredSubGroups.ToList(),
                 MaxNumberOfFilesToKeep = MaxNumberOfFiles,
                 RequiredTypes = RequiredTypes.ToList(),
-                RequiredResolutions = RequiredResolutions.ToList(),
-                RequiredVideoCodecs = RequiredVideoCodecs.ToList(),
+                RequiredResolutions = new FileQualityPreferences.FileQualityTypeListPair<List<string>> { Value = RequiredResolutions.ToList() },
+                RequiredVideoCodecs = new FileQualityPreferences.FileQualityTypeListPair<List<string>> { Value = RequiredVideoCodecs.ToList() },
                 Require10BitVideo = Require10Bit,
-                RequiredAudioCodecs = RequiredAudioCodecs.ToList(),
-                RequiredAudioStreamCount = RequiredAudioStreamCount,
-                RequiredSubGroups = RequiredSubGroups.ToList(),
-                RequiredSubStreamCount = RequiredSubStreamCount,
-                RequiredSources = RequiredSources.ToList()
+                RequiredAudioCodecs = new FileQualityPreferences.FileQualityTypeListPair<List<string>> { Value = RequiredAudioCodecs.ToList() },
+                RequiredAudioStreamCount = new FileQualityPreferences.FileQualityTypeListPair<int> { Value = RequiredAudioStreamCount },
+                RequiredSubGroups = new FileQualityPreferences.FileQualityTypeListPair<List<string>> { Value = RequiredSubGroups.ToList() },
+                RequiredSubStreamCount = new FileQualityPreferences.FileQualityTypeListPair<int> { Value = RequiredSubStreamCount },
+                RequiredSources = new FileQualityPreferences.FileQualityTypeListPair<List<string>> { Value = RequiredSources.ToList() }
             };
 
             FileQualityFilterOperationType operatorType;
             if (Enum.TryParse(RequiredResolutionsOperator, out operatorType))
-                prefs.RequiredResolutionOperator = operatorType;
+                prefs.RequiredResolutions.Operator = operatorType;
             if (Enum.TryParse(RequiredVideoCodecsOperator, out operatorType))
-                prefs.RequiredVideoCodecOperator = operatorType;
+                prefs.RequiredVideoCodecs.Operator = operatorType;
             if (Enum.TryParse(RequiredAudioCodecsOperator, out operatorType))
-                prefs.RequiredAudioCodecOperator = operatorType;
+                prefs.RequiredAudioCodecs.Operator = operatorType;
             if (Enum.TryParse(RequiredAudioStreamCountOperator, out operatorType))
-                prefs.RequiredAudioStreamCountOperator = operatorType;
+                prefs.RequiredAudioStreamCount.Operator = operatorType;
             if (Enum.TryParse(RequiredSubGroupsOperator, out operatorType))
-                prefs.RequiredSubGroupOperator = operatorType;
+                prefs.RequiredSubGroups.Operator = operatorType;
             if (Enum.TryParse(RequiredSubStreamCountOperator, out operatorType))
-                prefs.RequiredSubStreamCountOperator = operatorType;
+                prefs.RequiredSubStreamCount.Operator = operatorType;
             if (Enum.TryParse(RequiredSourcesOperator, out operatorType))
-                prefs.RequiredSourceOperator = operatorType;
+                prefs.RequiredSources.Operator = operatorType;
 
             try
             {
