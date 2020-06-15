@@ -52,8 +52,6 @@ namespace Shoko.Desktop.VideoPlayers
         { 
             if (string.IsNullOrEmpty(vid.GetLocalFileSystemFullPath()))
             {
-                if (vid.Media?.Parts == null || vid.Media.Parts.Count == 0)
-                    throw new Exception("There is no media information loaded in the video selected, we're unable to stream the media");
                 Tuple<string, List<string>> t = GetInfo(vid.VideoLocalID, vid.FullPath, vid.Media);
                 return new VideoInfo
                 {
@@ -91,6 +89,7 @@ namespace Shoko.Desktop.VideoPlayers
             string name = UrlSafe.Replace(Path.GetFileName(path), " ").CompactWhitespaces().Trim();
             name = UrlSafe2.Replace(name, string.Empty).Trim().CompactCharacters('.').Replace(" ", "_")
                 .CompactCharacters('_').Replace("_.", ".").TrimStart('_').TrimStart('.');
+            name = WebUtility.UrlEncode(name);
 
             string uri =
                 $"http://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/Stream/{vlID}/{VM_ShokoServer.Instance.CurrentUser.JMMUserID}/false/{name}";
