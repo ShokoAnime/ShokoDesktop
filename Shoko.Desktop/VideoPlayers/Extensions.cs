@@ -22,8 +22,6 @@ namespace Shoko.Desktop.VideoPlayers
         {
             if (string.IsNullOrEmpty(vid.GetFullPath()))
             {
-                if (vid.Media?.Parts == null || vid.Media.Parts.Count == 0)
-                    throw new Exception("There is no media information loaded in the video selected, we're unable to stream the media");
                 Tuple<string, List<string>> t = GetInfo(vid.VideoLocalID, vid.FullPath, vid.Media);
                 return new VideoInfo
                 {
