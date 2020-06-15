@@ -49,7 +49,7 @@ namespace Shoko.Desktop.VideoPlayers
                     });
                 else
                 {
-                    string init = '"' + video.Uri + " --title=\"" + video.VideoDetailed.FileName + '"';
+                    string init = '"' + video.Uri + ' ' + video.VideoDetailed.FileName;
                     if (video.ResumePosition > 0)
                     {
                         double n = video.ResumePosition;
