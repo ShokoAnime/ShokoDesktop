@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Text.RegularExpressions;
 using NLog;
 using Shoko.Commons.Extensions;
@@ -75,6 +76,12 @@ namespace Shoko.Desktop.VideoPlayers
             };
         }
         
+        public static string Base64EncodeUrl(string plainText)
+        {
+            var plainTextBytes = Encoding.UTF8.GetBytes(plainText);
+            return Convert.ToBase64String(plainTextBytes).Replace("+", "-").Replace("/", "_").Replace("=", ",");
+        }
+        
         private static readonly Regex UrlSafe = new Regex("[ \\$^`:<>\\[\\]\\{\\}\"“\\+%@/;=\\?\\\\\\^\\|~‘,]",
             RegexOptions.Compiled);
 
@@ -99,9 +106,11 @@ namespace Shoko.Desktop.VideoPlayers
             {
                 string extension = Path.GetExtension(s.File);
                 string filePath = Path.Combine(Path.GetTempPath(), Path.GetFileName(Path.GetDirectoryName(path)));
+                
                 try
                 {
-                    string subtitle = wc.DownloadString(s.Key);
+                    var url = $"http://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/Stream/Filename/{Base64EncodeUrl(s.File)}/{VM_ShokoServer.Instance.CurrentUser.JMMUserID}/false";
+                    string subtitle = wc.DownloadString(url);
                     try
                     {
                         filePath = Path.Combine(Path.GetTempPath(), fname + extension);
