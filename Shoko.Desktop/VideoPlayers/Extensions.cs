@@ -47,7 +47,7 @@ namespace Shoko.Desktop.VideoPlayers
             };
         }
         public static VideoInfo ToVideoInfo(this VM_VideoLocal vid, bool forcebegining)
-        { 
+        {
             if (string.IsNullOrEmpty(vid.GetLocalFileSystemFullPath()))
             {
                 Tuple<string, List<string>> t = GetInfo(vid.VideoLocalID, vid.FullPath, vid.Media);
@@ -70,11 +70,11 @@ namespace Shoko.Desktop.VideoPlayers
                 Duration = vid.Duration,
                 ResumePosition = forcebegining ? 0 : vid.ResumePosition,
                 VideoLocalId = vid.VideoLocalID,
-                VideoLocal =  vid,
-                WasWatched =  vid.WatchedDate.HasValue
+                VideoLocal = vid,
+                WasWatched = vid.WatchedDate.HasValue
             };
         }
-        
+
         private static readonly Regex UrlSafe = new Regex("[ \\$^`:<>\\[\\]\\{\\}\"“\\+%@/;=\\?\\\\\\^\\|~‘,]",
             RegexOptions.Compiled);
 
