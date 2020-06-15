@@ -44,12 +44,12 @@ namespace Shoko.Desktop.VideoPlayers
                     process = Process.Start(new ProcessStartInfo
                     {
                         FileName = PlayerPath,
-                        Arguments = '"' + video.Uri + '"',
+                        Arguments = '"' + video.Uri + ' '+ video.VideoDetailed.FileName,
                         UseShellExecute = true
                     });
                 else
                 {
-                    string init = '"' + video.Uri + '"';
+                    string init = '"' + video.Uri + " --title=\"" + video.VideoDetailed.FileName + '"';
                     if (video.ResumePosition > 0)
                     {
                         double n = video.ResumePosition;
