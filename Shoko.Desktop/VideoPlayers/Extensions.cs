@@ -75,7 +75,7 @@ namespace Shoko.Desktop.VideoPlayers
                 WasWatched = vid.WatchedDate.HasValue
             };
         }
-
+        
         public static string Base64EncodeUrl(string plainText)
         {
             var plainTextBytes = Encoding.UTF8.GetBytes(plainText);
