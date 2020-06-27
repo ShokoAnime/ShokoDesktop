@@ -222,7 +222,11 @@ namespace Shoko.Desktop.UserControls
             FileQualityPreferences prefs = null;
             try
             {
-                prefs = JsonConvert.DeserializeObject<FileQualityPreferences>(VM_ShokoServer.Instance.FileQualityPreferences, new StringEnumConverter());
+                prefs = JsonConvert.DeserializeObject<FileQualityPreferences>(VM_ShokoServer.Instance.FileQualityPreferences, new JsonSerializerSettings
+                {
+                    Converters = new List<JsonConverter> { new StringEnumConverter() },
+                    ObjectCreationHandling = ObjectCreationHandling.Replace
+                });
             }
             catch
             {
