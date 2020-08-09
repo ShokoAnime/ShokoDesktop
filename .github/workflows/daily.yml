@@ -1,0 +1,36 @@
+name: Build Daily
+
+on:
+  push:
+    branches: [ master ]
+#   pull_request:
+#     branches: [ master ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    name: Shoko Desktop daily build
+
+    steps:
+      - uses: actions/checkout@master
+        with:
+          submodules: recursive
+
+      - name: Setup MSBuild Path
+        uses: warrenbuckley/Setup-MSBuild@v1
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.2
+
+      - name: Restore NuGet Packages
+        run: nuget restore Shoko.Desktop.sln
+
+      - name: Build and Publish Web App
+        run: msbuild Shoko.Desktop.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: ShokoDesktop
+          path: bin\Release\Publish
