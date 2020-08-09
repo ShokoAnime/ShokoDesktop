@@ -26,11 +26,11 @@ jobs:
       - name: Restore NuGet Packages
         run: nuget restore Shoko.Desktop.sln
 
-      - name: Build and Publish Web App
+      - name: Build
         run: msbuild Shoko.Desktop.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v1.0.0
         with:
           name: ShokoDesktop
-          path: bin\Release
+          path: Shoko.Desktop\bin\Release
