@@ -1384,15 +1384,13 @@ namespace Shoko.Desktop.ViewModel
             string final = AutoGroupSeriesRelationExclusions;
             if (value)
             {
-                var settings=new HashSet<string>(StringComparer.InvariantCultureIgnoreCase);
-                final.Split('|').ForEach(a=>settings.Add(a));
-                settings.Add(setting);
+                var settings =
+                    new HashSet<string>(final.Split('|'), StringComparer.InvariantCultureIgnoreCase) {setting};
                 final = string.Join("|", settings);
             }
             else
             {
-                var settings=new HashSet<string>(StringComparer.InvariantCultureIgnoreCase);
-                final.Split('|').ForEach(a=>settings.Add(a));
+                var settings = new HashSet<string>(final.Split('|'), StringComparer.InvariantCultureIgnoreCase);
                 settings.Remove(setting);
                 final = string.Join("|", settings);
             }
