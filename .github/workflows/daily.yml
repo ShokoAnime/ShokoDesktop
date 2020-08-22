@@ -43,12 +43,15 @@ jobs:
       - uses: actions/download-artifact@master
         with:
           name: ShokoDesktop
+      - uses: montudor/action-zip@v0.1.0
+        with:
+          args: zip -qq -r /home/runner/work/ShokoDesktop/ShokoDesktop/ShokoDesktop.zip /home/runner/work/ShokoDesktop/ShokoDesktop
       - uses: isthatcentered/dist-to-ftp@master
         with:
           user: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           host: ${{ secrets.FTP_SERVER }}
           port: 21
-          path: /home/runner/work/ShokoDesktop/ShokoDesktop
+          path: /home/runner/work/ShokoDesktop/ShokoDesktop/ShokoDesktop.zip
           into: shoko-desktop/daily/
           cleanupExisting: false
