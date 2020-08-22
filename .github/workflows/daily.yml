@@ -34,3 +34,23 @@ jobs:
         with:
           name: ShokoDesktop
           path: Shoko.Desktop\bin\Release
+
+    name: FTP Deploy
+    jobs:
+      deploy:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Download bundle
+            uses: actions/download-artifact@master
+            with:
+              name: ShokoDesktop
+          - name: Upload to FTP
+            uses: isthatcentered/dist-to-ftp@master
+            with:
+              user: ${{ secrets.FTP_USERNAME }}
+              password: ${{ secrets.FTP_PASSWORD }}
+              host: ${{ secrets.FTP_SERVER }}
+              port: 21
+              path: Shoko.Desktop\bin\Release
+              into: shoko-desktop/daily/
+              cleanupExisting: false
