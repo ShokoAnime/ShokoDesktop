@@ -34,24 +34,13 @@ jobs:
         with:
           name: ShokoDesktop
           path: Shoko.Desktop\bin\Release
-
-  deploy:
-    name: Deploy App
-    runs-on: [ubuntu-latest]
-    needs: [build]
-    steps:
-      - uses: actions/download-artifact@master
-        with:
-          name: ShokoDesktop
-      - uses: montudor/action-zip@v0.1.0
-        with:
-          args: zip -qq -r /home/runner/work/ShokoDesktop/ShokoDesktop/ShokoDesktop.zip /home/runner/work/ShokoDesktop/ShokoDesktop
-      - uses: isthatcentered/dist-to-ftp@master
-        with:
-          user: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          host: ${{ secrets.FTP_SERVER }}
-          port: 21
-          path: /home/runner/work/ShokoDesktop/ShokoDesktop/ShokoDesktop.zip
-          into: shoko-desktop/daily/
-          cleanupExisting: false
+      - name: Archive Release
+        shell: powershell
+        run: Compress-Archive .\\ShokoDesktop\\bin\\Release .\\ShokoDesktop.zip
+      - name: Upload Daily to shokoanime.com
+        shell: powershell
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+        run : .\\.github\\workflows\\UploadArchive.ps1
