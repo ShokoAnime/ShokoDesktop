@@ -36,7 +36,7 @@ jobs:
           path: Shoko.Desktop\bin\Release
       - name: Archive Release
         shell: powershell
-        run: Compress-Archive .\\ShokoDesktop\\bin\\Release .\\ShokoDesktop.zip
+        run: Compress-Archive .\\Shoko.Desktop\\bin\\Release .\\ShokoDesktop.zip
       - name: Upload Daily to shokoanime.com
         shell: powershell
         env:
