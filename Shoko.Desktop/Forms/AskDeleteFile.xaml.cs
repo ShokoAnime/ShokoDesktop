@@ -101,10 +101,17 @@ namespace Shoko.Desktop.Forms
                     FontWeight = FontWeights.DemiBold
                 };
                 CheckBox chk = new CheckBox { VerticalAlignment = VerticalAlignment.Center, IsChecked = true };
+                
                 chk.Checked += (a, b) =>
                 {
-                    chks[s] = chk.IsChecked.Value;
+                    chks[s] = true;
                 };
+
+                chk.Unchecked += (a, b) =>
+                {
+                    chks[s] = false;
+                };
+
                 st.Children.Add(im);
                 st.Children.Add(tx);
                 st.Children.Add(chk);
