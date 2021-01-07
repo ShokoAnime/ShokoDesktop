@@ -1509,6 +1509,26 @@ namespace Shoko.Desktop.ViewModel
                 this.SetField(()=>runImportOnStart,value);
             }
         }
+        
+        private bool renameOnImport;
+        public bool RenameOnImport
+        {
+            get => renameOnImport;
+            set
+            {
+                this.SetField(()=>renameOnImport,value);
+            }
+        }
+        
+        private bool moveOnImport;
+        public bool MoveOnImport
+        {
+            get => moveOnImport;
+            set
+            {
+                this.SetField(()=>moveOnImport,value);
+            }
+        }
 
         private bool scanDropFoldersOnStart;
         public bool ScanDropFoldersOnStart

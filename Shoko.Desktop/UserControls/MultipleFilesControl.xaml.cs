@@ -234,6 +234,12 @@ namespace Shoko.Desktop.UserControls
             }
             if (prefs != null)
             {
+                if (prefs.RequiredSources.Value == null) prefs.RequiredSources.Value = new List<string>();
+                if (prefs.RequiredResolutions.Value == null) prefs.RequiredResolutions.Value = new List<string>();
+                if (prefs.RequiredAudioCodecs.Value == null) prefs.RequiredAudioCodecs.Value = new List<string>();
+                if (prefs.RequiredVideoCodecs.Value == null) prefs.RequiredVideoCodecs.Value = new List<string>();
+                if (prefs.RequiredSubGroups.Value == null) prefs.RequiredSubGroups.Value = new List<string>();
+
                 PreferredTypes = new ObservableCollection<FileQualityFilterType>(prefs.PreferredTypes);
                 PreferredSources = new ObservableCollection<string>(prefs.PreferredSources);
                 PreferredResolutions = new ObservableCollection<string>(prefs.PreferredResolutions);

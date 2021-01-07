@@ -23,6 +23,8 @@ namespace Shoko.Desktop.UserControls.Settings
 
             chkImportSettings_ImportOnStart.Click += new RoutedEventHandler(settingChanged);
             chkImportSettings_ScanDropOnStart.Click += new RoutedEventHandler(settingChanged);
+            chkImportSettings_RenameOnImport.Click += new RoutedEventHandler(settingChanged);
+            chkImportSettings_MoveOnImport.Click += new RoutedEventHandler(settingChanged);
             chkImportSettings_UseEpisodeStatus.Click += new RoutedEventHandler(settingChanged);
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
