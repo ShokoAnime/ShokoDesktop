@@ -379,6 +379,9 @@ namespace Shoko.Desktop.ViewModel
             Hash_CRC32 = contract.Hash_CRC32;
             Hash_MD5 = contract.Hash_MD5;
             Hash_SHA1 = contract.Hash_SHA1;
+            RenameOnImport = contract.Import_RenameOnImport;
+            MoveOnImport = contract.Import_MoveOnImport;
+
 
             // Language
             LanguagePreference = contract.LanguagePreference;
@@ -494,6 +497,8 @@ namespace Shoko.Desktop.ViewModel
                 contract.Hash_CRC32 = Hash_CRC32;
                 contract.Hash_MD5 = Hash_MD5;
                 contract.Hash_SHA1 = Hash_SHA1;
+                contract.Import_RenameOnImport = RenameOnImport;
+                contract.Import_MoveOnImport = MoveOnImport;
 
                 // Language
                 contract.LanguagePreference = LanguagePreference;
