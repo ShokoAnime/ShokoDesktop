@@ -217,6 +217,9 @@
       <HintPath>Dependencies\ReuxablesLegacy.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Shoko.Plugin.Abstractions, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Shoko.Plugin.Abstractions.2.0.0\lib\netstandard2.0\Shoko.Plugin.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.AppContext, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <HintPath>..\packages\System.AppContext.4.3.0\lib\net463\System.AppContext.dll</HintPath>
