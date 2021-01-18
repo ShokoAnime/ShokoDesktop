@@ -596,6 +596,8 @@ namespace Shoko.Desktop.UserControls
                 int i = 0;
                 foreach (VM_AnimeEpisode_User raw in rawEps)
                 {
+                    // only show episodes and specials - ignore trailers, credits etc for continue watching
+                    if ((Models.Enums.EpisodeType)raw.EpisodeType != Models.Enums.EpisodeType.Episode && (Models.Enums.EpisodeType)raw.EpisodeType != Models.Enums.EpisodeType.Special) continue;
                     i++;
                     raw.SetTvDBInfo();
                     //if (i == 1 && VM_ShokoServer.Instance.Trakt_IsEnabled) ep.SetTraktInfo();
