@@ -630,7 +630,7 @@ namespace Shoko.Desktop.UserControls
         void recsWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             try
-            {
+            { 
                 VM_AnimeSeries_User ser = e.Argument as VM_AnimeSeries_User;
 
                 Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
@@ -782,7 +782,7 @@ namespace Shoko.Desktop.UserControls
             VM_AnimeSeries_User ser = DataContext as VM_AnimeSeries_User;
             if (ser == null) return;
 
-            VM_MainListHelper.Instance.UpdateAll();
+            //VM_MainListHelper.Instance.UpdateAll();
 
             UnwatchedEpisodeCount = ser.UnwatchedEpisodeCount;
 
