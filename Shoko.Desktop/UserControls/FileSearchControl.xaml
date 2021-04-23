@@ -48,6 +48,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -132,6 +133,10 @@
                         <TextBox Text="{Binding Path=MD5}" Margin="3" Background="Transparent" BorderThickness="0" IsReadOnly="True" />
                     </StackPanel>
 
+                    <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2">
+                        <TextBlock Text="ED2K Uri" Margin="3" FontWeight="DemiBold" />
+                        <TextBox Text="{Binding Path=ED2KUri, Mode=OneWay}" Margin="3" Background="Transparent" BorderThickness="0" IsReadOnly="True" />
+                    </StackPanel>
                 </Grid>
             </DataTemplate>
 

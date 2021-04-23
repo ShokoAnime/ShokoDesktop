@@ -35,6 +35,9 @@ namespace Shoko.Desktop.ViewModel.Server
                     : $"{place.ImportFolder.ImportFolderLocation}{place.FilePath}"));
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
+        public string ED2KUri => $"ed2k://|file|{FileName}|{FileSize}|{Hash}|/";
+
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool IsHashed => this.IsHashed();
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string FormattedFileSize => this.GetFormattedFileSize();
@@ -46,6 +49,9 @@ namespace Shoko.Desktop.ViewModel.Server
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string FullPath => Places.FirstOrDefault(a => !string.IsNullOrEmpty(a.GetFullPath())).GetFullPath();
+
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        public new string FileName => Places.FirstOrDefault(a => !string.IsNullOrEmpty(a.FilePath))?.GetFileName() ?? string.Empty;
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string ClosestAnimeMatchString
