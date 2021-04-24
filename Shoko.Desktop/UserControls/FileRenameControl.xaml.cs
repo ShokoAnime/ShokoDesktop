@@ -274,7 +274,7 @@ namespace Shoko.Desktop.UserControls
                 if (cboScript.SelectedItem == null) return false;
 
                 VM_RenameScript script = cboScript.SelectedItem as VM_RenameScript;
-                script.IsEnabledOnImport = 0;
+                script.IsEnabledOnImport = chkIsUsedForImports.IsChecked.Value ? 1 : 0;
                 script.Script = txtRenameScript.Text;
 
                 Controller controller = cboController.SelectedItem as Controller;
