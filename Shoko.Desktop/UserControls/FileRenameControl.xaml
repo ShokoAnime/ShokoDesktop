@@ -91,6 +91,7 @@
                                         </ComboBox.ItemTemplate>
                                     </ComboBox>
 
+                                    <CheckBox Name="chkIsUsedForImports" Margin="5" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Rename_ImportRun}" />
                                     <!-- Save Script -->
                                     <Button Name="btnSaveScript" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}">
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
@@ -149,7 +150,6 @@
                             <usercontrols:HyperLinkStandard Margin="0,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Rename_ScriptingHelp}"
                                                                         URL="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_FileRenaming}"/>
                         </StackPanel>
-                        <CheckBox Name="chkIsUsedForImports" Margin="5" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Rename_ImportRun}" Grid.Column="0" Grid.Row="2"/>
                         <TextBox Name="txtRenameScript" MinWidth="400" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="3" Margin="5" Grid.RowSpan="3" AcceptsReturn="True" FontFamily="Courier New" />
 
                     </Grid>
