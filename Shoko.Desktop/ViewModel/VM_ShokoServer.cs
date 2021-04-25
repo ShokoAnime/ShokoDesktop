@@ -1,4 +1,4 @@
-﻿﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -67,12 +67,6 @@ namespace Shoko.Desktop.ViewModel
                 }
                 return _shokoservices;
             }
-        }
-        public ObservableCollection<VM_CloudAccount> FolderProviders { get; set; }=new ObservableCollection<VM_CloudAccount>();
-        public void RefreshCloudAccounts()
-        {
-
-            FolderProviders = new ObservableCollection<VM_CloudAccount>(Instance.ShokoServices.GetCloudProviders().Cast<VM_CloudAccount>());
         }
         private IShokoServerImage _imageClient;
         public IShokoServerImage ShokoImages
@@ -188,7 +182,6 @@ namespace Shoko.Desktop.ViewModel
                 mappings.Add(typeof(CL_AnimeSeries_User), typeof(VM_AnimeSeries_User));
                 mappings.Add(typeof(CL_AnimeTitle), typeof(VM_AnimeTitle));
                 mappings.Add(typeof(CL_BookmarkedAnime), typeof(VM_BookmarkedAnime));
-                mappings.Add(typeof(CL_CloudAccount), typeof(VM_CloudAccount));
                 mappings.Add(typeof(CrossRef_AniDB_MAL), typeof(VM_CrossRef_AniDB_MAL));
                 mappings.Add(typeof(Azure_CrossRef_AniDB_Trakt), typeof(VM_CrossRef_AniDB_TraktV2));
                 mappings.Add(typeof(Azure_CrossRef_AniDB_TvDB), typeof(VM_CrossRef_AniDB_TvDBV2));

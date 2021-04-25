@@ -62,7 +62,7 @@
                 <!-- ImportFolderLocalTemplate -->
                 <DataTemplate x:Key="ImportFolderLocalTemplate">
                     <Grid>
-                    <StackPanel Orientation="Horizontal" Height="24" Visibility="{Binding Path=IsCloud, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal" Height="24" >
                         <Image Height="16" Width="16" Source="/Images/16_tick.png" VerticalAlignment="Center" Margin="0,0,5,0"
                                Visibility="{Binding Path=LocalPathIsValid, Converter={StaticResource BooleanToVisibilityConverter}}">
                         </Image>
@@ -73,11 +73,6 @@
                             </Image.ToolTip>
                         </Image>
                         <TextBlock Margin="0,0,10,0" Text="{Binding Path=LocalPath}" VerticalAlignment="Center"/>
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal" Height="24" Visibility="{Binding Path=IsCloud, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <Image Height="16" Width="16" Source="/Images/16_tick.png" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                        <TextBlock Margin="0,0,10,0" Text="NA" VerticalAlignment="Center"/>
                     </StackPanel>
                     </Grid>
                 </DataTemplate>

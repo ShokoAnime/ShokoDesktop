@@ -733,16 +733,12 @@ namespace Shoko.Desktop
                     case TAB_MAIN.Server:
                         lock (lockServerTab)
                         {
-                            if (VM_ShokoServer.Instance.FolderProviders.Count == 0)
-                                VM_ShokoServer.Instance.RefreshCloudAccounts();
                             if (VM_ShokoServer.Instance.ImportFolders.Count == 0) VM_ShokoServer.Instance.RefreshImportFolders();
                         }
                         break;
                     case TAB_MAIN.Settings:
                         lock (lockSettingsTab)
                         {
-                            if (VM_ShokoServer.Instance.FolderProviders.Count == 0)
-                                VM_ShokoServer.Instance.RefreshCloudAccounts();
                             if (VM_ShokoServer.Instance.ImportFolders.Count == 0) VM_ShokoServer.Instance.RefreshImportFolders();
                             if (VM_ShokoServer.Instance.SelectedLanguages.Count == 0)
                                 VM_ShokoServer.Instance.RefreshNamingLanguages();

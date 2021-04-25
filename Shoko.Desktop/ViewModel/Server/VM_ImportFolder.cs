@@ -21,13 +21,10 @@ namespace Shoko.Desktop.ViewModel.Server
         public string LocalPathTemp { get; set; }
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
-        public string LocalPath => CloudID.HasValue ? string.Empty : (ImportFolderID != 0 ? FolderMappings.Instance.GetMapping(ImportFolderID) : LocalPathTemp);
+        public string LocalPath => ImportFolderID != 0 ? FolderMappings.Instance.GetMapping(ImportFolderID) : LocalPathTemp;
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool LocalPathIsValid => FolderMappings.Instance.IsValid(this);
-
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
-        public bool IsCloud => CloudID.HasValue;
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool FolderIsWatched => IsWatched == 1;
@@ -44,10 +41,7 @@ namespace Shoko.Desktop.ViewModel.Server
         {
             get
             {
-                VM_CloudAccount v = VM_ShokoServer.Instance.FolderProviders.FirstOrDefault(a => a.CloudID == (CloudID ?? 0));
-                if (v != null)
-                    return v.Bitmap;
-                return new BitmapImage(ImageSourceHelper.UriLoadingError);
+                return new BitmapImage(new Uri(@"/ShokoDesktop;component/Images/16_folder.png", UriKind.Relative));
             }
         }
 
@@ -96,7 +90,6 @@ namespace Shoko.Desktop.ViewModel.Server
             var result = new ImportFolder
             {
                 ImportFolderID = ImportFolderID,
-                CloudID = CloudID,
                 ImportFolderLocation = ImportFolderLocation,
                 ImportFolderName = ImportFolderName,
                 ImportFolderType = ImportFolderType,

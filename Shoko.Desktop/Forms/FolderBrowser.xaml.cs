@@ -18,8 +18,7 @@ namespace Shoko.Desktop.Forms
         private object obj = new object();
 
         public string SelectedPath { get; set; } = string.Empty;
-        private VM_CloudAccount account;
-        
+
         public FolderBrowser()
         {
             InitializeComponent();
@@ -46,7 +45,7 @@ namespace Shoko.Desktop.Forms
         {
             try
             {
-                return VM_ShokoServer.Instance.ShokoServices.DirectoriesFromImportFolderPath((int)account.CloudID, path);
+                return VM_ShokoServer.Instance.ShokoServices.DirectoriesFromImportFolderPath(path);
             }
             catch (Exception e)
             {
@@ -55,9 +54,8 @@ namespace Shoko.Desktop.Forms
             }
         }
 
-        public void Init(VM_CloudAccount cl, string initialpath)
+        public void Init(string initialpath)
         {
-            account = cl;
             if (string.IsNullOrEmpty(initialpath)) initialpath = "null";
             PopulateMainDir(initialpath);
         }
@@ -95,7 +93,7 @@ namespace Shoko.Desktop.Forms
             while (initialpath.StartsWith("\\"))
                 initialpath = initialpath.Substring(1);
             string[] pars = initialpath.Split(new char[] { '\\' }, StringSplitOptions.RemoveEmptyEntries);
-            RecursiveAddFromDirectory(TrView.Items, initialpath, pars, (account?.CloudID ?? 0) == 0 ? 0 : 1);
+            RecursiveAddFromDirectory(TrView.Items, initialpath, pars, 0);
             Cursor = Cursors.Arrow;
         }
 

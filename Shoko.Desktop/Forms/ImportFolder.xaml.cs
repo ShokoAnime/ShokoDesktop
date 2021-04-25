@@ -36,31 +36,17 @@ namespace Shoko.Desktop.Forms
 
         private void ComboProvider_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            if (comboProvider.SelectedItem != null)
-            {
-                VM_CloudAccount account = comboProvider.SelectedItem as VM_CloudAccount;
-                switch (account?.CloudID ?? 0)
-                {
-                    case 0:
-                        GridLocalMapping.Visibility = Visibility.Visible;
-                        chkIsWatched.IsEnabled = true;
-                        break;
-                    default:
-                        GridLocalMapping.Visibility = Visibility.Collapsed;
-                        chkIsWatched.IsChecked = false;
-                        chkIsWatched.IsEnabled = false;
-                        break;
-                }
-            }
+            if (comboProvider.SelectedItem == null) return;
+            GridLocalMapping.Visibility = Visibility.Visible;
+            chkIsWatched.IsEnabled = true;
         }
 
         private void BtnProvChooseFolder_Click(object sender, RoutedEventArgs e)
         {
             if (comboProvider.SelectedItem == null)
                 return;
-            VM_CloudAccount cl = comboProvider.SelectedItem as VM_CloudAccount;
             FolderBrowser fld = new FolderBrowser();
-            fld.Init(cl, txtImportFolderLocation.Text);
+            fld.Init(txtImportFolderLocation.Text);
             fld.Owner = this;
             bool? result = fld.ShowDialog();
             if (result.HasValue && result.Value)
@@ -145,8 +131,6 @@ namespace Shoko.Desktop.Forms
                     importFldr.LocalPathTemp = txtImportFolderLocation.Text.Trim();
                 else
                     importFldr.LocalPathTemp = txtLocalPath.Text.Trim();
-                VM_CloudAccount cl = comboProvider.SelectedItem as VM_CloudAccount;
-                importFldr.CloudID = cl?.CloudID ?? 0;
                 importFldr.ImportFolderName = "NA";
                 importFldr.ImportFolderLocation = txtImportFolderLocation.Text.Trim();
                 importFldr.IsDropDestination = chkDropDestination.IsChecked ?? false ? 1 : 0;
@@ -185,11 +169,6 @@ namespace Shoko.Desktop.Forms
                     chkDropDestination.IsChecked = importFldr.IsDropDestination == 1;
                     chkDropSource.IsChecked = importFldr.IsDropSource == 1;
                     chkIsWatched.IsChecked = importFldr.IsWatched == 1;
-
-                    if ((ifldr.CloudID ?? 0) == 0)
-                        comboProvider.SelectedIndex = 0;
-                    else
-                        comboProvider.SelectedItem = VM_ShokoServer.Instance.FolderProviders.FirstOrDefault(a => a.CloudID == ifldr.CloudID.Value);
                 }
                 else
                 {

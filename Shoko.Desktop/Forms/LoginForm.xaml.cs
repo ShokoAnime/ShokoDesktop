@@ -60,7 +60,6 @@ namespace Shoko.Desktop.Forms
                 {
                     ThisUser = user;
                     DialogResult = true;
-                    VM_ShokoServer.Instance.RefreshCloudAccounts();
                     VM_ShokoServer.Instance.RefreshImportFolders();
                     Close();
                 }

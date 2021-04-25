@@ -23,9 +23,6 @@ namespace Shoko.Desktop.Forms
     /// </summary>
     public partial class DeleteFilesForm : Window
     {
-        Dictionary<string, bool> _chks = new Dictionary<string, bool>();
-        private Dictionary<int, Tuple<string, BitmapImage>> _icons = new Dictionary<int, Tuple<string, BitmapImage>>();
-        
         public static readonly DependencyProperty GroupVideoQualityProperty = DependencyProperty.Register("GroupVideoQuality",
             typeof(CL_GroupVideoQuality), typeof(DeleteFilesForm), new UIPropertyMetadata(null, null));
 
@@ -176,8 +173,6 @@ namespace Shoko.Desktop.Forms
                     i++;
                     string msg = string.Format(Commons.Properties.Resources.DeleteFiles_Deleting, i, total);
                     deleteFilesWorker.ReportProgress(0, msg);
-                    string g = _icons[n.ImportFolder.CloudID ?? 0].Item1;
-                    if (_chks.ContainsKey(g) && !_chks[g]) continue;
                     try
                     {
                         string result;
@@ -204,47 +199,6 @@ namespace Shoko.Desktop.Forms
             else deleteFilesWorker.ReportProgress(100, Commons.Properties.Resources.Done);
         }
 
-        public void InitImportFolders(Dictionary<string, BitmapImage> types)
-        {
-            WrapPanel.Children.Clear();
-            foreach (string s in types.Keys)
-            {
-                StackPanel st = new StackPanel
-                {
-                    Orientation = Orientation.Horizontal,
-                    Margin = new Thickness(0, 0, 10, 0)
-                };
-                Image im = new Image
-                {
-                    Height = 24,
-                    Width = 24,
-                    Source = types[s],
-                    VerticalAlignment = VerticalAlignment.Center,
-                    Margin = new Thickness(0, 0, 5, 0)
-                };
-                TextBlock tx = new TextBlock
-                {
-                    Margin = new Thickness(0, 0, 5, 0),
-                    Text = s,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    FontWeight = FontWeights.DemiBold
-                };
-                CheckBox chk = new CheckBox {VerticalAlignment = VerticalAlignment.Center, IsChecked = true};
-                chk.Checked += (a, b) =>
-                {
-                    _chks[s] = chk.IsChecked.Value;
-                };
-                chk.Unchecked += (a, b) =>
-                {
-                    _chks[s] = chk.IsChecked.Value;
-                };
-                st.Children.Add(im);
-                st.Children.Add(tx);
-                st.Children.Add(chk);
-                WrapPanel.Children.Add(st);
-            }
-        }
-
         public void Init(int animeID, CL_GroupVideoQuality gvq)
         {
             Cursor = Cursors.Wait;
@@ -255,31 +209,13 @@ namespace Shoko.Desktop.Forms
             // get the videos
             try
             {
-                VM_ShokoServer.Instance.RefreshCloudAccounts();
-                _icons = VM_ShokoServer.Instance.FolderProviders.ToDictionary(a => a.CloudID, a=>new Tuple<string,BitmapImage>(a.Provider,a.Bitmap));
-                _chks = new Dictionary<string, bool>();
-                Dictionary<string, BitmapImage> types=new Dictionary<string, BitmapImage>();
 
                 vids = VM_ShokoServer.Instance.ShokoServices.GetFilesByGroupAndResolution(AnimeID,
                     GroupVideoQuality.GroupName, GroupVideoQuality.Resolution, GroupVideoQuality.VideoSource, GroupVideoQuality.VideoBitDepth, VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_VideoDetailed>();
-                foreach (VM_VideoDetailed vid in vids)
-                {
-                    foreach (CL_VideoLocal_Place vv in vid.Places)
-                    {
-                        Tuple<string, BitmapImage> tup = _icons[vv.ImportFolder.CloudID ?? 0];
-                        if (!types.ContainsKey(tup.Item1))
-                        {
-                            _chks[tup.Item1] = true;
-                            types.Add(tup.Item1, tup.Item2);
-                        }
-                    }
-                }
-                
                 FileCount = vids.Count;
                 lbFiles.ItemsSource = vids;
                 GroupName = GroupVideoQuality.GroupName;
                 SummaryText = $"{GroupVideoQuality.VideoSource} - {GroupVideoQuality.Resolution}";
-                InitImportFolders(types);
             }
             catch (Exception ex)
             {
@@ -302,33 +238,14 @@ namespace Shoko.Desktop.Forms
             // get the videos
             try
             {
-                VM_ShokoServer.Instance.RefreshCloudAccounts();
-                _icons = VM_ShokoServer.Instance.FolderProviders.ToDictionary(a => a.CloudID, a => new Tuple<string, BitmapImage>(a.Provider, a.Bitmap));
-                _chks = new Dictionary<string, bool>();
-                Dictionary<string, BitmapImage> types = new Dictionary<string, BitmapImage>();
-
-
                 vids = VM_ShokoServer.Instance.ShokoServices.GetFilesByGroup(AnimeID,
                     GroupFileSummary.GroupName, VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_VideoDetailed>();
-                foreach (VM_VideoDetailed vid in vids)
-                {
-                    foreach (CL_VideoLocal_Place vv in vid.Places)
-                    {
-                        Tuple<string, BitmapImage> tup = _icons[vv.ImportFolder.CloudID ?? 0];
-                        if (!types.ContainsKey(tup.Item1))
-                        {
-                            _chks[tup.Item1] = true;
-                            types.Add(tup.Item1, tup.Item2);
-                        }
-                    }
-                }
+
                 FileCount = vids.Count;
                 lbFiles.ItemsSource = vids;
 
                 GroupName = GroupFileSummary.GroupName;
                 SummaryText = "";
-                InitImportFolders(types);
-
             }
             catch (Exception ex)
             {
@@ -348,28 +265,11 @@ namespace Shoko.Desktop.Forms
             // get the videos
             try
             {
-                VM_ShokoServer.Instance.RefreshCloudAccounts();
-                _icons = VM_ShokoServer.Instance.FolderProviders.ToDictionary(a => a.CloudID, a => new Tuple<string, BitmapImage>(a.Provider, a.Bitmap));
-                _chks = new Dictionary<string, bool>();
-                Dictionary<string, BitmapImage> types = new Dictionary<string, BitmapImage>();
-
-
                 vids = videos;
-                foreach (VM_VideoDetailed vid in vids)
-                {
-                    foreach (CL_VideoLocal_Place vv in vid.Places)
-                    {
-                        Tuple<string, BitmapImage> tup = _icons[vv.ImportFolder.CloudID ?? 0];
-                        if (!types.ContainsKey(tup.Item1))
-                            types.Add(tup.Item1, tup.Item2);
-                    }
-                }
                 FileCount = vids.Count;
                 lbFiles.ItemsSource = vids;
 
                 SummaryText = "";
-                InitImportFolders(types);
-
             }
             catch (Exception ex)
             {

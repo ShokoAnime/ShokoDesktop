@@ -826,7 +826,6 @@
     <Compile Include="ViewModel\Server\VM_AnimeSearch.cs" />
     <Compile Include="ViewModel\VM_AVDump.cs" />
     <Compile Include="ViewModel\Server\VM_BookmarkedAnime.cs" />
-    <Compile Include="ViewModel\Server\VM_CloudAccount.cs" />
     <Compile Include="ViewModel\Server\VM_CrossRef_AniDB_TraktV2.cs" />
     <Compile Include="ViewModel\VM_TraktDetails.cs" />
     <Compile Include="ViewModel\VM_TraktSummary.cs" />

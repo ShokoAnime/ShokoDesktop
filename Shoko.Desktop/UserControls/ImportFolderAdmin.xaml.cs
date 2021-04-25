@@ -26,7 +26,6 @@ namespace Shoko.Desktop.UserControls
 
         void btnRefreshImportFolders_Click(object sender, RoutedEventArgs e)
         {
-            VM_ShokoServer.Instance.RefreshCloudAccounts();
             VM_ShokoServer.Instance.RefreshImportFolders();
         }
 

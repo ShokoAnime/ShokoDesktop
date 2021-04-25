@@ -25,19 +25,6 @@ namespace Shoko.Desktop.UserControls
             }
         }
 
-        public bool SomeAreNotCloud
-        {
-            get
-            {
-                foreach(VM_VideoLocal vidLocal in VideoLocals)
-                {
-                    if (vidLocal.Places.Any(a => a.ImportFolder?.IsNotCloud() ?? false))
-                        return true;
-                }
-                return false;
-            }
-        }
-
         public bool SomeHaveHashes
         {
             get
