@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -11,10 +12,12 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using Shoko.Commons.Extensions;
+using Shoko.Desktop.Forms;
 using Shoko.Desktop.Utilities;
 using Shoko.Models.Enums;
 using Shoko.Desktop.ViewModel;
 using Shoko.Desktop.ViewModel.Server;
+using Shoko.Models.Client;
 
 namespace Shoko.Desktop.UserControls
 {
@@ -28,11 +31,29 @@ namespace Shoko.Desktop.UserControls
 
         public static readonly DependencyProperty FileCountProperty = DependencyProperty.Register("FileCount",
             typeof(int), typeof(FileSearchControl), new UIPropertyMetadata(0, null));
+        
+        public static readonly DependencyProperty OneVideoSelectedProperty = DependencyProperty.Register("OneVideoSelected",
+            typeof(bool), typeof(FileSearchControl), new UIPropertyMetadata(false, null));
+        
+        public static readonly DependencyProperty MultipleVideosSelectedProperty = DependencyProperty.Register("MultipleVideosSelected",
+            typeof(bool), typeof(FileSearchControl), new UIPropertyMetadata(false, null));
 
         public int FileCount
         {
             get { return (int)GetValue(FileCountProperty); }
             set { SetValue(FileCountProperty, value); }
+        }
+
+        public bool OneVideoSelected
+        {
+            get { return (bool)GetValue(OneVideoSelectedProperty); }
+            set { SetValue(OneVideoSelectedProperty, value); }
+        }
+        
+        public bool MultipleVideosSelected
+        {
+            get { return (bool)GetValue(MultipleVideosSelectedProperty); }
+            set { SetValue(MultipleVideosSelectedProperty, value); }
         }
 
         private readonly string SearchTypeFileName = Shoko.Commons.Properties.Resources.Search_FileName;
@@ -82,39 +103,100 @@ namespace Shoko.Desktop.UserControls
         void lbVideos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // get detailed video, episode and series info
-            ccDetail.Content = null;
-            ccSeriesDetail.Content = null;
-            if (lbVideos.SelectedItems.Count == 0) return;
-            if (lbVideos.SelectedItem == null) return;
-
-            VM_VideoLocal vid = lbVideos.SelectedItem as VM_VideoLocal;
-            displayingVidID = vid.VideoLocalID;
-            EnableDisableControls(false);
-
-            try
+            if (lbVideos.SelectedItems.Count == 0)
             {
-                Cursor = Cursors.Wait;
+                ccDetail.Content = null;
+                ccSeriesDetail.Content = null;
+                OneVideoSelected = false;
+                MultipleVideosSelected = false;
+                return;
+            }
 
-                ccDetail.Content = vid;
+            if (lbVideos.SelectedItems.Count == 1)
+            {
+                VM_VideoLocal vid = lbVideos.SelectedItem as VM_VideoLocal;
+                OneVideoSelected = true;
+                MultipleVideosSelected = false;
+                displayingVidID = vid.VideoLocalID;
+                EnableDisableControls(false);
 
-                // get the episode(s)
-                VM_AnimeEpisode_User ep = (VM_AnimeEpisode_User)VM_ShokoServer.Instance.ShokoServices.GetEpisodesForFile(vid.VideoLocalID, VM_ShokoServer.Instance.CurrentUser.JMMUserID).FirstOrDefault();
+                try
+                {
+                    Cursor = Cursors.Wait;
 
+                    ccDetail.Content = vid;
 
-                if (ep!=null)
+                    // get the episode(s)
+                    VM_AnimeEpisode_User ep = (VM_AnimeEpisode_User) VM_ShokoServer.Instance.ShokoServices
+                        .GetEpisodesForFile(vid.VideoLocalID, VM_ShokoServer.Instance.CurrentUser.JMMUserID)
+                        .FirstOrDefault();
+
+                    // whether it's null or not
                     ccSeriesDetail.Content = ep;
 
-                Cursor = Cursors.Arrow;
+                    Cursor = Cursors.Arrow;
 
+                }
+                catch (Exception ex)
+                {
+                    Utils.ShowErrorMessage(ex);
+                }
+                finally
+                {
+                    Cursor = Cursors.Arrow;
+                    EnableDisableControls(true);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                Utils.ShowErrorMessage(ex);
-            }
-            finally
-            {
-                Cursor = Cursors.Arrow;
-                EnableDisableControls(true);
+                try
+                {
+                    Cursor = Cursors.Wait;
+                    var vids = lbVideos.SelectedItems.Cast<VM_VideoLocal>().ToList();
+                    OneVideoSelected = false;
+                    MultipleVideosSelected = true;
+                    MultipleVideos mv = new MultipleVideos();
+                    mv.SelectedCount = vids.Count;
+                    mv.VideoLocalIDs = new List<int>();
+                    mv.VideoLocals = new List<VM_VideoLocal>();
+
+                    var eps = new List<VM_AnimeEpisode_User>();
+
+                    foreach (var vid in vids)
+                    {
+                        mv.VideoLocalIDs.Add(vid.VideoLocalID);
+                        mv.VideoLocals.Add(vid);
+                        // get the episode(s)
+                        VM_AnimeEpisode_User ep = (VM_AnimeEpisode_User) VM_ShokoServer.Instance.ShokoServices
+                            .GetEpisodesForFile(vid.VideoLocalID, VM_ShokoServer.Instance.CurrentUser.JMMUserID)
+                            .FirstOrDefault();
+                        if (ep != null) eps.Add(ep);
+                    }
+
+                    ccDetailMultiple.Content = mv;
+                    displayingVidID = vids.First().VideoLocalID;
+
+                    if (eps.GroupBy(a => a?.AnimeSeriesID ?? 0).Distinct().Count(a => a.Key != 0) == 1)
+                    {
+                        ccSeriesDetail.Content = eps.FirstOrDefault();
+                    }
+                    else
+                    {
+                        ccSeriesDetail.Content = null;
+                    }
+
+                    Cursor = Cursors.Arrow;
+
+                }
+                catch (Exception ex)
+                {
+                    Utils.ShowErrorMessage(ex);
+                }
+                finally
+                {
+                    Cursor = Cursors.Arrow;
+                    EnableDisableControls(true);
+                }
             }
         }
 
@@ -229,7 +311,77 @@ namespace Shoko.Desktop.UserControls
             }
         }
 
+        private void CommandBinding_DeleteFile(object sender, ExecutedRoutedEventArgs e)
+        {
+            try
+            {
+                Window parentWindow = Window.GetWindow(this);
 
+                object obj = e.Parameter;
+                if (obj == null) return;
+
+                if (obj.GetType() == typeof(VM_VideoLocal))
+                {
+                    VM_VideoLocal vid = obj as VM_VideoLocal;
+
+                    AskDeleteFile dlg = new AskDeleteFile(string.Format(Shoko.Commons.Properties.Resources.DeleteFile_Title, vid.FileName),
+                        string.Format(Shoko.Commons.Properties.Resources.Unrecognized_ConfirmDelete, vid.FileName) + "\r\n\r\n" + Shoko.Commons.Properties.Resources.DeleteFile_Confirm,
+                        vid.Places);
+                    dlg.Owner = Window.GetWindow(this);
+                    bool? res = dlg.ShowDialog();
+                    if (res.HasValue && res.Value)
+                    {
+                        string tresult = string.Empty;
+                        Cursor = Cursors.Wait;
+                        foreach (CL_VideoLocal_Place lv in dlg.Selected)
+                        {
+                            string result =
+                                VM_ShokoServer.Instance.ShokoServices.DeleteVideoLocalPlaceAndFile(
+                                    lv.VideoLocal_Place_ID);
+                            if (result.Length > 0)
+                                tresult += result + "\r\n";
+                        }
+                        if (!string.IsNullOrEmpty(tresult))
+                            MessageBox.Show(tresult, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+                        lbVideos.Items.Remove(e.Parameter);
+                    }
+
+
+                }
+                else if (obj.GetType() == typeof(MultipleVideos))
+                {
+                    MultipleVideos mv = obj as MultipleVideos;
+                    AskDeleteFile dlg = new AskDeleteFile(Shoko.Commons.Properties.Resources.DeleteFile_Multiple,
+                        Shoko.Commons.Properties.Resources.Unrecognized_DeleteSelected + "\r\n\r\n" + Shoko.Commons.Properties.Resources.DeleteFile_Confirm,
+                        mv.VideoLocals.SelectMany(a => a.Places).ToList());
+                    dlg.Owner = Window.GetWindow(this);
+                    bool? res = dlg.ShowDialog();
+                    if (res.HasValue && res.Value)
+                    {
+                        string tresult = string.Empty;
+                        Cursor = Cursors.Wait;
+                        foreach (CL_VideoLocal_Place lv in dlg.Selected)
+                        {
+                            string result = VM_ShokoServer.Instance.ShokoServices.DeleteVideoLocalPlaceAndFile(lv.VideoLocal_Place_ID);
+                            if (result.Length > 0)
+                                tresult += result + "\r\n";
+                        }
+                        if (!string.IsNullOrEmpty(tresult))
+                            MessageBox.Show(tresult, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        mv.VideoLocals.ForEach(a => lbVideos.Items.Remove(a));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+                Cursor = Cursors.Arrow;
+            }
+        }
 
         private void CommandBinding_RehashFile(object sender, ExecutedRoutedEventArgs e)
         {
@@ -243,12 +395,23 @@ namespace Shoko.Desktop.UserControls
                 if (obj.GetType() == typeof(VM_VideoLocal))
                 {
                     VM_VideoLocal vid = obj as VM_VideoLocal;
-                    EnableDisableControls(false);
+                    if (vid.IsLocalFile())
+                    {
+                        EnableDisableControls(false);
 
-                    VM_ShokoServer.Instance.ShokoServices.RehashFile(vid.VideoLocalID);
+                        VM_ShokoServer.Instance.ShokoServices.RehashFile(vid.VideoLocalID);
+                    }
+                } else if (obj.GetType() == typeof(MultipleVideos))
+                {
+                    MultipleVideos mv = obj as MultipleVideos;
+                    foreach(VM_VideoLocal v in mv.VideoLocals)
+                    {
+                        if (v.IsLocalFile())
+                            VM_ShokoServer.Instance.ShokoServices.RehashFile(v.VideoLocalID);
+                    }
                 }
 
-                MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_INFO_AddedQueueCmds, "Done", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_INFO_AddedQueueCmds, Shoko.Commons.Properties.Resources.Done, MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
@@ -271,8 +434,16 @@ namespace Shoko.Desktop.UserControls
                 {
                     VM_VideoLocal vid = obj as VM_VideoLocal;
                     EnableDisableControls(false);
-
-                    VM_ShokoServer.Instance.ShokoServices.RescanFile(vid.VideoLocalID);
+                    if (vid.IsHashed())
+                        VM_ShokoServer.Instance.ShokoServices.RescanFile(vid.VideoLocalID);
+                } else if (obj.GetType() == typeof(MultipleVideos))
+                {
+                    MultipleVideos mv = obj as MultipleVideos;
+                    foreach (VM_VideoLocal v in mv.VideoLocals)
+                    {
+                        if (v.IsHashed())
+                            VM_ShokoServer.Instance.ShokoServices.RescanFile(v.VideoLocalID);
+                    }
                 }
 
                 MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_INFO_AddedQueueCmds, Shoko.Commons.Properties.Resources.Done, MessageBoxButton.OK, MessageBoxImage.Information);
