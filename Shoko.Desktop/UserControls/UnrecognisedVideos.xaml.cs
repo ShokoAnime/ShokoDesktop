@@ -793,28 +793,21 @@ namespace Shoko.Desktop.UserControls
         {
             try
             {
-                Window parentWindow = Window.GetWindow(this);
-
                 object obj = e.Parameter;
                 if (obj == null) return;
 
                 if (obj.GetType() == typeof(VM_VideoLocal))
                 {
                     VM_VideoLocal vid = obj as VM_VideoLocal;
-                    if (vid.IsLocalFile())
-                    {
-                        EnableDisableControls(false);
-
-                        VM_ShokoServer.Instance.ShokoServices.RehashFile(vid.VideoLocalID);
-                    }
+                    EnableDisableControls(false);
+                    VM_ShokoServer.Instance.ShokoServices.RehashFile(vid.VideoLocalID);
                 }
                 if (obj.GetType() == typeof(MultipleVideos))
                 {
                     MultipleVideos mv = obj as MultipleVideos;
                     foreach(VM_VideoLocal v in mv.VideoLocals)
                     {
-                        if (v.IsLocalFile())
-                            VM_ShokoServer.Instance.ShokoServices.RehashFile(v.VideoLocalID);
+                        VM_ShokoServer.Instance.ShokoServices.RehashFile(v.VideoLocalID);
                     }
                 }
 
