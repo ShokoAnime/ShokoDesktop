@@ -374,6 +374,7 @@ namespace Shoko.Desktop.ViewModel
             Hash_SHA1 = contract.Hash_SHA1;
             RenameOnImport = contract.Import_RenameOnImport;
             MoveOnImport = contract.Import_MoveOnImport;
+            SkipDiskSpaceChecks = contract.SkipDiskSpaceChecks;
 
 
             // Language
@@ -492,6 +493,7 @@ namespace Shoko.Desktop.ViewModel
                 contract.Hash_SHA1 = Hash_SHA1;
                 contract.Import_RenameOnImport = RenameOnImport;
                 contract.Import_MoveOnImport = MoveOnImport;
+                contract.SkipDiskSpaceChecks = SkipDiskSpaceChecks;
 
                 // Language
                 contract.LanguagePreference = LanguagePreference;
@@ -1566,6 +1568,16 @@ namespace Shoko.Desktop.ViewModel
             set
             {
                 this.SetField(()=>hash_SHA1,value);
+            }
+        }
+        
+        private bool skipDiskSpaceChecks;
+        public bool SkipDiskSpaceChecks
+        {
+            get => skipDiskSpaceChecks;
+            set
+            {
+                this.SetField(()=>skipDiskSpaceChecks,value);
             }
         }
 
