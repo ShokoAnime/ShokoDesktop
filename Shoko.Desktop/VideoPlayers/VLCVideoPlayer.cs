@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -231,7 +231,7 @@ namespace Shoko.Desktop.VideoPlayers
                         {
                             // Extract filename and url decode so it matches
                             filename = HttpUtility.UrlDecode(fileRegex.Match(responseString).Groups[1].ToString());
-                            filename = filename.Replace("file:", string.Empty).Replace("/", "\\").Trim();
+                            filename = filename.Replace("file:///", string.Empty).Replace("/", "\\").Trim();
                         }
                     }
                 }
