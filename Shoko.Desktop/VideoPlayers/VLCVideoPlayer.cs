@@ -52,7 +52,10 @@ namespace Shoko.Desktop.VideoPlayers
         public override void Play(VideoInfo video)
         {
             if (IsPlaying)
+            {
+                AddFileToQueue(video);
                 return;
+            }
             Task.Factory.StartNew(() =>
             {
                 Process process;
@@ -63,25 +66,29 @@ namespace Shoko.Desktop.VideoPlayers
                     process = Process.Start(PlayerPath, $"\"{video.Uri}\" {webUIParams}");
                 else
                 {
-                    string init = $"\"{video.Uri}\" {webUIParams}";
-                    if (video.ResumePosition > 0)
-                    {
-                        double n = video.ResumePosition;
-                        n /= 1000;
-                        init += " --start-time=\"" + n.ToString(CultureInfo.InvariantCulture) + "\"";
-                    }
-                    if (video.SubtitlePaths != null && video.SubtitlePaths.Count > 0)
-                    {
-                        foreach (string s in video.SubtitlePaths)
-                        {
-                            init += " --sub-file=\"" + s + "\"";
-                        }
-                    }
+                    string init = $" {webUIParams}";
+                    // if (video.ResumePosition > 0)
+                    // {
+                    //     double n = video.ResumePosition;
+                    //     n /= 1000;
+                    //     init += " --start-time=\"" + n.ToString(CultureInfo.InvariantCulture) + "\"";
+                    // }
+                    // if (video.SubtitlePaths != null && video.SubtitlePaths.Count > 0)
+                    // {
+                    //     foreach (string s in video.SubtitlePaths)
+                    //     {
+                    //         init += " --sub-file=\"" + s + "\"";
+                    //     }
+                    // }
                     process = Process.Start(PlayerPath, init);
                 }
                 if (process != null)
                 {
                     IsPlaying = true;
+                    AddFileToQueue(video);
+                    Thread.Sleep(1000);
+                    PlayVideo();
+                    if (video.ResumePosition > 0) SeekTo(video);
                     StartWatcher("");
                     process.WaitForExit();
                     StopWatcher();
@@ -116,6 +123,71 @@ namespace Shoko.Desktop.VideoPlayers
         internal override void FileChangeEvent(string filePath)
         {
             // No longer used
+        }
+
+        private async void AddFileToQueue(VideoInfo video)
+        {
+            string videoPath = video.Uri;
+            int startTime = (int) video.ResumePosition;
+            string vlcEnqueueUrl =
+                $"http://localhost:{webUIPort}/requests/status.xml?command=in_enqueue&input=file:///{videoPath}";
+            try
+            {
+                // Make HTTP request to Web UI
+                HttpClient client = new HttpClient();
+                var byteArray = Encoding.ASCII.GetBytes(":" + webUIPassword);
+                var header = new AuthenticationHeaderValue(
+                    "Basic", Convert.ToBase64String(byteArray));
+                client.DefaultRequestHeaders.Authorization = header;
+                await client.GetAsync(vlcEnqueueUrl);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, ex.ToString());
+            }
+        }
+
+        private async void PlayVideo()
+        {
+
+            string vlcEnqueueUrl =
+                $"http://localhost:{webUIPort}/requests/status.xml?command=pl_play";
+            try
+            {
+                // Make HTTP request to Web UI
+                HttpClient client = new HttpClient();
+                var byteArray = Encoding.ASCII.GetBytes(":" + webUIPassword);
+                var header = new AuthenticationHeaderValue(
+                    "Basic", Convert.ToBase64String(byteArray));
+                client.DefaultRequestHeaders.Authorization = header;
+                await client.GetAsync(vlcEnqueueUrl);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, ex.ToString());
+            }
+        }
+
+        private async void SeekTo(VideoInfo video)
+        {
+            int startTime = (int) video.ResumePosition;
+            startTime = startTime / 1000;
+            string vlcEnqueueUrl =
+                $"http://localhost:{webUIPort}/requests/status.xml?command=seek&val={startTime}";
+            try
+            {
+                // Make HTTP request to Web UI
+                HttpClient client = new HttpClient();
+                var byteArray = Encoding.ASCII.GetBytes(":" + webUIPassword);
+                var header = new AuthenticationHeaderValue(
+                    "Basic", Convert.ToBase64String(byteArray));
+                client.DefaultRequestHeaders.Authorization = header;
+                HttpResponseMessage response = await client.GetAsync(vlcEnqueueUrl);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, ex.ToString());
+            }
         }
 
         // Make and handle VLC web UI request
@@ -177,9 +249,9 @@ namespace Shoko.Desktop.VideoPlayers
                                 if (isDoublePosition)
                                 {
                                     // Convert miliseconds to seconds
-                                    filePosition = webPosition*1000;
+                                    filePosition = webPosition * 1000;
                                     if (isDoubleDuration)
-                                        fileDuration = webDuration*1000;
+                                        fileDuration = webDuration * 1000;
 
                                     Dictionary<string, long> pos = new Dictionary<string, long>();
                                     pos.Add(nowPlayingFile, (long) filePosition);
@@ -236,7 +308,8 @@ namespace Shoko.Desktop.VideoPlayers
                     }
                 }
             }
-            catch (Exception ex){
+            catch (Exception ex)
+            {
                 logger.Error(ex, ex.ToString());
             }
 
