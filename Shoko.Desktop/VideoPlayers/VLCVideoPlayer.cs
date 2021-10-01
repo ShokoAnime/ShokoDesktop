@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using Microsoft.Win32;
@@ -81,6 +82,10 @@ namespace Shoko.Desktop.VideoPlayers
                     //     }
                     // }
                     process = Process.Start(PlayerPath, init);
+                    if (video.ResumePosition > 0)
+                    {
+                        SeekTo(video);
+                    }
                 }
                 if (process != null)
                 {
