@@ -68,19 +68,6 @@ namespace Shoko.Desktop.VideoPlayers
                 else
                 {
                     string init = $" {webUIParams}";
-                    // if (video.ResumePosition > 0)
-                    // {
-                    //     double n = video.ResumePosition;
-                    //     n /= 1000;
-                    //     init += " --start-time=\"" + n.ToString(CultureInfo.InvariantCulture) + "\"";
-                    // }
-                    // if (video.SubtitlePaths != null && video.SubtitlePaths.Count > 0)
-                    // {
-                    //     foreach (string s in video.SubtitlePaths)
-                    //     {
-                    //         init += " --sub-file=\"" + s + "\"";
-                    //     }
-                    // }
                     process = Process.Start(PlayerPath, init);
                     if (video.ResumePosition > 0)
                     {
