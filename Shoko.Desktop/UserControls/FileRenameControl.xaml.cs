@@ -352,6 +352,7 @@ namespace Shoko.Desktop.UserControls
                     cboController.SelectedIndex = idxi;
                 idxi++;
             }
+            chkIsUsedForImports.IsChecked = script.IsEnabledOnImportBool;
         }
 
         public void RefreshScripts()
