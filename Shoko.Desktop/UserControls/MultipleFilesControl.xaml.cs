@@ -356,6 +356,13 @@ namespace Shoko.Desktop.UserControls
             chkOnlyFinished.IsChecked = AppSettings.MultipleFilesOnlyFinished;
 
             chkOnlyFinished.Checked += new RoutedEventHandler(chkOnlyFinished_Checked);
+            this.PreviewKeyDown += new KeyEventHandler(HandleKeys);
+        }
+
+        private void HandleKeys(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.F5)
+                RefreshMultipleFiles();
         }
 
         private void btnClearSearch_Click(object sender, RoutedEventArgs e)

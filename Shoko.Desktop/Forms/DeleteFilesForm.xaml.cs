@@ -106,6 +106,33 @@ namespace Shoko.Desktop.Forms
             btnOK.Click += btnOK_Click;
             Closing += DeleteFilesForm_Closing;
             FilesDeleted = false;
+            cb_AutoClose_DeleteFilesForm.IsChecked = AppSettings.AutoClose_DeleteFilesForm;
+            this.PreviewKeyDown += new KeyEventHandler(HandleEsc);
+        }
+
+        private void HandleEsc(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+                Close();
+        }
+
+        private void HandleCheck(object sender, RoutedEventArgs e)
+        {
+            CheckBox cb = sender as CheckBox;
+
+            if (cb.Name == "cb_AutoClose_DeleteFilesForm")
+            {
+                AppSettings.AutoClose_DeleteFilesForm = true;
+            }
+        }
+        private void HandleUnchecked(object sender, RoutedEventArgs e)
+        {
+            CheckBox cb = sender as CheckBox;
+
+            if (cb.Name == "cb_AutoClose_DeleteFilesForm")
+            {
+                AppSettings.AutoClose_DeleteFilesForm = false;
+            }
         }
 
         void DeleteFilesForm_Closing(object sender, CancelEventArgs e)
@@ -138,6 +165,8 @@ namespace Shoko.Desktop.Forms
         {
             Cursor = Cursors.Arrow;
             inProgress = false;
+            if (AppSettings.AutoClose_DeleteFilesForm)
+                this.Close();
         }
 
         void deleteFilesWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)

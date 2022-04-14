@@ -1755,6 +1755,19 @@ namespace Shoko.Desktop
             set => Set("UpdateChannel", value);
         }
 
+
+        public static bool AutoClose_DeleteFilesForm
+        {
+            get
+            {
+                string val = Get("AutoClose_DeleteFilesForm");
+                if (bool.TryParse(val, out var bval))
+                    return bval;
+                return false; // default value
+            }
+            set => Set("AutoClose_DeleteFilesForm", value.ToString());
+        }
+
         public static void DebugSettingsToLog()
         {
             #region System Info
