@@ -11,7 +11,7 @@
 
 AppId={{EFA49A76-085F-4E64-AEC4-6ACA707A5D91}
 AppName=Shoko Desktop
-AppVersion=4.1.1.0
+AppVersion=4.1.2.0
 AppVerName=Shoko Desktop
 AppPublisher=Shoko Team
 AppPublisherURL=https://ShokoAnime.com/
@@ -48,7 +48,7 @@ Name: "{commondesktop}\Shoko Desktop"; Filename: "{app}\ShokoDesktop.exe"; Tasks
 [Run]
 Filename: "{app}\FixPermissions.bat";
 Filename: "{app}\ShokoDesktop.exe"; Flags: nowait postinstall skipifsilent shellexec; Description: "{cm:LaunchProgram,Shoko Desktop}"
-Filename: "https://shokoanime.com/blog/shoko-version-4-1-1-released/"; Flags: shellexec runasoriginaluser postinstall; Description: "View 4.0.0 Release Notes"
+Filename: "https://shokoanime.com/blog/shoko-version-4-1-2-released/"; Flags: shellexec runasoriginaluser postinstall; Description: "View 4.0.0 Release Notes"
 
 [Dirs]
 Name: "{app}"; Permissions: users-full
