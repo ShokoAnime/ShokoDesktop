@@ -23,12 +23,13 @@ AllowNoIcons=yes
 OutputBaseFilename=Shoko_Desktop_Setup_{#AppVer}
 UninstallDisplayIcon={app}\{#MyAppExeName}
 SolidCompression=yes
+InternalCompressLevel=max
 Compression=lzma2/ultra64
 LZMAUseSeparateProcess=yes
+LZMANumBlockThreads=6
 LZMADictionarySize=1048576
 LZMANumFastBytes=273        
 PrivilegesRequired=admin
-InternalCompressLevel=max
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -52,7 +53,7 @@ Filename: "https://shokoanime.com/blog/shoko-version-4-1-2-released/"; Flags: sh
 
 [Dirs]
 Name: "{app}"; Permissions: users-full
-Name: "C:\ProgramData\ShokoDesktop"; Permissions: users-full
+Name: "{commonappdata}\ShokoDesktop"; Permissions: users-full
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{app}"
