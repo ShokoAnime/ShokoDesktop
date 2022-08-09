@@ -3,10 +3,10 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-            xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"       
+            xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
              xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
              xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
-             xmlns:MahControls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:mahControls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:metro="clr-namespace:Shoko.Desktop.ViewModel.Metro"
              mc:Ignorable="d"
@@ -454,7 +454,7 @@
                         Grid.Column="{Binding Path=Dash_ContinueWatching_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
                         Visibility="{Binding Path=IsLoadingContinueWatching, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-                <MahControls:ProgressRing IsActive="{Binding Path=IsLoadingContinueWatching, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" VerticalAlignment="Top" Foreground="DarkBlue" />
+                <mahControls:ProgressRing IsActive="{Binding Path=IsLoadingContinueWatching, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" VerticalAlignment="Top" Foreground="DarkBlue" />
             </StackPanel>
 
             <!-- ************************** -->
@@ -509,7 +509,7 @@
                         Grid.Column="{Binding Path=Dash_RandomSeries_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
                         Visibility="{Binding Path=IsLoadingRandomSeries, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-                <MahControls:ProgressRing IsActive="{Binding Path=IsLoadingRandomSeries, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" VerticalAlignment="Top" Foreground="DarkBlue" />
+                <mahControls:ProgressRing IsActive="{Binding Path=IsLoadingRandomSeries, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" VerticalAlignment="Top" Foreground="DarkBlue" />
             </StackPanel>
 
             <!-- ************************** -->
@@ -565,7 +565,7 @@
                         Grid.Row="2" Margin="30,5,0,17"
                         Visibility="{Binding Path=IsLoadingNewEpisodes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-                <MahControls:ProgressRing IsActive="{Binding Path=IsLoadingNewEpisodes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" VerticalAlignment="Top" Foreground="DarkBlue" />
+                <mahControls:ProgressRing IsActive="{Binding Path=IsLoadingNewEpisodes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" VerticalAlignment="Top" Foreground="DarkBlue" />
             </StackPanel>
 
         </Grid>

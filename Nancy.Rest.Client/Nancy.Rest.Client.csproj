@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net471</TargetFramework>
+    <RuntimeIdentifiers>win-x64;win10-x64;win-x8</RuntimeIdentifiers>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <PackageId>Nancy.Rest.Client</PackageId>
+    <Authors>Máximo Piva</Authors>
+    <Product>Nancy.Rest.Client</Product>
+    <Copyright>Copyright (c) 2019 Máximo Piva &amp; Shoko Developers</Copyright>
+    <PackageProjectUrl>https://github.com/maxpiva/Nancy.Rest.Client</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/maxpiva/Nancy.Rest.Client</RepositoryUrl>
+    <Description>Dynamic proxy client generation for Nancy using Nancy.Rest.Module.</Description>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>nancy rest client</PackageTags>
+    <Version>1.4.4.0</Version>
+    <FileVersion>1.4.4.0</FileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Nancy.Rest.Annotations" Version="1.4.4" />
+    <PackageReference Include="System.Runtime" Version="4.3.1" />
+    <PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" />
+    <PackageReference Include="ImpromptuInterface" Version="7.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+</Project>

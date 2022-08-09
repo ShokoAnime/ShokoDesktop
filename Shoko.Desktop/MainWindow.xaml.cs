@@ -17,7 +17,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Navigation;
 using System.Windows.Threading;
-using Infralution.Localization.Wpf;
 using NLog;
 using Shoko.Commons;
 using Shoko.Commons.Extensions;
@@ -865,7 +864,6 @@ namespace Shoko.Desktop
             {
                 CultureInfo ci = new CultureInfo(ul.Culture);
                 CultureInfo.DefaultThreadCurrentUICulture = ci;
-                CultureManager.UICulture = ci;
                 AppSettings.Culture = ul.Culture;
                 ConfigurationManager.RefreshSection("appSettings");
 

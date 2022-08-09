@@ -6,10 +6,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using Microsoft.Win32;
 using Shoko.Desktop.Enums;
-using Shoko.Desktop.UserControls.Settings;
 using Shoko.Desktop.Utilities;
 
 namespace Shoko.Desktop.VideoPlayers
@@ -319,9 +317,9 @@ namespace Shoko.Desktop.VideoPlayers
             try
             {
                 // Make HTTP request to Web UI
-                using (HttpClient client = new HttpClient())
-                using (HttpResponseMessage response = await client.GetAsync(mpcUIFullUrl))
-                using (HttpContent content = response.Content)
+                using (var client = new HttpClient())
+                using (var response = await client.GetAsync(mpcUIFullUrl))
+                using (var content = response.Content)
                 {
                     // Check if request was ok
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
