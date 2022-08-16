@@ -3,4 +3,4 @@
 	url = https://github.com/japanesemediamanager/Shoko.Commons
 [submodule "MPVPlayer.WPF.Wrapper"]
 	path = MPVPlayer.WPF.Wrapper
-	url = https://github.com/maxpiva/MPVPlayer.WPF.Wrapper
+	url = https://github.com/shokoanime/mpvwrapper
