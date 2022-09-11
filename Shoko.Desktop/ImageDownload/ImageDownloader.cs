@@ -17,7 +17,7 @@ namespace Shoko.Desktop.ImageDownload
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
         private readonly ConcurrentQueue<ImageDownloadRequest> imagesToDownload = new ConcurrentQueue<ImageDownloadRequest>();
         private readonly BackgroundWorker workerImages = new BackgroundWorker();
-        private static readonly object downloadsLock = new object();
+        private static readonly SemaphoreSlim DownloadsLock = new(8);
         public static bool Stopping = false;
 
         public int QueueCount => imagesToDownload.Count;
@@ -386,45 +386,44 @@ namespace Shoko.Desktop.ImageDownload
         {
             try
             {
-                lock (downloadsLock)
+                var fileName = GetFileName(req);
+                var entityID = GetEntityID(req);
+                var downloadImage = true;
+                var fileExists = string.IsNullOrEmpty(fileName) || File.Exists(fileName);
+
+                if (fileExists && !req.ForceDownload) downloadImage = false;
+
+                if (downloadImage)
                 {
-                    string fileName = GetFileName(req);
-                    string entityID = GetEntityID(req);
-                    bool downloadImage = true;
-                    bool fileExists = string.IsNullOrEmpty(fileName) || File.Exists(fileName);
+                    var tempName = Path.Combine(Utils.GetImagesTempFolder(), Path.GetFileName(fileName));
+                    if (File.Exists(tempName)) File.Delete(tempName);
 
-                    if (fileExists && !req.ForceDownload) downloadImage = false;
+                    OnImageDownloadEvent(new ImageDownloadEventArgs(string.Empty, req, ImageDownloadEventType.Started));
+                    if (fileExists) File.Delete(fileName);
 
-                    if (downloadImage)
+                    try
                     {
-                        string tempName = Path.Combine(Utils.GetImagesTempFolder(), Path.GetFileName(fileName));
-                        if (File.Exists(tempName)) File.Delete(tempName);
+                        DownloadsLock.Wait();
+                        using var img =
+                            (Stream)VM_ShokoServer.Instance.ShokoImages.GetImage(int.Parse(entityID),
+                                (int)req.ImageType, false);
+                        using var wstream = File.OpenWrite(tempName);
+                        img.CopyTo(wstream);
 
-
-                        OnImageDownloadEvent(new ImageDownloadEventArgs(string.Empty, req, ImageDownloadEventType.Started));
-                        if (fileExists) File.Delete(fileName);
-
-                        try
-                        {
-                            using (Stream img = (Stream) VM_ShokoServer.Instance.ShokoImages.GetImage(int.Parse(entityID), (int) req.ImageType, false))
-                            using (Stream wstream = File.OpenWrite(tempName))
-                            {
-                                img.CopyTo(wstream);
-                            }
-                        }
-                        catch
-                        {
-                            return;
-                        }
-
-                        // move the file to it's final location
-                        string fullPath = Path.GetDirectoryName(fileName);
-                        if (!Directory.Exists(fullPath))
-                            Directory.CreateDirectory(fullPath);
-
-                        // move the file to it's final location
-                        File.Move(tempName, fileName);
+                        DownloadsLock.Release();
                     }
+                    catch
+                    {
+                        return;
+                    }
+
+                    // move the file to it's final location
+                    var fullPath = Path.GetDirectoryName(fileName);
+                    if (!Directory.Exists(fullPath))
+                        Directory.CreateDirectory(fullPath);
+
+                    // move the file to it's final location
+                    File.Move(tempName, fileName);
                 }
             }
             catch (Exception ex)
