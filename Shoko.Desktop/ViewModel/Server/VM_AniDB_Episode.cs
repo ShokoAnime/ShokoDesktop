@@ -13,8 +13,8 @@ namespace Shoko.Desktop.ViewModel.Server
         {
             get
             {
-                if (Titles.ContainsKey("EN")) return Titles["EN"];
-                if (Titles.ContainsKey("X-JAT")) return Titles["X-JAT"];
+                if (Titles.ContainsKey("en")) return Titles["en"];
+                if (Titles.ContainsKey("x-jat")) return Titles["x-jat"];
                 return $"Episode {EpisodeNumber}";
             }
         }
