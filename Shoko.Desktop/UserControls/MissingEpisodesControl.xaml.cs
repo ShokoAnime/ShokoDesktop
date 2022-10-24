@@ -172,10 +172,13 @@ namespace Shoko.Desktop.UserControls
         void workerFiles_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             contracts = e.Result as List<VM_MissingEpisode>;
-            foreach (VM_MissingEpisode mf in contracts)
-                MissingEpisodesCollection.Add(mf);
+            if (contracts != null)
+            {
+                foreach (VM_MissingEpisode mf in contracts)
+                    MissingEpisodesCollection.Add(mf);
+            }
 
-            EpisodeCount = contracts.Count;
+            EpisodeCount = contracts?.Count ?? 0;
             ReadyToExport = EpisodeCount >= 1;
             btnRefresh.IsEnabled = true;
             IsLoading = false;
@@ -185,9 +188,14 @@ namespace Shoko.Desktop.UserControls
         {
             try
             {
-                WorkRequest wr = e.Argument as WorkRequest;
+                if (e.Argument is not WorkRequest wr)
+                {
+                    Utils.ShowErrorMessage("WorkRequest was null in MissingEpisodesControl.xaml.cs:workerFiles_DoWork");
+                    return;
+                }
                 List<VM_MissingEpisode> contractsTemp = VM_ShokoServer.Instance.ShokoServices.GetMissingEpisodes(
-                    VM_ShokoServer.Instance.CurrentUser.JMMUserID, wr.MyGroupsOnly, wr.RegularEpisodesOnly, (int)wr.AiringFilter).CastList<VM_MissingEpisode>();
+                    VM_ShokoServer.Instance.CurrentUser.JMMUserID, wr.MyGroupsOnly, wr.RegularEpisodesOnly, (int)wr.AiringFilter)?.CastList<VM_MissingEpisode>();
+                if (contractsTemp == null) Utils.ShowErrorMessage("GetMissingEpisodes returned null in MissingEpisodesControl.xaml.cs:workerFiles_DoWork");
                 e.Result = contractsTemp;
             }
             catch (Exception ex)
