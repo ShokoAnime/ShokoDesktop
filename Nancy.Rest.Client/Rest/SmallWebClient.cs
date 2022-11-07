@@ -14,7 +14,7 @@ namespace Nancy.Rest.Client.Rest
 
         public static async Task<object> RestRequest(Request req, IWebProxy proxy=null)
         {
-            HttpClientHandler handler=new HttpClientHandler();
+            var handler=new HttpClientHandler();
             if (proxy != null)
             {
                 handler.Proxy = proxy;
@@ -22,8 +22,8 @@ namespace Nancy.Rest.Client.Rest
             }
             using (var client = new HttpClient(handler, true))
             {
-                bool returnasstream = false;
-                string accept = "application/json";
+                var returnasstream = false;
+                var accept = "application/json";
                 if (req.ReturnType.IsAssignableFrom(typeof(Stream)))
                 {
                     returnasstream = true;
@@ -31,7 +31,7 @@ namespace Nancy.Rest.Client.Rest
                 }
                 client.BaseAddress = req.BaseUri;
                 client.Timeout = req.Timeout;
-                HttpRequestMessage request = new HttpRequestMessage(req.Method, req.Path);
+                var request = new HttpRequestMessage(req.Method, req.Path);
                 request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
                 if (req.BodyObject != null)
                 {
@@ -47,7 +47,7 @@ namespace Nancy.Rest.Client.Rest
                     }
                     else
                     {                        
-                        string str = JsonConvert.SerializeObject(req.BodyObject, Formatting.None);
+                        var str = JsonConvert.SerializeObject(req.BodyObject, Formatting.None);
                         if (!string.IsNullOrEmpty(str))
                         {
                             request.Content = new ByteArrayContent(Encoding.UTF8.GetBytes(str));
@@ -55,18 +55,23 @@ namespace Nancy.Rest.Client.Rest
                         }
                     }
                 }
-                HttpResponseMessage response = await client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
-                if (!response.IsSuccessStatusCode)
+
+                var response = await client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+                using (var content = response.Content)
                 {
-                    string content = await response.Content.ReadAsStringAsync();
-                    response.Content?.Dispose();
-                    throw new RestClientException(response.StatusCode, response.ReasonPhrase, content);
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        var message = await content.ReadAsStringAsync();
+                        throw new RestClientException(response.StatusCode, response.ReasonPhrase, message);
+                    }
+
+                    if (returnasstream)
+                        return await content.ReadAsStreamAsync();
+                    if (req.ReturnType == typeof(void))
+                        return null;
+                    return JsonConvert.DeserializeObject(await content.ReadAsStringAsync(), req.ReturnType,
+                        req.SerializerSettings);
                 }
-                if (returnasstream)
-                    return await response.Content.ReadAsStreamAsync();
-                if (req.ReturnType == typeof(void))
-                    return null;
-                return JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync(), req.ReturnType, req.SerializerSettings);
             }
         }
     }
