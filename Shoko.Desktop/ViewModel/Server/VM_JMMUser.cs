@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Web.Script.Serialization;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Shoko.Commons.Extensions;
@@ -11,16 +10,16 @@ namespace Shoko.Desktop.ViewModel.Server
 {
     public class VM_JMMUser : JMMUser
     {
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsAdminUser => IsAdmin == 1;
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsAniDBUserBool => IsAniDBUser == 1;
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool CanEditSettings => CanEditServerSettings.HasValue && CanEditServerSettings.Value == 1;
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsTraktUserBool => IsTraktUser == 1;
 
         public override string ToString()

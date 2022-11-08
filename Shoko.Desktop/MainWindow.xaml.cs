@@ -865,7 +865,6 @@ namespace Shoko.Desktop
                 CultureInfo ci = new CultureInfo(ul.Culture);
                 CultureInfo.DefaultThreadCurrentUICulture = ci;
                 AppSettings.Culture = ul.Culture;
-                ConfigurationManager.RefreshSection("appSettings");
 
                 if (isLanguageChanged)
                 {

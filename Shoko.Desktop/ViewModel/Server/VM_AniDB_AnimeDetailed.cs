@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Web.Script.Serialization;
 using System.Windows.Data;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
@@ -51,7 +50,7 @@ namespace Shoko.Desktop.ViewModel.Server
             set { base.Tags = value.OrderByDescending(a => a.Weight).ToList().CastList<CL_AnimeTag>(); }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public List<VM_AnimeTag> TagsSummary => Tags.Take(5).ToList();
 
         public new List<VM_CustomTag> CustomTags
@@ -64,18 +63,18 @@ namespace Shoko.Desktop.ViewModel.Server
                 ViewCustomTags.Refresh();
             }
         }
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public ICollectionView ViewCustomTags { get; set; }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public List<VM_AnimeTitle> AnimeTitlesSummary { get; set; }
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public List<VM_AnimeTitle> AnimeTitlesMain { get; set; }
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public List<VM_AnimeTitle> AnimeTitlesOfficial { get; set; }
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public List<VM_AnimeTitle> AnimeTitlesSynonym { get; set; }
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public List<VM_AnimeTitle> AnimeTitlesShort { get; set; }
 
 
@@ -97,13 +96,13 @@ namespace Shoko.Desktop.ViewModel.Server
             set { this.SetField(()=>base.UserVote,(r)=> base.UserVote = r, value, () => UserHasVoted, () => UserHasNotVoted, ()=>UserRating, ()=>UserRatingFormatted); }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool UserHasVoted => UserVote!=null;
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool UserHasNotVoted => UserVote==null;
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public decimal UserRating
         {
             get
@@ -120,7 +119,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string UserRatingFormatted
         {
             get

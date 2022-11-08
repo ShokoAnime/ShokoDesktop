@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
+using Shoko.Commons.Properties;
+using Shoko.Desktop;
 
 // Source code by Owen Emlen (owene_1998@yahoo.com, owen@binarynorthwest.com)
 // http://www.braintechllc.com/owen.aspx, http://www.binarynorthwest.com
@@ -55,10 +57,10 @@ namespace BinaryNorthwest
             }
             catch (Exception ex)
             {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(JMMClient.AppSettings.Culture);
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
-                throw new Exception(JMMClient.Properties.Resources.Sort_Error + " " + typeof(T).Name + " " + JMMClient.Properties.Resources.Sort_Using +
-                  (sortBy.NameIsPropertyName ? JMMClient.Properties.Resources.Sort_Property + " " : JMMClient.Properties.Resources.Sort_Field + " ") + sortBy.sPropertyOrFieldName, ex);
+                throw new Exception(Resources.Sort_Error + " " + typeof(T).Name + " " + Resources.Sort_Using +
+                  (sortBy.NameIsPropertyName ? Resources.Sort_Property + " " : Resources.Sort_Field + " ") + sortBy.sPropertyOrFieldName, ex);
             }
         }
 
@@ -105,11 +107,11 @@ namespace BinaryNorthwest
                 // methods of sorting a list using multiple criteria.
                 for (int i = 0; i < sortByCount; i++)
                 {
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(JMMClient.AppSettings.Culture);
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
                     SortPropOrFieldAndDirection sortBy = rgSortBy[i];
                     if (string.IsNullOrEmpty(sortBy.sPropertyOrFieldName)) throw new Exception(
-                        JMMClient.Properties.Resources.Sort_PassedEmpty + i.ToString() + "]"
+                        Resources.Sort_PassedEmpty + i.ToString() + "]"
                         );
 
                     // Retrieve an IComparer that contains logic for sorting this specific business object
@@ -197,9 +199,9 @@ namespace BinaryNorthwest
             }
             catch (Exception ex)
             {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(JMMClient.AppSettings.Culture);
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
-                throw new Exception(JMMClient.Properties.Resources.Sort_Exception + " " + typeof(T).Name, ex);
+                throw new Exception(Resources.Sort_Exception + " " + typeof(T).Name, ex);
             }
         }
 

@@ -5,7 +5,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading;
-using System.Web.Script.Serialization;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 using NLog;
@@ -29,7 +28,7 @@ namespace Shoko.Desktop.ViewModel.Server
         private static readonly Random fanartRandom = new Random();
         private static readonly Random posterRandom = new Random();
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string DescriptionFormatted
         {
             get
@@ -41,7 +40,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public new VM_AniDB_Anime_DefaultImage DefaultImagePoster
         {
             get {  return (VM_AniDB_Anime_DefaultImage)base.DefaultImagePoster;}
@@ -52,7 +51,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public new VM_AniDB_Anime_DefaultImage DefaultImageFanart
         {
             get { return (VM_AniDB_Anime_DefaultImage)base.DefaultImageFanart; }
@@ -84,7 +83,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string EpisodeCountFormatted
         {
             get
@@ -120,7 +119,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         private VM_AniDB_AnimeCrossRefs aniDB_AnimeCrossRefs;
         public VM_AniDB_AnimeCrossRefs AniDB_AnimeCrossRefs
         {
@@ -144,7 +143,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public new int ImageEnabled
         {
             get { return base.ImageEnabled; }
@@ -152,7 +151,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsImageEnabled
         {
             get { return ImageEnabled==1; }
@@ -161,7 +160,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
 
         private bool? isImageDefault;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsImageDefault
         {
             get
@@ -185,7 +184,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsTvDBLinkEnabled
         {
             get { return (DisableExternalLinksFlag & Constants.LinkFlags.FlagLinkTvDB) == 0; }
@@ -198,7 +197,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsTraktLinkEnabled
         {
             get { return (DisableExternalLinksFlag & Constants.LinkFlags.FlagLinkTrakt) == 0; }
@@ -211,7 +210,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsMALLinkEnabled
         {
             get { return (DisableExternalLinksFlag & Constants.LinkFlags.FlagLinkMAL) == 0; }
@@ -224,7 +223,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsMovieDBLinkEnabled
         {
             get { return (DisableExternalLinksFlag & Constants.LinkFlags.FlagLinkMovieDB) == 0; }
@@ -239,7 +238,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
         #region Posters
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string PosterPathNoDefaultPlain
         {
             get
@@ -250,7 +249,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string PosterPathNoDefault
         {
             get
@@ -267,7 +266,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string PosterPath
         {
             get
@@ -285,7 +284,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string posterPathWithRandoms = string.Empty;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string PosterPathWithRandoms
         {
             get
@@ -320,10 +319,10 @@ namespace Shoko.Desktop.ViewModel.Server
             return null;
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string FullImagePath => PosterPath;
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string DefaultPosterPath
         {
             get
@@ -354,7 +353,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string DefaultPosterPathNoBlanks
         {
             get
@@ -430,7 +429,7 @@ namespace Shoko.Desktop.ViewModel.Server
             return allFanart;
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool UseFanartOnSeries
         {
             get
@@ -443,7 +442,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool UsePosterOnSeries
         {
             get
@@ -456,7 +455,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool UseFanartOnPlaylistHeader
         {
             get
@@ -469,7 +468,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool UsePosterOnPlaylistHeader
         {
             get
@@ -482,7 +481,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool UseFanartOnPlaylistItems
         {
             get
@@ -495,7 +494,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool UsePosterOnPlaylistItems
         {
             get
@@ -508,7 +507,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string FanartPath
         {
             get
@@ -528,7 +527,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string FanartPathPreferThumb
         {
             get
@@ -548,7 +547,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string FanartPathThenPosterPath
         {
             get
@@ -562,7 +561,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string FanartPathThenPosterPathForPlaylistHeader
         {
             get
@@ -576,7 +575,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string FanartPathThenPosterPathForPlaylistItems
         {
             get
@@ -590,7 +589,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string FanartPathFallbackPosterPath
         {
             get
@@ -604,7 +603,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
         #endregion
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string AirDateAsString
         {
             get
@@ -615,7 +614,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool FinishedAiring
         {
             get
@@ -629,7 +628,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public List<VM_VideoLocal> AllVideoLocals
         {
             get
@@ -651,7 +650,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool FanartExists => AniDB_AnimeCrossRefs?.AllFanarts.Count > 0;
 
 
@@ -678,7 +677,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }*/
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string FanartPathOnlyExisting
         {
             get
@@ -700,7 +699,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string FanartThumbnailPath
         {
             get
@@ -724,13 +723,13 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string EndDateAsString => EndDate?.ToString("dd MMM yyyy", Commons.Culture.Global) ?? Shoko.Commons.Properties.Resources.Ongoing;
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string EndYearAsString => EndYear > 0 ? EndYear.ToString() : Shoko.Commons.Properties.Resources.Ongoing;
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string AirDateAndEndDate
         {
             get
@@ -741,21 +740,21 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string BeginYearAndEndYear => BeginYear == EndYear ? BeginYear.ToString() : $"{BeginYear} - {EndYearAsString}";
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string AniDB_SiteURL => string.Format(Constants.URLS.AniDB_Series, AnimeID);
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string AniDB_SiteURLDiscussion => string.Format(Constants.URLS.AniDB_SeriesDiscussion, AnimeID);
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string AnimeID_Friendly => $"AniDB: {AnimeID}";
 
         public AnimeType AnimeTypeEnum => AnimeType > 5 ? Models.Enums.AnimeType.Other : (AnimeType) AnimeType;
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string AnimeTypeDescription
         {
             get
@@ -774,7 +773,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public decimal AniDBTotalRating
         {
             get
@@ -794,7 +793,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public int AniDBTotalVotes
         {
             get
@@ -810,7 +809,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public decimal AniDBRating
         {
             get
@@ -828,7 +827,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string AniDBRatingFormatted => $"{Formatting.FormatAniDBRating((double) AniDBRating)} ({AniDBTotalVotes} {Shoko.Commons.Properties.Resources.Votes})";
 
         #region OldTvDBCode
@@ -1064,7 +1063,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private VM_TvDBSummary tvSummary;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public VM_TvDBSummary TvSummary
         {
             get
@@ -1091,7 +1090,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private VM_TraktSummary _traktSummary;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public VM_TraktSummary traktSummary
         {
             get
@@ -1112,7 +1111,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public List<VM_ExternalSiteLink> ExternalSiteLinks
         {
             get

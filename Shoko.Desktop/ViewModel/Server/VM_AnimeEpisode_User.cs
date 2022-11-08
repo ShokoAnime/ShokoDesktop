@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Web.Script.Serialization;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Shoko.Commons.Extensions;
@@ -23,13 +22,13 @@ namespace Shoko.Desktop.ViewModel.Server
 {
     public class VM_AnimeEpisode_User : CL_AnimeEpisode_User, IListWrapper, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public int ObjectType => 4;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsEditable => false;
 
         public enum SortMethod { EpisodeNumber = 0, AirDate = 1 };
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public static SortMethod SortType { get; set; }
 
 
@@ -41,7 +40,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string displayTypeLabel = "";
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string DisplayTypeLabel
         {
             get => displayTypeLabel;
@@ -49,7 +48,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private int episodeOrder;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public int EpisodeOrder
         {
             get => episodeOrder;
@@ -70,10 +69,10 @@ namespace Shoko.Desktop.ViewModel.Server
             // Display Options
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool MultipleUnwatchedEpsSeries => UnwatchedEpCountSeries > 1;
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string WatchedDateAsString => WatchedDate?.ToString("dd MMM yyyy - HH:mm", Commons.Culture.Global) ?? "";
 
         #region Editable members
@@ -116,7 +115,7 @@ namespace Shoko.Desktop.ViewModel.Server
                 ShowEpisodeImageInDashboard = ShowEpisodeImageInExpanded;
             }
         }
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public int IsWatched => WatchedCount > 0 ? 1 : 0;
 
         public new string AniDB_EnglishName
@@ -179,7 +178,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string episodeName = "";
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string EpisodeName
         {
             get => WebUtility.HtmlDecode(episodeName);
@@ -191,7 +190,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string episodeNumberAndName = "";
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string EpisodeNumberAndName
         {
             get => episodeNumberAndName;
@@ -199,7 +198,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string episodeNumberAndNameTruncated = "";
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string EpisodeNumberAndNameTruncated
         {
             get => episodeNumberAndNameTruncated;
@@ -207,7 +206,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string episodeNumberAndNameWithType = "";
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string EpisodeNumberAndNameWithType
         {
             get => episodeNumberAndNameWithType;
@@ -215,7 +214,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string episodeNumberWithType = "";
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string EpisodeNumberWithType
         {
             get => episodeNumberWithType;
@@ -223,7 +222,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string episodeNumberAndNameWithTypeTruncated = "";
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string EpisodeNumberAndNameWithTypeTruncated
         {
             get => episodeNumberAndNameWithTypeTruncated;
@@ -231,7 +230,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string episodeTypeAndNumber = "";
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string EpisodeTypeAndNumber
         {
             get => episodeTypeAndNumber;
@@ -239,18 +238,18 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string episodeTypeAndNumberAbsolute = "";
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string EpisodeTypeAndNumberAbsolute
         {
             get => episodeTypeAndNumberAbsolute;
             set { this.SetField(()=>episodeTypeAndNumberAbsolute,value); }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool Watched => WatchedCount > 0;
 
         private bool tvDBLinkExists;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool TvDBLinkExists
         {
             get => tvDBLinkExists;
@@ -258,7 +257,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private bool tvDBLinkMissing = true;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool TvDBLinkMissing
         {
             get => tvDBLinkMissing;
@@ -267,7 +266,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
 
         private bool traktLinkExists;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool TraktLinkExists
         {
             get => traktLinkExists;
@@ -275,7 +274,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private bool traktLinkMissing = true;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool TraktLinkMissing
         {
             get => traktLinkMissing;
@@ -283,7 +282,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string traktEpisodeURL = "";
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string TraktEpisodeURL
         {
             get => traktEpisodeURL;
@@ -296,19 +295,19 @@ namespace Shoko.Desktop.ViewModel.Server
             set { this.SetField(()=>base.LocalFileCount,(r)=> base.LocalFileCount = r, value, ()=>LocalFileCount, ()=>OneFileOnly, ()=>NoFiles, ()=>HasFiles, ()=>FileDetails, ()=>MultipleFiles); }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool OneFileOnly => base.LocalFileCount == 1;
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool NoFiles => base.LocalFileCount == 0;
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool MultipleFiles => LocalFileCount > 1;
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool HasFiles => base.LocalFileCount > 0;
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string FileDetails
         {
             get
@@ -326,7 +325,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string episodeOverviewLoading = "";
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string EpisodeOverviewLoading
         {
             get
@@ -352,7 +351,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string episodeOverviewTruncated = "";
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string EpisodeOverviewTruncated
         {
             get => episodeOverviewTruncated;
@@ -363,7 +362,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string episodeImageLoading = @"/Images/EpisodeThumb_NotFound.png";
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string EpisodeImageLoading
         {
             get
@@ -379,7 +378,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string airDateAsString = "";
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string AirDateAsString
         {
             get => airDateAsString;
@@ -389,11 +388,11 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string AniDBRatingFormatted => $"{Commons.Properties.Resources.Rating}: {AniDB_Rating} ({AniDB_Votes} {Commons.Properties.Resources.Votes})";
 
         private bool showEpisodeImageInSummary = true;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool ShowEpisodeImageInSummary
         {
             get => showEpisodeImageInSummary;
@@ -404,7 +403,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private bool showEpisodeOverviewInSummary = true;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool ShowEpisodeOverviewInSummary
         {
             get => showEpisodeOverviewInSummary;
@@ -416,7 +415,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
 
         private bool showEpisodeImageInExpanded = true;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool ShowEpisodeImageInExpanded
         {
             get => showEpisodeImageInExpanded;
@@ -427,7 +426,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private bool showEpisodeOverviewInExpanded = true;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool ShowEpisodeOverviewInExpanded
         {
             get => showEpisodeOverviewInExpanded;
@@ -438,7 +437,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private bool showEpisodeImageInDashboard = true;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool ShowEpisodeImageInDashboard
         {
             get => showEpisodeImageInDashboard;
@@ -449,7 +448,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string lastWatchedDescription = "";
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string LastWatchedDescription
         {
             get => lastWatchedDescription;
@@ -939,7 +938,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool FutureDated
         {
             get
@@ -951,10 +950,10 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string AniDB_SiteURL => string.Format(Models.Constants.URLS.AniDB_Episode, AniDB_EpisodeID);
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string AnimeName
         {
             get
@@ -979,7 +978,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
 
         private VM_AniDB_Anime aniDB_Anime;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public VM_AniDB_Anime AniDBAnime => aniDB_Anime;
 
         public void RefreshAnime()
@@ -1007,7 +1006,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private VM_AnimeSeries_User animeSeries;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public VM_AnimeSeries_User AnimeSeries
         {
             get
@@ -1029,10 +1028,10 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string RunTime => Formatting.FormatSecondsToDisplayTime(AniDB_LengthSeconds);
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public EpisodeType EpisodeTypeEnum => (EpisodeType)EpisodeType;
 
 
@@ -1095,7 +1094,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public int EpisodeStatus
         {
             get
@@ -1145,7 +1144,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private List<VM_VideoDetailed> filesForEpisode;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public List<VM_VideoDetailed> FilesForEpisode
         {
             get
@@ -1159,7 +1158,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public List<CL_AniDB_GroupStatus> ReleaseGroups
         {
             get

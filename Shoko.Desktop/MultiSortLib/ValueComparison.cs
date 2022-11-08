@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Reflection;
 using System.Threading;
+using Shoko.Commons.Properties;
+using Shoko.Desktop;
 
 // Source code by Owen Emlen (owene_1998@yahoo.com, owen@binarynorthwest.com)
 
@@ -89,7 +91,7 @@ namespace BinaryNorthwest
         /// </summary>
         public void Initialize()
         {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(JMMClient.AppSettings.Culture);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             if (fFoundProperty == false)
             {
@@ -102,8 +104,8 @@ namespace BinaryNorthwest
 
                     if (pi == null)
                     {
-                        throw new Exception(JMMClient.Properties.Resources.ValueCompare_PropertyName + " " + sPropertyName +
-                          " " + JMMClient.Properties.Resources.ValueCompare_NotFound + " " + typeof(T).Name);
+                        throw new Exception(Resources.ValueCompare_PropertyName + " " + sPropertyName +
+                          " " + Resources.ValueCompare_NotFound + " " + typeof(T).Name);
                     }
                 }
                 typ = pi.PropertyType;
@@ -410,7 +412,7 @@ namespace BinaryNorthwest
         /// </summary>
         public void Initialize()
         {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(JMMClient.AppSettings.Culture);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             if (fFoundField == false)
             {
@@ -426,8 +428,8 @@ namespace BinaryNorthwest
                     fi = typeof(T).GetField(sFieldName);
                     if (fi == null)
                     {
-                        throw new Exception(JMMClient.Properties.Resources.ValueCompare_FieldName + " " + sFieldName +
-                          " " + JMMClient.Properties.Resources.ValueCompare_NotFound + " " + typeof(T).Name);
+                        throw new Exception(Resources.ValueCompare_FieldName + " " + sFieldName +
+                          " " + Resources.ValueCompare_NotFound + " " + typeof(T).Name);
                     }
                 }
                 typ = fi.FieldType;

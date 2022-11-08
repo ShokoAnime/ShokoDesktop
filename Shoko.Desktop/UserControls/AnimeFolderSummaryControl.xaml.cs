@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -146,12 +147,12 @@ namespace Shoko.Desktop.UserControls
                         if (string.IsNullOrWhiteSpace(videoLocation))
                         {
                             var filename = vplace.GetFullPath();
-                            videoLocation = filename.Substring(0, filename.Length - (Pri.LongPath.Path.GetFileName(filename).Length + 1));
+                            videoLocation = filename.Substring(0, filename.Length - (Path.GetFileName(filename).Length + 1));
 
                         }
                         else
                         {
-                            videoLocation = Pri.LongPath.Path.GetDirectoryName(videoLocation);
+                            videoLocation = Path.GetDirectoryName(videoLocation);
                         }
                         if (!folders.ContainsKey(videoLocation))
                         {

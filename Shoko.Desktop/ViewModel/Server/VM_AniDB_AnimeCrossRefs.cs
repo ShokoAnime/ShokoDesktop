@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Web.Script.Serialization;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Shoko.Commons.Extensions;
@@ -44,10 +43,10 @@ namespace Shoko.Desktop.ViewModel.Server
 
         #region TvDB
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool TvDBCrossRefExists => Obs_CrossRef_AniDB_TvDB.Count != 0;
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool TvDBCrossRefMissing => Obs_CrossRef_AniDB_TvDB.Count == 0;
 
         public new List<VM_TvDB_Series> TvDBSeries
@@ -63,7 +62,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
         private ObservableCollectionEx<VM_CrossRef_AniDB_TvDBV2> crossRef_AniDB_TvDB;
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public ObservableCollectionEx<VM_CrossRef_AniDB_TvDBV2> Obs_CrossRef_AniDB_TvDB
         {
             get
@@ -135,10 +134,10 @@ namespace Shoko.Desktop.ViewModel.Server
 
         #region MovieDB
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool MovieDBCrossRefExists => !(CrossRef_AniDB_MovieDB == null || MovieDBMovie == null);
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool MovieDBCrossRefMissing => (CrossRef_AniDB_MovieDB == null || MovieDBMovie == null);
 
         public new VM_MovieDB_Movie MovieDBMovie
@@ -193,7 +192,7 @@ namespace Shoko.Desktop.ViewModel.Server
     #endregion
 
         private List<VM_PosterContainer> allPosters;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public List<VM_PosterContainer> AllPosters
         {
             get => allPosters;
@@ -204,7 +203,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private List<VM_FanartContainer> allFanarts;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public List<VM_FanartContainer> AllFanarts
         {
             get => allFanarts;
@@ -226,7 +225,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private ObservableCollectionEx<VM_CrossRef_AniDB_TraktV2> crossRef_AniDB_Trakt;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public ObservableCollectionEx<VM_CrossRef_AniDB_TraktV2> Obs_CrossRef_AniDB_Trakt
         {
             get
@@ -246,9 +245,9 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool TraktCrossRefExists => !(CrossRef_AniDB_Trakt == null || CrossRef_AniDB_Trakt.Count == 0 || TraktShows == null || TraktShows.Count == 0);
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool TraktCrossRefMissing => (CrossRef_AniDB_Trakt == null || CrossRef_AniDB_Trakt.Count == 0 || TraktShows == null || TraktShows.Count == 0);
 
         #endregion
@@ -258,7 +257,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
 
         private ObservableCollectionEx<CrossRef_AniDB_MAL> crossRef_AniDB_MAL;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public ObservableCollectionEx<CrossRef_AniDB_MAL> Obs_CrossRef_AniDB_MAL
         {
             get
@@ -277,10 +276,10 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool MALCrossRefExists => !(Obs_CrossRef_AniDB_MAL == null || Obs_CrossRef_AniDB_MAL.Count == 0);
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool MalCrossRefMissing => (Obs_CrossRef_AniDB_MAL == null || Obs_CrossRef_AniDB_MAL.Count == 0);
 
         #endregion

@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Web.Script.Serialization;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Shoko.Commons.Extensions;
@@ -35,65 +34,65 @@ namespace Shoko.Desktop.ViewModel.Server
             set => this.SetField(()=>base.CrossRefSource,(r)=> base.CrossRefSource = r, value, () => CrossRefSource, () => IsAutoAssociation);
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsAutoAssociation => base.CrossRefSource == 1;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool Ignored => base.VideoLocal_IsIgnored == 1;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool Variation => base.VideoLocal_IsVariation == 1;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string FileName => VideoLocal_FileName;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string FullPath => this.GetFullPath();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool FileIsAvailable => this.GetFileIsAvailable();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string VideoInfoSummary => this.GetVideoInfoSummary();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string FormattedFileSize => this.GetFormattedFileSize();
 
 
         #region Video Properties
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string VideoResolution => this.GetVideoResolution();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string VideoCodec => this.GetVideoCodec();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string AudioCodec => this.GetAudioCodec();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsBluRay => this.IsBluRay();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsDVD => this.IsDVD();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsHD => this.IsHD();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsFullHD => this.IsFullHD();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsHi08P => this.IsHi08P();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsHi10P => this.IsHi10P();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsHi12P => this.IsHi12P();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public int BitDepth => this.GetBitDepth();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsDualAudio => this.IsDualAudio();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsMultiAudio => this.IsMultiAudio();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsChaptered => AniDB_File_IsChaptered == 1;
 
         #endregion
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool HasReleaseGroup => this.HasReleaseGroup();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string ReleaseGroupName => this.GetReleaseGroupName();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string ReleaseGroupAniDBURL => this.GetReleaseGroupAniDBURL();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool HasAniDBFile => this.HasAniDBFile();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string AniDB_SiteURL => this.GetAniDB_SiteURL();
 
         public new int VideoLocal_IsWatched
@@ -117,12 +116,12 @@ namespace Shoko.Desktop.ViewModel.Server
             set => this.SetField(()=>base.VideoLocal_IsVariation,(r)=> base.VideoLocal_IsVariation = r, value, ()=>VideoLocal_IsVariation, ()=>Variation);
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool Watched => VideoLocal_IsWatched==1;
 
 
         private bool showMoreDetails;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool ShowMoreDetails
         {
             get => showMoreDetails;
@@ -135,7 +134,7 @@ namespace Shoko.Desktop.ViewModel.Server
             set => this.SetField(()=>base.VideoLocal_WatchedDate,(r)=> base.VideoLocal_WatchedDate = r, value);
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string LastWatchedDescription
         {
             get
@@ -234,12 +233,12 @@ namespace Shoko.Desktop.ViewModel.Server
             return new List<IListWrapper>();
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string VideoFilename => System.IO.Path.GetFileName(Places.FirstOrDefault()?.GetFileName());
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public int ObjectType => 5;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsEditable => false;
     }
 }

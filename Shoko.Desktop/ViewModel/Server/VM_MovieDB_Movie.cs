@@ -1,5 +1,4 @@
-﻿using System.Web.Script.Serialization;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Shoko.Commons.Extensions;
 using Shoko.Models.Server;
@@ -10,7 +9,7 @@ namespace Shoko.Desktop.ViewModel.Server
 {
     public class VM_MovieDB_Movie : MovieDB_Movie
     {
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string SiteUrl => this.GetSiteURL();
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Web.Script.Serialization;
+﻿
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Shoko.Commons.Extensions;
@@ -9,12 +9,12 @@ namespace Shoko.Desktop.ViewModel.Server
 {
     public class VM_CrossRef_AniDB_MAL : CrossRef_AniDB_MAL
     {
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string SiteURL => this.GetSiteURL();
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string StartEpisodeTypeString => this.GetStartEpisodeTypeString();
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public new string MALTitle => string.IsNullOrWhiteSpace(base.MALTitle) ? $"({MALID})" : base.MALTitle;
     }
 }

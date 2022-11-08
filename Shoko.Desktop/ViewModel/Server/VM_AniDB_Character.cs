@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.IO;
-using System.Web.Script.Serialization;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Shoko.Commons.Notification;
@@ -32,13 +31,13 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string ImagePathPlain => string.Intern(Path.Combine(Utils.GetAniDBCharacterImagePath(CharID), PicName));
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string CharNameShort => CharName.Length <= 25 ? CharName : string.Intern(CharName.Substring(0, 24) + "...");
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string ImagePath
         {
             get

@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Security.Principal;
-using System.Text;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,9 +18,6 @@ using Shoko.Desktop.Forms;
 using Shoko.Desktop.ViewModel.Server;
 using Shoko.Models.Enums;
 using Clipboard = System.Windows.Clipboard;
-using Path = Pri.LongPath.Path;
-using Directory = Pri.LongPath.Directory;
-using File = Pri.LongPath.File;
 
 namespace Shoko.Desktop.Utilities
 {

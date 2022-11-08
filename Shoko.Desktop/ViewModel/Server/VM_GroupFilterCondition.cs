@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Web.Script.Serialization;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Shoko.Commons.Extensions;
@@ -50,19 +49,19 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public GroupFilterConditionType ConditionTypeEnum => (GroupFilterConditionType)ConditionType;
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public GroupFilterOperator ConditionOperatorEnum => (GroupFilterOperator)ConditionOperator;
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string ConditionTypeString => ConditionTypeEnum.GetTextForEnum_ConditionType();
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string ConditionOperatorString => ConditionOperatorEnum.GetTextForEnum_Operator();
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string ConditionParameterString
         {
             get
@@ -116,7 +115,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string NiceDescription
         {
             get

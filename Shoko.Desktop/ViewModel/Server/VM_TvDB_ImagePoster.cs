@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.IO;
-using System.Web.Script.Serialization;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Shoko.Commons.Notification;
@@ -25,7 +24,7 @@ namespace Shoko.Desktop.ViewModel.Server
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propname));
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string FullImagePathPlain
         {
             get
@@ -35,7 +34,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public string FullImagePath
         {
             get
@@ -51,7 +50,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsImageEnabled
         {
             get { return base.Enabled == 1; }
@@ -65,7 +64,7 @@ namespace Shoko.Desktop.ViewModel.Server
             set { this.SetField(()=>base.Enabled,(r)=> base.Enabled = r, value, () => Enabled, () => IsImageEnabled); }
         }
         private bool isImageDefault;
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        [JsonIgnore, XmlIgnore]
         public bool IsImageDefault
         {
             get { return isImageDefault; }
