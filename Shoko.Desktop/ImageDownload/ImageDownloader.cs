@@ -401,20 +401,22 @@ namespace Shoko.Desktop.ImageDownload
                     OnImageDownloadEvent(new ImageDownloadEventArgs(string.Empty, req, ImageDownloadEventType.Started));
                     if (fileExists) File.Delete(fileName);
 
+                    DownloadsLock.Wait();
                     try
                     {
-                        DownloadsLock.Wait();
                         using var img =
                             (Stream)VM_ShokoServer.Instance.ShokoImages.GetImage(int.Parse(entityID),
                                 (int)req.ImageType, false);
                         using var wstream = File.OpenWrite(tempName);
                         img.CopyTo(wstream);
-
-                        DownloadsLock.Release();
                     }
                     catch
                     {
                         return;
+                    }
+                    finally
+                    {
+                        DownloadsLock.Release();
                     }
 
                     // move the file to it's final location

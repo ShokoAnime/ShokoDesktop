@@ -174,7 +174,7 @@ namespace Nancy.Rest.Client
         private static dynamic DoSyncClient(dynamic dexp, MethodDefinition def, IWebProxy proxy, params dynamic[] parameters)
         {
             Request req = CreateRequest(dexp, def, parameters);
-            return Task.Run(async () => await SmallWebClient.RestRequest(req,proxy)).Result;
+            return Task.Run(async () => await SmallWebClient.RestRequest(req,proxy)).GetAwaiter().GetResult();
         }
         private static async Task<dynamic> DoAsyncClient(dynamic dexp, MethodDefinition def, IWebProxy proxy, params dynamic[] parameters)
         {

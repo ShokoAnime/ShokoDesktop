@@ -104,6 +104,8 @@ namespace Shoko.Desktop
             try
             {
                 //Reconfigure log file to applicationpath
+                var thisPath = Path.GetDirectoryName((Assembly.GetEntryAssembly() ?? Assembly.GetExecutingAssembly()).Location);
+                LogManager.LoadConfiguration(Path.Combine(thisPath, "nlog.config"));
                 var target = LogManager.Configuration?.FindTargetByName("file") as FileTarget;
                 if (target == null) throw new NullReferenceException("LogManager Configuration was null");
                 target.FileName = ApplicationPath + "/logs/${shortdate}.txt";
