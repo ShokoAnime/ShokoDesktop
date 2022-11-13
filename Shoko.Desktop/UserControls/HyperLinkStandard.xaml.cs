@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using NLog;
+using Shoko.Desktop.Utilities;
 
 namespace Shoko.Desktop.UserControls
 {
@@ -73,7 +74,7 @@ namespace Shoko.Desktop.UserControls
             {
                 Uri uri = new Uri(URL);
 
-                Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
+                Utils.OpenUrl(uri.AbsoluteUri);
             }
             catch (Exception ex)
             {

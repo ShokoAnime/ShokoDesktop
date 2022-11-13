@@ -8,6 +8,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Shoko.Desktop.Utilities;
 
 namespace Shoko.Desktop.Forms
 {
@@ -65,7 +66,7 @@ namespace Shoko.Desktop.Forms
 
             if (String.IsNullOrWhiteSpace(url)) return;
 
-            System.Diagnostics.Process.Start(url);
+            Utils.OpenUrl(url);
         }
     }
 

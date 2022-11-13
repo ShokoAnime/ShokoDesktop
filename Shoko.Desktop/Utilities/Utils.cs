@@ -520,26 +520,57 @@ namespace Shoko.Desktop.Utilities
                 ShowErrorMessage(ex);
             }
         }
-
-        public static void OpenFile(string fullePath)
+        public static void OpenUrl(string url)
         {
             try
             {
-                Process.Start(new ProcessStartInfo(fullePath));
+                Process.Start(url);
+            }
+            catch
+            {
+                // hack because of this: https://github.com/dotnet/corefx/issues/10361
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    url = url.Replace("&", "^&");
+                    Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+                }
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                {
+                    Process.Start("xdg-open", url);
+                }
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                {
+                    Process.Start("open", url);
+                }
+                else
+                {
+                    throw;
+                }
+            }
+        }
+
+        public static void OpenFile(string fullPath)
+        {
+            try
+            {
+                if (File.Exists(fullPath))
+                {
+                    OpenUrl(fullPath);
+                }
             }
             catch (Exception ex)
             {
                 ShowErrorMessage(ex);
             }
         }
-
+        
         public static void OpenFolder(string fullPath)
         {
             try
             {
                 if (Directory.Exists(fullPath))
                 {
-                    Process.Start(new ProcessStartInfo(fullPath));
+                    OpenUrl(fullPath);
                 }
             }
             catch (Exception ex)

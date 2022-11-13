@@ -383,7 +383,7 @@ namespace Shoko.Desktop
         {
             try
             {
-                Process.Start("https://discord.gg/0XKJW7TObKLajoKc");
+                Utils.OpenUrl("https://discord.gg/0XKJW7TObKLajoKc");
             }
             catch (Exception ex)
             {

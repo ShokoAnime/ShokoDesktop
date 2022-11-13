@@ -754,7 +754,7 @@ namespace Shoko.Desktop
                 try
                 {
                     Cursor.Current = Cursors.WaitCursor;
-                    Process.Start(e.LinkText);
+                    Utils.OpenUrl(e.LinkText);
                 }
                 catch (Exception)
                 {
