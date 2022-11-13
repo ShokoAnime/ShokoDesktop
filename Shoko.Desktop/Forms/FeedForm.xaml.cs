@@ -49,7 +49,7 @@ namespace Shoko.Desktop.Forms
             InitializeComponent();
 
             var w = new WebClient();
-            var obj = JObject.Parse(w.DownloadString("https://shokoanime.com/feed.json"));
+            var obj = JObject.Parse(w.DownloadString("https://shokoanime.com/jsonfeed/index.json"));
 
             foreach (var news in obj["items"])
             {
