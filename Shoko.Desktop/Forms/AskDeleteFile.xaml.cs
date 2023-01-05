@@ -22,11 +22,10 @@ namespace Shoko.Desktop.Forms
         public AskDeleteFile(string title, string message, List<CL_VideoLocal_Place> places)
         {
             InitializeComponent();
-            _places = places;
             btnConfirm.Click += BtnConfirm_Click;
             btnCancel.Click += BtnCancel_Click;
             Title = title;
-            txtDesc.Text = message;
+            txtDesc.Text = String.Format(message, places.Count.ToString());
             InitImportFolders();
         }
 
