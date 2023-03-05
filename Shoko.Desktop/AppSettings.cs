@@ -124,24 +124,6 @@ namespace Shoko.Desktop
             }
         }
 
-        private static bool GrantPermissions()
-        {
-            if (string.IsNullOrEmpty(ApplicationPath)) return false;
-            // Check if programdata is write-able
-            if (!Directory.Exists(ApplicationPath)) return false;
-            if (Utils.IsDirectoryWritable(ApplicationPath)) return true;
-            try
-            {
-                Utils.GrantAccess(ApplicationPath);
-                return true;
-            }
-            catch (Exception)
-            {
-                logger.Error("Unable to grant permissions for program data");
-                return false;
-            }
-        }
-
         public static void LoadSettings()
         {
             ReconfigureLoggers();
@@ -150,12 +132,6 @@ namespace Shoko.Desktop
                 bool startedWithFreshConfig = false;
 
                 disabledSave = true;
-
-                if (!GrantPermissions() && !Utils.IsAdministrator())
-                {
-                    Utils.RestartAsAdmin();
-                    return;
-                }
 
                 string path = Path.Combine(ApplicationPath, SettingsFileName);
                 if (File.Exists(path))
@@ -185,27 +161,13 @@ namespace Shoko.Desktop
             catch (UnauthorizedAccessException ex)
             {
                 logger.Error(ex, $"Error occured during LoadSettings (UnauthorizedAccessException): {ex}");
-                var message = "Failed to set folder permissions, do you want to automatically retry as admin?";
+                var message = "C:\\ProgramData\\ShokoDesktop is not writeable. Please fix";
 
-                if (!Utils.IsAdministrator())
-                    message = "Failed to set folder permissions, do you want to try and reset folder permissions?";
+                FlexibleMessageBox.Show(message, "Failed to set folder permissions",
+                        MessageBoxButtons.OK);
 
-                DialogResult dr =
-                    FlexibleMessageBox.Show(message, "Failed to set folder permissions",
-                        MessageBoxButtons.YesNo);
-
-                switch (dr)
-                {
-                    case DialogResult.Yes:
-                        // gonna try grant access again in advance
-                        GrantPermissions();
-                        Utils.RestartAsAdmin();
-                        break;
-                    case DialogResult.No:
-                        Application.Current.Shutdown();
-                        Environment.Exit(0);
-                        break;
-                }
+                Application.Current.Shutdown();
+                Environment.Exit(0);
             }
             catch (Exception ex)
             {

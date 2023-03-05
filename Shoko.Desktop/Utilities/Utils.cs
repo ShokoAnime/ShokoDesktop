@@ -285,60 +285,6 @@ namespace Shoko.Desktop.Utilities
             }
 
         }
-        public static void GrantAccess(string fullPath)
-        {
-            //C# version do not work, do not inherit permissions to childs.
-            string BatchFile = Path.Combine(System.IO.Path.GetTempPath(), "GrantAccess.bat");
-            int exitCode = -1;
-            Process proc = new Process();
-
-            proc.StartInfo.FileName = "cmd.exe";
-            proc.StartInfo.Arguments = $@"/c {BatchFile}";
-            proc.StartInfo.Verb = "runas";
-            proc.StartInfo.CreateNoWindow = true;
-            proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            proc.StartInfo.UseShellExecute = true;
-
-            try
-            {
-                StreamWriter BatchFileStream = new StreamWriter(BatchFile);
-
-                //Cleanup previous
-                try
-                {
-                    string batchLine = $"{"icacls"} \"{fullPath}\" {"/grant *S-1-1-0:(OI)(CI)F /T"}";
-                    logger.Log(LogLevel.Info, "GrantAccess batch line: " + batchLine);
-                    BatchFileStream.WriteLine(batchLine);
-                }
-                finally
-                {
-                    BatchFileStream.Close();
-                }
-
-                proc.Start();
-
-                proc.WaitForExit();
-
-                exitCode = proc.ExitCode;
-                proc.Close();
-
-                File.Delete(BatchFile);
-
-                if (exitCode == 0)
-                {
-                    logger.Info("Successfully granted write permissions to " + fullPath);
-                }
-                else
-                {
-                    logger.Error("Temporary batch process for granting folder write access returned error code: " +
-                                 exitCode);
-                }
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex, ex.ToString());
-            }
-        }
 
         public static string GetBaseAniDBImagesPath()
         {
