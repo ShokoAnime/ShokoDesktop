@@ -521,7 +521,7 @@ namespace Shoko.Desktop.ViewModel.Server
                     else
                         EpisodeImageLoading = tvep.FullImagePath;
 
-                    if (VM_ShokoServer.Instance.EpisodeTitleSource == DataSourceType.TheTvDB && !string.IsNullOrEmpty(tvep.EpisodeName))
+                    if (VM_ShokoServer.Instance.EpisodeTitleSource == DataSourceType.TvDB && !string.IsNullOrEmpty(tvep.EpisodeName))
                         EpisodeName = tvep.EpisodeName;
 
                     TvDBLinkExists = true;
@@ -606,7 +606,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
                                 //logger.Trace("SetTvDBInfo: episode image - done");
 
-                                if (VM_ShokoServer.Instance.EpisodeTitleSource == DataSourceType.TheTvDB && !string.IsNullOrEmpty(tvep.EpisodeName))
+                                if (VM_ShokoServer.Instance.EpisodeTitleSource == DataSourceType.TvDB && !string.IsNullOrEmpty(tvep.EpisodeName))
                                     EpisodeName = tvep.EpisodeName;
                             }
                         }
@@ -676,7 +676,7 @@ namespace Shoko.Desktop.ViewModel.Server
                                 else
                                     EpisodeImageLoading = tvep.FullImagePath;
 
-                                if (VM_ShokoServer.Instance.EpisodeTitleSource == DataSourceType.TheTvDB && !string.IsNullOrEmpty(tvep.EpisodeName))
+                                if (VM_ShokoServer.Instance.EpisodeTitleSource == DataSourceType.TvDB && !string.IsNullOrEmpty(tvep.EpisodeName))
                                     EpisodeName = tvep.EpisodeName;
                             }
                         }
@@ -788,7 +788,7 @@ namespace Shoko.Desktop.ViewModel.Server
                         else
                             this.EpisodeImageLoading = traktEp.FullImagePath;
 
-                        if (VM_ShokoServer.Instance.EpisodeTitleSource == DataSourceType.TheTvDB && !string.IsNullOrEmpty(traktEp.EpisodeName))
+                        if (VM_ShokoServer.Instance.EpisodeTitleSource == DataSourceType.TvDB && !string.IsNullOrEmpty(traktEp.EpisodeName))
                             EpisodeName = traktEp.EpisodeName;
 
                         TvDBLinkExists = true;

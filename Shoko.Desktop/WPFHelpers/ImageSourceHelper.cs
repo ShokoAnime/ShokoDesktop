@@ -56,7 +56,8 @@ namespace Shoko.Desktop.WPFHelpers
 
         public static ImageSource GetImageSource(byte[] data, Dispatcher dispatcher)
         {
-            if (data != null && Misc.GetImageFormat(data) != ImageFormatEnum.unknown)
+            // check that it is an image
+            if (data != null && Misc.GetImageFormat(data) != null)
                 return GetImageSource(new MemoryStream(data), dispatcher);
             var bi = new BitmapImage(UriLoadingError);
             return bi;

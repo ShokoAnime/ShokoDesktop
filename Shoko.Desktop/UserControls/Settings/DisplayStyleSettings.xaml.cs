@@ -70,7 +70,7 @@ namespace Shoko.Desktop.UserControls.Settings
                     cboStyleEpisodeTitle.SelectedIndex = 0;
                     break;
 
-                case DataSourceType.TheTvDB:
+                case DataSourceType.TvDB:
                     cboStyleEpisodeTitle.SelectedIndex = 1;
                     break;
             }
@@ -86,7 +86,7 @@ namespace Shoko.Desktop.UserControls.Settings
                     cboStyleSeriesOverview.SelectedIndex = 0;
                     break;
 
-                case DataSourceType.TheTvDB:
+                case DataSourceType.TvDB:
                     cboStyleSeriesOverview.SelectedIndex = 1;
                     break;
             }
@@ -101,7 +101,7 @@ namespace Shoko.Desktop.UserControls.Settings
                     cboStyleSeriesName.SelectedIndex = 0;
                     break;
 
-                case DataSourceType.TheTvDB:
+                case DataSourceType.TvDB:
                     cboStyleSeriesName.SelectedIndex = 1;
                     break;
             }
@@ -113,7 +113,7 @@ namespace Shoko.Desktop.UserControls.Settings
             switch (cboStyleSeriesName.SelectedIndex)
             {
                 case 0: VM_ShokoServer.Instance.SeriesNameSource = DataSourceType.AniDB; break;
-                case 1: VM_ShokoServer.Instance.SeriesNameSource = DataSourceType.TheTvDB; break;
+                case 1: VM_ShokoServer.Instance.SeriesNameSource = DataSourceType.TvDB; break;
                 default: VM_ShokoServer.Instance.SeriesNameSource = DataSourceType.AniDB; break;
             }
             VM_ShokoServer.Instance.SaveServerSettingsAsync();
@@ -124,7 +124,7 @@ namespace Shoko.Desktop.UserControls.Settings
             switch (cboStyleSeriesOverview.SelectedIndex)
             {
                 case 0: VM_ShokoServer.Instance.SeriesDescriptionSource = DataSourceType.AniDB; break;
-                case 1: VM_ShokoServer.Instance.SeriesDescriptionSource = DataSourceType.TheTvDB; break;
+                case 1: VM_ShokoServer.Instance.SeriesDescriptionSource = DataSourceType.TvDB; break;
                 default: VM_ShokoServer.Instance.SeriesDescriptionSource = DataSourceType.AniDB; break;
             }
             VM_ShokoServer.Instance.SaveServerSettingsAsync();
@@ -135,7 +135,7 @@ namespace Shoko.Desktop.UserControls.Settings
             switch (cboStyleEpisodeTitle.SelectedIndex)
             {
                 case 0: VM_ShokoServer.Instance.EpisodeTitleSource = DataSourceType.AniDB; break;
-                case 1: VM_ShokoServer.Instance.EpisodeTitleSource = DataSourceType.TheTvDB; break;
+                case 1: VM_ShokoServer.Instance.EpisodeTitleSource = DataSourceType.TvDB; break;
                 default: VM_ShokoServer.Instance.EpisodeTitleSource = DataSourceType.AniDB; break;
             }
             VM_ShokoServer.Instance.SaveServerSettingsAsync();
