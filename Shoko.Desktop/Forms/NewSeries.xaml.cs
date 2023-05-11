@@ -322,14 +322,6 @@ namespace Shoko.Desktop.Forms
             Close();
         }
 
-        void hlURL_Click(object sender, RoutedEventArgs e)
-        {
-
-
-            //Uri uri = new Uri(string.Format(Shoko.Models.Constants.URLS.AniDB_Series, id));
-            //Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
-        }
-
         void rbGroupNew_Checked(object sender, RoutedEventArgs e)
         {
             EvaluateRadioButtons();

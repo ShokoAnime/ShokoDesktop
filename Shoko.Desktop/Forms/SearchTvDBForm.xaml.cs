@@ -317,13 +317,7 @@ namespace Shoko.Desktop.Forms
             if (id <= 0) return;
 
             Uri uri = new Uri(string.Format(Constants.URLS.TvDB_Series, id));
-            Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
-        }
-
-        void hlURLWebCache_Click(object sender, RoutedEventArgs e)
-        {
-            //Uri uri = new Uri(string.Format(Shoko.Models.Constants.URLS.TvDB_Series, CrossRef_AniDB_TvDBResult.TvDBID));
-            //Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
+            Utils.OpenUrl(uri.AbsoluteUri);
         }
 
         void rbSearch_Checked(object sender, RoutedEventArgs e)

@@ -251,7 +251,7 @@ namespace Shoko.Desktop.UserControls
             {
                 string logPath = Path.Combine(AppSettings.ApplicationPath, "logs");
 
-                Process.Start(new ProcessStartInfo(logPath));
+                Utils.OpenUrl(logPath);
             }
             catch (Exception ex)
             {

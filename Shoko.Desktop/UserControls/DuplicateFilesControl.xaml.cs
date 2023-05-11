@@ -181,7 +181,7 @@ namespace Shoko.Desktop.UserControls
                 if (obj.GetType() == typeof(VM_DuplicateFile))
                 {
                     VM_DuplicateFile df = obj as VM_DuplicateFile;
-                    Process.Start(new ProcessStartInfo(df.GetLocalFilePath1()));
+                    Utils.OpenUrl(df.GetLocalFilePath1());
                 }
             }
             catch (Exception ex)
@@ -204,7 +204,7 @@ namespace Shoko.Desktop.UserControls
                 if (obj.GetType() == typeof(VM_DuplicateFile))
                 {
                     VM_DuplicateFile df = obj as VM_DuplicateFile;
-                    Process.Start(new ProcessStartInfo(df.GetLocalFilePath2()));
+                    Utils.OpenUrl(df.GetLocalFilePath2());
                 }
             }
             catch (Exception ex)

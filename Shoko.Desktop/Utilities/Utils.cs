@@ -803,7 +803,7 @@ namespace Shoko.Desktop.Utilities
             string url = $@"http://anidb.net/perl-bin/animedb.pl?show=addsimilaranime&do.vote={(isVoteUp ? "up" : "down")}&aid={animeID}&sid={similarAnimeID}&redirect=anime";
 
             Uri uri = new Uri(url);
-            Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
+            OpenUrl(uri.AbsoluteUri);
         }
 
         public static void RestartAsAdmin()

@@ -3168,7 +3168,7 @@ namespace Shoko.Desktop
 
         private void URL_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
-            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            Utils.OpenUrl(e.Uri.AbsoluteUri);
             e.Handled = true;
         }
 
@@ -3178,7 +3178,7 @@ namespace Shoko.Desktop
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
-            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            Utils.OpenUrl(e.Uri.AbsoluteUri);
             e.Handled = true;
         }
     }
