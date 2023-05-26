@@ -451,15 +451,7 @@ namespace Shoko.Desktop.Utilities
         {
             try
             {
-                /*Process ExplorerWindowProcess = new Process();
-
-				ExplorerWindowProcess.StartInfo.FileName = "explorer.exe";
-				ExplorerWindowProcess.StartInfo.Arguments = string.Format("/select,\"{0}\"", fullFilePath);
-
-				ExplorerWindowProcess.Start();*/
-
                 ShowSelectedInExplorer.FilesOrFolders(fullFilePath);
-
             }
             catch (Exception ex)
             {

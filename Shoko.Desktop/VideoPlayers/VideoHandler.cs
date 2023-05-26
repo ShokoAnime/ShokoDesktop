@@ -252,8 +252,8 @@ namespace Shoko.Desktop.VideoPlayers
                     throw new Exception("Please configure a Video Player");
                 VideoInfo info = vid.ToVideoInfo(forcebegining);
 
-                if(player.Player == VideoPlayer.WindowsDefault && info.IsUrl)
-                    throw new Exception("Streaming is not supported from Windows default player, please select one of the supported ones from settings");
+                //if(player.Player == VideoPlayer.WindowsDefault && info.IsUrl)
+                //    throw new Exception("Streaming is not supported from Windows default player, please select one of the supported ones from settings");
 
                 recentlyPlayedFiles[info.VideoLocalId] = info;
                 player.Play(info);
