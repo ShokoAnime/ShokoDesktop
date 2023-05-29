@@ -91,15 +91,25 @@ namespace Shoko.Desktop.VideoPlayers
                 // format of "C:\Program Files\..." --option-thing
                 var exe = AssocQueryString(Path.GetExtension(video.Uri));
                 // pull the executable out
-                var args = exe.Split("\"");
-                var path = args.FirstOrDefault();
-                // recombine to preserve the quotes in arguments
-                args = string.Join("\"", args.Skip(1)).Split(" ",
-                    StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+                string[] args;
+                string path;
+                if (exe.StartsWith("\""))
+                {
+                    args = exe.Split("\"").Skip(1).ToArray();
+                    path = args.FirstOrDefault();
+                    // recombine to preserve the quotes in arguments
+                    args = string.Join("\"", args.Skip(1)).Split(" ",
+                        StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+                }
+                else
+                {
+                    args = exe.Split(" ", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+                    path = args.FirstOrDefault();
+                }
 
                 var startInfo = new ProcessStartInfo(path) { UseShellExecute = true };
                 // ArgumentList is apparently a pita to pass a list to
-                foreach(var arg in args.Skip(1)) startInfo.ArgumentList.Add(arg);
+                foreach(var arg in args) startInfo.ArgumentList.Add(arg);
                 startInfo.ArgumentList.Add(video.Uri);
                 var process = Process.Start(startInfo);
                 process?.WaitForExit();
