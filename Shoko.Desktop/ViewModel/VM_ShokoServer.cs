@@ -1834,22 +1834,17 @@ namespace Shoko.Desktop.ViewModel
                     GeneralQueueCount = status.GeneralQueueCount;
                     ServerImageQueueCount = status.ImagesQueueCount;
 
-                    QueueStateStruct queueState = new QueueStateStruct { queueState = (QueueStateEnum)status.HashQueueStateId, extraParams = (status.HashQueueStateParams?.ToArray() ?? new string[0])  };
-                    HasherQueueState = queueState.formatMessage();
-                    HasherQueuePaused = queueState.queueState == QueueStateEnum.Paused;
-                    HasherQueueRunning = queueState.queueState != QueueStateEnum.Paused;
+                    HasherQueueState = status.HashQueueMessage;
+                    HasherQueuePaused = (QueueStateEnum)status.HashQueueStateId == QueueStateEnum.Paused;
+                    HasherQueueRunning = (QueueStateEnum)status.HashQueueStateId != QueueStateEnum.Paused;
 
-                    queueState.queueState = (QueueStateEnum)status.GeneralQueueStateId;
-                    queueState.extraParams = status.GeneralQueueStateParams?.ToArray() ?? new string[0];
-                    GeneralQueueState = queueState.formatMessage();
-                    GeneralQueuePaused = queueState.queueState == QueueStateEnum.Paused;
-                    GeneralQueueRunning = queueState.queueState != QueueStateEnum.Paused;
+                    GeneralQueueState = status.GeneralQueueMessage;
+                    GeneralQueuePaused = (QueueStateEnum)status.GeneralQueueStateId == QueueStateEnum.Paused;
+                    GeneralQueueRunning = (QueueStateEnum)status.GeneralQueueStateId != QueueStateEnum.Paused;
 
-                    queueState.queueState = (QueueStateEnum)status.ImagesQueueStateId;
-                    queueState.extraParams = status.ImagesQueueStateParams?.ToArray() ?? new string[0];
-                    ServerImageQueueState = queueState.formatMessage();
-                    ServerImageQueuePaused = queueState.queueState == QueueStateEnum.Paused;
-                    ServerImageQueueRunning = queueState.queueState != QueueStateEnum.Paused;
+                    ServerImageQueueState = status.ImagesQueueMessage;
+                    ServerImageQueuePaused = (QueueStateEnum)status.ImagesQueueStateId == QueueStateEnum.Paused;
+                    ServerImageQueueRunning = (QueueStateEnum)status.ImagesQueueStateId != QueueStateEnum.Paused;
 
                     IsBanned = status.IsBanned;
                     BanReason = status.BanReason;
