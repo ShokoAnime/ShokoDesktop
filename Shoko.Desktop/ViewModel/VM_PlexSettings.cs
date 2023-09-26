@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using Shoko.Commons.Notification;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel.Server;
@@ -55,7 +56,13 @@ namespace Shoko.Desktop.ViewModel
         public ObservableCollectionEx<MediaDevice> PlexDevices
         {
             get => _plexDevices;
-            set { _plexDevices = value; NotifyPropertyChanged(); NotifyPropertyChanged(nameof(PlexDirectories)); UpdateDirectories(); }
+            set
+            {
+                _plexDevices = value;
+                NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(PlexDirectories));
+                UpdateDirectories();
+            }
         }
 
         public void UpdateDirectories()
@@ -69,7 +76,7 @@ namespace Shoko.Desktop.ViewModel
         {
             var devices = VM_ShokoServer.Instance.ShokoPlex.AvailableDevices(VM_ShokoServer.Instance.CurrentUser.JMMUserID);
 
-            _plexDevices.ReplaceRange(devices);
+            Application.Current.Dispatcher.Invoke(() => _plexDevices.ReplaceRange(devices));
             NotifyPropertyChanged(nameof(PlexDirectories));
         }
 
