@@ -104,6 +104,8 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        public bool ConditionsAreValid => base.FilterConditions != null && base.FilterConditions.Count > 0;
+
         public new string SortingCriteria
         {
             // ReSharper disable once UnusedMember.Local

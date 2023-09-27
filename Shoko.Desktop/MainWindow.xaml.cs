@@ -1903,20 +1903,27 @@ namespace Shoko.Desktop
                     VM_GroupFilter gf = (VM_GroupFilter)obj;
 
 
-                    bool isnew = gf.GroupFilterID == 0;
+                    var isNew = gf.GroupFilterID == 0;
                     if (gf.Validate())
                     {
                         gf.Locked = 0;
                         gf.IsBeingEdited = false;
-                        if (gf.Save() && isnew)
+                        var saved = gf.Save();
+                        switch (saved)
                         {
-                            VM_MainListHelper.Instance.AllGroupFiltersDictionary.Remove(0);
-                            VM_MainListHelper.Instance.AllGroupFiltersDictionary.Add(gf.GroupFilterID, gf);
-                            gf.GetDirectChildren();
-                            //VM_MainListHelper.Instance.LastGroupFilterID = gf.GroupFilterID.Value;
-                            showChildWrappersWorker.RunWorkerAsync(null);
+                            case true when isNew:
+                                VM_MainListHelper.Instance.AllGroupFiltersDictionary.Remove(0);
+                                VM_MainListHelper.Instance.AllGroupFiltersDictionary.Add(gf.GroupFilterID, gf);
+                                gf.GetDirectChildren();
+                                VM_MainListHelper.Instance.CurrentGroupFilter = gf;
+                                showChildWrappersWorker.RunWorkerAsync(null);
+                                break;
+                            case true:
+                                VM_MainListHelper.Instance.CurrentGroupFilter = gf;
+                                gf.GetDirectChildren();
+                                showChildWrappersWorker.RunWorkerAsync(null);
+                                break;
                         }
-                        //showChildWrappersWorker.RunWorkerAsync(null);
                     }
                 }
             }

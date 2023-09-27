@@ -332,18 +332,14 @@ namespace Shoko.Desktop.ViewModel
                 try
                 {
                     VM_AniDB_Anime anime = (VM_AniDB_Anime)VM_ShokoServer.Instance.ShokoServices.GetAnime(animeID);
-                    if (anime != null)
-                    {
-                        AllAnimeDictionary[anime.AnimeID] = anime;
+                    if (anime == null) return;
+                    AllAnimeDictionary[anime.AnimeID] = anime;
 
-                        // update the series
-                        VM_AnimeSeries_User ser = AllSeriesDictionary.Values.FirstOrDefault(a => a.AniDB_ID == anime.AnimeID);
-                        if (ser != null)
-                        {
-                            VM_MainListHelper.Instance.UpdateAll();
-                            AllSeriesDictionary[ser.AnimeSeriesID] = ser;
-                        }
-                    }
+                    // update the series
+                    VM_AnimeSeries_User ser = AllSeriesDictionary.Values.FirstOrDefault(a => a.AniDB_ID == anime.AnimeID);
+                    if (ser == null) return;
+                    Instance.UpdateAll();
+                    AllSeriesDictionary[ser.AnimeSeriesID] = ser;
                 }
                 catch (Exception ex)
                 {

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Windows;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Shoko.Commons.Extensions;
@@ -1019,7 +1020,7 @@ namespace Shoko.Desktop.ViewModel.Server
                     rawSeries = (VM_AnimeSeries_User)VM_ShokoServer.Instance.ShokoServices.GetSeries(AnimeSeriesID, VM_ShokoServer.Instance.CurrentUser.JMMUserID);
                     if (rawSeries != null)
                     {
-                        VM_MainListHelper.Instance.AllSeriesDictionary[AnimeSeriesID] = rawSeries;
+                        Application.Current?.Dispatcher.Invoke(() => VM_MainListHelper.Instance.AllSeriesDictionary[AnimeSeriesID] = rawSeries);
                     }
                 }
                 if (rawSeries == null) return null;
