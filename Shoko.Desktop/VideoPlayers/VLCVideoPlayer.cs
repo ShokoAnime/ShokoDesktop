@@ -120,7 +120,7 @@ namespace Shoko.Desktop.VideoPlayers
 
         private async void AddFileToQueue(VideoInfo video)
         {
-            string videoPath = WebUtility.UrlEncode(video.Uri);
+            string videoPath = WebUtility.UrlEncode(video.Uri).Replace("+", "%20");
             int startTime = (int) video.ResumePosition;
             string vlcEnqueueUrl =
                 videoPath.StartsWith("http") ? $"http://localhost:{webUIPort}/requests/status.xml?command=in_enqueue&input={videoPath}" : $"http://localhost:{webUIPort}/requests/status.xml?command=in_enqueue&input=file:///{videoPath}";
