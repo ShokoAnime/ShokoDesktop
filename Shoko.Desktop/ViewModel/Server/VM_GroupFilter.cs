@@ -104,7 +104,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        public bool ConditionsAreValid => base.FilterConditions != null && base.FilterConditions.Count > 0;
+        public bool ConditionsAreValid => GroupFilterID == 0 || base.FilterConditions is { Count: > 0 };
 
         public new string SortingCriteria
         {
