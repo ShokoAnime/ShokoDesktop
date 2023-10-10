@@ -39,7 +39,7 @@ jobs:
           path: Shoko.Desktop\bin\Release
 
       - name: Archive Release
-        shell: powershell
+        shell: pwsh
         run: Compress-Archive .\\Shoko.Desktop\\bin\\Release .\\ShokoDesktop.zip
 
       - name: Upload Daily to shokoanime.com
