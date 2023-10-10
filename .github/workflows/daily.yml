@@ -43,7 +43,7 @@ jobs:
         run: Compress-Archive .\\Shoko.Desktop\\bin\\Release .\\ShokoDesktop.zip
 
       - name: Upload Daily to shokoanime.com
-        shell: pswh
+        shell: pwsh
         env:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
