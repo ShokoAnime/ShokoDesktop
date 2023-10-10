@@ -13,7 +13,7 @@ jobs:
 
     name: Shoko Desktop daily build
     env:
-      ACTIONS_ALLOW_UNSECURE_COMMANDS: true 
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
     steps:
       - uses: actions/checkout@master
@@ -37,11 +37,13 @@ jobs:
         with:
           name: ShokoDesktop
           path: Shoko.Desktop\bin\Release
+
       - name: Archive Release
         shell: powershell
         run: Compress-Archive .\\Shoko.Desktop\\bin\\Release .\\ShokoDesktop.zip
+
       - name: Upload Daily to shokoanime.com
-        shell: powershell
+        shell: pswh
         env:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
