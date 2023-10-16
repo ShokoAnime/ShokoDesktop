@@ -539,7 +539,6 @@ namespace Shoko.Desktop.UserControls
 			        if (thisGrp != null)
 			        {
 				        thisGrp.GroupName = ser.GroupName;
-				        thisGrp.SortName = ser.SeriesName;
 				        thisGrp.Save();
 			        }
 		        }

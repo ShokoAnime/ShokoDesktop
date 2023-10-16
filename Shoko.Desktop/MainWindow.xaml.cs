@@ -1788,7 +1788,6 @@ namespace Shoko.Desktop
                             GroupName = grp.GroupName,
                             IsFave = grp.IsFave,
                             Description = grp.Description,
-                            SortName = grp.SortName
                         };
                     }
 
@@ -1868,7 +1867,6 @@ namespace Shoko.Desktop
                 if (obj.GetType() == typeof(VM_AnimeGroup_User))
                 {
                     VM_AnimeGroup_User grp = (VM_AnimeGroup_User)obj;
-                    grp.SortName = grp.SortName ?? grp.GroupName;
                     bool isnew = grp.AnimeGroupID==0;
                     if (grp.Validate())
                     {
@@ -2050,7 +2048,6 @@ namespace Shoko.Desktop
 
                         //grp.AnimeGroupParentID = groupBeforeChanges.AnimeGroupParentID;
                         grp.Description = groupBeforeChanges.Description;
-                        grp.SortName = groupBeforeChanges.SortName;
 
                         VM_MainListHelper.Instance.ViewGroups.Refresh();
                         EnableDisableGroupControls(true);

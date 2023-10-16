@@ -78,7 +78,7 @@ namespace Shoko.Desktop.ViewModel.Server
                         return split[1] + part2;
                     }
                 }
-                return GroupFilterName;
+                return GroupFilterName.ToSortName();
             }
         }
 

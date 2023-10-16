@@ -144,7 +144,6 @@ namespace Shoko.Desktop.Forms
 
                 VM_AnimeGroup_User grp = new VM_AnimeGroup_User();
                 grp.GroupName = txtGroupName.Text.Trim();
-                grp.SortName = txtGroupName.Text.Trim();
                 grp.AnimeGroupParentID = null;
                 grp.Description = "";
                 grp.IsFave = 0;
@@ -199,7 +198,6 @@ namespace Shoko.Desktop.Forms
             Series = series;
 
             txtGroupName.Text = Series.SeriesName;
-            txtGroupSortName.Text = Series.SeriesName;
         }
 
         void txtGroupSearch_TextChanged(object sender, TextChangedEventArgs e)
