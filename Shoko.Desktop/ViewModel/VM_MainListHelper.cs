@@ -763,23 +763,11 @@ namespace Shoko.Desktop.ViewModel
                 }
 
                 //Update Group Filters
-                foreach (int gfr in changes.Filters.RemovedItems)
-                {
-                    AllGroupFiltersDictionary.Remove(gfr);
-                }
+                AllGroupFiltersDictionary.Clear();
 
                 foreach (VM_GroupFilter gf in changes.Filters.ChangedItems.CastList<VM_GroupFilter>())
                 {
-                    VM_GroupFilter v;
-
-                    if (AllGroupFiltersDictionary.TryGetValue(gf.GroupFilterID, out v))
-                    {
-                        v.Populate(gf);
-                    }
-                    else
-                    {
-                        AllGroupFiltersDictionary[gf.GroupFilterID] = gf;
-                    }
+                    AllGroupFiltersDictionary[gf.GroupFilterID] = gf;
                 }
 
                 foreach (int gf in changes.Filters.ChangedItems.Select(a => a.GroupFilterID))
