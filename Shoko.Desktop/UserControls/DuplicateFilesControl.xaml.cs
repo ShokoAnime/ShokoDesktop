@@ -49,26 +49,6 @@ namespace Shoko.Desktop.UserControls
 
             btnRefresh.Click += new RoutedEventHandler(btnRefresh_Click);
             lbDuplicateFiles.SelectionChanged += new SelectionChangedEventHandler(lbDuplicateFiles_SelectionChanged);
-
-            btnReevaluate.Click += new RoutedEventHandler(btnReevaluate_Click);
-        }
-
-        void btnReevaluate_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Cursor = Cursors.Wait;
-                VM_ShokoServer.Instance.ShokoServices.ReevaluateDuplicateFiles();
-                RefreshDuplicateFiles();
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-            finally
-            {
-                Cursor = Cursors.Arrow;
-            }
         }
 
         void lbDuplicateFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
