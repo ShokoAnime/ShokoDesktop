@@ -240,7 +240,7 @@ namespace Shoko.Desktop.Forms
             {
 
                 vids = VM_ShokoServer.Instance.ShokoServices.GetFilesByGroupAndResolution(AnimeID,
-                    GroupVideoQuality.GroupName, GroupVideoQuality.Resolution, GroupVideoQuality.VideoSource, GroupVideoQuality.VideoBitDepth, VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_VideoDetailed>();
+                    string.IsNullOrEmpty(GroupVideoQuality.GroupName) ? "null" : GroupVideoQuality.GroupName, GroupVideoQuality.Resolution, GroupVideoQuality.VideoSource, GroupVideoQuality.VideoBitDepth, VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_VideoDetailed>();
                 FileCount = vids.Count;
                 lbFiles.ItemsSource = vids;
                 GroupName = GroupVideoQuality.GroupName;
