@@ -234,7 +234,7 @@ namespace Shoko.Desktop.UserControls
                     if (res == MessageBoxResult.Yes)
                     {
                         Cursor = Cursors.Wait;
-                        string result = VM_ShokoServer.Instance.ShokoServices.DeleteDuplicateFile(df.DuplicateFileID, 1);
+                        string result = VM_ShokoServer.Instance.ShokoServices.DeleteDuplicateFile(df.File1VideoLocalPlaceID);
                         if (result.Length > 0)
                             MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         else
@@ -274,47 +274,7 @@ namespace Shoko.Desktop.UserControls
                     if (res == MessageBoxResult.Yes)
                     {
                         Cursor = Cursors.Wait;
-                        string result = VM_ShokoServer.Instance.ShokoServices.DeleteDuplicateFile(df.DuplicateFileID, 2);
-                        if (result.Length > 0)
-                            MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-                        else
-                        {
-                            DuplicateFilesCollection.Remove(df);
-                            FileCount = DuplicateFilesCollection.Count;
-                            //RefreshDuplicateFiles();
-                        }
-                    }
-
-                }
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-            finally
-            {
-                Cursor = Cursors.Arrow;
-            }
-        }
-
-        private void CommandBinding_DeleteFileDB(object sender, ExecutedRoutedEventArgs e)
-        {
-            object obj = e.Parameter;
-            if (obj == null) return;
-
-            try
-            {
-                if (obj.GetType() == typeof(VM_DuplicateFile))
-                {
-                    VM_DuplicateFile df = obj as VM_DuplicateFile;
-
-                    MessageBoxResult res = MessageBox.Show(string.Format(Shoko.Commons.Properties.Resources.DuplicateFiles_DeleteEntry),
-                        Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-                    if (res == MessageBoxResult.Yes)
-                    {
-                        Cursor = Cursors.Wait;
-                        string result = VM_ShokoServer.Instance.ShokoServices.DeleteDuplicateFile(df.DuplicateFileID, 0);
+                        string result = VM_ShokoServer.Instance.ShokoServices.DeleteDuplicateFile(df.File2VideoLocalPlaceID);
                         if (result.Length > 0)
                             MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         else
