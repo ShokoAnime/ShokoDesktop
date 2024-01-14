@@ -149,7 +149,7 @@ namespace Shoko.Desktop.Forms
 
         void btnOK_Click(object sender, RoutedEventArgs e)
         {
-            string msg = string.Format(Commons.Properties.Resources.DeleteFiles_Confirm, vids.Count);
+            string msg = string.Format(Commons.Properties.Resources.DeleteFiles_Confirm, vids.SelectMany(a => a.Places).Count());
             MessageBoxResult res = MessageBox.Show(msg, Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
             if (res == MessageBoxResult.Yes)

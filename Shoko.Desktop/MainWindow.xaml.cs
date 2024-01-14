@@ -100,7 +100,6 @@ namespace Shoko.Desktop
         private static Timer postStartTimer;
 
         public static VM_GroupFilter groupFilterVM;
-        public static List<UserCulture> userLanguages = new List<UserCulture>();
         public static ImageDownloader imageHelper;
 
         private VM_AnimeGroup_User groupBeforeChanges;
@@ -124,10 +123,8 @@ namespace Shoko.Desktop
         private readonly object lockPlaylistsTab = new object();
         private readonly object lockBookmarksTab = new object();
         private readonly object lockServerTab = new object();
-        private readonly object lockUtilitiesTab = new object();
         private readonly object lockSettingsTab = new object();
         private readonly object lockPinnedTab = new object();
-        private readonly object lockDownloadsTab = new object();
         private readonly object lockSearchTab = new object();
 
         public static VideoHandler videoHandler = new VideoHandler();
@@ -139,6 +136,7 @@ namespace Shoko.Desktop
             {
                 AppSettings.LoadSettings();
                 logger.Info("App startup - Loaded settings");
+                AppSettings.DebugSettingsToLog();
 
                 InitializeComponent();
                 
@@ -165,8 +163,6 @@ namespace Shoko.Desktop
             try
             {
                 UnhandledExceptionManager.AddHandler();
-
-                //AppSettings.DebugSettingsToLog();
 
                 if (AppSettings.AutoStartLocalJMMServer)
                     Utils.StartJMMServer();
