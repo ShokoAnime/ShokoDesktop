@@ -118,18 +118,14 @@ namespace Shoko.Desktop.Forms
 
         private void HandleCheck(object sender, RoutedEventArgs e)
         {
-            CheckBox cb = sender as CheckBox;
-
-            if (cb.Name == "cb_AutoClose_DeleteFilesForm")
+            if (sender is CheckBox { Name: "cb_AutoClose_DeleteFilesForm" })
             {
                 AppSettings.AutoClose_DeleteFilesForm = true;
             }
         }
         private void HandleUnchecked(object sender, RoutedEventArgs e)
         {
-            CheckBox cb = sender as CheckBox;
-
-            if (cb.Name == "cb_AutoClose_DeleteFilesForm")
+            if (sender is CheckBox { Name: "cb_AutoClose_DeleteFilesForm" })
             {
                 AppSettings.AutoClose_DeleteFilesForm = false;
             }
@@ -149,8 +145,8 @@ namespace Shoko.Desktop.Forms
 
         void btnOK_Click(object sender, RoutedEventArgs e)
         {
-            string msg = string.Format(Commons.Properties.Resources.DeleteFiles_Confirm, vids.SelectMany(a => a.Places).Count());
-            MessageBoxResult res = MessageBox.Show(msg, Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            var msg = string.Format(Commons.Properties.Resources.DeleteFiles_Confirm, vids.SelectMany(a => a.Places).Count());
+            var res = MessageBox.Show(msg, Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
             if (res == MessageBoxResult.Yes)
             {
@@ -189,18 +185,18 @@ namespace Shoko.Desktop.Forms
         {
             if (vids == null) return;
 
-            int i = 0;
-            List<string> errors = new List<string>();
-            List<CL_VideoLocal_Place[]> files = vids.SelectMany(a => a.Places).GroupBy(a => Path.GetDirectoryName(a.FilePath))
+            var i = 0;
+            var errors = new List<string>();
+            var files = vids.SelectMany(a => a.Places).GroupBy(a => Path.GetDirectoryName(a.FilePath))
                 .Select(a => a.ToArray()).ToList();
-            int total = files.Sum(a => a.Length);
-            foreach (CL_VideoLocal_Place[] vid in files)
+            var total = files.Sum(a => a.Length);
+            foreach (var vid in files)
             {
-                for (int index = 0; index < vid.Length; index++)
+                for (var index = 0; index < vid.Length; index++)
                 {
                     var n = vid[index];
                     i++;
-                    string msg = string.Format(Commons.Properties.Resources.DeleteFiles_Deleting, i, total);
+                    var msg = string.Format(Commons.Properties.Resources.DeleteFiles_Deleting, i, total);
                     deleteFilesWorker.ReportProgress(0, msg);
                     try
                     {
@@ -240,7 +236,9 @@ namespace Shoko.Desktop.Forms
             {
 
                 vids = VM_ShokoServer.Instance.ShokoServices.GetFilesByGroupAndResolution(AnimeID,
-                    string.IsNullOrEmpty(GroupVideoQuality.GroupName) ? "null" : GroupVideoQuality.GroupName, GroupVideoQuality.Resolution, GroupVideoQuality.VideoSource, GroupVideoQuality.VideoBitDepth, VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_VideoDetailed>();
+                    string.IsNullOrEmpty(GroupVideoQuality.GroupName) ? "null" : GroupVideoQuality.GroupName,
+                    GroupVideoQuality.Resolution, GroupVideoQuality.VideoSource, GroupVideoQuality.VideoBitDepth,
+                    VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_VideoDetailed>();
                 FileCount = vids.Count;
                 lbFiles.ItemsSource = vids;
                 GroupName = GroupVideoQuality.GroupName;
@@ -268,7 +266,8 @@ namespace Shoko.Desktop.Forms
             try
             {
                 vids = VM_ShokoServer.Instance.ShokoServices.GetFilesByGroup(AnimeID,
-                    GroupFileSummary.GroupName, VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_VideoDetailed>();
+                    string.IsNullOrEmpty(GroupFileSummary.GroupName) ? "null" : GroupFileSummary.GroupName,
+                    VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_VideoDetailed>();
 
                 FileCount = vids.Count;
                 lbFiles.ItemsSource = vids;
