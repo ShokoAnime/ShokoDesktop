@@ -17,17 +17,13 @@ using Shoko.Commons.Extensions;
 using Shoko.Commons.Languages;
 using Shoko.Commons.Notification;
 using Shoko.Commons.Properties;
-using Shoko.Commons.Queue;
 using Shoko.Models.Enums;
 using Shoko.Desktop.Forms;
-using Shoko.Desktop.Properties;
 using Shoko.Desktop.Utilities;
-using Shoko.Desktop.ViewModel.Helpers;
 using Shoko.Desktop.ViewModel.Server;
 using Shoko.Models.Azure;
 using Shoko.Models.Client;
 using Shoko.Models.Interfaces;
-using Shoko.Models.Queue;
 using Shoko.Models.Server;
 using Shoko.Models.TvDB;
 using ImportFolder = Shoko.Models.Server.ImportFolder;
@@ -631,16 +627,6 @@ namespace Shoko.Desktop.ViewModel
             }
         }
 
-        private bool baseImagesPathIsDefault = true;
-        public bool BaseImagesPathIsDefault
-        {
-            get => baseImagesPathIsDefault;
-            set
-            {
-                this.SetField(()=>baseImagesPathIsDefault,value);
-            }
-        }
-
         private string username = "";
         public string Username
         {
@@ -648,126 +634,6 @@ namespace Shoko.Desktop.ViewModel
             set
             {
                 this.SetField(()=>username,value);
-            }
-        }
-
-        private int hasherQueueCount;
-        public int HasherQueueCount
-        {
-            get => hasherQueueCount;
-            set
-            {
-                this.SetField(()=>hasherQueueCount,value);
-            }
-        }
-
-        private string hasherQueueState = "";
-        public string HasherQueueState
-        {
-            get => hasherQueueState;
-            set
-            {
-                this.SetField(()=>hasherQueueState,value);
-            }
-        }
-
-        private int serverImageQueueCount;
-        public int ServerImageQueueCount
-        {
-            get => serverImageQueueCount;
-            set
-            {
-                this.SetField(()=>serverImageQueueCount,value);
-            }
-        }
-
-        private string serverImageQueueState = "";
-        public string ServerImageQueueState
-        {
-            get => serverImageQueueState;
-            set
-            {
-                this.SetField(()=>serverImageQueueState,value);
-            }
-        }
-
-        private int generalQueueCount;
-        public int GeneralQueueCount
-        {
-            get => generalQueueCount;
-            set
-            {
-                this.SetField(()=>generalQueueCount,value);
-            }
-        }
-
-        private string generalQueueState = "";
-        public string GeneralQueueState
-        {
-            get => generalQueueState;
-            set
-            {
-                this.SetField(()=>generalQueueState,value);
-            }
-        }
-
-        private bool hasherQueuePaused;
-        public bool HasherQueuePaused
-        {
-            get => hasherQueuePaused;
-            set
-            {
-                this.SetField(()=>hasherQueuePaused,value);
-            }
-        }
-
-        private bool hasherQueueRunning = true;
-        public bool HasherQueueRunning
-        {
-            get => hasherQueueRunning;
-            set
-            {
-                this.SetField(()=>hasherQueueRunning,value);
-            }
-        }
-
-        private bool serverImageQueuePaused;
-        public bool ServerImageQueuePaused
-        {
-            get => serverImageQueuePaused;
-            set
-            {
-                this.SetField(()=>serverImageQueuePaused,value);
-            }
-        }
-
-        private bool serverImageQueueRunning = true;
-        public bool ServerImageQueueRunning
-        {
-            get => serverImageQueueRunning;
-            set
-            {
-                this.SetField(()=>serverImageQueueRunning,value);
-            }
-        }
-
-        private bool generalQueuePaused;
-        public bool GeneralQueuePaused
-        {
-            get => generalQueuePaused;
-            set
-            {
-                this.SetField(()=>generalQueuePaused,value);
-            }
-        }
-
-        private bool generalQueueRunning;
-        public bool GeneralQueueRunning
-        {
-            get => generalQueueRunning;
-            set
-            {
-                this.SetField(()=>generalQueueRunning,value);
             }
         }
 
@@ -1830,22 +1696,6 @@ namespace Shoko.Desktop.ViewModel
 
                 Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, (Action)delegate
                 {
-                    HasherQueueCount = status.HashQueueCount;
-                    GeneralQueueCount = status.GeneralQueueCount;
-                    ServerImageQueueCount = status.ImagesQueueCount;
-
-                    HasherQueueState = status.HashQueueMessage;
-                    HasherQueuePaused = (QueueStateEnum)status.HashQueueStateId == QueueStateEnum.Paused;
-                    HasherQueueRunning = (QueueStateEnum)status.HashQueueStateId != QueueStateEnum.Paused;
-
-                    GeneralQueueState = status.GeneralQueueMessage;
-                    GeneralQueuePaused = (QueueStateEnum)status.GeneralQueueStateId == QueueStateEnum.Paused;
-                    GeneralQueueRunning = (QueueStateEnum)status.GeneralQueueStateId != QueueStateEnum.Paused;
-
-                    ServerImageQueueState = status.ImagesQueueMessage;
-                    ServerImageQueuePaused = (QueueStateEnum)status.ImagesQueueStateId == QueueStateEnum.Paused;
-                    ServerImageQueueRunning = (QueueStateEnum)status.ImagesQueueStateId != QueueStateEnum.Paused;
-
                     IsBanned = status.IsBanned;
                     BanReason = status.BanReason;
                     BanOrigin = status.BanOrigin;

@@ -231,9 +231,6 @@ namespace Shoko.Desktop
                 btnFeed.Click += btnFeed_Click;
                 btnDiscord.Click += btnDiscord_Click;
                 btnAbout.Click += btnAbout_Click;
-                btnClearHasherQueue.Click += btnClearHasherQueue_Click;
-                btnClearGeneralQueue.Click += btnClearGeneralQueue_Click;
-                btnClearServerImageQueue.Click += btnClearServerImageQueue_Click;
                 btnAdminMessages.Click += btnAdminMessages_Click;
 
                 // timer for automatic updates
@@ -326,48 +323,6 @@ namespace Shoko.Desktop
            tabControl1.SelectedIndex = (int) TAB_MAIN.Dashboard;
        }
 
-        private void btnClearServerImageQueue_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Cursor = Cursors.Wait;
-                VM_ShokoServer.Instance.ShokoServices.ClearImagesQueue();
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-            Cursor = Cursors.Arrow;
-        }
-
-        private void btnClearGeneralQueue_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Cursor = Cursors.Wait;
-                VM_ShokoServer.Instance.ShokoServices.ClearGeneralQueue();
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-            Cursor = Cursors.Arrow;
-        }
-
-        private void btnClearHasherQueue_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Cursor = Cursors.Wait;
-                VM_ShokoServer.Instance.ShokoServices.ClearHasherQueue();
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-            Cursor = Cursors.Arrow;
-        }
-
         private void btnFeed_Click(object sender, RoutedEventArgs e)
         {
             FeedForm frm = new FeedForm();
@@ -439,9 +394,6 @@ namespace Shoko.Desktop
             // validate settings
             VM_ShokoServer.Instance.Test();
             VM_ShokoServer.Instance.BaseImagePath = Utils.GetBaseImagesPath();
-
-            // Make the queue tooltip align left
-            QueueTooltip.HorizontalOffset = QueueTooltip.Width - QueuePanel.Width;
 
             bool loggedIn = false;
             if (VM_ShokoServer.Instance.ServerOnline)
@@ -2840,89 +2792,6 @@ namespace Shoko.Desktop
         {
             WindowState = WindowState.Minimized;
         }
-
-
-        #region Server Queue Actions
-
-        public void CommandBinding_HasherQueuePause(object sender, ExecutedRoutedEventArgs e)
-        {
-            try
-            {
-                VM_ShokoServer.Instance.ShokoServices.SetCommandProcessorHasherPaused(true);
-                VM_ShokoServer.Instance.UpdateServerStatus();
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-        }
-
-        public void CommandBinding_HasherQueueResume(object sender, ExecutedRoutedEventArgs e)
-        {
-            try
-            {
-                VM_ShokoServer.Instance.ShokoServices.SetCommandProcessorHasherPaused(false);
-                VM_ShokoServer.Instance.UpdateServerStatus();
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-        }
-
-        public void CommandBinding_GeneralQueuePause(object sender, ExecutedRoutedEventArgs e)
-        {
-            try
-            {
-                VM_ShokoServer.Instance.ShokoServices.SetCommandProcessorGeneralPaused(true);
-                VM_ShokoServer.Instance.UpdateServerStatus();
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-        }
-
-        public void CommandBinding_GeneralQueueResume(object sender, ExecutedRoutedEventArgs e)
-        {
-            try
-            {
-                VM_ShokoServer.Instance.ShokoServices.SetCommandProcessorGeneralPaused(false);
-                VM_ShokoServer.Instance.UpdateServerStatus();
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-        }
-
-        public void CommandBinding_ServerImageQueuePause(object sender, ExecutedRoutedEventArgs e)
-        {
-            try
-            {
-                VM_ShokoServer.Instance.ShokoServices.SetCommandProcessorImagesPaused(true);
-                VM_ShokoServer.Instance.UpdateServerStatus();
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-        }
-
-        public void CommandBinding_ServerImageQueueResume(object sender, ExecutedRoutedEventArgs e)
-        {
-            try
-            {
-                VM_ShokoServer.Instance.ShokoServices.SetCommandProcessorImagesPaused(false);
-                VM_ShokoServer.Instance.UpdateServerStatus();
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-        }
-
-        #endregion
 
         #endregion
 
