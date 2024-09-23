@@ -109,6 +109,8 @@ namespace Shoko.Desktop.ViewModel
             if (string.IsNullOrEmpty(AppSettings.JMMServer_Address) || string.IsNullOrEmpty(AppSettings.JMMServer_Port))
                 return false;
 
+            if (!(AppSettings.JMMServer_Protocol.Equals("http") || AppSettings.JMMServer_Protocol.Equals("https")))
+                return false;
 
             return true;
         }
@@ -122,7 +124,7 @@ namespace Shoko.Desktop.ViewModel
 
             try
             {
-                _imageClient = ClientFactory.Create<IShokoServerImage>($"http://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/");
+                _imageClient = ClientFactory.Create<IShokoServerImage>($"{AppSettings.JMMServer_Protocol}://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/");
             }
             catch (Exception ex)
             {
@@ -139,7 +141,7 @@ namespace Shoko.Desktop.ViewModel
 
             try
             {
-                _plexClient = ClientFactory.Create<IShokoServerPlex>($"http://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/");
+                _plexClient = ClientFactory.Create<IShokoServerPlex>($"{AppSettings.JMMServer_Protocol}://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/");
             }
             catch (Exception ex)
             {
@@ -223,7 +225,7 @@ namespace Shoko.Desktop.ViewModel
 
                 _shokoservices =
                     ClientFactory.Create<IShokoServer>(
-                        $"http://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/", mappings, proxy:proxy);
+                        $"{AppSettings.JMMServer_Protocol}://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/", mappings, proxy:proxy);
                 // try connecting to see if the server is responding
                 Instance.ShokoServices.GetServerStatus();
                 ServerOnline = true;

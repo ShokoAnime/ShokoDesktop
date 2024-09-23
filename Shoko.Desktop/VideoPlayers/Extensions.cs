@@ -97,7 +97,7 @@ namespace Shoko.Desktop.VideoPlayers
             name = WebUtility.UrlEncode(name);
 
             string uri =
-                $"http://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/Stream/{vlID}/{VM_ShokoServer.Instance.CurrentUser.JMMUserID}/false/{name}";
+                $"{AppSettings.JMMServer_Protocol}://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/Stream/{vlID}/{VM_ShokoServer.Instance.CurrentUser.JMMUserID}/false/{name}";
             string fname = Path.GetFileNameWithoutExtension(path);
             var p = m?.Parts?.FirstOrDefault();
             if (p?.Streams == null) return new Tuple<string, List<string>>(uri, subs);
@@ -109,7 +109,7 @@ namespace Shoko.Desktop.VideoPlayers
                 
                 try
                 {
-                    var url = $"http://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/Stream/Filename/{Base64EncodeUrl(s.File)}/{VM_ShokoServer.Instance.CurrentUser.JMMUserID}/false";
+                    var url = $"{AppSettings.JMMServer_Protocol}://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/Stream/Filename/{Base64EncodeUrl(s.File)}/{VM_ShokoServer.Instance.CurrentUser.JMMUserID}/false";
                     string subtitle = wc.DownloadString(url);
                     try
                     {
