@@ -33,7 +33,7 @@ jobs:
         run: msbuild Shoko.Desktop.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1.0.0
+        uses: actions/upload-artifact@v4.4.0
         with:
           name: ShokoDesktop
           path: Shoko.Desktop\bin\Release
