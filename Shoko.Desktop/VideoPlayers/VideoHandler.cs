@@ -445,7 +445,7 @@ namespace Shoko.Desktop.VideoPlayers
                 plsContent += @"[playlist]" + Environment.NewLine;
                 List<string> lines=new List<string>();
 
-                string url = $"http://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/Stream/%s/%s/false/%s";
+                string url = $"{AppSettings.JMMServer_Protocol}://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/Stream/%s/%s/false/%s";
 
                 for (int i = 1; i <= vids.Count; i++)
                 {

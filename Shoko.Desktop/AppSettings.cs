@@ -298,6 +298,20 @@ namespace Shoko.Desktop
             }
         }
 
+        public static string JMMServer_Protocol
+        {
+            get
+            {
+                string val = Get("ShokoServer_Protocol");
+                if (!string.IsNullOrEmpty(val)) return val;
+                // default value
+                val = "http";
+                Set("ShokoServer_Protocol", val);
+                return val;
+            }
+            set => Set("ShokoServer_Protocol", value);
+        }
+
         public static string JMMServer_Address
         {
             get
@@ -1764,6 +1778,7 @@ namespace Shoko.Desktop
             logger.Info($"Episodes_WatchedStatus: {Episodes_WatchedStatus}");
             logger.Info($"BaseImagesPath: {BaseImagesPath}");
             logger.Info($"BaseImagesPathIsDefault: {BaseImagesPathIsDefault}");
+            logger.Info($"ShokoServer_Protocol: {JMMServer_Protocol}");
             logger.Info($"ShokoServer_Address: {JMMServer_Address}");
             logger.Info($"ShokoServer_Port: {JMMServer_Port}");
             logger.Info($"ShokoServer_FilePort: {JMMServer_FilePort}");

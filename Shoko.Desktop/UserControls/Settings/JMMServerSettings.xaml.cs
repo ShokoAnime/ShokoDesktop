@@ -19,6 +19,7 @@ namespace Shoko.Desktop.UserControls.Settings
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
+            checkHttps.IsChecked = AppSettings.JMMServer_Protocol == "https";
             txtServer.Text = AppSettings.JMMServer_Address;
             txtPort.Text = AppSettings.JMMServer_Port;
             //txtFilePort.Text = AppSettings.JMMServer_FilePort;
@@ -33,6 +34,9 @@ namespace Shoko.Desktop.UserControls.Settings
         {
             try
             {
+                AppSettings.JMMServer_Protocol = (checkHttps.IsChecked.HasValue && checkHttps.IsChecked.Value)
+                    ? "https"
+                    : "http";
                 AppSettings.JMMServer_Address = txtServer.Text.Trim();
                 AppSettings.JMMServer_Port = txtPort.Text.Trim();
 
