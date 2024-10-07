@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest  
+    runs-on: windows-latest
 
     name: Shoko Desktop daily build
 
@@ -17,13 +17,17 @@ jobs:
           submodules: recursive
 
       - name: Setup MSBuild Path
-        uses: warrenbuckley/Setup-MSBuild@v1  
+        uses: warrenbuckley/Setup-MSBuild@v1  # Ensure that the MSBuild version is compatible
 
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.0.2
 
       - name: Restore NuGet Packages
-        run: nuget restore Shoko.Desktop.sln  
+        run: nuget restore Shoko.Desktop.sln
+
+      - name: Set up MSBuild Environment Path  # Use environment files to add MSBuild to PATH
+        run: |
+          echo "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin" >> $GITHUB_PATH
 
       - name: Build
         run: msbuild Shoko.Desktop.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
@@ -35,7 +39,7 @@ jobs:
         env:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}  
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
         run: |
           curl --ftp-ssl -T ShokoDesktop.zip \
           --user ${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }} \
