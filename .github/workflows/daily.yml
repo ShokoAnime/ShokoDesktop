@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Can also use windows-latest, if needed
+    runs-on: windows-latest  
 
     name: Shoko Desktop daily build
 
@@ -17,25 +17,25 @@ jobs:
           submodules: recursive
 
       - name: Setup MSBuild Path
-        uses: warrenbuckley/Setup-MSBuild@v1
+        uses: warrenbuckley/Setup-MSBuild@v1  
 
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.0.2
 
       - name: Restore NuGet Packages
-        run: nuget restore Shoko.Desktop.sln
+        run: nuget restore Shoko.Desktop.sln  
 
       - name: Build
         run: msbuild Shoko.Desktop.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
 
       - name: Archive Release
-        run: zip -r ShokoDesktop.zip Shoko.Desktop/bin/Release
+        run: Compress-Archive -Path Shoko.Desktop/bin/Release -DestinationPath ShokoDesktop.zip
 
       - name: Upload Daily Build to FTPS Server
         env:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}  # The server IP or domain
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}  
         run: |
           curl --ftp-ssl -T ShokoDesktop.zip \
           --user ${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }} \
