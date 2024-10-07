@@ -40,30 +40,19 @@ jobs:
         shell: pwsh
         run: Compress-Archive .\\Shoko.Desktop\\bin\\Release .\\ShokoDesktop.zip
 
-      - name: Install PSFTP (SFTP Client)
-        run: |
-          Invoke-WebRequest -Uri "https://the.earth.li/~sgtatham/putty/latest/w64/psftp.exe" -OutFile "$env:TEMP\psftp.exe"
-
-      - name: Upload Daily to shokoanime.com via SFTP
+      - name: Upload Daily to shokoanime.com via SFTP (OpenSSH)
         shell: pwsh
         env:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
         run: |
-          # Create an SFTP command script to upload the file
-          $sftp_script = @"
-          lcd $PWD
+          # Create an SSH pass file to provide the password
+          $password = ConvertTo-SecureString -AsPlainText $env:FTP_PASSWORD -Force
+          $credential = New-Object System.Management.Automation.PSCredential ($env:FTP_USERNAME, $password)
+          
+          # Disable host key checking and upload using OpenSSH's SFTP client
+          sftp -o StrictHostKeyChecking=no $env:FTP_USERNAME@$env:FTP_SERVER <<EOF
           put .\\ShokoDesktop.zip /files/shoko-desktop/daily/ShokoDesktop.zip
-          quit
-          "@
-
-          # Write the script to a temporary file
-          $sftp_script_path = "$env:TEMP\sftp_script.txt"
-          $sftp_script | Out-File -FilePath $sftp_script_path
-
-          # Use PSFTP to upload the file via SFTP with host key checking disabled
-          & "$env:TEMP\psftp.exe" -batch -o StrictHostKeyChecking=no -pw $env:FTP_PASSWORD $env:FTP_USERNAME@$env:FTP_SERVER -b $sftp_script_path
-
-          # Cleanup the temporary script file
-          Remove-Item $sftp_script_path
+          bye
+          EOF
