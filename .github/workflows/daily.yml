@@ -7,14 +7,12 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest  # Can also use windows-latest, if needed
 
     name: Shoko Desktop daily build
-    env:
-      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
         with:
           submodules: recursive
 
@@ -30,32 +28,15 @@ jobs:
       - name: Build
         run: msbuild Shoko.Desktop.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
 
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4.4.0
-        with:
-          name: ShokoDesktop
-          path: Shoko.Desktop\bin\Release
-
       - name: Archive Release
-        shell: pwsh
-        run: Compress-Archive .\\Shoko.Desktop\\bin\\Release .\\ShokoDesktop.zip
+        run: zip -r ShokoDesktop.zip Shoko.Desktop/bin/Release
 
-      - name: Upload Daily to shokoanime.com via SFTP
-        shell: pwsh
+      - name: Upload Daily Build to FTPS Server
         env:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}  # The server IP or domain
         run: |
-          # Create the SFTP command script as a string
-          $sftpCommands = @"
-          put .\\ShokoDesktop.zip /files/shoko-desktop/daily/ShokoDesktop.zip
-          bye
-          "@
-          
-          # Write the commands to a temporary file
-          $sftpScriptPath = "$env:TEMP\\sftp_commands.txt"
-          $sftpCommands | Out-File -FilePath $sftpScriptPath -Encoding ASCII
-          
-          # Execute the SFTP command with the temporary script
-          sftp -o StrictHostKeyChecking=no -b $sftpScriptPath $env:FTP_USERNAME@$env:FTP_SERVER
+          curl --ftp-ssl -T ShokoDesktop.zip \
+          --user ${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }} \
+          ftps://${{ secrets.FTP_SERVER }}/files/shoko-desktop/daily/ShokoDesktop.zip --insecure
