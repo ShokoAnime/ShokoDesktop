@@ -40,19 +40,22 @@ jobs:
         shell: pwsh
         run: Compress-Archive .\\Shoko.Desktop\\bin\\Release .\\ShokoDesktop.zip
 
-      - name: Upload Daily to shokoanime.com via SFTP (OpenSSH)
+      - name: Upload Daily to shokoanime.com via SFTP
         shell: pwsh
         env:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
         run: |
-          # Create an SSH pass file to provide the password
-          $password = ConvertTo-SecureString -AsPlainText $env:FTP_PASSWORD -Force
-          $credential = New-Object System.Management.Automation.PSCredential ($env:FTP_USERNAME, $password)
-          
-          # Disable host key checking and upload using OpenSSH's SFTP client
-          sftp -o StrictHostKeyChecking=no $env:FTP_USERNAME@$env:FTP_SERVER <<EOF
+          # Create the SFTP command script as a string
+          $sftpCommands = @"
           put .\\ShokoDesktop.zip /files/shoko-desktop/daily/ShokoDesktop.zip
           bye
-          EOF
+          "@
+          
+          # Write the commands to a temporary file
+          $sftpScriptPath = "$env:TEMP\\sftp_commands.txt"
+          $sftpCommands | Out-File -FilePath $sftpScriptPath -Encoding ASCII
+          
+          # Execute the SFTP command with the temporary script
+          sftp -o StrictHostKeyChecking=no -b $sftpScriptPath $env:FTP_USERNAME@$env:FTP_SERVER
