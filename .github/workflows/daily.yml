@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - master
-#   pull_request:
-#     branches: [ master ]
 
 jobs:
   build:
@@ -42,10 +40,30 @@ jobs:
         shell: pwsh
         run: Compress-Archive .\\Shoko.Desktop\\bin\\Release .\\ShokoDesktop.zip
 
-      - name: Upload Daily to shokoanime.com
+      - name: Install PSFTP (SFTP Client)
+        run: |
+          Invoke-WebRequest -Uri "https://the.earth.li/~sgtatham/putty/latest/w64/psftp.exe" -OutFile "$env:TEMP\psftp.exe"
+
+      - name: Upload Daily to shokoanime.com via SFTP
         shell: pwsh
         env:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
-        run : .\\.github\\workflows\\UploadArchive.ps1
+        run: |
+          # Create an SFTP command script to upload the file
+          $sftp_script = @"
+          lcd $PWD
+          put .\\ShokoDesktop.zip /files/shoko-desktop/daily/ShokoDesktop.zip
+          quit
+          "@
+
+          # Write the script to a temporary file
+          $sftp_script_path = "$env:TEMP\sftp_script.txt"
+          $sftp_script | Out-File -FilePath $sftp_script_path
+
+          # Use PSFTP to upload the file via SFTP
+          & "$env:TEMP\psftp.exe" -batch -pw $env:FTP_PASSWORD $env:FTP_USERNAME@$env:FTP_SERVER -b $sftp_script_path
+
+          # Cleanup the temporary script file
+          Remove-Item $sftp_script_path
