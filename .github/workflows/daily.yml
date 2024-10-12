@@ -4,20 +4,24 @@ on:
   push:
     branches:
       - master
+#   pull_request:
+#     branches: [ master ]
 
 jobs:
   build:
     runs-on: windows-latest
 
     name: Shoko Desktop daily build
+    env:
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@master
         with:
           submodules: recursive
 
       - name: Setup MSBuild Path
-        uses: warrenbuckley/Setup-MSBuild@v1  # Ensure that the MSBuild version is compatible
+        uses: warrenbuckley/Setup-MSBuild@v1
 
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.0.2
@@ -25,22 +29,24 @@ jobs:
       - name: Restore NuGet Packages
         run: nuget restore Shoko.Desktop.sln
 
-      - name: Set up MSBuild Environment Path  # Use environment files to add MSBuild to PATH
-        run: |
-          echo "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin" >> $GITHUB_PATH
-
       - name: Build
         run: msbuild Shoko.Desktop.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
 
-      - name: Archive Release
-        run: Compress-Archive -Path Shoko.Desktop/bin/Release -DestinationPath ShokoDesktop.zip
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4.4.0
+        with:
+          name: ShokoDesktop
+          path: Shoko.Desktop\bin\Release
 
-      - name: Upload Daily Build to FTPS Server
+      - name: Archive Release
+        shell: pwsh
+        run: Compress-Archive .\\Shoko.Desktop\\bin\\Release .\\ShokoDesktop.zip
+
+      - name: Upload Daily to shokoanime.com
+        shell: pwsh
         env:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
-        run: |
-          curl --ftp-ssl -T ShokoDesktop.zip \
-          --user ${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }} \
-          ftps://${{ secrets.FTP_SERVER }}/files/shoko-desktop/daily/ShokoDesktop.zip --insecure
+        run : .\\.github\\workflows\\UploadArchive.ps1
+        
