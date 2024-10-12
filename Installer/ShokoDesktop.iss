@@ -12,7 +12,7 @@
 
 AppId={{EFA49A76-085F-4E64-AEC4-6ACA707A5D91}
 AppName=Shoko Desktop
-AppVersion=4.2.0.0
+AppVersion=4.3.0.0
 AppVerName=Shoko Desktop
 AppPublisher=Shoko Team
 AppPublisherURL=https://ShokoAnime.com/
@@ -39,7 +39,6 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "..\..\ShokoDesktop\Installer\FixPermissions.bat"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Shoko.Desktop\bin\Release\net6.0-windows\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
@@ -48,9 +47,8 @@ Name: "{group}\{cm:UninstallProgram,Shoko Desktop}"; Filename: "{uninstallexe}"
 Name: "{commondesktop}\Shoko Desktop"; Filename: "{app}\ShokoDesktop.exe"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\FixPermissions.bat";
 Filename: "{app}\ShokoDesktop.exe"; Flags: nowait postinstall skipifsilent shellexec; Description: "{cm:LaunchProgram,Shoko Desktop}"
-Filename: "https://shokoanime.com/blog/shoko-version-420-released/"; Flags: shellexec runasoriginaluser postinstall; Description: "View 4.2.0 Release Notes"
+Filename: "https://shokoanime.com/blog/shoko-version-5-0-0-released/"; Flags: shellexec runasoriginaluser postinstall; Description: "View 4.3.0 Release Notes"
 
 [Dirs]
 Name: "{app}"; Permissions: users-full

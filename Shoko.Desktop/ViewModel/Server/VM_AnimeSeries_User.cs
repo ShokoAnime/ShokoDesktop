@@ -54,7 +54,7 @@ namespace Shoko.Desktop.ViewModel.Server
         public DateTime? Stat_AirDate_Max => AniDBAnime?.AniDBAnime?.AirDate;
 
         [JsonIgnore, XmlIgnore]
-        public string SortName => SeriesName;
+        public string SortName => SeriesName.ToSortName();
 
         [JsonIgnore, XmlIgnore]
         public string DateTimeCreatedAsString => DateTimeCreated.ToString("dd MMM yyyy - HH:mm", Commons.Culture.Global);

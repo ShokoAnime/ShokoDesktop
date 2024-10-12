@@ -260,13 +260,7 @@ namespace Shoko.Desktop.Forms
         void hlURL_Click(object sender, RoutedEventArgs e)
         {
             Uri uri = new Uri(string.Format(Constants.URLS.Trakt_Series, txtSeriesID.Text.Trim()));
-            Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
-        }
-
-        void hlURLWebCache_Click(object sender, RoutedEventArgs e)
-        {
-            //Uri uri = new Uri(string.Format(Shoko.Models.Constants.URLS.Trakt_Series, CrossRef_AniDB_TraktResult.TraktID));
-            //Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
+            Utils.OpenUrl(uri.AbsoluteUri);
         }
 
         void rbSearch_Checked(object sender, RoutedEventArgs e)

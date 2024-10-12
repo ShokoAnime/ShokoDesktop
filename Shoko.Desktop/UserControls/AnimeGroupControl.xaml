@@ -212,15 +212,6 @@
                         </Button>
                     </StackPanel>
 
-                    <!-- Sort Name -->
-                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,0,5">
-                        <TextBlock FontWeight="Bold" Margin="0,0,5,0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SortName}"/>
-                        <TextBlock Text="{Binding Path=SortName}" Name="tbGroupSortName"
-                                   Visibility="{Binding Path=IsReadOnly, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <TextBox  MinWidth="200" Text="{Binding Path=SortName}" Name="txtGroupSortName"
-                                 Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                    </StackPanel>
-
                     <!-- Rating -->
                     <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,0,5">
                         <usercontrols:VisualRating Rating="{Binding Path=AniDBRating}" VerticalAlignment="Center">

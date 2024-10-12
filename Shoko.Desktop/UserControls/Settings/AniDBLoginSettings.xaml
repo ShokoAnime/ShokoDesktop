@@ -28,9 +28,9 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0">
-            <TextBox Name="txtServer" Width="300" Margin="0,5,5,0" VerticalAlignment="Center" Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=AniDB_ServerAddress}"/>
+            <TextBox Name="txtServer" Width="300" Margin="0,5,5,0" VerticalAlignment="Center" Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=AniDB_ServerAddress}" IsEnabled="False"/>
             <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Port}" Margin="10,5,5,0" VerticalAlignment="Center"></TextBlock>
-            <TextBox Name="txtPort" Width="50" Margin="0,5,5,0" VerticalAlignment="Center" Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=AniDB_ServerPort}"/>
+            <TextBox Name="txtPort" Width="50" Margin="0,5,5,0" VerticalAlignment="Center" Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=AniDB_ServerPort}" IsEnabled="False"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1">

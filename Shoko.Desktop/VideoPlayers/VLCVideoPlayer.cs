@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -119,10 +120,10 @@ namespace Shoko.Desktop.VideoPlayers
 
         private async void AddFileToQueue(VideoInfo video)
         {
-            string videoPath = video.Uri;
+            string videoPath = WebUtility.UrlEncode(video.Uri).Replace("+", "%20");
             int startTime = (int) video.ResumePosition;
             string vlcEnqueueUrl =
-                $"http://localhost:{webUIPort}/requests/status.xml?command=in_enqueue&input=file:///{videoPath}";
+                videoPath.StartsWith("http") ? $"http://localhost:{webUIPort}/requests/status.xml?command=in_enqueue&input={videoPath}" : $"http://localhost:{webUIPort}/requests/status.xml?command=in_enqueue&input=file:///{videoPath}";
             try
             {
                 // Make HTTP request to Web UI

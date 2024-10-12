@@ -240,5 +240,7 @@ namespace Shoko.Desktop.ViewModel.Server
         public int ObjectType => 5;
         [JsonIgnore, XmlIgnore]
         public bool IsEditable => false;
+
+        [JsonIgnore, XmlIgnore] public int PlaceCount => Places.Count;
     }
 }

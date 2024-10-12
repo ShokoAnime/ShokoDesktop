@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Windows;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Shoko.Commons.Extensions;
@@ -82,7 +83,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get => base.WatchedCount;
             set
             {
-                this.SetField(()=>base.WatchedCount,(r)=> base.WatchedCount = r, value, ()=>Watched, ()=>IsWatched);
+                this.SetField(()=>base.WatchedCount,(r)=> base.WatchedCount = r, value);
                 // episode image / overview in summary
                 bool se1 = false;
                 bool se2 = false;
@@ -116,7 +117,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
         [JsonIgnore, XmlIgnore]
-        public int IsWatched => WatchedCount > 0 ? 1 : 0;
+        public int IsWatched => WatchedDate.HasValue ? 1 : 0;
 
         public new string AniDB_EnglishName
         {
@@ -172,7 +173,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get => base.WatchedDate;
             set
             {
-                this.SetField(()=>base.WatchedDate,(r)=> base.WatchedDate = r, value);
+                this.SetField(()=>base.WatchedDate,(r)=> base.WatchedDate = r, value, ()=>Watched, ()=>IsWatched);
                 SetLastWatchedDescription();
             }
         }
@@ -246,7 +247,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         [JsonIgnore, XmlIgnore]
-        public bool Watched => WatchedCount > 0;
+        public bool Watched => WatchedDate.HasValue;
 
         private bool tvDBLinkExists;
         [JsonIgnore, XmlIgnore]
@@ -1019,7 +1020,7 @@ namespace Shoko.Desktop.ViewModel.Server
                     rawSeries = (VM_AnimeSeries_User)VM_ShokoServer.Instance.ShokoServices.GetSeries(AnimeSeriesID, VM_ShokoServer.Instance.CurrentUser.JMMUserID);
                     if (rawSeries != null)
                     {
-                        VM_MainListHelper.Instance.AllSeriesDictionary[AnimeSeriesID] = rawSeries;
+                        Application.Current?.Dispatcher.Invoke(() => VM_MainListHelper.Instance.AllSeriesDictionary[AnimeSeriesID] = rawSeries);
                     }
                 }
                 if (rawSeries == null) return null;

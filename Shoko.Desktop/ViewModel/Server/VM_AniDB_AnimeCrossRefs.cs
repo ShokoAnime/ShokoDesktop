@@ -108,7 +108,7 @@ namespace Shoko.Desktop.ViewModel.Server
             {
                 foreach (VM_TvDB_ImagePoster contract in value)
                 {
-                    bool isDefault = anime?.DefaultImageFanart != null && anime.DefaultImageFanart.ImageParentType == (int)ImageEntityType.TvDB_Cover && anime.DefaultImageFanart.ImageParentID == contract.TvDB_ImagePosterID;
+                    bool isDefault = anime?.DefaultImagePoster != null && anime.DefaultImagePoster.ImageParentType == (int)ImageEntityType.TvDB_Cover && anime.DefaultImagePoster.ImageParentID == contract.TvDB_ImagePosterID;
                     contract.IsImageDefault = isDefault;
                     AllPosters.Add(new VM_PosterContainer(ImageEntityType.TvDB_Cover, contract));
                 }

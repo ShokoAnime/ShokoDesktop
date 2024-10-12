@@ -78,7 +78,7 @@ namespace Shoko.Desktop.ViewModel.Server
                         return split[1] + part2;
                     }
                 }
-                return GroupFilterName;
+                return GroupFilterName.ToSortName();
             }
         }
 
@@ -103,6 +103,8 @@ namespace Shoko.Desktop.ViewModel.Server
                 base.FilterConditions = value.CastList<GroupFilterCondition>();
             }
         }
+
+        public bool ConditionsAreValid => GroupFilterID == 0 || base.FilterConditions is { Count: > 0 };
 
         public new string SortingCriteria
         {
@@ -337,7 +339,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
         public List<IListWrapper> GetDirectChildren()
         {
-            Childs = Childs ?? new HashSet<int>(); //Hack around ASP Nulls.
+            Childs ??= new HashSet<int>(); //Hack around ASP Nulls.
             List<IListWrapper> wrappers = new List<IListWrapper>();
 
             VM_AnimeGroup_User.SortMethod = AnimeGroupSortMethod.SortName;

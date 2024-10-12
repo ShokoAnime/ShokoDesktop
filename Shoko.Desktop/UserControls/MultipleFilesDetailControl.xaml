@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
+             xmlns:local="clr-namespace:Shoko.Desktop.ViewModel.Server"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -16,7 +17,7 @@
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
             <!-- VideoDetailedTemplate -->
-            <DataTemplate x:Key="VideoDetailedTemplate">
+            <DataTemplate x:Key="VideoDetailedTemplate" DataType="{x:Type local:VM_VideoDetailed}">
                 <Grid Margin="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -143,8 +144,8 @@
                                 <TextBlock Text="{Binding Path=FullPath}"/>
                             </TextBlock.ToolTip>
                         </TextBlock>
-
-                        
+                        <TextBlock Text="{Binding Path=PlaceCount}" VerticalAlignment="Center" Margin="5,0,0,0" />
+                        <TextBlock Text=" File(s)" VerticalAlignment="Center" />
                     </StackPanel>
 
                 </Grid>

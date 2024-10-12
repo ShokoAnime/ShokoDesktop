@@ -8,6 +8,7 @@ using System.Threading;
 using System.Windows;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
+using Shoko.Commons.Extensions;
 using Shoko.Commons.Notification;
 using Shoko.Desktop.Utilities;
 using Shoko.Models.Enums;
@@ -191,11 +192,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
 
-        public new string SortName
-        {
-            get { return base.SortName; }
-            set { this.SetField(()=>base.SortName,(r)=> base.SortName = r, value); }
-        }
+        public new string SortName => GroupName.ToSortName();
 
         public new string Description
         {
@@ -698,7 +695,6 @@ namespace Shoko.Desktop.ViewModel.Server
             // editable members
             GroupName = contract.GroupName;
             IsFave = contract.IsFave;
-            SortName = contract.SortName;
             DefaultAnimeSeriesID = contract.DefaultAnimeSeriesID;
             Description = contract.Description;
 
@@ -715,7 +711,6 @@ namespace Shoko.Desktop.ViewModel.Server
                 IsManuallyNamed = IsManuallyNamed,
                 GroupName = GroupName,
                 IsFave = IsFave,
-                SortName = SortName,
                 Description = Description
             };
         }
@@ -893,19 +888,9 @@ namespace Shoko.Desktop.ViewModel.Server
         */
         public bool Validate()
         {
-            if (string.IsNullOrEmpty(GroupName))
-            {
-                MessageBox.Show(Shoko.Commons.Properties.Resources.Anime_GroupName);
-                return false;
-            }
-
-            if (string.IsNullOrEmpty(SortName))
-            {
-                MessageBox.Show(Shoko.Commons.Properties.Resources.Anime_SortName);
-                return false;
-            }
-
-            return true;
+            if (!string.IsNullOrEmpty(GroupName)) return true;
+            MessageBox.Show(Shoko.Commons.Properties.Resources.Anime_GroupName);
+            return false;
         }
 
 

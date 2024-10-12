@@ -332,18 +332,14 @@ namespace Shoko.Desktop.ViewModel
                 try
                 {
                     VM_AniDB_Anime anime = (VM_AniDB_Anime)VM_ShokoServer.Instance.ShokoServices.GetAnime(animeID);
-                    if (anime != null)
-                    {
-                        AllAnimeDictionary[anime.AnimeID] = anime;
+                    if (anime == null) return;
+                    AllAnimeDictionary[anime.AnimeID] = anime;
 
-                        // update the series
-                        VM_AnimeSeries_User ser = AllSeriesDictionary.Values.FirstOrDefault(a => a.AniDB_ID == anime.AnimeID);
-                        if (ser != null)
-                        {
-                            VM_MainListHelper.Instance.UpdateAll();
-                            AllSeriesDictionary[ser.AnimeSeriesID] = ser;
-                        }
-                    }
+                    // update the series
+                    VM_AnimeSeries_User ser = AllSeriesDictionary.Values.FirstOrDefault(a => a.AniDB_ID == anime.AnimeID);
+                    if (ser == null) return;
+                    Instance.UpdateAll();
+                    AllSeriesDictionary[ser.AnimeSeriesID] = ser;
                 }
                 catch (Exception ex)
                 {
@@ -767,23 +763,11 @@ namespace Shoko.Desktop.ViewModel
                 }
 
                 //Update Group Filters
-                foreach (int gfr in changes.Filters.RemovedItems)
-                {
-                    AllGroupFiltersDictionary.Remove(gfr);
-                }
+                AllGroupFiltersDictionary.Clear();
 
                 foreach (VM_GroupFilter gf in changes.Filters.ChangedItems.CastList<VM_GroupFilter>())
                 {
-                    VM_GroupFilter v;
-
-                    if (AllGroupFiltersDictionary.TryGetValue(gf.GroupFilterID, out v))
-                    {
-                        v.Populate(gf);
-                    }
-                    else
-                    {
-                        AllGroupFiltersDictionary[gf.GroupFilterID] = gf;
-                    }
+                    AllGroupFiltersDictionary[gf.GroupFilterID] = gf;
                 }
 
                 foreach (int gf in changes.Filters.ChangedItems.Select(a => a.GroupFilterID))

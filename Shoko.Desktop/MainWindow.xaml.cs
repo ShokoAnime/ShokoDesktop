@@ -100,7 +100,6 @@ namespace Shoko.Desktop
         private static Timer postStartTimer;
 
         public static VM_GroupFilter groupFilterVM;
-        public static List<UserCulture> userLanguages = new List<UserCulture>();
         public static ImageDownloader imageHelper;
 
         private VM_AnimeGroup_User groupBeforeChanges;
@@ -124,10 +123,8 @@ namespace Shoko.Desktop
         private readonly object lockPlaylistsTab = new object();
         private readonly object lockBookmarksTab = new object();
         private readonly object lockServerTab = new object();
-        private readonly object lockUtilitiesTab = new object();
         private readonly object lockSettingsTab = new object();
         private readonly object lockPinnedTab = new object();
-        private readonly object lockDownloadsTab = new object();
         private readonly object lockSearchTab = new object();
 
         public static VideoHandler videoHandler = new VideoHandler();
@@ -139,6 +136,7 @@ namespace Shoko.Desktop
             {
                 AppSettings.LoadSettings();
                 logger.Info("App startup - Loaded settings");
+                AppSettings.DebugSettingsToLog();
 
                 InitializeComponent();
                 
@@ -165,8 +163,6 @@ namespace Shoko.Desktop
             try
             {
                 UnhandledExceptionManager.AddHandler();
-
-                //AppSettings.DebugSettingsToLog();
 
                 if (AppSettings.AutoStartLocalJMMServer)
                     Utils.StartJMMServer();
@@ -235,9 +231,6 @@ namespace Shoko.Desktop
                 btnFeed.Click += btnFeed_Click;
                 btnDiscord.Click += btnDiscord_Click;
                 btnAbout.Click += btnAbout_Click;
-                btnClearHasherQueue.Click += btnClearHasherQueue_Click;
-                btnClearGeneralQueue.Click += btnClearGeneralQueue_Click;
-                btnClearServerImageQueue.Click += btnClearServerImageQueue_Click;
                 btnAdminMessages.Click += btnAdminMessages_Click;
 
                 // timer for automatic updates
@@ -330,48 +323,6 @@ namespace Shoko.Desktop
            tabControl1.SelectedIndex = (int) TAB_MAIN.Dashboard;
        }
 
-        private void btnClearServerImageQueue_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Cursor = Cursors.Wait;
-                VM_ShokoServer.Instance.ShokoServices.ClearImagesQueue();
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-            Cursor = Cursors.Arrow;
-        }
-
-        private void btnClearGeneralQueue_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Cursor = Cursors.Wait;
-                VM_ShokoServer.Instance.ShokoServices.ClearGeneralQueue();
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-            Cursor = Cursors.Arrow;
-        }
-
-        private void btnClearHasherQueue_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Cursor = Cursors.Wait;
-                VM_ShokoServer.Instance.ShokoServices.ClearHasherQueue();
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-            Cursor = Cursors.Arrow;
-        }
-
         private void btnFeed_Click(object sender, RoutedEventArgs e)
         {
             FeedForm frm = new FeedForm();
@@ -443,9 +394,6 @@ namespace Shoko.Desktop
             // validate settings
             VM_ShokoServer.Instance.Test();
             VM_ShokoServer.Instance.BaseImagePath = Utils.GetBaseImagesPath();
-
-            // Make the queue tooltip align left
-            QueueTooltip.HorizontalOffset = QueueTooltip.Width - QueuePanel.Width;
 
             bool loggedIn = false;
             if (VM_ShokoServer.Instance.ServerOnline)
@@ -1788,7 +1736,6 @@ namespace Shoko.Desktop
                             GroupName = grp.GroupName,
                             IsFave = grp.IsFave,
                             Description = grp.Description,
-                            SortName = grp.SortName
                         };
                     }
 
@@ -1868,7 +1815,6 @@ namespace Shoko.Desktop
                 if (obj.GetType() == typeof(VM_AnimeGroup_User))
                 {
                     VM_AnimeGroup_User grp = (VM_AnimeGroup_User)obj;
-                    grp.SortName = grp.SortName ?? grp.GroupName;
                     bool isnew = grp.AnimeGroupID==0;
                     if (grp.Validate())
                     {
@@ -1903,20 +1849,27 @@ namespace Shoko.Desktop
                     VM_GroupFilter gf = (VM_GroupFilter)obj;
 
 
-                    bool isnew = gf.GroupFilterID == 0;
+                    var isNew = gf.GroupFilterID == 0;
                     if (gf.Validate())
                     {
                         gf.Locked = 0;
                         gf.IsBeingEdited = false;
-                        if (gf.Save() && isnew)
+                        var saved = gf.Save();
+                        switch (saved)
                         {
-                            VM_MainListHelper.Instance.AllGroupFiltersDictionary.Remove(0);
-                            VM_MainListHelper.Instance.AllGroupFiltersDictionary.Add(gf.GroupFilterID, gf);
-                            gf.GetDirectChildren();
-                            //VM_MainListHelper.Instance.LastGroupFilterID = gf.GroupFilterID.Value;
-                            showChildWrappersWorker.RunWorkerAsync(null);
+                            case true when isNew:
+                                VM_MainListHelper.Instance.AllGroupFiltersDictionary.Remove(0);
+                                VM_MainListHelper.Instance.AllGroupFiltersDictionary.Add(gf.GroupFilterID, gf);
+                                gf.GetDirectChildren();
+                                VM_MainListHelper.Instance.CurrentGroupFilter = gf;
+                                showChildWrappersWorker.RunWorkerAsync(null);
+                                break;
+                            case true:
+                                VM_MainListHelper.Instance.CurrentGroupFilter = gf;
+                                gf.GetDirectChildren();
+                                showChildWrappersWorker.RunWorkerAsync(null);
+                                break;
                         }
-                        //showChildWrappersWorker.RunWorkerAsync(null);
                     }
                 }
             }
@@ -2043,7 +1996,6 @@ namespace Shoko.Desktop
 
                         //grp.AnimeGroupParentID = groupBeforeChanges.AnimeGroupParentID;
                         grp.Description = groupBeforeChanges.Description;
-                        grp.SortName = groupBeforeChanges.SortName;
 
                         VM_MainListHelper.Instance.ViewGroups.Refresh();
                         EnableDisableGroupControls(true);
@@ -2841,89 +2793,6 @@ namespace Shoko.Desktop
             WindowState = WindowState.Minimized;
         }
 
-
-        #region Server Queue Actions
-
-        public void CommandBinding_HasherQueuePause(object sender, ExecutedRoutedEventArgs e)
-        {
-            try
-            {
-                VM_ShokoServer.Instance.ShokoServices.SetCommandProcessorHasherPaused(true);
-                VM_ShokoServer.Instance.UpdateServerStatus();
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-        }
-
-        public void CommandBinding_HasherQueueResume(object sender, ExecutedRoutedEventArgs e)
-        {
-            try
-            {
-                VM_ShokoServer.Instance.ShokoServices.SetCommandProcessorHasherPaused(false);
-                VM_ShokoServer.Instance.UpdateServerStatus();
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-        }
-
-        public void CommandBinding_GeneralQueuePause(object sender, ExecutedRoutedEventArgs e)
-        {
-            try
-            {
-                VM_ShokoServer.Instance.ShokoServices.SetCommandProcessorGeneralPaused(true);
-                VM_ShokoServer.Instance.UpdateServerStatus();
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-        }
-
-        public void CommandBinding_GeneralQueueResume(object sender, ExecutedRoutedEventArgs e)
-        {
-            try
-            {
-                VM_ShokoServer.Instance.ShokoServices.SetCommandProcessorGeneralPaused(false);
-                VM_ShokoServer.Instance.UpdateServerStatus();
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-        }
-
-        public void CommandBinding_ServerImageQueuePause(object sender, ExecutedRoutedEventArgs e)
-        {
-            try
-            {
-                VM_ShokoServer.Instance.ShokoServices.SetCommandProcessorImagesPaused(true);
-                VM_ShokoServer.Instance.UpdateServerStatus();
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-        }
-
-        public void CommandBinding_ServerImageQueueResume(object sender, ExecutedRoutedEventArgs e)
-        {
-            try
-            {
-                VM_ShokoServer.Instance.ShokoServices.SetCommandProcessorImagesPaused(false);
-                VM_ShokoServer.Instance.UpdateServerStatus();
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-        }
-
-        #endregion
-
         #endregion
 
         public bool GroupFilter_GroupSearch(object obj)
@@ -3168,7 +3037,7 @@ namespace Shoko.Desktop
 
         private void URL_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
-            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            Utils.OpenUrl(e.Uri.AbsoluteUri);
             e.Handled = true;
         }
 
@@ -3178,7 +3047,7 @@ namespace Shoko.Desktop
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
-            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            Utils.OpenUrl(e.Uri.AbsoluteUri);
             e.Handled = true;
         }
     }

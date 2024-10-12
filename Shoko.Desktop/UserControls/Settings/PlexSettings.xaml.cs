@@ -48,41 +48,46 @@ namespace Shoko.Desktop.UserControls.Settings
 
             this.DataContext = _settings = new VM_PlexSettings();
             worker = new BackgroundWorker();
-            worker.DoWork += async (o, e) =>
+            worker.DoWork += (o, e) =>
             {
                 do Thread.Sleep(TimeSpan.FromSeconds(10));
                 while (VM_ShokoServer.Instance.CurrentUser == null);
 
-                await RefreshAsync();
+                RefreshAsync();
             };
             worker.RunWorkerAsync();
 
             btnRefresh.Click += RefreshClick;
         }
 
-        private async void RefreshClick(object sender, RoutedEventArgs e) => await RefreshAsync();
+        private async void RefreshClick(object sender, RoutedEventArgs e) => await Task.Run(RefreshAsync);
 
-        private async Task RefreshAsync()
+        private void RefreshAsync()
         {
-            await Task.Run(() =>
+            _settings.UpdateServers();
+            var currentServer = VM_ShokoServer.Instance.ShokoPlex.CurrentDevice(VM_ShokoServer.Instance.CurrentUser.JMMUserID);
+            if (currentServer == null) return;
+
+            var index = -1;
+            for (var i = 0; i < _settings.PlexDevices.Count; i++)
             {
-                Application.Current.Dispatcher.Invoke(() => _settings.UpdateServers());
-                var currentServer = VM_ShokoServer.Instance.ShokoPlex.CurrentDevice(VM_ShokoServer.Instance.CurrentUser.JMMUserID);
-                if (currentServer == null) return;
+                if (_settings.PlexDevices[i].ClientIdentifier == currentServer.ClientIdentifier)
+                    index = i;
+            }
 
-                Application.Current.Dispatcher.Invoke(() =>
+            if (index != -1)
+                Application.Current.Dispatcher.Invoke(() => cbServer.SelectedIndex = index);
+
+            var toSelect = lstPlexIDs.Items.Cast<Directory>()
+                .Where(itm => VM_ShokoServer.Instance.Plex_Sections.Contains(itm.Key)).ToList();
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                lstPlexIDs.SelectedItems.Clear();
+                foreach (var directory in toSelect)
                 {
-                    for (var i = 0; i < _settings.PlexDevices.Count; i++)
-                    {
-                        if (_settings.PlexDevices[i].ClientIdentifier == currentServer.ClientIdentifier)
-                            cbServer.SelectedIndex = i;
-                    }
-
-                    lstPlexIDs.SelectedItems.Clear();
-                    foreach (var itm in lstPlexIDs.Items)
-                        if (VM_ShokoServer.Instance.Plex_Sections.Contains(((Directory)itm).Key))
-                            lstPlexIDs.SelectedItems.Add(itm);
-                });
+                    lstPlexIDs.SelectedItems.Add(directory);
+                }
             });
         }
     }

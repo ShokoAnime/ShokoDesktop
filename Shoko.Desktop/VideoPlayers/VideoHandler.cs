@@ -252,8 +252,8 @@ namespace Shoko.Desktop.VideoPlayers
                     throw new Exception("Please configure a Video Player");
                 VideoInfo info = vid.ToVideoInfo(forcebegining);
 
-                if(player.Player == VideoPlayer.WindowsDefault && info.IsUrl)
-                    throw new Exception("Streaming is not supported from Windows default player, please select one of the supported ones from settings");
+                //if(player.Player == VideoPlayer.WindowsDefault && info.IsUrl)
+                //    throw new Exception("Streaming is not supported from Windows default player, please select one of the supported ones from settings");
 
                 recentlyPlayedFiles[info.VideoLocalId] = info;
                 player.Play(info);
@@ -445,7 +445,7 @@ namespace Shoko.Desktop.VideoPlayers
                 plsContent += @"[playlist]" + Environment.NewLine;
                 List<string> lines=new List<string>();
 
-                string url = $"http://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/Stream/%s/%s/false/%s";
+                string url = $"{AppSettings.JMMServer_Protocol}://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/Stream/%s/%s/false/%s";
 
                 for (int i = 1; i <= vids.Count; i++)
                 {

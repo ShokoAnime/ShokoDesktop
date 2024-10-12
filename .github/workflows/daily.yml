@@ -2,7 +2,8 @@ name: Build Daily
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
 #   pull_request:
 #     branches: [ master ]
 
@@ -12,7 +13,7 @@ jobs:
 
     name: Shoko Desktop daily build
     env:
-      ACTIONS_ALLOW_UNSECURE_COMMANDS: true 
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
     steps:
       - uses: actions/checkout@master
@@ -32,17 +33,20 @@ jobs:
         run: msbuild Shoko.Desktop.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1.0.0
+        uses: actions/upload-artifact@v4.4.0
         with:
           name: ShokoDesktop
           path: Shoko.Desktop\bin\Release
+
       - name: Archive Release
-        shell: powershell
+        shell: pwsh
         run: Compress-Archive .\\Shoko.Desktop\\bin\\Release .\\ShokoDesktop.zip
+
       - name: Upload Daily to shokoanime.com
-        shell: powershell
+        shell: pwsh
         env:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
         run : .\\.github\\workflows\\UploadArchive.ps1
+        

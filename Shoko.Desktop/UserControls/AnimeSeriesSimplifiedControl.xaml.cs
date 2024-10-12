@@ -1039,8 +1039,7 @@ namespace Shoko.Desktop.UserControls
                     }
                     else
                     {
-                        Uri uri = new Uri(rec.URL);
-                        Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
+                        Utils.OpenUrl(rec.URL);
                     }
 
                 }
